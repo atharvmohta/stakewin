@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>StakeWin</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#050b08;
+ color:#fff;
+ font-family:Arial,Helvetica,sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+
+header{
+ height:70px;
+ padding:0 5%;
+ display:flex;
+ align-items:center;
+ gap:35px;
+ background:#08110d;
+ border-bottom:1px solid #1b3026;
+ position:sticky;
+ top:0;
+ z-index:10;
+}
+
+.logo{
+ font-size:21px;
+ font-weight:900;
+}
+.logo span{color:#20df82}
+
+.nav{
+ display:flex;
+ gap:8px;
+ flex:1;
+}
+.nav button{
+ background:none;
+ border:0;
+ color:#879d92;
+ padding:10px 15px;
+ border-radius:8px;
+}
+.nav button:hover{
+ background:#14251d;
+ color:white;
+}
+
+.wallet{
+ background:#102219;
+ border:1px solid #294334;
+ padding:9px 14px;
+ border-radius:9px;
+ color:#35e88e;
+ font-weight:bold;
+}
+
+.profile{
+ width:38px;
+ height:38px;
+ border-radius:50%;
+ border:1px solid #294334;
+ background:#13221b;
+ color:white;
+}
+
+.hero{
+ max-width:1200px;
+ margin:auto;
+ min-height:450px;
+ padding:70px 5%;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+}
+
+.heroText{max-width:650px}
+
+.badge{
+ color:#2ee48a;
+ font-size:12px;
+ font-weight:bold;
+ letter-spacing:2px;
+}
+
+h1{
+ font-size:clamp(45px,7vw,78px);
+ line-height:.95;
+ margin:18px 0;
+ letter-spacing:-4px;
+}
+
+h1 span{color:#2de38a}
+
+.hero p{
+ color:#879d92;
+ line-height:1.6;
+ max-width:560px;
+}
+
+.buttons{
+ display:flex;
+ gap:10px;
+ margin-top:25px;
+}
+
+.primary{
+ background:#20db7e;
+ color:#03130b;
+ border:0;
+ padding:12px 20px;
+ border-radius:9px;
+ font-weight:bold;
+}
+
+.secondary{
+ background:#102019;
+ color:white;
+ border:1px solid #2b4638;
+ padding:12px 20px;
+ border-radius:9px;
+}
+
+.orb{
+ width:270px;
+ height:270px;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ font-size:85px;
+ font-weight:900;
+ background:radial-gradient(circle at 35% 25%,#38ff9c,#087448 45%,#02130b 75%);
+ box-shadow:0 0 100px #19d77c33;
+}
+
+.stats{
+ border-top:1px solid #172a22;
+ border-bottom:1px solid #172a22;
+ padding:20px;
+ display:flex;
+ justify-content:center;
+ gap:70px;
+ color:#82998d;
+}
+
+.stats b{color:white}
+
+.games{
+ max-width:1200px;
+ margin:auto;
+ padding:50px 5% 80px;
+}
+
+.top{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.top h2{margin:0;font-size:28px}
+.top p{color:#71877b;font-size:13px}
+
+.search{
+ background:#0c1812;
+ border:1px solid #253c31;
+ border-radius:9px;
+ padding:10px 13px;
+ color:white;
+ outline:none;
+}
+
+.categories{
+ display:flex;
+ gap:8px;
+ margin:25px 0;
+ overflow:auto;
+}
+
+.categories button{
+ white-space:nowrap;
+ background:#0d1913;
+ color:#82988d;
+ border:1px solid #243a2f;
+ padding:9px 16px;
+ border-radius:20px;
+}
+
+.categories button.active{
+ background:#20db7e;
+ color:#03130b;
+ border-color:#20db7e;
+ font-weight:bold;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:16px;
+}
+
+.card{
+ background:#0d1813;
+ border:1px solid #20362b;
+ border-radius:14px;
+ overflow:hidden;
+ transition:.2s;
+ cursor:pointer;
+}
+
+.card:hover{
+ transform:translateY(-5px);
+ border-color:#2b684b;
+}
+
+.art{
+ height:170px;
+ display:grid;
+ place-items:center;
+ font-size:65px;
+ background:linear-gradient(135deg,#173a29,#0a1510);
+ position:relative;
+}
+
+.card:nth-child(2n) .art{
+ background:linear-gradient(135deg,#152b3b,#0b1118);
+}
+
+.card:nth-child(3n) .art{
+ background:linear-gradient(135deg,#38270e,#151009);
+}
+
+.card:nth-child(4n) .art{
+ background:linear-gradient(135deg,#32152c,#120b12);
+}
+
+.tag{
+ position:absolute;
+ top:10px;
+ left:10px;
+ background:#20db7e;
+ color:#03130b;
+ font-size:9px;
+ font-weight:bold;
+ padding:5px 7px;
+ border-radius:5px;
+}
+
+.cardInfo{
+ padding:12px;
+ display:flex;
+ justify-content:space-between;
+}
+
+.cardInfo b{display:block}
+.cardInfo small{color:#71877b}
+
+footer{
+ border-top:1px solid #172a22;
+ padding:30px 5%;
+ color:#637a6e;
+ text-align:center;
+}
+
+.overlay{
+ position:fixed;
+ inset:0;
+ background:#000b;
+ display:none;
+ place-items:center;
+ z-index:50;
+ padding:20px;
+}
+
+.modal{
+ width:min(420px,100%);
+ background:#0d1913;
+ border:1px solid #2a4638;
+ border-radius:18px;
+ padding:30px;
+ position:relative;
+ text-align:center;
+}
+
+.close{
+ position:absolute;
+ top:12px;
+ right:12px;
+ border:0;
+ background:#172820;
+ color:white;
+ width:34px;
+ height:34px;
+ border-radius:8px;
+}
+
+.modalIcon{font-size:70px}
+.modal p{color:#81988d;line-height:1.5}
+
+.balanceBig{
+ font-size:45px;
+ font-weight:900;
+ margin:20px;
+ color:#32e88e;
+}
+
+.full{
+ width:100%;
+ margin-top:10px;
+}
+
+@media(max-width:800px){
+ header{padding:0 4%;gap:15px}
+ .nav{display:none}
+ .hero{
+  min-height:520px;
+  padding:50px 5%;
+ }
+ .orb{
+  position:absolute;
+  right:-80px;
+  opacity:.25;
+ }
+ .heroText{z-index:2}
+ .stats{gap:20px}
+ .stats div:nth-child(2){display:none}
+ .grid{grid-template-columns:repeat(2,1fr)}
+ .art{height:140px}
+ .top{display:block}
+ .search{width:100%;margin-top:15px}
+}
+
+@media(max-width:450px){
+ h1{font-size:48px}
+ .wallet{font-size:12px;padding:9px}
+ .stats{font-size:11px}
+ .grid{gap:10px}
+ .art{height:125px;font-size:52px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">STAKE<span>WIN</span></div>
+
+ <nav class="nav">
+  <button onclick="filterGames('all')">Home</button>
+  <button onclick="filterGames('all')">Casino</button>
+  <button onclick="filterGames('Originals')">Originals</button>
+  <button onclick="filterGames('Table')">Sports</button>
+ </nav>
+
+ <button class="wallet" onclick="openWallet()">
+  💰 <span id="balance">1000</span> DEMO
+ </button>
+
+ <button class="profile" onclick="openProfile()">👤</button>
+</header>
+
+<section class="hero">
+
+ <div class="heroText">
+
+  <div class="badge">✦ STAKEWIN ORIGINALS</div>
+
+  <h1>
+   Play the moment.<br>
+   <span>Own the thrill.</span>
+  </h1>
+
+  <p>
+   Welcome to StakeWin — a premium casino-style gaming interface
+   using virtual demo credits. Explore games and test the experience.
+  </p>
+
+  <div class="buttons">
+   <button class="primary" onclick="scrollGames()">
+    ▶ Play Demo
+   </button>
+
+   <button class="secondary" onclick="openWallet()">
+    Wallet
+   </button>
+  </div>
+
+ </div>
+
+ <div class="orb">SW</div>
+
+</section>
+
+<div class="stats">
+ <div>🏆 <b>12,840</b> players online</div>
+ <div>🎲 <b>48</b> demo games</div>
+ <div>💰 <b>1,000</b> starting credits</div>
+</div>
+
+<section class="games" id="games">
+
+ <div class="top">
+  <div>
+   <h2>Games</h2>
+   <p>Explore the StakeWin demo library</p>
+  </div>
+
+  <input
+   class="search"
+   id="search"
+   placeholder="🔍 Search games..."
+   oninput="searchGames()"
+  >
+ </div>
+
+ <div class="categories">
+  <button class="active" onclick="filterGames('all',this)">All</button>
+  <button onclick="filterGames('Originals',this)">Originals</button>
+  <button onclick="filterGames('Slots',this)">Slots</button>
+  <button onclick="filterGames('Table',this)">Table</button>
+  <button onclick="filterGames('Arcade',this)">Arcade</button>
+ </div>
+
+ <div class="grid" id="grid"></div>
+
+</section>
+
+<footer>
+ <div class="logo">STAKE<span>WIN</span></div>
+ <p>Demo interface • Virtual credits only • No real-money wagering</p>
+ © 2026 StakeWin
+</footer>
+
+
+<!-- GAME MODAL -->
+
+<div class="overlay" id="gameModal">
+
+ <div class="modal">
+
+  <button class="close" onclick="closeModal()">✕</button>
+
+  <div class="modalIcon" id="modalIcon">🎲</div>
+
+  <div class="badge">DEMO MODE</div>
+
+  <h2 id="modalTitle">Game</h2>
+
+  <p>
+   This is a virtual-credit demo.
+   No real-money betting or cash-out is enabled.
+  </p>
+
+  <button class="primary full" onclick="playGame()">
+   Play with 10 credits
+  </button>
+
+  <p>Demo balance: <b id="modalBalance">1000</b></p>
+
+ </div>
+
+</div>
+
+
+<!-- WALLET -->
+
+<div class="overlay" id="walletModal">
+
+ <div class="modal">
+
+  <button class="close" onclick="closeWallet()">✕</button>
+
+  <div class="modalIcon">💰</div>
+
+  <h2>Demo Wallet</h2>
+
+  <div class="balanceBig" id="walletBalance">1000</div>
+
+  <p>Virtual credits for testing the StakeWin interface.</p>
+
+  <button class="primary full" onclick="addCredits()">
+   + Add 500 Demo Credits
+  </button>
+
+ </div>
+
+</div>
+
+
+<!-- PROFILE -->
+
+<div class="overlay" id="profileModal">
+
+ <div class="modal">
+
+  <button class="close" onclick="closeProfile()">✕</button>
+
+  <div class="modalIcon">👤</div>
+
+  <h2>Demo Player</h2>
+
+  <p>Member since 2026</p>
+
+  <div class="balanceBig" id="profileBalance">1000</div>
+
+  <p>Demo credits</p>
+
+ </div>
+
+</div>
+
+
+<script>
+
+const games = [
+
+ {name:"Mines",cat:"Originals",icon:"💣"},
+ {name:"Crash",cat:"Originals",icon:"🚀"},
+ {name:"Dice",cat:"Originals",icon:"🎲"},
+ {name:"Plinko",cat:"Originals",icon:"🔵"},
+ {name:"Blackjack",cat:"Table",icon:"♠️"},
+ {name:"Roulette",cat:"Table",icon:"🎡"},
+ {name:"Lucky 7",cat:"Slots",icon:"7️⃣"},
+ {name:"Neon Fruits",cat:"Slots",icon:"🍒"},
+ {name:"Dragon Gold",cat:"Slots",icon:"🐉"},
+ {name:"Rocket Rush",cat:"Arcade",icon:"🌌"},
+ {name:"Tower",cat:"Originals",icon:"🗼"},
+ {name:"Keno",cat:"Table",icon:"🔢"}
+];
+
+let balance = 1000;
+let selectedGame = null;
+
+function render(list=games){
+
+ const grid=document.getElementById("grid");
+
+ grid.innerHTML=list.map((game,i)=>`
+
+  <div class="card" onclick="openGame(${i})">
+
+   <div class="art">
+
+    ${i<3 ? '<span class="tag">HOT</span>' : ''}
+
+    ${game.icon}
+
+   </div>
+
+   <div class="cardInfo">
+
+    <div>
+     <b>${game.name}</b>
+     <small>${game.cat}</small>
+    </div>
+
+    <span>›</span>
+
+   </div>
+
+  </div>
+
+ `).join("");
+}
+
+function openGame(index){
+
+ selectedGame=games[index];
+
+ document.getElementById("modalIcon").innerText=selectedGame.icon;
+ document.getElementById("modalTitle").innerText=selectedGame.name;
+ document.getElementById("modalBalance").innerText=balance;
+
+ document.getElementById("gameModal").style.display="grid";
+}
+
+function closeModal(){
+ document.getElementById("gameModal").style.display="none";
+}
+
+function playGame(){
+
+ if(balance<10){
+  alert("Not enough demo credits.");
+  return;
+ }
+
+ balance-=10;
+
+ updateBalance();
+
+ document.getElementById("modalBalance").innerText=balance;
+
+}
+
+function openWallet(){
+
+ document.getElementById("walletBalance").innerText=balance;
+
+ document.getElementById("walletModal").style.display="grid";
+
+}
+
+function closeWallet(){
+ document.getElementById("walletModal").style.display="none";
+}
+
+function addCredits(){
+
+ balance+=500;
+
+ updateBalance();
+
+ document.getElementById("walletBalance").innerText=balance;
+
+}
+
+function openProfile(){
+
+ document.getElementById("profileBalance").innerText=balance;
+
+ document.getElementById("profileModal").style.display="grid";
+
+}
+
+function closeProfile(){
+ document.getElementById("profileModal").style.display="none";
+}
+
+function updateBalance(){
+
+ document.getElementById("balance").innerText=balance;
+
+ document.getElementById("walletBalance").innerText=balance;
+
+ document.getElementById("profileBalance").innerText=balance;
+
+}
+
+function filterGames(category,button){
+
+ document.querySelectorAll(".categories button")
+ .forEach(b=>b.classList.remove("active"));
+
+ if(button)button.classList.add("active");
+
+ if(category==="all"){
+  render(games);
+ }else{
+  render(games.filter(g=>g.cat===category));
+ }
+
+}
+
+function searchGames(){
+
+ const value=document
+ .getElementById("search")
+ .value
+ .toLowerCase();
+
+ render(
+  games.filter(g=>
+   g.name.toLowerCase().includes(value)
+  )
+ );
+
+}
+
+function scrollGames(){
+
+ document.getElementById("games")
+ .scrollIntoView({behavior:"smooth"});
+
+}
+
+render();
+
+</script>
+
+</body>
+</html>
