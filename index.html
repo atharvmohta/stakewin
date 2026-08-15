@@ -8,828 +8,829 @@
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;
-  background:#050b08;
-  color:#f5faf7;
-  font-family:Arial,Helvetica,sans-serif
+margin:0;
+background:#050b08;
+color:#f5faf7;
+font-family:Arial,Helvetica,sans-serif
 }
 button,input,select{font:inherit}
 button{cursor:pointer}
 
 :root{
-  --green:#20df82;
-  --dark:#06100b;
-  --panel:#0c1912;
-  --border:#294536;
-  --muted:#7d9689;
-  --red:#ff5265;
-  --gold:#ffd34d;
+--green:#20df82;
+--panel:#0c1912;
+--border:#294536;
+--muted:#7d9689;
+--red:#ff5265;
+--gold:#ffd34d
 }
 
 /* HEADER */
 .header{
-  height:68px;
-  padding:0 4%;
-  display:flex;
-  align-items:center;
-  gap:18px;
-  background:#07100df5;
-  border-bottom:1px solid #1d3026;
-  position:sticky;
-  top:0;
-  z-index:50;
-  backdrop-filter:blur(15px)
+height:68px;
+padding:0 4%;
+display:flex;
+align-items:center;
+gap:15px;
+background:#07100df5;
+border-bottom:1px solid #1d3026;
+position:sticky;
+top:0;
+z-index:50;
+backdrop-filter:blur(15px)
 }
 .logo{
-  font-size:21px;
-  font-weight:950
+font-size:21px;
+font-weight:950
 }
 .logo span{color:var(--green)}
 
 .nav{
-  display:flex;
-  gap:4px;
-  flex:1
+display:flex;
+gap:4px;
+flex:1
 }
-.nav button{
-  border:0;
-  background:none;
-  color:#81988c;
-  padding:10px 13px;
-  border-radius:8px
+.nav button,
+.mobileMenu button{
+border:0;
+background:none;
+color:#81988c;
+padding:10px 13px;
+border-radius:8px
 }
-.nav button.active,
-.nav button:hover{
-  background:#14261d;
-  color:white
+.nav button:hover,
+.nav button.active{
+background:#14261d;
+color:#fff
 }
 
 .headerRight{
-  margin-left:auto;
-  display:flex;
-  align-items:center;
-  gap:7px
+margin-left:auto;
+display:flex;
+align-items:center;
+gap:7px
 }
 .balance,
 .account{
-  background:#102219;
-  border:1px solid var(--border);
-  border-radius:9px;
-  padding:8px 10px;
-  font-size:12px
+background:#102219;
+border:1px solid var(--border);
+border-radius:9px;
+padding:8px 10px;
+font-size:12px
 }
 .balance{
-  color:var(--green);
-  font-weight:800
+color:var(--green);
+font-weight:800
 }
 .icon{
-  width:36px;
-  height:36px;
-  border-radius:9px;
-  border:1px solid var(--border);
-  background:#101d16;
-  color:white
+width:36px;
+height:36px;
+border-radius:9px;
+border:1px solid var(--border);
+background:#101d16;
+color:#fff
 }
 
 /* HERO */
 .hero{
-  max-width:1200px;
-  min-height:410px;
-  margin:auto;
-  padding:55px 5%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:relative;
-  overflow:hidden
+max-width:1200px;
+min-height:410px;
+margin:auto;
+padding:55px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+position:relative;
+overflow:hidden
 }
 .heroText{
-  max-width:650px;
-  z-index:2
+max-width:650px;
+z-index:2
 }
 .eyebrow{
-  color:var(--green);
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:2px
+color:var(--green);
+font-size:11px;
+font-weight:900;
+letter-spacing:2px
 }
 .hero h1{
-  font-size:clamp(45px,7vw,76px);
-  line-height:.95;
-  letter-spacing:-4px;
-  margin:14px 0
+font-size:clamp(45px,7vw,76px);
+line-height:.95;
+letter-spacing:-4px;
+margin:14px 0
 }
 .hero h1 span{color:var(--green)}
 .hero p{
-  color:#82998d;
-  line-height:1.6
+color:#82998d;
+line-height:1.6
 }
 .heroActions{
-  display:flex;
-  gap:9px;
-  margin-top:22px
+display:flex;
+gap:9px;
+margin-top:22px
 }
 .primary,
 .secondary,
 .cash{
-  border-radius:9px;
-  padding:11px 16px;
-  font-weight:850
+border-radius:9px;
+padding:11px 16px;
+font-weight:850
 }
 .primary{
-  background:var(--green);
-  color:#03130a;
-  border:0
+background:var(--green);
+color:#03130a;
+border:0
 }
 .secondary{
-  background:#102019;
-  color:#e8f2ec;
-  border:1px solid var(--border)
+background:#102019;
+color:#e8f2ec;
+border:1px solid var(--border)
 }
 .cash{
-  background:var(--gold);
-  color:#241c00;
-  border:0
+background:var(--gold);
+color:#241c00;
+border:0
 }
 .orb{
-  width:210px;
-  height:210px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  font-size:70px;
-  font-weight:950;
-  background:
-    radial-gradient(circle at 35% 25%,#3cff9d,#087749 45%,#03170d 75%);
-  box-shadow:0 0 100px #1cdb7c33;
-  animation:float 3s ease-in-out infinite
+width:210px;
+height:210px;
+border-radius:50%;
+display:grid;
+place-items:center;
+font-size:70px;
+font-weight:950;
+background:
+radial-gradient(
+circle at 35% 25%,
+#3cff9d,
+#087749 45%,
+#03170d 75%
+);
+box-shadow:0 0 100px #1cdb7c33;
+animation:float 3s ease-in-out infinite
 }
 @keyframes float{
-  50%{transform:translateY(-10px) rotate(-3deg)}
+50%{transform:translateY(-10px) rotate(-3deg)}
 }
 
 /* STATS */
 .stats{
-  border-top:1px solid #172a20;
-  border-bottom:1px solid #172a20;
-  padding:17px;
-  display:flex;
-  justify-content:center;
-  gap:60px;
-  color:#7d9589;
-  font-size:12px
+border-top:1px solid #172a20;
+border-bottom:1px solid #172a20;
+padding:17px;
+display:flex;
+justify-content:center;
+gap:60px;
+color:#7d9589;
+font-size:12px
 }
 .stats b{color:#fff}
 
 /* GAMES */
 .games{
-  max-width:1200px;
-  margin:auto;
-  padding:45px 5% 80px
+max-width:1200px;
+margin:auto;
+padding:45px 5% 80px
 }
 .top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center
+display:flex;
+justify-content:space-between;
+align-items:center
 }
 .top h2{
-  margin:0;
-  font-size:29px
+margin:0;
+font-size:29px
 }
 .top p{
-  margin:4px 0;
-  color:#71887b;
-  font-size:12px
+margin:4px 0;
+color:#71887b;
+font-size:12px
 }
 .search{
-  width:230px;
-  background:#0b1711;
-  border:1px solid #263e31;
-  color:#fff;
-  padding:10px;
-  border-radius:9px;
-  outline:0
+width:230px;
+background:#0b1711;
+border:1px solid #263e31;
+color:#fff;
+padding:10px;
+border-radius:9px;
+outline:0
 }
 .chips{
-  display:flex;
-  gap:8px;
-  overflow:auto;
-  margin:23px 0
+display:flex;
+gap:8px;
+overflow:auto;
+margin:23px 0
 }
 .chips button{
-  white-space:nowrap;
-  background:#0c1912;
-  border:1px solid #23392d;
-  color:#81988b;
-  border-radius:20px;
-  padding:8px 15px
+white-space:nowrap;
+background:#0c1912;
+border:1px solid #23392d;
+color:#81988b;
+border-radius:20px;
+padding:8px 15px
 }
 .chips button.active{
-  background:var(--green);
-  color:#03130a;
-  border-color:var(--green);
-  font-weight:800
+background:var(--green);
+color:#03130a;
+border-color:var(--green);
+font-weight:800
 }
 .grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px
 }
 .card{
-  background:#0b1711;
-  border:1px solid #20372a;
-  border-radius:14px;
-  overflow:hidden;
-  transition:.2s
+background:#0b1711;
+border:1px solid #20372a;
+border-radius:14px;
+overflow:hidden;
+transition:.2s
 }
 .card:hover{
-  transform:translateY(-4px);
-  border-color:#356449
+transform:translateY(-4px);
+border-color:#356449
 }
 .art{
-  height:160px;
-  display:grid;
-  place-items:center;
-  font-size:60px;
-  background:linear-gradient(135deg,#173827,#0b1510);
-  position:relative
+height:160px;
+display:grid;
+place-items:center;
+font-size:60px;
+background:linear-gradient(135deg,#173827,#0b1510);
+position:relative
 }
 .tag{
-  position:absolute;
-  left:9px;
-  top:9px;
-  background:var(--green);
-  color:#03130a;
-  border-radius:5px;
-  padding:4px 6px;
-  font-size:8px;
-  font-weight:900
+position:absolute;
+left:9px;
+top:9px;
+background:var(--green);
+color:#03130a;
+border-radius:5px;
+padding:4px 6px;
+font-size:8px;
+font-weight:900
 }
 .info{
-  padding:11px;
-  display:flex;
-  justify-content:space-between;
-  color:#6e8679
+padding:11px;
+display:flex;
+justify-content:space-between;
+color:#6e8679
 }
 .info b{
-  display:block;
-  color:#edf6f1;
-  font-size:13px
+display:block;
+color:#edf6f1;
+font-size:13px
 }
 .info small{font-size:10px}
 
 /* FOOTER */
 footer{
-  text-align:center;
-  border-top:1px solid #172a20;
-  padding:30px;
-  color:#61796c;
-  font-size:11px
+text-align:center;
+border-top:1px solid #172a20;
+padding:30px;
+color:#61796c;
+font-size:11px
 }
 
 /* MODAL */
 .overlay{
-  position:fixed;
-  inset:0;
-  background:#000c;
-  backdrop-filter:blur(8px);
-  z-index:100;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:14px
+position:fixed;
+inset:0;
+background:#000c;
+backdrop-filter:blur(8px);
+z-index:100;
+display:none;
+align-items:center;
+justify-content:center;
+padding:14px
 }
 .modal{
-  width:min(720px,100%);
-  max-height:94vh;
-  overflow:auto;
-  background:#0a1710;
-  border:1px solid #2c4d3a;
-  border-radius:18px;
-  padding:20px;
-  position:relative;
-  box-shadow:0 30px 100px #000
+width:min(720px,100%);
+max-height:94vh;
+overflow:auto;
+background:#0a1710;
+border:1px solid #2c4d3a;
+border-radius:18px;
+padding:20px;
+position:relative;
+box-shadow:0 30px 100px #000
 }
 .close{
-  position:absolute;
-  right:12px;
-  top:12px;
-  border:0;
-  background:#17271f;
-  color:#fff;
-  width:34px;
-  height:34px;
-  border-radius:8px
+position:absolute;
+right:12px;
+top:12px;
+border:0;
+background:#17271f;
+color:#fff;
+width:34px;
+height:34px;
+border-radius:8px
 }
 .toolbar{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin:16px 0
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+margin:16px 0
 }
 .control label{
-  display:block;
-  color:#71887c;
-  font-size:10px;
-  margin-bottom:5px
+display:block;
+color:#71887c;
+font-size:10px;
+margin-bottom:5px
 }
 .control input,
 .control select{
-  width:100%;
-  background:#0f2017;
-  border:1px solid #294436;
-  color:#fff;
-  padding:9px;
-  border-radius:8px;
-  outline:0
+width:100%;
+background:#0f2017;
+border:1px solid #294436;
+color:#fff;
+padding:9px;
+border-radius:8px;
+outline:0
 }
 .gamearea{
-  background:#06100b;
-  border:1px solid #20372a;
-  border-radius:13px;
-  padding:15px;
-  min-height:260px
+background:#06100b;
+border:1px solid #20372a;
+border-radius:13px;
+padding:15px;
+min-height:260px
 }
 .status{
-  text-align:center;
-  min-height:24px;
-  margin:9px 0;
-  color:#81998d;
-  font-size:12px
+text-align:center;
+min-height:24px;
+margin:9px 0;
+color:#81998d;
+font-size:12px
 }
 .status.win{
-  color:var(--green);
-  font-weight:850
+color:var(--green);
+font-weight:850
 }
 .status.loss{
-  color:var(--red);
-  font-weight:850
+color:var(--red);
+font-weight:850
 }
 .actions{
-  display:flex;
-  gap:8px
+display:flex;
+gap:8px
 }
 .actions>*{flex:1}
 
 /* AUTH */
 .auth{
-  position:fixed;
-  inset:0;
-  z-index:999;
-  background:
-    radial-gradient(circle at 50% 20%,#174a31,#050b07 55%,#020403);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:18px
+position:fixed;
+inset:0;
+z-index:999;
+background:
+radial-gradient(
+circle at 50% 20%,
+#174a31,
+#050b07 55%,
+#020403
+);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:18px
 }
 .authCard{
-  width:min(410px,100%);
-  background:#0d1a13;
-  border:1px solid #315640;
-  border-radius:20px;
-  padding:28px;
-  text-align:center;
-  box-shadow:0 30px 100px #000
+width:min(410px,100%);
+background:#0d1a13;
+border:1px solid #315640;
+border-radius:20px;
+padding:28px;
+text-align:center;
+box-shadow:0 30px 100px #000
 }
 .authLogo{
-  font-size:25px;
-  font-weight:950
+font-size:25px;
+font-weight:950
 }
 .authLogo span{color:var(--green)}
 .authIcon{
-  font-size:42px;
-  margin-top:15px
+font-size:42px;
+margin-top:15px
 }
 .authCard h2{
-  margin:16px 0 7px
+margin:16px 0 7px
 }
 .authCard p{
-  color:#81988d;
-  font-size:13px;
-  line-height:1.5
+color:#81988d;
+font-size:13px;
+line-height:1.5
 }
 .authInput{
-  width:100%;
-  height:46px;
-  margin:5px 0;
-  background:#09130e;
-  color:#fff;
-  border:1px solid #294536;
-  border-radius:8px;
-  padding:0 12px;
-  outline:0
+width:100%;
+height:46px;
+margin:5px 0;
+background:#09130e;
+color:#fff;
+border:1px solid #294536;
+border-radius:8px;
+padding:0 12px;
+outline:0
 }
 .authInput:focus{
-  border-color:var(--green)
+border-color:var(--green)
 }
 .authBtn{
-  width:100%;
-  height:46px;
-  margin-top:9px;
-  border:0;
-  border-radius:8px;
-  background:var(--green);
-  color:#03130a;
-  font-weight:900
+width:100%;
+height:46px;
+margin-top:9px;
+border:0;
+border-radius:8px;
+background:var(--green);
+color:#03130a;
+font-weight:900
 }
 .authSwitch{
-  margin-top:15px!important
+margin-top:15px!important
 }
 .authSwitch button{
-  background:none;
-  border:0;
-  color:var(--green);
-  font-weight:800
+background:none;
+border:0;
+color:var(--green);
+font-weight:800
 }
 .error{
-  min-height:18px;
-  color:var(--red);
-  font-size:11px;
-  margin-top:7px
+min-height:18px;
+color:var(--red);
+font-size:11px;
+margin-top:7px
 }
 
 /* MINES */
 .minegrid{
-  display:grid;
-  gap:6px;
-  margin:15px auto;
-  max-width:440px
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:6px;
+margin:15px auto;
+max-width:440px
 }
 .mine{
-  aspect-ratio:1;
-  background:linear-gradient(145deg,#14291e,#0b1711);
-  border:1px solid #294638;
-  border-radius:7px;
-  color:#fff;
-  font-size:19px
+aspect-ratio:1;
+background:linear-gradient(145deg,#14291e,#0b1711);
+border:1px solid #294638;
+border-radius:7px;
+color:#fff;
+font-size:19px
 }
 .mine.g{
-  background:#196342;
-  animation:pop .2s
+background:#196342;
+animation:pop .2s
 }
 .mine.b{
-  background:#591821;
-  animation:shake .25s
+background:#591821;
+animation:shake .25s
 }
 @keyframes pop{
-  from{transform:scale(.7)}
-  to{transform:scale(1)}
+from{transform:scale(.7)}
+to{transform:scale(1)}
 }
 @keyframes shake{
-  25%{transform:rotate(-7deg)}
-  75%{transform:rotate(7deg)}
+25%{transform:rotate(-7deg)}
+75%{transform:rotate(7deg)}
 }
 
 /* CRASH */
 .mult{
-  font-size:65px;
-  font-weight:950;
-  color:var(--green);
-  text-align:center;
-  margin:50px 0 10px
+font-size:65px;
+font-weight:950;
+color:var(--green);
+text-align:center;
+margin:50px 0 10px
 }
 .mult.dead{color:var(--red)}
 .rocket{
-  font-size:45px;
-  text-align:center
+text-align:center;
+font-size:45px
 }
 
 /* DICE */
 .diceNum{
-  font-size:70px;
-  text-align:center;
-  color:var(--green);
-  font-weight:950
+text-align:center;
+font-size:70px;
+color:var(--green);
+font-weight:950
 }
 .slider{
-  width:100%;
-  accent-color:var(--green)
+width:100%;
+accent-color:var(--green)
 }
 
 /* CARDS */
 .cards{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-  min-height:85px
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+min-height:85px
 }
 .playing{
-  width:53px;
-  height:74px;
-  background:#f6f5ef;
-  color:#111;
-  border-radius:7px;
-  display:grid;
-  place-items:center;
-  font-weight:900;
-  font-size:21px
+width:53px;
+height:74px;
+background:#f6f5ef;
+color:#111;
+border-radius:7px;
+display:grid;
+place-items:center;
+font-weight:900;
+font-size:21px
 }
 .redcard{color:#d11d38}
 
 /* SLOTS */
 .reels{
-  display:flex;
-  gap:7px;
-  background:#321a0b;
-  border:4px solid #b47a24;
-  padding:20px;
-  border-radius:15px
+display:flex;
+gap:7px;
+background:#321a0b;
+border:4px solid #b47a24;
+padding:20px;
+border-radius:15px
 }
 .reel{
-  flex:1;
-  height:100px;
-  background:#f7f4e9;
-  color:#111;
-  border-radius:8px;
-  display:grid;
-  place-items:center;
-  font-size:45px
+flex:1;
+height:100px;
+background:#f7f4e9;
+color:#111;
+border-radius:8px;
+display:grid;
+place-items:center;
+font-size:45px
 }
-.spin{animation:spin .1s infinite}
+.spin{
+animation:spin .1s infinite
+}
 @keyframes spin{
-  50%{transform:translateY(7px)}
+50%{transform:translateY(7px)}
 }
 
 /* ROULETTE */
 .wheel{
-  width:230px;
-  height:230px;
-  margin:12px auto;
-  border-radius:50%;
-  border:8px solid #b99237;
-  background:conic-gradient(
-    #b5172d 0 12deg,#111 12deg 24deg,
-    #b5172d 24deg 36deg,#111 36deg 48deg,
-    #b5172d 48deg 60deg,#111 60deg 72deg,
-    #b5172d 72deg 84deg,#111 84deg 96deg,
-    #b5172d 96deg 108deg,#111 108deg 120deg,
-    #b5172d 120deg 132deg,#111 132deg 144deg,
-    #b5172d 144deg 156deg,#111 156deg 168deg,
-    #b5172d 168deg 180deg,#111 180deg 192deg,
-    #b5172d 192deg 204deg,#111 204deg 216deg,
-    #b5172d 216deg 228deg,#111 228deg 240deg,
-    #b5172d 240deg 252deg,#111 252deg 264deg,
-    #b5172d 264deg 276deg,#111 276deg 288deg,
-    #b5172d 288deg 300deg,#111 300deg 312deg,
-    #b5172d 312deg 324deg,#111 324deg 336deg,
-    #b5172d 336deg 348deg,#111 348deg 360deg
-  );
-  display:grid;
-  place-items:center;
-  transition:transform 2s cubic-bezier(.12,.8,.18,1)
+width:230px;
+height:230px;
+margin:12px auto;
+border-radius:50%;
+border:8px solid #b99237;
+background:conic-gradient(
+#b5172d 0 12deg,#111 12deg 24deg,
+#b5172d 24deg 36deg,#111 36deg 48deg,
+#b5172d 48deg 60deg,#111 60deg 72deg,
+#b5172d 72deg 84deg,#111 84deg 96deg,
+#b5172d 96deg 108deg,#111 108deg 120deg,
+#b5172d 120deg 132deg,#111 132deg 144deg,
+#b5172d 144deg 156deg,#111 156deg 168deg,
+#b5172d 168deg 180deg,#111 180deg 192deg,
+#b5172d 192deg 204deg,#111 204deg 216deg,
+#b5172d 216deg 228deg,#111 228deg 240deg,
+#b5172d 240deg 252deg,#111 252deg 264deg,
+#b5172d 264deg 276deg,#111 276deg 288deg,
+#b5172d 288deg 300deg,#111 300deg 312deg,
+#b5172d 312deg 324deg,#111 324deg 336deg,
+#b5172d 336deg 348deg,#111 348deg 360deg
+);
+display:grid;
+place-items:center;
+transition:transform 2s cubic-bezier(.12,.8,.18,1)
 }
 .wheelcenter{
-  width:68px;
-  height:68px;
-  border-radius:50%;
-  background:#08633d;
-  border:5px solid #d5ae49;
-  display:grid;
-  place-items:center;
-  font-weight:900
+width:68px;
+height:68px;
+border-radius:50%;
+background:#08633d;
+border:5px solid #d5ae49;
+display:grid;
+place-items:center;
+font-weight:900
 }
 
 /* TOWER */
 .tower{
-  display:flex;
-  flex-direction:column-reverse;
-  gap:6px
+display:flex;
+flex-direction:column-reverse;
+gap:6px
 }
 .trow{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:6px
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:6px
 }
 .tcell{
-  height:46px;
-  background:#12241b;
-  border:1px solid #294438;
-  border-radius:7px;
-  color:white
+height:46px;
+background:#12241b;
+border:1px solid #294438;
+border-radius:7px;
+color:white
 }
 .safe{background:#196342!important}
 .danger{background:#591821!important}
 
 /* KENO */
 .keno{
-  display:grid;
-  grid-template-columns:repeat(8,1fr);
-  gap:5px
+display:grid;
+grid-template-columns:repeat(8,1fr);
+gap:5px
 }
 .kn{
-  aspect-ratio:1;
-  background:#12241a;
-  border:1px solid #294437;
-  color:#9eb1a8;
-  border-radius:6px
+aspect-ratio:1;
+background:#12241a;
+border:1px solid #294437;
+color:#9eb1a8;
+border-radius:6px
 }
 .kn.sel{
-  background:var(--green);
-  color:#03130a
+background:var(--green);
+color:#03130a
 }
 .kn.hit{
-  background:var(--gold);
-  color:#211800
+background:var(--gold);
+color:#211800
 }
 
-/* =========================================================
-   PLINKO
-========================================================= */
-
+/* PLINKO */
 .plinko{
-  height:430px;
-  position:relative;
-  overflow:hidden;
-  border-radius:14px;
-  background:
-    radial-gradient(
-      circle at 50% 18%,
-      #1b3342 0,
-      #101e2c 42%,
-      #07111b 100%
-    );
-  border:1px solid #2c4657;
-  box-shadow:
-    inset 0 0 55px #0009,
-    0 0 25px #0008
+height:430px;
+position:relative;
+overflow:hidden;
+border-radius:14px;
+background:
+radial-gradient(
+circle at 50% 18%,
+#1b3342 0,
+#101e2c 42%,
+#07111b 100%
+);
+border:1px solid #2c4657;
+box-shadow:
+inset 0 0 55px #0009,
+0 0 25px #0008
 }
-
 .plinkoPegs{
-  position:absolute;
-  top:22px;
-  left:5%;
-  right:5%;
-  bottom:70px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between
+position:absolute;
+top:22px;
+left:5%;
+right:5%;
+bottom:70px;
+display:flex;
+flex-direction:column;
+justify-content:space-between
 }
-
 .plinkoRow{
-  display:flex;
-  justify-content:center;
-  gap:clamp(10px,2.1vw,27px)
+display:flex;
+justify-content:center;
+gap:clamp(10px,2.1vw,27px)
 }
-
 .plinkoPeg{
-  width:8px;
-  height:8px;
-  flex:none;
-  border-radius:50%;
-  background:#fff8f0;
-  box-shadow:
-    0 0 7px #fff,
-    0 0 12px #d9f6ff
+width:8px;
+height:8px;
+flex:none;
+border-radius:50%;
+background:#fff8f0;
+box-shadow:
+0 0 7px #fff,
+0 0 12px #d9f6ff
 }
-
 .plinkoBall{
-  position:absolute;
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  background:#fff;
-  box-shadow:
-    0 0 12px #fff,
-    0 0 30px #65d9ff;
-  left:50%;
-  top:5px;
-  transform:translateX(-50%);
-  display:none;
-  z-index:10
+position:absolute;
+width:18px;
+height:18px;
+border-radius:50%;
+background:#fff;
+box-shadow:
+0 0 12px #fff,
+0 0 30px #65d9ff;
+left:50%;
+top:5px;
+transform:translateX(-50%);
+display:none;
+z-index:10
 }
-
 .plinkoBins{
-  position:absolute;
-  left:3%;
-  right:3%;
-  bottom:7px;
-  height:50px;
-  display:flex;
-  gap:3px
+position:absolute;
+left:3%;
+right:3%;
+bottom:7px;
+height:50px;
+display:flex;
+gap:3px
 }
-
 .plinkoBin{
-  flex:1;
-  min-width:0;
-  border-radius:6px;
-  border:1px solid #ff63c1;
-  background:
-    linear-gradient(
-      180deg,
-      #ff66c5,
-      #ed168f
-    );
-  color:#ffe4f5;
-  display:grid;
-  place-items:center;
-  font-size:clamp(7px,1.5vw,13px);
-  font-weight:950;
-  text-shadow:0 1px 3px #98005e;
-  box-shadow:
-    0 0 10px #ff2db044,
-    inset 0 1px 0 #fff8
+flex:1;
+min-width:0;
+border-radius:6px;
+border:1px solid #ff63c1;
+background:
+linear-gradient(
+180deg,
+#ff66c5,
+#ed168f
+);
+color:#ffe4f5;
+display:grid;
+place-items:center;
+font-size:clamp(7px,1.5vw,13px);
+font-weight:950;
+text-shadow:0 1px 3px #98005e;
+box-shadow:
+0 0 10px #ff2db044,
+inset 0 1px 0 #fff8
 }
-
 .plinkoBin.big{
-  background:
-    linear-gradient(
-      180deg,
-      #ff77ce,
-      #f0009d
-    );
-  box-shadow:
-    0 0 20px #ff35b577,
-    inset 0 1px 0 #fff9
+background:
+linear-gradient(
+180deg,
+#ff77ce,
+#f0009d
+);
+box-shadow:
+0 0 20px #ff35b577,
+inset 0 1px 0 #fff9
 }
-
 .plinkoInfo{
-  text-align:center;
-  color:#7891a1;
-  font-size:10px;
-  margin:6px 0
+text-align:center;
+color:#7891a1;
+font-size:10px;
+margin:6px 0
 }
 
 /* MOBILE */
 .mobileMenu{
-  display:none;
-  position:fixed;
-  top:68px;
-  left:0;
-  right:0;
-  background:#09130e;
-  border-bottom:1px solid #22392c;
-  z-index:19;
-  padding:7px
+display:none;
+position:fixed;
+top:68px;
+left:0;
+right:0;
+background:#09130e;
+border-bottom:1px solid #22392c;
+z-index:19;
+padding:7px
 }
 .mobileMenu button{
-  display:block;
-  width:100%;
-  text-align:left;
-  border:0;
-  background:none;
-  color:#81988c;
-  padding:11px
+display:block;
+width:100%;
+text-align:left
 }
 
 @media(max-width:850px){
-  .nav{display:none}
-  .mobileMenu{display:none}
-  .header{gap:8px;padding:0 3%}
-  .hero{min-height:470px}
-  .orb{
-    position:absolute;
-    right:-80px;
-    opacity:.25
-  }
-  .heroText{z-index:2}
-  .stats{
-    gap:15px;
-    justify-content:space-around
-  }
-  .stats div{font-size:10px}
-  .stats div:nth-child(2){display:none}
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .art{height:135px}
-  .top{display:block}
-  .search{
-    width:100%;
-    margin-top:12px
-  }
-  .toolbar{
-    grid-template-columns:1fr 1fr
-  }
-  .plinko{height:390px}
+.nav{display:none}
+.header{
+gap:8px;
+padding:0 3%
+}
+.hero{
+min-height:470px
+}
+.orb{
+position:absolute;
+right:-80px;
+opacity:.25
+}
+.stats{
+gap:15px;
+justify-content:space-around
+}
+.stats div{font-size:10px}
+.stats div:nth-child(2){display:none}
+.grid{
+grid-template-columns:repeat(2,1fr)
+}
+.art{height:135px}
+.top{display:block}
+.search{
+width:100%;
+margin-top:12px
+}
+.toolbar{
+grid-template-columns:1fr 1fr
+}
+.plinko{height:390px}
 }
 
 @media(max-width:450px){
-  .hero h1{
-    font-size:47px;
-    letter-spacing:-2px
-  }
-  .grid{gap:9px}
-  .art{
-    height:125px;
-    font-size:50px
-  }
-  .account{display:none}
-  .modal{padding:15px}
-  .mult{font-size:55px}
-  .plinko{height:365px}
-  .plinkoPeg{
-    width:6px;
-    height:6px
-  }
-  .plinkoRow{gap:9px}
+.hero h1{
+font-size:47px;
+letter-spacing:-2px
+}
+.grid{gap:9px}
+.art{
+height:125px;
+font-size:50px
+}
+.account{display:none}
+.modal{padding:15px}
+.mult{font-size:55px}
+.plinko{height:365px}
+.plinkoPeg{
+width:6px;
+height:6px
+}
+.plinkoRow{gap:9px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================================================
-     LOGIN / SIGNUP
-========================================================= -->
+<!-- LOGIN / SIGNUP -->
 
 <div id="auth" class="auth">
 
@@ -853,13 +854,15 @@ you can play any demo game.
 <input
 id="loginUser"
 class="authInput"
-placeholder="Username">
+placeholder="Username"
+autocomplete="username">
 
 <input
 id="loginPass"
 class="authInput"
 type="password"
-placeholder="Password">
+placeholder="Password"
+autocomplete="current-password">
 
 <button
 class="authBtn"
@@ -892,19 +895,22 @@ Create your free demo account to unlock all games.
 <input
 id="signupUser"
 class="authInput"
-placeholder="Username">
+placeholder="Username"
+autocomplete="username">
 
 <input
 id="signupPass"
 class="authInput"
 type="password"
-placeholder="Password">
+placeholder="Password"
+autocomplete="new-password">
 
 <input
 id="signupConfirm"
 class="authInput"
 type="password"
-placeholder="Confirm Password">
+placeholder="Confirm Password"
+autocomplete="new-password">
 
 <button
 class="authBtn"
@@ -931,7 +937,11 @@ Login
 
 <header class="header">
 
-<button class="icon" onclick="toggleMenu()">☰</button>
+<button
+class="icon"
+onclick="toggleMenu()">
+☰
+</button>
 
 <div class="logo">
 STAKE<span>WIN</span>
@@ -985,6 +995,8 @@ onclick="openProfile()">
 
 </header>
 
+
+<!-- MOBILE MENU -->
 
 <div id="mobileMenu" class="mobileMenu">
 
@@ -1065,7 +1077,7 @@ SW
 </div>
 
 <div>
-🎲 <b>48</b> demo games
+🎲 <b>13</b> demo games
 </div>
 
 <div>
@@ -1095,7 +1107,7 @@ Login required • virtual demo credits only
 id="search"
 class="search"
 placeholder="🔍 Search games"
-oninput="renderGames()">
+oninput="renderGames">
 
 </div>
 
@@ -1187,7 +1199,9 @@ style="color:#789083;font-size:12px">
 
 <div id="profileModal" class="overlay">
 
-<div class="modal" style="text-align:center">
+<div
+class="modal"
+style="text-align:center">
 
 <button
 class="close"
@@ -1233,7 +1247,9 @@ LOG OUT
 
 <div id="walletModal" class="overlay">
 
-<div class="modal" style="text-align:center">
+<div
+class="modal"
+style="text-align:center">
 
 <button
 class="close"
@@ -1276,11 +1292,11 @@ onclick="addCredits()">
 <script>
 
 /* =========================================================
-   AUTH
+   PART 1 — AUTH + BASIC SYSTEM
 ========================================================= */
 
-const USERS_KEY="stakewin_users";
-const SESSION_KEY="stakewin_session";
+const USERS_KEY="stakewin_users_v2";
+const SESSION_KEY="stakewin_session_v2";
 
 let currentUser=null;
 let balanceAmount=1000;
@@ -1321,6 +1337,9 @@ document.getElementById("loginBox")
 document.getElementById("signupBox")
 .style.display="block";
 
+document.getElementById("signupError")
+.innerText="";
+
 }
 
 
@@ -1331,6 +1350,9 @@ document.getElementById("loginBox")
 
 document.getElementById("signupBox")
 .style.display="none";
+
+document.getElementById("loginError")
+.innerText="";
 
 }
 
@@ -1406,16 +1428,7 @@ balance:1000
 
 saveUsers(users);
 
-currentUser=username;
-
-balanceAmount=1000;
-
-localStorage.setItem(
-SESSION_KEY,
-username
-);
-
-unlock();
+startSession(username,1000);
 
 }
 
@@ -1458,22 +1471,23 @@ return;
 }
 
 
-currentUser=username;
+startSession(
+username,
+Number(users[username].balance||1000)
+);
 
-balanceAmount=
-Number(users[username].balance||1000);
+}
+
+
+function startSession(username,balance){
+
+currentUser=username;
+balanceAmount=balance;
 
 localStorage.setItem(
 SESSION_KEY,
 username
 );
-
-unlock();
-
-}
-
-
-function unlock(){
 
 document.getElementById("auth")
 .style.display="none";
@@ -1500,6 +1514,12 @@ SESSION_KEY
 );
 
 document.getElementById("profileModal")
+.style.display="none";
+
+document.getElementById("gameModal")
+.style.display="none";
+
+document.getElementById("walletModal")
 .style.display="none";
 
 document.getElementById("auth")
@@ -1542,13 +1562,17 @@ document.getElementById("balance")
 document.getElementById("statsBalance")
 .innerText=value;
 
-if(document.getElementById("walletBalance"))
-document.getElementById("walletBalance")
-.innerText=value;
+const wallet=
+document.getElementById("walletBalance");
 
-if(document.getElementById("profileBalance"))
-document.getElementById("profileBalance")
-.innerText=value;
+if(wallet)
+wallet.innerText=value;
+
+const profile=
+document.getElementById("profileBalance");
+
+if(profile)
+profile.innerText=value;
 
 saveBalance();
 
@@ -1596,7 +1620,112 @@ updateBalance();
 
 
 /* =========================================================
-   GAME LIST
+   BASIC NAVIGATION
+========================================================= */
+
+function scrollGames(){
+
+document.getElementById("games")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+function toggleMenu(){
+
+const menu=
+document.getElementById("mobileMenu");
+
+menu.style.display=
+menu.style.display==="block"
+?"none"
+:"block";
+
+}
+
+
+function closeModal(id){
+
+document.getElementById(id)
+.style.display="none";
+
+}
+
+
+function clearTimers(){
+
+timers.forEach(timer=>{
+clearInterval(timer);
+clearTimeout(timer);
+});
+
+timers=[];
+
+}
+
+
+/* =========================================================
+   PROFILE / WALLET
+========================================================= */
+
+function openWallet(){
+
+if(!currentUser){
+
+document.getElementById("auth")
+.style.display="flex";
+
+return;
+
+}
+
+document.getElementById("walletModal")
+.style.display="flex";
+
+updateBalance();
+
+}
+
+
+function addCredits(){
+
+if(!currentUser)return;
+
+payout(500);
+
+}
+
+
+function openProfile(){
+
+if(!currentUser){
+
+document.getElementById("auth")
+.style.display="flex";
+
+return;
+
+}
+
+document.getElementById("profileModal")
+.style.display="flex";
+
+document.getElementById("profileName")
+.innerText=currentUser;
+
+updateBalance();
+
+}
+
+
+/* =========================================================
+   IMPORTANT
+   PART 2 CONTINUES INSIDE THIS SAME <script>
+=========================================================*/
+/* =========================================================
+   PART 2 — GAME LIST + GAME SYSTEM
 ========================================================= */
 
 const games=[
@@ -1622,7 +1751,7 @@ id:"dice",
 name:"Dice",
 cat:"Originals",
 icon:"🎲",
-desc:"Choose UNDER or OVER with visible probability."
+desc:"Choose UNDER or OVER with virtual credits."
 },
 
 {
@@ -1654,7 +1783,7 @@ id:"roulette",
 name:"Roulette",
 cat:"Table",
 icon:"🎡",
-desc:"Bet red, black, even, odd or zero."
+desc:"Spin the wheel using virtual demo credits."
 },
 
 {
@@ -1710,9 +1839,11 @@ desc:"Pick numbers and match the draw."
 
 function renderGames(){
 
+const search=
+document.getElementById("search");
+
 const query=
-document.getElementById("search")
-.value.toLowerCase();
+search.value.toLowerCase().trim();
 
 const list=
 games.filter(game=>
@@ -1720,10 +1851,8 @@ games.filter(game=>
 currentCategory==="All"||
 game.cat===currentCategory
 )&&
-game.name.toLowerCase()
-.includes(query)
+game.name.toLowerCase().includes(query)
 );
-
 
 document.getElementById("gameGrid")
 .innerHTML=
@@ -1768,14 +1897,14 @@ function filterGames(category,button){
 
 currentCategory=category;
 
-document.querySelectorAll(
-".chips button"
-).forEach(b=>
-b.classList.remove("active")
-);
+document.querySelectorAll(".chips button")
+.forEach(b=>{
+b.classList.remove("active");
+});
 
-if(button)
+if(button){
 button.classList.add("active");
+}
 
 renderGames();
 
@@ -1784,6 +1913,9 @@ renderGames();
 
 function openGame(id){
 
+/*
+ Login/account is mandatory.
+*/
 if(!currentUser){
 
 document.getElementById("auth")
@@ -1797,6 +1929,8 @@ clearTimers();
 
 const game=
 games.find(g=>g.id===id);
+
+if(!game)return;
 
 currentGame=id;
 
@@ -1828,57 +1962,13 @@ clearTimers();
 document.getElementById("gameModal")
 .style.display="none";
 
-}
-
-
-function closeModal(id){
-
-document.getElementById(id)
-.style.display="none";
-
-}
-
-
-function clearTimers(){
-
-timers.forEach(
-timer=>clearInterval(timer)
-);
-
-timers.forEach(
-timer=>clearTimeout(timer)
-);
-
-timers=[];
-
-}
-
-
-function scrollGames(){
-
-document.getElementById("games")
-.scrollIntoView({
-behavior:"smooth"
-});
-
-}
-
-
-function toggleMenu(){
-
-const menu=
-document.getElementById("mobileMenu");
-
-menu.style.display=
-menu.style.display==="block"
-?"none"
-:"block";
+currentGame=null;
 
 }
 
 
 /* =========================================================
-   GAME HTML
+   GAME HTML ROUTER
 ========================================================= */
 
 function getGameHTML(id){
@@ -1917,7 +2007,11 @@ return towerHTML();
 if(id==="keno")
 return kenoHTML();
 
-return "";
+return `
+<div class="status">
+Game unavailable.
+</div>
+`;
 
 }
 
@@ -1953,35 +2047,51 @@ return`
 <div class="toolbar">
 
 <div class="control">
+
 <label>Level</label>
+
 <select id="mineLevel">
+
 <option>Easy</option>
 <option selected>Medium</option>
 <option>Hard</option>
+
 </select>
+
 </div>
 
+
 <div class="control">
+
 <label>Mines</label>
+
 <select id="mineCount">
+
 <option>3</option>
 <option selected>5</option>
 <option>8</option>
 <option>12</option>
 <option>18</option>
+
 </select>
+
 </div>
 
+
 <div class="control">
-<label>Bet</label>
+
+<label>Demo Credits</label>
+
 <input
 id="mineBet"
 type="number"
 value="10"
 min="1">
+
 </div>
 
 </div>
+
 
 <div class="actions">
 
@@ -2001,11 +2111,13 @@ CASH OUT
 
 </div>
 
+
 <div
 id="mineStatus"
 class="status">
-More mines = higher multipliers.
+More mines = higher multiplier.
 </div>
+
 
 <div
 id="mineGrid"
@@ -2022,10 +2134,9 @@ function initMines(){
 const grid=
 document.getElementById("mineGrid");
 
-grid.innerHTML="";
+if(!grid)return;
 
-grid.style.gridTemplateColumns=
-"repeat(5,1fr)";
+grid.innerHTML="";
 
 for(let i=0;i<25;i++){
 
@@ -2051,10 +2162,14 @@ grid.appendChild(cell);
 function startMines(){
 
 const bet=
-Number(document.getElementById("mineBet").value);
+Number(
+document.getElementById("mineBet").value
+);
 
 const mineCount=
-Number(document.getElementById("mineCount").value);
+Number(
+document.getElementById("mineCount").value
+);
 
 if(!spend(bet))
 return;
@@ -2072,9 +2187,9 @@ mines.push(n);
 }
 
 gameState={
-bet,
-mineCount,
-mines,
+bet:bet,
+mineCount:mineCount,
+mines:mines,
 opened:0,
 active:true,
 cash:bet
@@ -2083,10 +2198,15 @@ cash:bet
 initMines();
 
 document.querySelectorAll(".mine")
-.forEach(c=>c.disabled=false);
+.forEach(c=>{
+c.disabled=false;
+});
 
 document.getElementById("mineCash")
 .disabled=true;
+
+document.getElementById("mineStatus")
+.className="status";
 
 document.getElementById("mineStatus")
 .innerText=
@@ -2101,9 +2221,9 @@ if(!gameState.active)
 return;
 
 const cell=
-document.getElementById(
-"mine-"+index
-);
+document.getElementById("mine-"+index);
+
+if(!cell)return;
 
 cell.disabled=true;
 
@@ -2119,9 +2239,13 @@ gameState.mines.forEach(i=>{
 const c=
 document.getElementById("mine-"+i);
 
+if(c){
+
 c.innerText="💣";
 c.classList.add("b");
 c.disabled=true;
+
+}
 
 });
 
@@ -2139,10 +2263,13 @@ return;
 
 }
 
+
 gameState.opened++;
 
 cell.innerText="💎";
+
 cell.classList.add("g");
+
 
 const safeCells=
 25-gameState.mineCount;
@@ -2150,28 +2277,30 @@ const safeCells=
 let multiplier=
 1+
 (
-gameState.opened/
-safeCells
+gameState.opened/safeCells
 )*
 (
-1+
-gameState.mineCount*.20
+1+gameState.mineCount*.20
 );
 
+
 if(
-document.getElementById("mineLevel").value
-==="Easy"
+document.getElementById("mineLevel")
+.value==="Easy"
 )
 multiplier*=.9;
 
+
 if(
-document.getElementById("mineLevel").value
-==="Hard"
+document.getElementById("mineLevel")
+.value==="Hard"
 )
 multiplier*=1.25;
 
+
 gameState.cash=
 gameState.bet*multiplier;
+
 
 document.getElementById("mineCash")
 .disabled=false;
@@ -2181,15 +2310,17 @@ document.getElementById("mineStatus")
 
 document.getElementById("mineStatus")
 .innerText=
-`${multiplier.toFixed(2)}x • Cash out ${gameState.cash.toFixed(2)} credits`;
+`${multiplier.toFixed(2)}x • ${gameState.cash.toFixed(2)} demo credits`;
 
 }
 
 
 function cashMines(){
 
-if(!gameState.active||
-gameState.opened===0)
+if(
+!gameState.active||
+gameState.opened===0
+)
 return;
 
 gameState.active=false;
@@ -2204,7 +2335,7 @@ document.getElementById("mineStatus")
 
 document.getElementById("mineStatus")
 .innerText=
-`Cashed out • +${gameState.cash.toFixed(2)} credits`;
+`Cashed out • +${gameState.cash.toFixed(2)} demo credits`;
 
 }
 
@@ -2220,40 +2351,51 @@ return`
 <div class="toolbar">
 
 <div class="control">
+
 <label>Level</label>
 
 <select id="crashLevel">
+
 <option>Easy</option>
 <option selected>Medium</option>
 <option>Hard</option>
+
 </select>
 
 </div>
 
+
 <div class="control">
-<label>Bet</label>
+
+<label>Demo Credits</label>
 
 <input
 id="crashBet"
 type="number"
-value="10">
+value="10"
+min="1">
 
 </div>
 
+
 <div class="control">
+
 <label>Auto Cash</label>
 
 <select id="autoCash">
+
 <option value="0">Manual</option>
 <option value="1.5">1.50x</option>
 <option value="2">2.00x</option>
 <option value="3">3.00x</option>
 <option value="5">5.00x</option>
+
 </select>
 
 </div>
 
 </div>
+
 
 <div class="gamearea">
 
@@ -2269,11 +2411,13 @@ class="mult">
 
 </div>
 
+
 <div
 id="crashStatus"
 class="status">
 Start a round and cash out before crash.
 </div>
+
 
 <div class="actions">
 
@@ -2300,6 +2444,8 @@ CASH OUT
 
 function startCrash(){
 
+clearTimers();
+
 const bet=
 Number(
 document.getElementById("crashBet").value
@@ -2308,12 +2454,13 @@ document.getElementById("crashBet").value
 if(!spend(bet))
 return;
 
-let crash=
-1.15+
-Math.random()*9;
 
 const level=
 document.getElementById("crashLevel").value;
+
+
+let crash=
+1.15+Math.random()*9;
 
 if(level==="Easy")
 crash=2+Math.random()*9;
@@ -2321,15 +2468,21 @@ crash=2+Math.random()*9;
 if(level==="Hard")
 crash=1.05+Math.random()*5;
 
+
 gameState={
 active:true,
-bet,
+bet:bet,
 multiplier:1,
-crash
+crash:crash
 };
+
+
+document.getElementById("crashMultiplier")
+.classList.remove("dead");
 
 document.getElementById("crashCash")
 .disabled=false;
+
 
 const timer=
 setInterval(()=>{
@@ -2337,26 +2490,33 @@ setInterval(()=>{
 if(!gameState.active)
 return;
 
+
 gameState.multiplier+=
 .025+
 gameState.multiplier*.008;
+
 
 document.getElementById(
 "crashMultiplier"
 ).innerText=
 gameState.multiplier.toFixed(2)+"x";
 
+
 const auto=
 Number(
-document.getElementById("autoCash").value
+document.getElementById("autoCash")
+.value
 );
+
 
 if(auto>0&&
 gameState.multiplier>=auto){
 
 cashoutCrash();
+return;
 
 }
+
 
 if(
 gameState.active&&
@@ -2376,13 +2536,14 @@ document.getElementById("crashStatus")
 
 document.getElementById("crashStatus")
 .innerText=
-`CRASHED at ${gameState.crash.toFixed(2)}x • round lost`;
+`CRASHED at ${gameState.crash.toFixed(2)}x`;
 
 clearInterval(timer);
 
 }
 
 },100);
+
 
 timers.push(timer);
 
@@ -2410,7 +2571,7 @@ document.getElementById("crashStatus")
 
 document.getElementById("crashStatus")
 .innerText=
-`Cashed out at ${gameState.multiplier.toFixed(2)}x • +${win.toFixed(2)} credits`;
+`Cashed out at ${gameState.multiplier.toFixed(2)}x • +${win.toFixed(2)}`;
 
 clearTimers();
 
@@ -2428,28 +2589,36 @@ return`
 <div class="toolbar">
 
 <div class="control">
+
 <label>Level</label>
 
 <select id="diceLevel">
+
 <option>Easy</option>
 <option selected>Medium</option>
 <option>Hard</option>
+
 </select>
 
 </div>
 
+
 <div class="control">
-<label>Bet</label>
+
+<label>Demo Credits</label>
 
 <input
 id="diceBet"
 type="number"
-value="10">
+value="10"
+min="1">
 
 </div>
 
+
 <div class="control">
-<label>Win Condition</label>
+
+<label>Condition</label>
 
 <select
 id="diceMode"
@@ -2469,6 +2638,7 @@ OVER
 
 </div>
 
+
 <div class="gamearea">
 
 <div
@@ -2476,6 +2646,7 @@ id="diceTarget"
 class="diceNum">
 50
 </div>
+
 
 <input
 id="diceSlider"
@@ -2486,11 +2657,13 @@ max="95"
 value="50"
 oninput="updateDice()">
 
+
 <div
 id="diceInfo"
 class="status">
 49% win chance
 </div>
+
 
 <div
 id="diceRoll"
@@ -2500,6 +2673,7 @@ font-size:42px;
 margin:15px">
 🎲
 </div>
+
 
 <button
 class="primary"
@@ -2517,13 +2691,17 @@ ROLL DICE
 
 function updateDice(){
 
+const slider=
+document.getElementById("diceSlider");
+
+if(!slider)return;
+
 const target=
-Number(
-document.getElementById("diceSlider").value
-);
+Number(slider.value);
 
 const mode=
-document.getElementById("diceMode").value;
+document.getElementById("diceMode")
+.value;
 
 const chance=
 mode==="under"
@@ -2538,6 +2716,9 @@ Math.max(
 
 document.getElementById("diceTarget")
 .innerText=target;
+
+document.getElementById("diceInfo")
+.className="status";
 
 document.getElementById("diceInfo")
 .innerText=
@@ -2580,14 +2761,16 @@ Math.max(
 (100/chance)*.96
 );
 
+
 document.getElementById("diceRoll")
-.innerText=
-roll.toFixed(2);
+.innerText=roll.toFixed(2);
+
 
 const win=
 mode==="under"
 ?roll<target
 :roll>target;
+
 
 if(win){
 
@@ -2601,7 +2784,7 @@ document.getElementById("diceInfo")
 
 document.getElementById("diceInfo")
 .innerText=
-`WIN • Rolled ${roll.toFixed(2)} • +${amount.toFixed(2)}`;
+`WIN • ${roll.toFixed(2)} • +${amount.toFixed(2)}`;
 
 }else{
 
@@ -2610,7 +2793,7 @@ document.getElementById("diceInfo")
 
 document.getElementById("diceInfo")
 .innerText=
-`LOSS • Rolled ${roll.toFixed(2)}`;
+`LOSS • ${roll.toFixed(2)}`;
 
 }
 
@@ -2619,9 +2802,6 @@ document.getElementById("diceInfo")
 
 /* =========================================================
    PLINKO
-   IMPORTANT:
-   MODE CHANGE IS LIVE.
-   ROWS 8 -> 16.
 ========================================================= */
 
 function plinkoHTML(){
@@ -2665,43 +2845,15 @@ High
 id="plinkoRows"
 onchange="buildPlinko()">
 
-<option value="8">
-8
-</option>
-
-<option value="9">
-9
-</option>
-
-<option value="10">
-10
-</option>
-
-<option value="11">
-11
-</option>
-
-<option value="12">
-12
-</option>
-
-<option value="13">
-13
-</option>
-
-<option value="14">
-14
-</option>
-
-<option value="15">
-15
-</option>
-
-<option
-value="16"
-selected>
-16
-</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16" selected>16</option>
 
 </select>
 
@@ -2710,7 +2862,7 @@ selected>
 
 <div class="control">
 
-<label>Bet</label>
+<label>Demo Credits</label>
 
 <input
 id="plinkoBet"
@@ -2770,533 +2922,84 @@ DROP BALL
 }
 
 
-/* =========================================================
-   PLINKO MULTIPLIER TABLE
-========================================================= */
-
 const PLINKO_MULTIPLIERS={
 
-/* 8 ROWS = 9 TILES */
-
 8:{
-
-Low:[
-5.6,
-2.1,
-1.1,
-1.0,
-0.5,
-1.0,
-1.1,
-2.1,
-5.6
-],
-
-Medium:[
-13,
-3.0,
-1.3,
-0.7,
-0.4,
-0.7,
-1.3,
-3.0,
-13
-],
-
-High:[
-29,
-4.0,
-1.5,
-0.3,
-0.2,
-0.3,
-1.5,
-4.0,
-29
-]
-
+Low:[5.6,2.1,1.1,1,.5,1,1.1,2.1,5.6],
+Medium:[13,3,1.3,.7,.4,.7,1.3,3,13],
+High:[29,4,1.5,.3,.2,.3,1.5,4,29]
 },
-
-
-/* 9 ROWS = 10 TILES */
 
 9:{
-
-Low:[
-7,
-3,
-1.5,
-1.0,
-0.6,
-0.6,
-1.0,
-1.5,
-3,
-7
-],
-
-Medium:[
-18,
-4,
-1.8,
-0.8,
-0.5,
-0.5,
-0.8,
-1.8,
-4,
-18
-],
-
-High:[
-40,
-6,
-2,
-0.5,
-0.3,
-0.3,
-0.5,
-2,
-6,
-40
-]
-
+Low:[7,3,1.5,1,.6,.6,1,1.5,3,7],
+Medium:[18,4,1.8,.8,.5,.5,.8,1.8,4,18],
+High:[40,6,2,.5,.3,.3,.5,2,6,40]
 },
-
-
-/* 10 ROWS = 11 TILES */
 
 10:{
-
-Low:[
-9,
-4,
-2,
-1.2,
-0.7,
-0.5,
-0.7,
-1.2,
-2,
-4,
-9
-],
-
-Medium:[
-25,
-5,
-2,
-0.9,
-0.5,
-0.4,
-0.5,
-0.9,
-2,
-5,
-25
-],
-
-High:[
-55,
-8,
-2.5,
-0.6,
-0.3,
-0.2,
-0.3,
-0.6,
-2.5,
-8,
-55
-]
-
+Low:[9,4,2,1.2,.7,.5,.7,1.2,2,4,9],
+Medium:[25,5,2,.9,.5,.4,.5,.9,2,5,25],
+High:[55,8,2.5,.6,.3,.2,.3,.6,2.5,8,55]
 },
-
-
-/* 11 ROWS = 12 TILES */
 
 11:{
-
-Low:[
-12,
-5,
-2.5,
-1.3,
-0.8,
-0.5,
-0.5,
-0.8,
-1.3,
-2.5,
-5,
-12
-],
-
-Medium:[
-32,
-6,
-2.3,
-1,
-0.55,
-0.4,
-0.4,
-0.55,
-1,
-2.3,
-6,
-32
-],
-
-High:[
-75,
-10,
-3,
-0.7,
-0.35,
-0.2,
-0.2,
-0.35,
-0.7,
-3,
-10,
-75
-]
-
+Low:[12,5,2.5,1.3,.8,.5,.5,.8,1.3,2.5,5,12],
+Medium:[32,6,2.3,1,.55,.4,.4,.55,1,2.3,6,32],
+High:[75,10,3,.7,.35,.2,.2,.35,.7,3,10,75]
 },
-
-
-/* 12 ROWS = 13 TILES */
 
 12:{
-
-Low:[
-16,
-6,
-3,
-1.5,
-0.8,
-0.5,
-0.4,
-0.5,
-0.8,
-1.5,
-3,
-6,
-16
-],
-
-Medium:[
-40,
-7,
-2.7,
-1.1,
-0.6,
-0.4,
-0.3,
-0.4,
-0.6,
-1.1,
-2.7,
-7,
-40
-],
-
-High:[
-100,
-14,
-4,
-0.8,
-0.4,
-0.2,
-0.15,
-0.2,
-0.4,
-0.8,
-4,
-14,
-100
-]
-
+Low:[16,6,3,1.5,.8,.5,.4,.5,.8,1.5,3,6,16],
+Medium:[40,7,2.7,1.1,.6,.4,.3,.4,.6,1.1,2.7,7,40],
+High:[100,14,4,.8,.4,.2,.15,.2,.4,.8,4,14,100]
 },
-
-
-/* 13 ROWS = 14 TILES */
 
 13:{
-
-Low:[
-20,
-7,
-3.5,
-1.7,
-0.9,
-0.6,
-0.4,
-0.4,
-0.6,
-0.9,
-1.7,
-3.5,
-7,
-20
-],
-
-Medium:[
-50,
-8,
-3,
-1.2,
-0.6,
-0.4,
-0.3,
-0.3,
-0.4,
-0.6,
-1.2,
-3,
-8,
-50
-],
-
-High:[
-130,
-18,
-5,
-1,
-0.45,
-0.25,
-0.15,
-0.15,
-0.25,
-0.45,
-1,
-5,
-18,
-130
-]
-
+Low:[20,7,3.5,1.7,.9,.6,.4,.4,.6,.9,1.7,3.5,7,20],
+Medium:[50,8,3,1.2,.6,.4,.3,.3,.4,.6,1.2,3,8,50],
+High:[130,18,5,1,.45,.25,.15,.15,.25,.45,1,5,18,130]
 },
-
-
-/* 14 ROWS = 15 TILES */
 
 14:{
-
-Low:[
-25,
-8,
-4,
-2,
-1,
-0.7,
-0.5,
-0.4,
-0.5,
-0.7,
-1,
-2,
-4,
-8,
-25
-],
-
-Medium:[
-65,
-10,
-3.5,
-1.3,
-0.7,
-0.45,
-0.3,
-0.25,
-0.3,
-0.45,
-0.7,
-1.3,
-3.5,
-10,
-65
-],
-
-High:[
-180,
-25,
-6,
-1.2,
-0.5,
-0.25,
-0.15,
-0.1,
-0.15,
-0.25,
-0.5,
-1.2,
-6,
-25,
-180
-]
-
+Low:[25,8,4,2,1,.7,.5,.4,.5,.7,1,2,4,8,25],
+Medium:[65,10,3.5,1.3,.7,.45,.3,.25,.3,.45,.7,1.3,3.5,10,65],
+High:[180,25,6,1.2,.5,.25,.15,.1,.15,.25,.5,1.2,6,25,180]
 },
-
-
-/* 15 ROWS = 16 TILES */
 
 15:{
-
-Low:[
-32,
-10,
-5,
-2.2,
-1.1,
-0.7,
-0.5,
-0.4,
-0.4,
-0.5,
-0.7,
-1.1,
-2.2,
-5,
-10,
-32
-],
-
-Medium:[
-85,
-12,
-4,
-1.5,
-0.8,
-0.5,
-0.3,
-0.25,
-0.2,
-0.25,
-0.3,
-0.5,
-0.8,
-1.5,
-4,
-12,
-85
-],
-
-High:[
-250,
-35,
-8,
-1.5,
-0.6,
-0.3,
-0.15,
-0.1,
-0.08,
-0.1,
-0.15,
-0.3,
-0.6,
-1.5,
-8,
-35,
-250
-]
-
+Low:[32,10,5,2.2,1.1,.7,.5,.4,.4,.5,.7,1.1,2.2,5,10,32],
+Medium:[85,12,4,1.5,.8,.5,.3,.25,.2,.25,.3,.5,.8,1.5,4,12,85],
+High:[250,35,8,1.5,.6,.3,.15,.1,.08,.1,.15,.3,.6,1.5,8,35,250]
 },
 
-
-/* 16 ROWS = 17 TILES
-   HIGH MODE = 1000x OUTER TILES
-*/
-
 16:{
-
-Low:[
-40,
-12,
-6,
-2.5,
-1.2,
-0.8,
-0.5,
-0.4,
-0.35,
-0.4,
-0.5,
-0.8,
-1.2,
-2.5,
-6,
-12,
-40
-],
-
-Medium:[
-100,
-16,
-5,
-1.8,
-0.9,
-0.5,
-0.3,
-0.2,
-0.15,
-0.2,
-0.3,
-0.5,
-0.9,
-1.8,
-5,
-16,
-100
-],
-
-High:[
-1000,
-50,
-10,
-2,
-0.7,
-0.35,
-0.15,
-0.08,
-0.05,
-0.08,
-0.15,
-0.35,
-0.7,
-2,
-10,
-50,
-1000
-]
-
+Low:[40,12,6,2.5,1.2,.8,.5,.4,.35,.4,.5,.8,1.2,2.5,6,12,40],
+Medium:[100,16,5,1.8,.9,.5,.3,.2,.15,.2,.3,.5,.9,1.8,5,16,100],
+High:[1000,50,10,2,.7,.35,.15,.08,.05,.08,.15,.35,.7,2,10,50,1000]
 }
 
 };
 
 
-/* =========================================================
-   BUILD PLINKO
-   MODE + ROWS BOTH CHANGE LIVE
-========================================================= */
-
 function buildPlinko(){
 
+const rowsEl=
+document.getElementById("plinkoRows");
+
+const modeEl=
+document.getElementById("plinkoMode");
+
+if(!rowsEl||!modeEl)return;
+
 const rows=
-Number(
-document.getElementById("plinkoRows").value
-);
+Number(rowsEl.value);
 
 const mode=
-document.getElementById("plinkoMode").value;
+modeEl.value;
 
 const multipliers=
 PLINKO_MULTIPLIERS[rows][mode];
 
-
-/* PEGS */
 
 const pegBox=
 document.getElementById("plinkoPegs");
@@ -3311,13 +3014,8 @@ document.createElement("div");
 
 row.className="plinkoRow";
 
-
-/*
- More rows = more pegs.
-*/
 const count=
 Math.min(18,r+3);
-
 
 for(let i=0;i<count;i++){
 
@@ -3335,8 +3033,6 @@ pegBox.appendChild(row);
 }
 
 
-/* MULTIPLIER TILES */
-
 const bins=
 document.getElementById("plinkoBins");
 
@@ -3348,8 +3044,7 @@ multipliers.forEach(multiplier=>{
 const bin=
 document.createElement("div");
 
-bin.className=
-"plinkoBin";
+bin.className="plinkoBin";
 
 if(multiplier>=10)
 bin.classList.add("big");
@@ -3362,26 +3057,12 @@ bins.appendChild(bin);
 });
 
 
-/* INFO */
-
 document.getElementById("plinkoInfo")
 .innerText=
 `${rows} rows • ${multipliers.length} tiles • ${mode} mode`;
 
-
-document.getElementById("plinkoStatus")
-.className="status";
-
-document.getElementById("plinkoStatus")
-.innerText=
-"Mode changed — multipliers updated.";
-
 }
 
-
-/* =========================================================
-   PLINKO BALL
-========================================================= */
 
 function dropPlinko(){
 
@@ -3412,36 +3093,21 @@ ball.style.display="block";
 
 let step=0;
 
-/*
- Start at center.
-*/
 let x=50;
 
-
-/*
- Random left/right path.
-*/
 const path=[];
 
 for(let i=0;i<rows;i++){
 
 path.push(
-Math.random()<0.5
-?-1
-:1
+Math.random()<.5?-1:1
 );
 
 }
 
 
-/*
- Calculate horizontal movement.
-*/
 const movement=
-Math.max(
-2.8,
-30/rows
-);
+Math.max(2.8,30/rows);
 
 
 const timer=
@@ -3451,11 +3117,6 @@ if(step>=rows){
 
 clearInterval(timer);
 
-
-/*
- Convert final ball position
- to a multiplier tile.
-*/
 let index=
 Math.round(
 ((x-7)/(93-7))*
@@ -3471,33 +3132,27 @@ index
 )
 );
 
-
 const multiplier=
 multipliers[index];
-
 
 setTimeout(()=>{
 
 ball.style.display="none";
-
 
 const amount=
 bet*multiplier;
 
 payout(amount);
 
+const status=
+document.getElementById("plinkoStatus");
 
-document.getElementById(
-"plinkoStatus"
-).className=
+status.className=
 "status "+
 (multiplier>=1?"win":"loss");
 
-
-document.getElementById(
-"plinkoStatus"
-).innerText=
-`Ball landed on ${multiplier}x • ${amount.toFixed(2)} credits`;
+status.innerText=
+`Ball landed on ${multiplier}x • ${amount.toFixed(2)} demo credits`;
 
 },200);
 
@@ -3506,9 +3161,6 @@ return;
 }
 
 
-/*
- Move ball.
-*/
 x+=
 path[step]*movement;
 
@@ -3521,20 +3173,12 @@ x
 )
 );
 
-
-/*
- Vertical movement.
-*/
 const y=
 15+
 (step/rows)*325;
 
-
-ball.style.left=
-x+"%";
-
-ball.style.top=
-y+"px";
+ball.style.left=x+"%";
+ball.style.top=y+"px";
 
 step++;
 
@@ -3543,18 +3187,11 @@ step++;
 timers.push(timer);
 
 }
-
-
 /* =========================================================
    BLACKJACK
 ========================================================= */
 
-const suits=[
-"♠",
-"♥",
-"♦",
-"♣"
-];
+const suits=["♠","♥","♦","♣"];
 
 const ranks=[
 ["A",11],
@@ -3607,9 +3244,7 @@ hand.reduce(
 );
 
 let aces=
-hand.filter(
-c=>c.rank==="A"
-).length;
+hand.filter(c=>c.rank==="A").length;
 
 while(value>21&&aces>0){
 
@@ -3653,31 +3288,36 @@ return`
 <label>Level</label>
 
 <select id="bjLevel">
+
 <option>Easy</option>
 <option selected>Medium</option>
 <option>Hard</option>
+
 </select>
 
 </div>
 
+
 <div class="control">
 
-<label>Bet</label>
+<label>Demo Credits</label>
 
 <input
 id="bjBet"
 type="number"
-value="10">
+value="10"
+min="1">
 
 </div>
 
 </div>
+
 
 <div class="gamearea">
 
 <div>
 <small>DEALER</small>
-<span id="dealerValue">?</span>
+<strong id="dealerValue">?</strong>
 </div>
 
 <div
@@ -3686,9 +3326,9 @@ class="cards">
 </div>
 
 
-<div>
+<div style="margin-top:12px">
 <small>PLAYER</small>
-<span id="playerValue">0</span>
+<strong id="playerValue">0</strong>
 </div>
 
 <div
@@ -3751,8 +3391,8 @@ const deck=
 createDeck();
 
 gameState={
-bet,
-deck,
+bet:bet,
+deck:deck,
 player:[
 deck.pop(),
 deck.pop()
@@ -3772,6 +3412,12 @@ document.getElementById("hitButton")
 document.getElementById("standButton")
 .disabled=false;
 
+if(handValue(gameState.player)===21){
+
+finishBlackjack("blackjack");
+
+}
+
 }
 
 
@@ -3788,8 +3434,12 @@ document.getElementById("dealerCards")
 cardHTML(gameState.dealer[0])+
 (
 showDealer
-?gameState.dealer.slice(1).map(cardHTML).join("")
-:`<div class="playing">?</div>`
+?gameState.dealer
+.slice(1)
+.map(cardHTML)
+.join("")
+:
+`<div class="playing">?</div>`
 );
 
 document.getElementById("playerValue")
@@ -3816,8 +3466,11 @@ gameState.deck.pop()
 
 renderBlackjack(false);
 
-if(handValue(gameState.player)>21)
+if(handValue(gameState.player)>21){
+
 finishBlackjack("loss");
+
+}
 
 }
 
@@ -3845,14 +3498,21 @@ handValue(gameState.player);
 const dealer=
 handValue(gameState.dealer);
 
-if(player>dealer||dealer>21)
+if(player>dealer||dealer>21){
+
 finishBlackjack("win");
 
-else if(player===dealer)
+}
+else if(player===dealer){
+
 finishBlackjack("push");
 
-else
+}
+else{
+
 finishBlackjack("loss");
+
+}
 
 }
 
@@ -3869,15 +3529,28 @@ document.getElementById("standButton")
 
 renderBlackjack(true);
 
-if(result==="win"){
+const status=
+document.getElementById("bjStatus");
+
+
+if(result==="blackjack"){
+
+payout(gameState.bet*2.5);
+
+status.className="status win";
+
+status.innerText=
+"BLACKJACK! • 2.50x";
+
+}
+
+else if(result==="win"){
 
 payout(gameState.bet*2);
 
-document.getElementById("bjStatus")
-.className="status win";
+status.className="status win";
 
-document.getElementById("bjStatus")
-.innerText=
+status.innerText=
 "YOU WIN • 2x";
 
 }
@@ -3886,19 +3559,18 @@ else if(result==="push"){
 
 payout(gameState.bet);
 
-document.getElementById("bjStatus")
-.innerText=
-"PUSH • Bet returned.";
+status.className="status";
+
+status.innerText=
+"PUSH • Demo credits returned.";
 
 }
 
 else{
 
-document.getElementById("bjStatus")
-.className="status loss";
+status.className="status loss";
 
-document.getElementById("bjStatus")
-.innerText=
+status.innerText=
 "Dealer wins.";
 
 }
@@ -3921,25 +3593,30 @@ return`
 <label>Level</label>
 
 <select>
+
 <option>Easy</option>
 <option selected>Medium</option>
 <option>Hard</option>
+
 </select>
 
 </div>
 
+
 <div class="control">
 
-<label>Bet</label>
+<label>Demo Credits</label>
 
 <input
 id="pokerBet"
 type="number"
-value="10">
+value="10"
+min="1">
 
 </div>
 
 </div>
+
 
 <div class="gamearea">
 
@@ -3950,6 +3627,7 @@ id="dealerPoker"
 class="cards">
 </div>
 
+
 <small>YOU</small>
 
 <div
@@ -3957,11 +3635,13 @@ id="playerPoker"
 class="cards">
 </div>
 
+
 <div
 id="pokerStatus"
 class="status">
 Deal five cards.
 </div>
+
 
 <button
 class="primary"
@@ -4073,15 +3753,17 @@ pokerScore(player);
 const dealerScore=
 pokerScore(dealer);
 
+const status=
+document.getElementById("pokerStatus");
+
+
 if(playerScore>dealerScore){
 
 payout(bet*2);
 
-document.getElementById("pokerStatus")
-.className="status win";
+status.className="status win";
 
-document.getElementById("pokerStatus")
-.innerText=
+status.innerText=
 `YOU WIN • ${pokerNames[playerScore]}`;
 
 }
@@ -4090,19 +3772,18 @@ else if(playerScore===dealerScore){
 
 payout(bet);
 
-document.getElementById("pokerStatus")
-.innerText=
+status.className="status";
+
+status.innerText=
 `PUSH • ${pokerNames[playerScore]}`;
 
 }
 
 else{
 
-document.getElementById("pokerStatus")
-.className="status loss";
+status.className="status loss";
 
-document.getElementById("pokerStatus")
-.innerText=
+status.innerText=
 `DEALER WINS • ${pokerNames[dealerScore]}`;
 
 }
@@ -4125,23 +3806,28 @@ return`
 <label>Level</label>
 
 <select>
+
 <option>Easy</option>
 <option selected>Medium</option>
 <option>Hard</option>
+
 </select>
 
 </div>
 
+
 <div class="control">
 
-<label>Bet</label>
+<label>Demo Credits</label>
 
 <input
 id="rouletteBet"
 type="number"
-value="10">
+value="10"
+min="1">
 
 </div>
+
 
 <div class="control">
 
@@ -4149,31 +3835,18 @@ value="10">
 
 <select id="rouletteType">
 
-<option value="red">
-Red
-</option>
-
-<option value="black">
-Black
-</option>
-
-<option value="even">
-Even
-</option>
-
-<option value="odd">
-Odd
-</option>
-
-<option value="green">
-Green 0
-</option>
+<option value="red">Red</option>
+<option value="black">Black</option>
+<option value="even">Even</option>
+<option value="odd">Odd</option>
+<option value="green">Green 0</option>
 
 </select>
 
 </div>
 
 </div>
+
 
 <div class="gamearea">
 
@@ -4189,11 +3862,13 @@ class="wheelcenter">
 
 </div>
 
+
 <div
 id="rouletteStatus"
 class="status">
 Spin the wheel.
 </div>
+
 
 <button
 class="primary"
@@ -4239,6 +3914,7 @@ document.getElementById("rouletteWheel");
 wheel.style.transform=
 `rotate(${900+Math.random()*360}deg)`;
 
+
 setTimeout(()=>{
 
 document.getElementById(
@@ -4257,6 +3933,13 @@ type==="odd"&&
 number%2===1
 );
 
+
+const status=
+document.getElementById(
+"rouletteStatus"
+);
+
+
 if(win){
 
 const multiplier=
@@ -4269,26 +3952,17 @@ bet*multiplier;
 
 payout(amount);
 
-document.getElementById(
-"rouletteStatus"
-).className=
-"status win";
+status.className="status win";
 
-document.getElementById(
-"rouletteStatus"
-).innerText=
+status.innerText=
 `WIN • ${number} ${color} • +${amount.toFixed(2)}`;
 
-}else{
+}
+else{
 
-document.getElementById(
-"rouletteStatus"
-).className=
-"status loss";
+status.className="status loss";
 
-document.getElementById(
-"rouletteStatus"
-).innerText=
+status.innerText=
 `LOSS • ${number} ${color}`;
 
 }
@@ -4313,47 +3987,60 @@ return`
 <label>Level</label>
 
 <select>
+
 <option>Easy</option>
 <option selected>Medium</option>
 <option>Hard</option>
+
 </select>
 
 </div>
 
+
 <div class="control">
 
-<label>Bet</label>
+<label>Demo Credits</label>
 
 <input
 id="slotBet"
 type="number"
-value="10">
+value="10"
+min="1">
 
 </div>
 
 </div>
+
 
 <div class="reels">
 
-<div id="reel0" class="reel">
+<div
+id="reel0"
+class="reel">
 ❔
 </div>
 
-<div id="reel1" class="reel">
+<div
+id="reel1"
+class="reel">
 ❔
 </div>
 
-<div id="reel2" class="reel">
+<div
+id="reel2"
+class="reel">
 ❔
 </div>
 
 </div>
+
 
 <div
 id="slotStatus"
 class="status">
 Spin the reels.
 </div>
+
 
 <button
 class="primary"
@@ -4377,6 +4064,9 @@ document.getElementById("slotBet").value
 if(!spend(bet))
 return;
 
+clearTimers();
+
+
 const symbols=[
 "🍒",
 "🍋",
@@ -4387,12 +4077,15 @@ const symbols=[
 "7️⃣"
 ];
 
+
 document.querySelectorAll(".reel")
-.forEach(r=>
-r.classList.add("spin")
-);
+.forEach(r=>{
+r.classList.add("spin");
+});
+
 
 let count=0;
+
 
 const timer=
 setInterval(()=>{
@@ -4412,14 +4105,16 @@ Math.random()*symbols.length
 
 count++;
 
+
 if(count>15){
 
 clearInterval(timer);
 
 document.querySelectorAll(".reel")
-.forEach(r=>
-r.classList.remove("spin")
-);
+.forEach(r=>{
+r.classList.remove("spin");
+});
+
 
 const a=
 document.getElementById("reel0")
@@ -4433,20 +4128,33 @@ const c=
 document.getElementById("reel2")
 .innerText;
 
+
 let multiplier=0;
 
-if(a===b&&b===c)
+
+if(a===b&&b===c){
+
 multiplier=
 a==="7️⃣"
 ?10
 :7;
 
+}
+
 else if(
 a===b||
 b===c||
 a===c
-)
+){
+
 multiplier=2;
+
+}
+
+
+const status=
+document.getElementById("slotStatus");
+
 
 if(multiplier>0){
 
@@ -4455,26 +4163,17 @@ bet*multiplier;
 
 payout(amount);
 
-document.getElementById(
-"slotStatus"
-).className=
-"status win";
+status.className="status win";
 
-document.getElementById(
-"slotStatus"
-).innerText=
+status.innerText=
 `WIN • ${multiplier}x • +${amount.toFixed(2)}`;
 
-}else{
+}
+else{
 
-document.getElementById(
-"slotStatus"
-).className=
-"status loss";
+status.className="status loss";
 
-document.getElementById(
-"slotStatus"
-).innerText=
+status.innerText=
 "No match • Try again.";
 
 }
@@ -4482,6 +4181,7 @@ document.getElementById(
 }
 
 },80);
+
 
 timers.push(timer);
 
@@ -4503,12 +4203,15 @@ return`
 <label>Level</label>
 
 <select id="towerLevel">
+
 <option>Easy</option>
 <option selected>Medium</option>
 <option>Hard</option>
+
 </select>
 
 </div>
+
 
 <div class="control">
 
@@ -4526,29 +4229,34 @@ onchange="buildTower()">
 
 </div>
 
+
 <div class="control">
 
-<label>Bet</label>
+<label>Demo Credits</label>
 
 <input
 id="towerBet"
 type="number"
-value="10">
+value="10"
+min="1">
 
 </div>
 
 </div>
+
 
 <div
 id="towerBoard"
 class="tower">
 </div>
 
+
 <div
 id="towerStatus"
 class="status">
 Start and choose safe tiles.
 </div>
+
 
 <div class="actions">
 
@@ -4575,15 +4283,19 @@ CASH OUT
 
 function buildTower(){
 
+const rowsEl=
+document.getElementById("towerRows");
+
+if(!rowsEl)return;
+
 const rows=
-Number(
-document.getElementById("towerRows").value
-);
+Number(rowsEl.value);
 
 const board=
 document.getElementById("towerBoard");
 
 board.innerHTML="";
+
 
 for(let i=0;i<rows;i++){
 
@@ -4591,6 +4303,7 @@ const row=
 document.createElement("div");
 
 row.className="trow";
+
 
 for(let j=0;j<2;j++){
 
@@ -4626,12 +4339,14 @@ return;
 
 buildTower();
 
+
 gameState={
 active:true,
-bet,
+bet:bet,
 row:0,
 cash:bet
 };
+
 
 document.getElementById(
 "towerCash"
@@ -4644,6 +4359,9 @@ enableTowerRow();
 
 function enableTowerRow(){
 
+if(!gameState.active)
+return;
+
 const rows=
 [
 ...document.querySelectorAll(".trow")
@@ -4653,6 +4371,8 @@ const row=
 rows[
 rows.length-1-gameState.row
 ];
+
+if(!row)return;
 
 row.querySelectorAll("button")
 .forEach(button=>{
@@ -4672,10 +4392,12 @@ function chooseTower(button){
 if(!gameState.active)
 return;
 
+
 const level=
 document.getElementById(
 "towerLevel"
 ).value;
+
 
 let chance=.58;
 
@@ -4685,11 +4407,14 @@ chance=.72;
 if(level==="Hard")
 chance=.42;
 
+
 button.disabled=true;
+
 
 if(Math.random()>chance){
 
 button.innerText="💥";
+
 button.classList.add("danger");
 
 gameState.active=false;
@@ -4698,22 +4423,25 @@ document.getElementById(
 "towerCash"
 ).disabled=true;
 
+const status=
 document.getElementById(
 "towerStatus"
-).className=
-"status loss";
+);
 
-document.getElementById(
-"towerStatus"
-).innerText=
+status.className="status loss";
+
+status.innerText=
 "Wrong tile • Tower collapsed.";
 
 return;
 
 }
 
+
 button.innerText="💎";
+
 button.classList.add("safe");
+
 
 button.parentElement
 .querySelectorAll("button")
@@ -4721,7 +4449,9 @@ button.parentElement
 b=>b.disabled=true
 );
 
+
 gameState.row++;
+
 
 let multiplier=
 Math.pow(
@@ -4733,18 +4463,21 @@ level==="Easy"
 gameState.row
 );
 
+
 gameState.cash=
 gameState.bet*multiplier;
 
-document.getElementById(
-"towerStatus"
-).className=
-"status win";
 
+const status=
 document.getElementById(
 "towerStatus"
-).innerText=
-`Safe • ${gameState.cash.toFixed(2)} credits available`;
+);
+
+status.className="status win";
+
+status.innerText=
+`Safe • ${gameState.cash.toFixed(2)} demo credits available`;
+
 
 if(
 gameState.row>=
@@ -4758,6 +4491,7 @@ cashTower();
 return;
 
 }
+
 
 enableTowerRow();
 
@@ -4777,15 +4511,15 @@ document.getElementById(
 "towerCash"
 ).disabled=true;
 
+const status=
 document.getElementById(
 "towerStatus"
-).className=
-"status win";
+);
 
-document.getElementById(
-"towerStatus"
-).innerText=
-`Cashed out • +${gameState.cash.toFixed(2)} credits`;
+status.className="status win";
+
+status.innerText=
+`Cashed out • +${gameState.cash.toFixed(2)} demo credits`;
 
 }
 
@@ -4805,49 +4539,59 @@ return`
 <label>Level</label>
 
 <select>
+
 <option>Easy</option>
 <option selected>Medium</option>
 <option>Hard</option>
+
 </select>
 
 </div>
+
 
 <div class="control">
 
 <label>Pick</label>
 
 <select id="kenoPick">
+
 <option>4</option>
 <option selected>6</option>
 <option>8</option>
 <option>10</option>
+
 </select>
 
 </div>
 
+
 <div class="control">
 
-<label>Bet</label>
+<label>Demo Credits</label>
 
 <input
 id="kenoBet"
 type="number"
-value="10">
+value="10"
+min="1">
 
 </div>
 
 </div>
+
 
 <div
 id="kenoGrid"
 class="keno">
 </div>
 
+
 <div
 id="kenoStatus"
 class="status">
 Pick your numbers.
 </div>
+
 
 <button
 class="primary"
@@ -4866,9 +4610,12 @@ function initKeno(){
 const grid=
 document.getElementById("kenoGrid");
 
+if(!grid)return;
+
 grid.innerHTML="";
 
 gameState.selected=[];
+
 
 for(let i=1;i<=40;i++){
 
@@ -4896,6 +4643,7 @@ Number(
 document.getElementById("kenoPick").value
 );
 
+
 if(gameState.selected.includes(number)){
 
 gameState.selected=
@@ -4909,6 +4657,7 @@ return;
 
 }
 
+
 if(gameState.selected.length>=max){
 
 document.getElementById(
@@ -4919,6 +4668,7 @@ document.getElementById(
 return;
 
 }
+
 
 gameState.selected.push(number);
 
@@ -4939,6 +4689,7 @@ Number(
 document.getElementById("kenoBet").value
 );
 
+
 if(
 gameState.selected.length!==max
 ){
@@ -4951,40 +4702,46 @@ return;
 
 }
 
+
 if(!spend(bet))
 return;
 
+
 let drawn=[];
+
 
 while(drawn.length<20){
 
 const number=
-1+Math.floor(Math.random()*40);
+1+
+Math.floor(Math.random()*40);
 
 if(!drawn.includes(number))
 drawn.push(number);
 
 }
 
+
 const hits=
 gameState.selected.filter(
 n=>drawn.includes(n)
 ).length;
 
+
 document.querySelectorAll(".kn")
 .forEach(button=>{
 
-if(
-drawn.includes(
-Number(button.innerText)
-)
-){
+const number=
+Number(button.innerText);
+
+if(drawn.includes(number)){
 
 button.classList.add("hit");
 
 }
 
 });
+
 
 const payouts={
 
@@ -4998,8 +4755,16 @@ const payouts={
 
 };
 
+
 const multiplier=
 payouts[max][hits]||0;
+
+
+const status=
+document.getElementById(
+"kenoStatus"
+);
+
 
 if(multiplier>0){
 
@@ -5008,27 +4773,18 @@ bet*multiplier;
 
 payout(amount);
 
-document.getElementById(
-"kenoStatus"
-).className=
-"status win";
+status.className="status win";
 
-document.getElementById(
-"kenoStatus"
-).innerText=
+status.innerText=
 `${hits}/${max} hits • ${multiplier}x • +${amount.toFixed(2)}`;
 
-}else{
+}
+else{
 
-document.getElementById(
-"kenoStatus"
-).className=
-"status loss";
+status.className="status loss";
 
-document.getElementById(
-"kenoStatus"
-).innerText=
-`${hits}/${max} hits • no winning combination`;
+status.innerText=
+`${hits}/${max} hits • No winning combination`;
 
 }
 
@@ -5081,7 +4837,9 @@ updateBalance();
 }
 
 
-/* CLOSE */
+/* =========================================================
+   MODAL CLOSE
+========================================================= */
 
 document.querySelectorAll(".overlay")
 .forEach(overlay=>{
@@ -5121,8 +4879,7 @@ savedSession &&
 savedUsers[savedSession]
 ){
 
-currentUser=
-savedSession;
+currentUser=savedSession;
 
 balanceAmount=
 Number(
@@ -5142,6 +4899,22 @@ document.getElementById("account")
 renderGames();
 
 updateBalance();
+
+
+/* =========================================================
+   FINAL SAFETY
+========================================================= */
+
+window.addEventListener(
+"beforeunload",
+()=>{
+
+saveBalance();
+
+clearTimers();
+
+}
+);
 
 </script>
 
