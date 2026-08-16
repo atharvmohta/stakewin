@@ -417,7 +417,6 @@ footer{
 
 <body>
 
-<!-- AUTH -->
 <div id="auth" class="auth">
 <div class="authCard">
 <div class="authLogo">STAKE<span>WIN</span></div>
@@ -464,7 +463,6 @@ Already have an account?
 </div>
 </div>
 
-<!-- LOADING -->
 <div id="loading" class="loading">
 <div class="loaderBox">
 <div class="loaderLogo">STAKE<span>WIN</span></div>
@@ -473,7 +471,6 @@ Already have an account?
 </div>
 </div>
 
-<!-- HEADER -->
 <header class="header">
 <button class="icon" onclick="toggleMenu()">☰</button>
 <div class="logo">STAKE<span>WIN</span></div>
@@ -488,7 +485,7 @@ Already have an account?
 
 <div class="headerRight">
 <div id="account" class="account"></div>
-<div class="balance">💰 <b id="balance">1000</b></div>
+<div class="balance">💰 <b id="balance">0</b></div>
 <button class="icon" onclick="openHistory()">📜</button>
 <button class="icon" onclick="openProfile()">👤</button>
 </div>
@@ -505,7 +502,7 @@ Already have an account?
 
 <div class="promo">
 <span id="promoText">
-✦ STAKEWIN DEMO ✦ 20% BONUS VIRTUAL CREDITS ✦ DEMO ONLY ✦ NEW LIVE TABLES ✦ PLAY WITH VIRTUAL CREDITS ✦
+✦ STAKEWIN DEMO ✦ VIRTUAL CREDITS ONLY ✦ DEMO ONLY ✦ NEW LIVE TABLES ✦ PLAY WITH VIRTUAL CREDITS ✦
 </span>
 </div>
 
@@ -525,7 +522,7 @@ Already have an account?
 <div class="stats">
 <div>🏆 <b>12,840</b> players</div>
 <div>🎲 <b id="gameCount">0</b> games</div>
-<div>💰 <b id="statsBalance">1,000</b> credits</div>
+<div>💰 <b id="statsBalance">0</b> credits</div>
 </div>
 
 <section id="games" class="games">
@@ -554,7 +551,6 @@ Already have an account?
 © 2026 StakeWin
 </footer>
 
-<!-- GAME MODAL -->
 <div id="gameModal" class="overlay">
 <div class="modal">
 <button class="close" onclick="closeGame()">✕</button>
@@ -565,7 +561,6 @@ Already have an account?
 </div>
 </div>
 
-<!-- PROFILE -->
 <div id="profileModal" class="overlay">
 <div class="modal" style="text-align:center">
 <button class="close" onclick="closeModal('profileModal')">✕</button>
@@ -579,7 +574,6 @@ Already have an account?
 </div>
 </div>
 
-<!-- HISTORY -->
 <div id="historyModal" class="overlay">
 <div class="modal">
 <button class="close" onclick="closeModal('historyModal')">✕</button>
@@ -590,7 +584,7 @@ Already have an account?
 
 <div class="summary">
 <div class="summaryBox"><small>TOTAL BET</small><b id="sumBet">0</b></div>
-<div class="summaryBox"><small>WINS</small><b id="sumWins" style="color:var(--green)">0</b></div>
+<div class="summaryBox"><small>WINS</small><b id="sumWins">0</b></div>
 <div class="summaryBox"><small>NET</small><b id="sumNet">0</b></div>
 </div>
 
@@ -599,16 +593,13 @@ Already have an account?
 </div>
 
 <script>
-/* =========================================================
-STORAGE / STATE
-========================================================= */
 
 const USERS_KEY="stakewin_users";
 const SESSION_KEY="stakewin_session";
 const HISTORY_PREFIX="stakewin_history_";
 
 let currentUser=null;
-let balanceAmount=1000;
+let balanceAmount=0;
 let currentCategory="All";
 let currentGame=null;
 let gameState={};
@@ -647,9 +638,7 @@ function addHistory(game,result,bet,payoutAmount,multiplier=0){
  saveHistory(data);
 }
 
-/* =========================================================
-AUTH
-========================================================= */
+/* AUTH */
 
 function showSignup(){
  document.getElementById("loginBox").style.display="none";
@@ -668,19 +657,40 @@ function createAccount(){
  const error=document.getElementById("signupError");
  error.innerText="";
 
- if(username.length<3){error.innerText="Username must contain at least 3 characters.";return}
- if(password.length<4){error.innerText="Password must contain at least 4 characters.";return}
- if(password!==confirm){error.innerText="Passwords do not match.";return}
+ if(username.length<3){
+  error.innerText="Username must contain at least 3 characters.";
+  return;
+ }
+
+ if(password.length<4){
+  error.innerText="Password must contain at least 4 characters.";
+  return;
+ }
+
+ if(password!==confirm){
+  error.innerText="Passwords do not match.";
+  return;
+ }
 
  const users=getUsers();
- if(users[username]){error.innerText="Username already exists.";return}
 
- users[username]={password,balance:1000};
+ if(users[username]){
+  error.innerText="Username already exists.";
+  return;
+ }
+
+ users[username]={
+  password,
+  balance:0
+ };
+
  saveUsers(users);
 
  currentUser=username;
- balanceAmount=1000;
+ balanceAmount=0;
+
  localStorage.setItem(SESSION_KEY,username);
+
  unlock();
 }
 
@@ -692,15 +702,30 @@ function loginUser(){
 
  error.innerText="";
 
- if(!username||!password){error.innerText="Enter username and password.";return}
+ if(!username||!password){
+  error.innerText="Enter username and password.";
+  return;
+ }
 
  const users=getUsers();
 
- if(!users[username]){error.innerText="Account not found.";return}
- if(users[username].password!==password){error.innerText="Incorrect password.";return}
+ if(!users[username]){
+  error.innerText="Account not found.";
+  return;
+ }
+
+ if(users[username].password!==password){
+  error.innerText="Incorrect password.";
+  return;
+ }
 
  currentUser=username;
- balanceAmount=Number(users[username].balance||1000);
+
+ balanceAmount=Number(
+  users[username].balance===undefined?
+  0:
+  users[username].balance
+ );
 
  if(remember){
   localStorage.setItem(SESSION_KEY,username);
@@ -721,14 +746,24 @@ function unlock(){
 }
 
 function restoreSession(){
- const username=localStorage.getItem(SESSION_KEY)||sessionStorage.getItem(SESSION_KEY);
+ const username=
+  localStorage.getItem(SESSION_KEY)||
+  sessionStorage.getItem(SESSION_KEY);
+
  if(!username)return;
 
  const users=getUsers();
+
  if(!users[username])return;
 
  currentUser=username;
- balanceAmount=Number(users[username].balance||1000);
+
+ balanceAmount=Number(
+  users[username].balance===undefined?
+  0:
+  users[username].balance
+ );
+
  document.getElementById("auth").style.display="none";
  document.getElementById("account").innerText="👤 "+currentUser;
 }
@@ -736,48 +771,62 @@ function restoreSession(){
 function logout(){
  clearTimers();
  saveBalance();
+
  currentUser=null;
+
  localStorage.removeItem(SESSION_KEY);
  sessionStorage.removeItem(SESSION_KEY);
+
  document.getElementById("profileModal").style.display="none";
  document.getElementById("auth").style.display="flex";
+
  showLogin();
 }
 
-/* =========================================================
-BALANCE
-========================================================= */
+/* BALANCE */
 
 function saveBalance(){
  if(!currentUser)return;
+
  const users=getUsers();
+
  if(!users[currentUser])return;
+
  users[currentUser].balance=Math.max(0,balanceAmount);
+
  saveUsers(users);
 }
 
 function updateBalance(){
- if(currentUser&&balanceAmount<100){
-  balanceAmount=1000;
-  showPromo("🎁 STAKEWIN DEMO BONUS • 1,000 CREDITS REFILLED");
- }
-
  const f=Math.floor(balanceAmount).toLocaleString();
+
  document.getElementById("balance").innerText=f;
  document.getElementById("statsBalance").innerText=f;
 
- if(document.getElementById("profileBalance"))
+ if(document.getElementById("profileBalance")){
   document.getElementById("profileBalance").innerText=f;
+ }
 
  saveBalance();
 }
 
 function spend(amount){
  amount=Number(amount);
- if(!amount||amount<1){alert("Enter a valid demo bet.");return false}
- if(amount>balanceAmount){alert("Not enough demo credits.");return false}
+
+ if(!Number.isFinite(amount)||amount<1){
+  alert("Enter a valid demo bet.");
+  return false;
+ }
+
+ if(amount>balanceAmount){
+  alert("Not enough demo credits.");
+  return false;
+ }
+
  balanceAmount-=amount;
+
  updateBalance();
+
  return true;
 }
 
@@ -788,15 +837,19 @@ function payout(amount){
 
 function showPromo(text){
  const p=document.getElementById("promoText");
+
  if(!p)return;
+
  const old=p.innerText;
+
  p.innerText=text;
- setTimeout(()=>p.innerText=old,3500);
+
+ setTimeout(()=>{
+  p.innerText=old;
+ },3500);
 }
 
-/* =========================================================
-GAME LIST
-========================================================= */
+/* GAMES */
 
 const games=[
  {id:"mines",name:"Mines",cat:"Originals",icon:"💣",desc:"Reveal diamonds without hitting a mine."},
@@ -809,7 +862,6 @@ const games=[
  {id:"coin",name:"Coin Flip",cat:"Originals",icon:"🪙",desc:"Heads or tails."},
  {id:"higher",name:"Higher Lower",cat:"Originals",icon:"📈",desc:"Predict the next number."},
  {id:"color",name:"Color Rush",cat:"Originals",icon:"🎨",desc:"Predict the next color."},
-
  {id:"dragon",name:"Dragon Tiger",cat:"Live",icon:"🐉",desc:"Premium table-style Dragon vs Tiger demo."},
  {id:"baccarat",name:"Baccarat",cat:"Live",icon:"🃏",desc:"Player, Banker or Tie table demo."},
  {id:"sicbo",name:"Sic Bo",cat:"Live",icon:"🎲",desc:"Three-dice casino table experience."},
@@ -848,18 +900,27 @@ function renderGames(){
 
 function filterGames(category,button){
  currentCategory=category;
- document.querySelectorAll(".chips button").forEach(b=>b.classList.remove("active"));
+
+ document.querySelectorAll(".chips button")
+  .forEach(b=>b.classList.remove("active"));
+
  if(button)button.classList.add("active");
+
  renderGames();
 }
 
 function openGame(id){
  clearTimers();
+
  const game=games.find(g=>g.id===id);
+
  if(!game)return;
 
  currentGame=id;
- document.getElementById("loaderText").innerText="LOADING "+game.name.toUpperCase();
+
+ document.getElementById("loaderText").innerText=
+  "LOADING "+game.name.toUpperCase();
+
  document.getElementById("loading").style.display="flex";
 
  setTimeout(()=>{
@@ -879,24 +940,32 @@ function closeGame(){
 }
 
 function clearTimers(){
- timers.forEach(t=>{clearTimeout(t);clearInterval(t)});
+ timers.forEach(t=>{
+  clearTimeout(t);
+  clearInterval(t);
+ });
+
  timers=[];
+
  animationFrames.forEach(f=>cancelAnimationFrame(f));
  animationFrames=[];
 }
 
 function scrollGames(){
- document.getElementById("games").scrollIntoView({behavior:"smooth"});
+ document.getElementById("games")
+  .scrollIntoView({behavior:"smooth"});
 }
 
 function toggleMenu(){
  const m=document.getElementById("mobileMenu");
- m.style.display=m.style.display==="block"?"none":"block";
+
+ m.style.display=
+  m.style.display==="block"?
+  "none":
+  "block";
 }
 
-/* =========================================================
-ROUTER
-========================================================= */
+/* ROUTER */
 
 function getGameHTML(id){
  if(id==="mines")return minesHTML();
@@ -925,11 +994,10 @@ function initGame(id){
  if(id==="higher")initHigher();
 }
 
-/* =========================================================
-COMMON CARD FUNCTIONS
-========================================================= */
+/* CARD FUNCTIONS */
 
 const suits=["♠","♥","♦","♣"];
+
 const ranks=[
  ["A",11],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],
  ["8",8],["9",9],["10",10],["J",10],["Q",10],["K",10]
@@ -937,7 +1005,17 @@ const ranks=[
 
 function deck(){
  let d=[];
- suits.forEach(s=>ranks.forEach(r=>d.push({suit:s,rank:r[0],value:r[1]})));
+
+ suits.forEach(s=>
+  ranks.forEach(r=>
+   d.push({
+    suit:s,
+    rank:r[0],
+    value:r[1]
+   })
+  )
+ );
+
  return d.sort(()=>Math.random()-.5);
 }
 
@@ -949,9 +1027,7 @@ function cardValue(cards){
  return cards.reduce((a,c)=>a+c.value,0)%10;
 }
 
-/* =========================================================
-MINES
-========================================================= */
+/* MINES */
 
 const MINE_TABLE={
 1:[1.15,1.32,1.55,1.85,2.25,2.8,3.5,4.4,5.6,7.2,9.2,12,15.5,20,24.7],
@@ -967,14 +1043,21 @@ function minesHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>MINES</label>
-   <select id="mineCount"><option>1</option><option>2</option><option selected>3</option><option>5</option><option>8</option><option>12</option><option>18</option></select>
+   <select id="mineCount">
+    <option>1</option><option>2</option><option selected>3</option>
+    <option>5</option><option>8</option><option>12</option><option>18</option>
+   </select>
   </div>
   <div class="control"><label>BET</label><input id="mineBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>LEVEL</label><select id="mineLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+  <div class="control"><label>LEVEL</label>
+   <select id="mineLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select>
+  </div>
  </div>
+
  <div id="mineMultiplier" style="text-align:center;font-size:25px;font-weight:950;color:var(--green)">1.00x</div>
  <div id="mineStatus" class="status">Choose your mines and start.</div>
  <div id="mineGrid" class="minegrid"></div>
+
  <div class="actions">
   <button class="primary" onclick="startMines()">START</button>
   <button id="mineCash" class="cash" disabled onclick="cashMines()">CASH OUT</button>
@@ -983,96 +1066,161 @@ function minesHTML(){
 
 function buildMines(){
  const grid=document.getElementById("mineGrid");
+
  grid.innerHTML="";
  grid.style.gridTemplateColumns="repeat(5,1fr)";
+
  for(let i=0;i<25;i++){
   const c=document.createElement("button");
-  c.className="mine";c.disabled=true;c.onclick=()=>clickMine(i);
+
+  c.className="mine";
+  c.disabled=true;
+  c.onclick=()=>clickMine(i);
+
   grid.appendChild(c);
  }
 }
 
 function startMines(){
  const bet=Number(document.getElementById("mineBet").value);
+
  if(!spend(bet))return;
 
  const count=Number(document.getElementById("mineCount").value);
+
  let mines=[];
+
  while(mines.length<count){
   const n=Math.floor(Math.random()*25);
+
   if(!mines.includes(n))mines.push(n);
  }
 
- gameState={active:true,bet,count,mines,opened:0,cash:bet};
+ gameState={
+  active:true,
+  bet,
+  count,
+  mines,
+  opened:0,
+  cash:bet
+ };
+
  buildMines();
 
- document.querySelectorAll(".mine").forEach(x=>x.disabled=false);
+ document.querySelectorAll(".mine")
+  .forEach(x=>x.disabled=false);
+
  document.getElementById("mineCash").disabled=true;
  document.getElementById("mineMultiplier").innerText="1.00x";
- document.getElementById("mineStatus").innerText="Find diamonds and cash out.";
+ document.getElementById("mineStatus").innerText=
+  "Find diamonds and cash out.";
 }
 
 function clickMine(i){
  if(!gameState.active)return;
+
  const cells=document.querySelectorAll(".mine");
- const cell=cells[i];cell.disabled=true;
+ const cell=cells[i];
+
+ cell.disabled=true;
 
  if(gameState.mines.includes(i)){
-  cell.innerText="💣";cell.classList.add("b");
+  cell.innerText="💣";
+  cell.classList.add("b");
+
   gameState.active=false;
 
   gameState.mines.forEach(n=>{
-   cells[n].innerText="💣";cells[n].classList.add("b");cells[n].disabled=true;
+   cells[n].innerText="💣";
+   cells[n].classList.add("b");
+   cells[n].disabled=true;
   });
 
   document.getElementById("mineStatus").className="status loss";
   document.getElementById("mineStatus").innerText="BOOM! Mine hit.";
+
   addHistory("Mines","loss",gameState.bet,0,0);
+
   return;
  }
 
  gameState.opened++;
- cell.innerText="💎";cell.classList.add("g");
+
+ cell.innerText="💎";
+ cell.classList.add("g");
 
  let table=MINE_TABLE[gameState.count];
- let multiplier=table[Math.min(gameState.opened-1,table.length-1)];
+
+ let multiplier=
+  table[Math.min(gameState.opened-1,table.length-1)];
 
  const level=document.getElementById("mineLevel").value;
+
  if(level==="Easy")multiplier*=.9;
  if(level==="Hard")multiplier*=1.1;
 
  gameState.cash=gameState.bet*multiplier;
- document.getElementById("mineMultiplier").innerText=multiplier.toFixed(2)+"x";
+
+ document.getElementById("mineMultiplier").innerText=
+  multiplier.toFixed(2)+"x";
+
  document.getElementById("mineCash").disabled=false;
+
  document.getElementById("mineStatus").className="status win";
- document.getElementById("mineStatus").innerText=`${multiplier.toFixed(2)}x • Cash out ${gameState.cash.toFixed(2)}`;
+
+ document.getElementById("mineStatus").innerText=
+  `${multiplier.toFixed(2)}x • Cash out ${gameState.cash.toFixed(2)}`;
 }
 
 function cashMines(){
  if(!gameState.active||gameState.opened<1)return;
+
  gameState.active=false;
+
  payout(gameState.cash);
+
  document.getElementById("mineCash").disabled=true;
+
  document.getElementById("mineStatus").className="status win";
- document.getElementById("mineStatus").innerText=`Cashed out • +${gameState.cash.toFixed(2)}`;
- addHistory("Mines","win",gameState.bet,gameState.cash,gameState.cash/gameState.bet);
+
+ document.getElementById("mineStatus").innerText=
+  `Cashed out • +${gameState.cash.toFixed(2)}`;
+
+ addHistory(
+  "Mines",
+  "win",
+  gameState.bet,
+  gameState.cash,
+  gameState.cash/gameState.bet
+ );
 }
 
-/* =========================================================
-CRASH
-========================================================= */
+/* CRASH */
 
 function crashHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>BET</label><input id="crashBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>LEVEL</label><select id="crashLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
-  <div class="control"><label>AUTO CASH</label><select id="autoCash"><option value="0">Manual</option><option value="1.5">1.50x</option><option value="2">2.00x</option><option value="3">3.00x</option></select></div>
+  <div class="control"><label>LEVEL</label>
+   <select id="crashLevel">
+    <option>Easy</option><option selected>Medium</option><option>Hard</option>
+   </select>
+  </div>
+  <div class="control"><label>AUTO CASH</label>
+   <select id="autoCash">
+    <option value="0">Manual</option>
+    <option value="1.5">1.50x</option>
+    <option value="2">2.00x</option>
+    <option value="3">3.00x</option>
+   </select>
+  </div>
  </div>
+
  <div class="gamearea">
   <div id="crashMult" class="mult">1.00x</div>
   <div id="rocket" class="rocket">🚀</div>
   <div id="crashStatus" class="status">Ready.</div>
+
   <div class="actions">
    <button class="primary" onclick="startCrash()">START</button>
    <button class="cash" id="crashCash" disabled onclick="cashCrash()">CASH OUT</button>
@@ -1082,67 +1230,114 @@ function crashHTML(){
 
 function startCrash(){
  const bet=Number(document.getElementById("crashBet").value);
+
  if(!spend(bet))return;
 
  let crash=1.1+Math.random()*7;
+
  const level=document.getElementById("crashLevel").value;
+
  if(level==="Easy")crash=2+Math.random()*8;
  if(level==="Hard")crash=1.05+Math.random()*4;
 
- gameState={active:true,bet,mult:1,crash};
+ gameState={
+  active:true,
+  bet,
+  mult:1,
+  crash
+ };
 
  const timer=setInterval(()=>{
   if(!gameState.active)return;
 
   gameState.mult+=.025+gameState.mult*.008;
-  document.getElementById("crashMult").innerText=gameState.mult.toFixed(2)+"x";
-  document.getElementById("rocket").style.transform=`translateY(-${Math.min(100,gameState.mult*5)}px)`;
+
+  document.getElementById("crashMult").innerText=
+   gameState.mult.toFixed(2)+"x";
+
+  document.getElementById("rocket").style.transform=
+   `translateY(-${Math.min(100,gameState.mult*5)}px)`;
 
   const auto=Number(document.getElementById("autoCash").value);
-  if(auto>0&&gameState.mult>=auto){cashCrash();return}
+
+  if(auto>0&&gameState.mult>=auto){
+   cashCrash();
+   return;
+  }
 
   if(gameState.active&&gameState.mult>=gameState.crash){
    gameState.active=false;
+
    document.getElementById("crashMult").classList.add("dead");
    document.getElementById("crashCash").disabled=true;
+
    document.getElementById("crashStatus").className="status loss";
-   document.getElementById("crashStatus").innerText=`CRASHED at ${gameState.crash.toFixed(2)}x`;
+
+   document.getElementById("crashStatus").innerText=
+    `CRASHED at ${gameState.crash.toFixed(2)}x`;
+
    addHistory("Crash","loss",bet,0,0);
+
    clearInterval(timer);
   }
  },90);
 
  timers.push(timer);
+
  document.getElementById("crashCash").disabled=false;
 }
 
 function cashCrash(){
  if(!gameState.active)return;
+
  const amount=gameState.bet*gameState.mult;
+
  gameState.active=false;
+
  payout(amount);
+
  document.getElementById("crashCash").disabled=true;
+
  document.getElementById("crashStatus").className="status win";
- document.getElementById("crashStatus").innerText=`Cashed out ${gameState.mult.toFixed(2)}x • +${amount.toFixed(2)}`;
- addHistory("Crash","win",gameState.bet,amount,gameState.mult);
+
+ document.getElementById("crashStatus").innerText=
+  `Cashed out ${gameState.mult.toFixed(2)}x • +${amount.toFixed(2)}`;
+
+ addHistory(
+  "Crash",
+  "win",
+  gameState.bet,
+  amount,
+  gameState.mult
+ );
 }
 
-/* =========================================================
-DICE
-========================================================= */
+/* DICE */
 
 function diceHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>BET</label><input id="diceBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>MODE</label><select id="diceMode" onchange="updateDice()"><option value="under">UNDER</option><option value="over">OVER</option></select></div>
-  <div class="control"><label>TARGET</label><input id="diceTarget" type="number" value="50" min="5" max="95" oninput="updateDice()"></div>
+  <div class="control"><label>MODE</label>
+   <select id="diceMode" onchange="updateDice()">
+    <option value="under">UNDER</option>
+    <option value="over">OVER</option>
+   </select>
+  </div>
+  <div class="control"><label>TARGET</label>
+   <input id="diceTarget" type="number" value="50" min="5" max="95" oninput="updateDice()">
+  </div>
  </div>
+
  <div class="gamearea">
-  <div id="diceNumber" class="diceNum" style="font-size:52px;text-align:center;color:var(--green);font-weight:950">50</div>
-  <input id="diceSlider" class="slider" type="range" min="5" max="95" value="50" oninput="document.getElementById('diceTarget').value=this.value;updateDice()">
+  <div id="diceNumber" style="font-size:52px;text-align:center;color:var(--green);font-weight:950">50</div>
+
+  <input id="diceSlider" type="range" min="5" max="95" value="50"
+   oninput="document.getElementById('diceTarget').value=this.value;updateDice()">
+
   <div id="diceInfo" class="status">50% chance</div>
   <div id="diceResult" style="font-size:42px;text-align:center">🎲</div>
+
   <button class="gameBtn" onclick="rollDice()">ROLL DICE</button>
  </div>`;
 }
@@ -1150,51 +1345,79 @@ function diceHTML(){
 function updateDice(){
  const target=Number(document.getElementById("diceTarget").value);
  const mode=document.getElementById("diceMode").value;
+
  document.getElementById("diceSlider").value=target;
+
  const chance=mode==="under"?target:100-target;
+
  const multiplier=Math.max(1.01,100/chance*.96);
+
  document.getElementById("diceNumber").innerText=target;
- document.getElementById("diceInfo").innerText=`${chance}% chance • ${multiplier.toFixed(2)}x`;
+
+ document.getElementById("diceInfo").innerText=
+  `${chance}% chance • ${multiplier.toFixed(2)}x`;
 }
 
 function rollDice(){
  const bet=Number(document.getElementById("diceBet").value);
+
  if(!spend(bet))return;
 
  const target=Number(document.getElementById("diceTarget").value);
  const mode=document.getElementById("diceMode").value;
+
  const roll=Number((Math.random()*100).toFixed(2));
+
  const chance=mode==="under"?target:100-target;
+
  const multiplier=Math.max(1.01,100/chance*.96);
+
  const win=mode==="under"?roll<target:roll>target;
 
  document.getElementById("diceResult").innerText=roll.toFixed(2);
 
  if(win){
-  const amount=bet*multiplier;payout(amount);
+  const amount=bet*multiplier;
+
+  payout(amount);
+
   document.getElementById("diceInfo").className="status win";
-  document.getElementById("diceInfo").innerText=`WIN • ${roll.toFixed(2)} • +${amount.toFixed(2)}`;
+
+  document.getElementById("diceInfo").innerText=
+   `WIN • ${roll.toFixed(2)} • +${amount.toFixed(2)}`;
+
   addHistory("Dice","win",bet,amount,multiplier);
  }else{
   document.getElementById("diceInfo").className="status loss";
-  document.getElementById("diceInfo").innerText=`LOSS • ${roll.toFixed(2)}`;
+
+  document.getElementById("diceInfo").innerText=
+   `LOSS • ${roll.toFixed(2)}`;
+
   addHistory("Dice","loss",bet,0,0);
  }
 }
 
-/* =========================================================
-TOWER
-========================================================= */
+/* TOWER */
 
 function towerHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>BET</label><input id="towerBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>LEVEL</label><select id="towerLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
-  <div class="control"><label>ROWS</label><select id="towerRows" onchange="buildTower()"><option>5</option><option selected>8</option><option>12</option></select></div>
+  <div class="control"><label>LEVEL</label>
+   <select id="towerLevel">
+    <option>Easy</option><option selected>Medium</option><option>Hard</option>
+   </select>
+  </div>
+  <div class="control"><label>ROWS</label>
+   <select id="towerRows" onchange="buildTower()">
+    <option>5</option><option selected>8</option><option>12</option>
+   </select>
+  </div>
  </div>
+
  <div id="towerBoard" class="tower"></div>
  <div id="towerStatus" class="status">Start the tower.</div>
+
  <div class="actions">
   <button class="primary" onclick="startTower()">START</button>
   <button id="towerCash" class="cash" disabled onclick="cashTower()">CASH OUT</button>
@@ -1204,30 +1427,50 @@ function towerHTML(){
 function buildTower(){
  const rows=Number(document.getElementById("towerRows").value);
  const board=document.getElementById("towerBoard");
+
  board.innerHTML="";
+
  for(let i=0;i<rows;i++){
-  const row=document.createElement("div");row.className="trow";
+  const row=document.createElement("div");
+  row.className="trow";
+
   for(let j=0;j<2;j++){
    const b=document.createElement("button");
-   b.className="tcell";b.innerText="◆";b.disabled=true;
+
+   b.className="tcell";
+   b.innerText="◆";
+   b.disabled=true;
+
    row.appendChild(b);
   }
+
   board.appendChild(row);
  }
 }
 
 function startTower(){
  const bet=Number(document.getElementById("towerBet").value);
+
  if(!spend(bet))return;
+
  buildTower();
- gameState={active:true,bet,row:0,cash:bet};
+
+ gameState={
+  active:true,
+  bet,
+  row:0,
+  cash:bet
+ };
+
  document.getElementById("towerCash").disabled=false;
+
  enableTower();
 }
 
 function enableTower(){
  const rows=[...document.querySelectorAll(".trow")];
  const row=rows[rows.length-1-gameState.row];
+
  if(!row)return;
 
  row.querySelectorAll("button").forEach(b=>{
@@ -1240,50 +1483,84 @@ function towerPick(button){
  if(!gameState.active)return;
 
  const level=document.getElementById("towerLevel").value;
+
  let chance=.58;
+
  if(level==="Easy")chance=.72;
  if(level==="Hard")chance=.42;
 
  if(Math.random()>chance){
-  button.innerText="💥";button.classList.add("danger");
+  button.innerText="💥";
+  button.classList.add("danger");
+
   gameState.active=false;
+
   document.getElementById("towerCash").disabled=true;
+
   document.getElementById("towerStatus").className="status loss";
   document.getElementById("towerStatus").innerText="Wrong tile.";
+
   addHistory("Tower","loss",gameState.bet,0,0);
+
   return;
  }
 
- button.innerText="💎";button.classList.add("safe");
- button.parentElement.querySelectorAll("button").forEach(b=>b.disabled=true);
+ button.innerText="💎";
+ button.classList.add("safe");
+
+ button.parentElement.querySelectorAll("button")
+  .forEach(b=>b.disabled=true);
 
  gameState.row++;
- const base=level==="Easy"?1.15:level==="Hard"?1.55:1.3;
+
+ const base=
+  level==="Easy"?
+  1.15:
+  level==="Hard"?
+  1.55:
+  1.3;
+
  const multiplier=Math.pow(base,gameState.row);
+
  gameState.cash=gameState.bet*multiplier;
 
  document.getElementById("towerStatus").className="status win";
- document.getElementById("towerStatus").innerText=`Safe • ${multiplier.toFixed(2)}x`;
+
+ document.getElementById("towerStatus").innerText=
+  `Safe • ${multiplier.toFixed(2)}x`;
 
  if(gameState.row>=Number(document.getElementById("towerRows").value)){
-  cashTower();return;
+  cashTower();
+  return;
  }
+
  enableTower();
 }
 
 function cashTower(){
  if(!gameState.active)return;
+
  gameState.active=false;
+
  payout(gameState.cash);
+
  document.getElementById("towerCash").disabled=true;
+
  document.getElementById("towerStatus").className="status win";
- document.getElementById("towerStatus").innerText=`Cashed out • +${gameState.cash.toFixed(2)}`;
- addHistory("Tower","win",gameState.bet,gameState.cash,gameState.cash/gameState.bet);
+
+ document.getElementById("towerStatus").innerText=
+  `Cashed out • +${gameState.cash.toFixed(2)}`;
+
+ addHistory(
+  "Tower",
+  "win",
+  gameState.bet,
+  gameState.cash,
+  gameState.cash/gameState.bet
+ );
 }
 
-/* =========================================================
-BLACKJACK
-========================================================= */
+/* BLACKJACK */
 
 function blackjackHTML(){
  return`
@@ -1291,17 +1568,23 @@ function blackjackHTML(){
   <div class="control"><label>BET</label><input id="bjBet" type="number" value="10" min="1"></div>
   <div class="control"><label>TABLE</label><select><option>Classic</option></select></div>
  </div>
+
  <div class="casino">
   <div class="casinoTitle">STAKEWIN BLACKJACK</div>
+
   <div class="casinoCenter">DEALER</div>
   <div id="dealerCards" class="casinoCards"></div>
   <div id="dealerValue" style="text-align:center;color:#fff">?</div>
+
   <hr style="border-color:#ffffff18">
+
   <div class="casinoCenter">PLAYER</div>
   <div id="playerCards" class="casinoCards"></div>
   <div id="playerValue" style="text-align:center;color:#fff">0</div>
  </div>
+
  <div id="bjStatus" class="status">Deal to start.</div>
+
  <div class="actions">
   <button class="primary" onclick="dealBJ()">DEAL</button>
   <button id="bjHit" class="secondary" disabled onclick="hitBJ()">HIT</button>
@@ -1311,123 +1594,221 @@ function blackjackHTML(){
 
 function dealBJ(){
  const bet=Number(document.getElementById("bjBet").value);
+
  if(!spend(bet))return;
+
  const d=deck();
- gameState={bet,deck:d,player:[d.pop(),d.pop()],dealer:[d.pop(),d.pop()],active:true};
+
+ gameState={
+  bet,
+  deck:d,
+  player:[d.pop(),d.pop()],
+  dealer:[d.pop(),d.pop()],
+  active:true
+ };
+
  renderBJ(false);
+
  document.getElementById("bjHit").disabled=false;
  document.getElementById("bjStand").disabled=false;
 }
 
 function bjValue(hand){
  let v=hand.reduce((a,c)=>a+c.value,0);
+
  let aces=hand.filter(c=>c.rank==="A").length;
- while(v>21&&aces){v-=10;aces--}
+
+ while(v>21&&aces){
+  v-=10;
+  aces--;
+ }
+
  return v;
 }
 
 function renderBJ(show){
- document.getElementById("playerCards").innerHTML=gameState.player.map(card).join("");
+ document.getElementById("playerCards").innerHTML=
+  gameState.player.map(card).join("");
+
  document.getElementById("dealerCards").innerHTML=
   card(gameState.dealer[0])+
-  (show?gameState.dealer.slice(1).map(card).join(""):`<div class="playing">?</div>`);
- document.getElementById("playerValue").innerText=bjValue(gameState.player);
- document.getElementById("dealerValue").innerText=show?bjValue(gameState.dealer):"?";
+  (
+   show?
+   gameState.dealer.slice(1).map(card).join("") :
+   `<div class="playing">?</div>`
+  );
+
+ document.getElementById("playerValue").innerText=
+  bjValue(gameState.player);
+
+ document.getElementById("dealerValue").innerText=
+  show?bjValue(gameState.dealer):"?";
 }
 
 function hitBJ(){
  if(!gameState.active)return;
+
  gameState.player.push(gameState.deck.pop());
+
  renderBJ(false);
- if(bjValue(gameState.player)>21)finishBJ("loss");
+
+ if(bjValue(gameState.player)>21)
+  finishBJ("loss");
 }
 
 function standBJ(){
  if(!gameState.active)return;
- while(bjValue(gameState.dealer)<17)gameState.dealer.push(gameState.deck.pop());
+
+ while(bjValue(gameState.dealer)<17)
+  gameState.dealer.push(gameState.deck.pop());
+
  renderBJ(true);
 
- const p=bjValue(gameState.player),d=bjValue(gameState.dealer);
- if(p>d||d>21)finishBJ("win");
- else if(p===d)finishBJ("push");
- else finishBJ("loss");
+ const p=bjValue(gameState.player);
+ const d=bjValue(gameState.dealer);
+
+ if(p>d||d>21)
+  finishBJ("win");
+ else if(p===d)
+  finishBJ("push");
+ else
+  finishBJ("loss");
 }
 
 function finishBJ(result){
  gameState.active=false;
+
  document.getElementById("bjHit").disabled=true;
  document.getElementById("bjStand").disabled=true;
+
  renderBJ(true);
 
  if(result==="win"){
-  const amount=gameState.bet*2;payout(amount);
+  const amount=gameState.bet*2;
+
+  payout(amount);
+
   document.getElementById("bjStatus").className="status win";
-  document.getElementById("bjStatus").innerText="YOU WIN • 2x";
+
+  document.getElementById("bjStatus").innerText=
+   "YOU WIN • 2x";
+
   addHistory("Blackjack","win",gameState.bet,amount,2);
+
  }else if(result==="push"){
+
   payout(gameState.bet);
-  document.getElementById("bjStatus").innerText="PUSH • Bet returned.";
-  addHistory("Blackjack","win",gameState.bet,gameState.bet,1);
+
+  document.getElementById("bjStatus").innerText=
+   "PUSH • Bet returned.";
+
+  addHistory(
+   "Blackjack",
+   "win",
+   gameState.bet,
+   gameState.bet,
+   1
+  );
+
  }else{
+
   document.getElementById("bjStatus").className="status loss";
-  document.getElementById("bjStatus").innerText="DEALER WINS";
+
+  document.getElementById("bjStatus").innerText=
+   "DEALER WINS";
+
   addHistory("Blackjack","loss",gameState.bet,0,0);
  }
 }
 
-/* =========================================================
-ROULETTE
-========================================================= */
+/* ROULETTE */
 
 function rouletteHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>BET</label><input id="rouletteBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>BET TYPE</label><select id="rouletteType"><option value="red">Red</option><option value="black">Black</option><option value="even">Even</option><option value="odd">Odd</option><option value="green">Green</option></select></div>
-  <div class="control"><label>TABLE</label><select><option>European</option></select></div>
+
+  <div class="control"><label>BET TYPE</label>
+   <select id="rouletteType">
+    <option value="red">Red</option>
+    <option value="black">Black</option>
+    <option value="even">Even</option>
+    <option value="odd">Odd</option>
+    <option value="green">Green</option>
+   </select>
+  </div>
+
+  <div class="control"><label>TABLE</label>
+   <select><option>European</option></select>
+  </div>
  </div>
+
  <div class="gamearea">
-  <div id="wheel" class="showWheel"><div id="wheelCenter" class="wheelInner">?</div></div>
+  <div id="wheel" class="showWheel">
+   <div id="wheelCenter" class="wheelInner">?</div>
+  </div>
+
   <div id="rouletteStatus" class="status">Spin the wheel.</div>
+
   <button class="gameBtn" onclick="spinRoulette()">SPIN</button>
  </div>`;
 }
 
 function spinRoulette(){
  const bet=Number(document.getElementById("rouletteBet").value);
+
  if(!spend(bet))return;
 
  const number=Math.floor(Math.random()*37);
- const color=number===0?"green":number%2?"red":"black";
+
+ const color=
+  number===0?
+  "green":
+  number%2?
+  "red":
+  "black";
+
  const type=document.getElementById("rouletteType").value;
 
- document.getElementById("wheel").style.transform=`rotate(${900+Math.random()*400}deg)`;
+ document.getElementById("wheel").style.transform=
+  `rotate(${900+Math.random()*400}deg)`;
 
  const timer=setTimeout(()=>{
   document.getElementById("wheelCenter").innerText=number;
 
-  const win=type===color||
+  const win=
+   type===color||
    (type==="even"&&number!==0&&number%2===0)||
    (type==="odd"&&number%2===1);
 
   if(win){
    const mult=type==="green"?14:2;
-   const amount=bet*mult;payout(amount);
+   const amount=bet*mult;
+
+   payout(amount);
+
    document.getElementById("rouletteStatus").className="status win";
-   document.getElementById("rouletteStatus").innerText=`WIN • ${number} ${color} • +${amount.toFixed(2)}`;
+
+   document.getElementById("rouletteStatus").innerText=
+    `WIN • ${number} ${color} • +${amount.toFixed(2)}`;
+
    addHistory("Roulette","win",bet,amount,mult);
+
   }else{
+
    document.getElementById("rouletteStatus").className="status loss";
-   document.getElementById("rouletteStatus").innerText=`LOSS • ${number} ${color}`;
+
+   document.getElementById("rouletteStatus").innerText=
+    `LOSS • ${number} ${color}`;
+
    addHistory("Roulette","loss",bet,0,0);
   }
  },2200);
+
  timers.push(timer);
 }
 
-/* =========================================================
-SLOTS
-========================================================= */
+/* SLOTS */
 
 function slotsHTML(){
  return`
@@ -1436,25 +1817,36 @@ function slotsHTML(){
   <div class="control"><label>REELS</label><select><option>3</option></select></div>
   <div class="control"><label>MODE</label><select><option>Classic</option></select></div>
  </div>
+
  <div style="display:flex;gap:5px;background:#321a0b;border:3px solid #b47a24;padding:13px;border-radius:11px">
+
   <div id="r0" class="reel" style="flex:1;height:75px;background:#f7f4e9;color:#111;border-radius:6px;display:grid;place-items:center;font-size:32px">❔</div>
+
   <div id="r1" class="reel" style="flex:1;height:75px;background:#f7f4e9;color:#111;border-radius:6px;display:grid;place-items:center;font-size:32px">❔</div>
+
   <div id="r2" class="reel" style="flex:1;height:75px;background:#f7f4e9;color:#111;border-radius:6px;display:grid;place-items:center;font-size:32px">❔</div>
+
  </div>
+
  <div id="slotStatus" class="status">Spin the reels.</div>
+
  <button class="gameBtn" onclick="spinSlots()">SPIN</button>`;
 }
 
 function spinSlots(){
  const bet=Number(document.getElementById("slotBet").value);
+
  if(!spend(bet))return;
 
  const symbols=["🍒","🍋","🍊","🍉","💎","⭐","7️⃣"];
+
  let count=0;
 
  const timer=setInterval(()=>{
-  for(let i=0;i<3;i++)
-   document.getElementById("r"+i).innerText=symbols[Math.floor(Math.random()*symbols.length)];
+  for(let i=0;i<3;i++){
+   document.getElementById("r"+i).innerText=
+    symbols[Math.floor(Math.random()*symbols.length)];
+  }
 
   count++;
 
@@ -1464,19 +1856,32 @@ function spinSlots(){
    const a=document.getElementById("r0").innerText;
    const b=document.getElementById("r1").innerText;
    const c=document.getElementById("r2").innerText;
+
    let mult=0;
 
-   if(a===b&&b===c)mult=a==="7️⃣"?10:7;
-   else if(a===b||b===c||a===c)mult=2;
+   if(a===b&&b===c)
+    mult=a==="7️⃣"?10:7;
+   else if(a===b||b===c||a===c)
+    mult=2;
 
    if(mult){
-    const amount=bet*mult;payout(amount);
+    const amount=bet*mult;
+
+    payout(amount);
+
     document.getElementById("slotStatus").className="status win";
-    document.getElementById("slotStatus").innerText=`WIN • ${mult}x • +${amount.toFixed(2)}`;
+
+    document.getElementById("slotStatus").innerText=
+     `WIN • ${mult}x • +${amount.toFixed(2)}`;
+
     addHistory("Neon Slots","win",bet,amount,mult);
+
    }else{
+
     document.getElementById("slotStatus").className="status loss";
+
     document.getElementById("slotStatus").innerText="NO MATCH";
+
     addHistory("Neon Slots","loss",bet,0,0);
    }
   }
@@ -1485,33 +1890,48 @@ function spinSlots(){
  timers.push(timer);
 }
 
-/* =========================================================
-COIN / HIGHER / COLOR
-========================================================= */
+/* COIN */
 
 function coinHTML(){
  return`
  <div class="gamearea" style="text-align:center">
+
   <div id="coinIcon" style="font-size:60px;margin:10px">🪙</div>
+
   <div class="toolbar">
    <div class="control"><label>BET</label><input id="coinBet" type="number" value="10" min="1"></div>
-   <div class="control"><label>CHOICE</label><select id="coinChoice"><option>Heads</option><option>Tails</option></select></div>
+
+   <div class="control"><label>CHOICE</label>
+    <select id="coinChoice">
+     <option>Heads</option>
+     <option>Tails</option>
+    </select>
+   </div>
   </div>
+
   <div id="coinStatus" class="status">Choose heads or tails.</div>
+
   <button class="gameBtn" onclick="flipCoin()">FLIP COIN</button>
  </div>`;
 }
 
 function flipCoin(){
  const bet=Number(document.getElementById("coinBet").value);
+
  if(!spend(bet))return;
 
  const choice=document.getElementById("coinChoice").value;
+
  const result=Math.random()<.5?"Heads":"Tails";
+
  const icon=document.getElementById("coinIcon");
 
  icon.animate(
-  [{transform:"rotateY(0deg)"},{transform:"rotateY(720deg)"},{transform:"rotateY(1440deg)"}],
+  [
+   {transform:"rotateY(0deg)"},
+   {transform:"rotateY(720deg)"},
+   {transform:"rotateY(1440deg)"}
+  ],
   {duration:700}
  );
 
@@ -1519,28 +1939,53 @@ function flipCoin(){
   icon.innerText=result==="Heads"?"🙂":"🪙";
 
   if(result===choice){
-   const amount=bet*1.9;payout(amount);
+   const amount=bet*1.9;
+
+   payout(amount);
+
    document.getElementById("coinStatus").className="status win";
-   document.getElementById("coinStatus").innerText=`${result} • WIN • +${amount.toFixed(2)}`;
+
+   document.getElementById("coinStatus").innerText=
+    `${result} • WIN • +${amount.toFixed(2)}`;
+
    addHistory("Coin Flip","win",bet,amount,1.9);
+
   }else{
+
    document.getElementById("coinStatus").className="status loss";
-   document.getElementById("coinStatus").innerText=`${result} • LOSS`;
+
+   document.getElementById("coinStatus").innerText=
+    `${result} • LOSS`;
+
    addHistory("Coin Flip","loss",bet,0,0);
   }
  },700);
+
  timers.push(timer);
 }
+
+/* HIGHER LOWER */
 
 function higherHTML(){
  return`
  <div class="gamearea" style="text-align:center">
+
   <div id="higherNumber" style="font-size:55px;font-weight:950;color:var(--green)">50</div>
+
   <div class="toolbar">
    <div class="control"><label>BET</label><input id="higherBet" type="number" value="10" min="1"></div>
-   <div class="control"><label>LEVEL</label><select><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+
+   <div class="control"><label>LEVEL</label>
+    <select>
+     <option>Easy</option>
+     <option selected>Medium</option>
+     <option>Hard</option>
+    </select>
+   </div>
   </div>
+
   <div id="higherStatus" class="status">Predict the next number.</div>
+
   <div class="actions">
    <button class="primary" onclick="higherGuess('higher')">HIGHER</button>
    <button class="secondary" onclick="higherGuess('lower')">LOWER</button>
@@ -1550,78 +1995,140 @@ function higherHTML(){
 
 function initHigher(){
  gameState.higher=Math.floor(20+Math.random()*60);
- document.getElementById("higherNumber").innerText=gameState.higher;
+
+ document.getElementById("higherNumber").innerText=
+  gameState.higher;
 }
 
 function higherGuess(choice){
  const bet=Number(document.getElementById("higherBet").value);
+
  if(!spend(bet))return;
 
  const old=gameState.higher;
+
  const next=Math.floor(1+Math.random()*100);
+
  gameState.higher=next;
+
  document.getElementById("higherNumber").innerText=next;
 
- const win=choice==="higher"?next>old:next<old;
+ const win=
+  choice==="higher"?
+  next>old:
+  next<old;
 
  if(win){
-  const amount=bet*1.8;payout(amount);
+  const amount=bet*1.8;
+
+  payout(amount);
+
   document.getElementById("higherStatus").className="status win";
-  document.getElementById("higherStatus").innerText=`${old} → ${next} • WIN`;
+
+  document.getElementById("higherStatus").innerText=
+   `${old} → ${next} • WIN`;
+
   addHistory("Higher Lower","win",bet,amount,1.8);
+
  }else{
+
   document.getElementById("higherStatus").className="status loss";
-  document.getElementById("higherStatus").innerText=`${old} → ${next} • LOSS`;
+
+  document.getElementById("higherStatus").innerText=
+   `${old} → ${next} • LOSS`;
+
   addHistory("Higher Lower","loss",bet,0,0);
  }
 }
 
+/* COLOR */
+
 function colorHTML(){
  return`
  <div class="gamearea" style="text-align:center">
+
   <div id="colorIcon" style="font-size:60px;margin:10px">🎨</div>
+
   <div class="toolbar">
    <div class="control"><label>BET</label><input id="colorBet" type="number" value="10" min="1"></div>
-   <div class="control"><label>COLOR</label><select id="colorChoice"><option>Green</option><option>Blue</option><option>Pink</option></select></div>
+
+   <div class="control"><label>COLOR</label>
+    <select id="colorChoice">
+     <option>Green</option>
+     <option>Blue</option>
+     <option>Pink</option>
+    </select>
+   </div>
   </div>
+
   <div id="colorStatus" class="status">Choose a color.</div>
+
   <button class="gameBtn" onclick="pickColor()">DRAW COLOR</button>
  </div>`;
 }
 
 function pickColor(){
  const bet=Number(document.getElementById("colorBet").value);
+
  if(!spend(bet))return;
 
  const choice=document.getElementById("colorChoice").value;
- const colors=["Green","Blue","Pink"];
- const result=colors[Math.floor(Math.random()*3)];
- const icons={Green:"🟢",Blue:"🔵",Pink:"🩷"};
 
- document.getElementById("colorIcon").innerText=icons[result];
+ const colors=["Green","Blue","Pink"];
+
+ const result=
+  colors[Math.floor(Math.random()*3)];
+
+ const icons={
+  Green:"🟢",
+  Blue:"🔵",
+  Pink:"🩷"
+ };
+
+ document.getElementById("colorIcon").innerText=
+  icons[result];
 
  if(result===choice){
-  const amount=bet*2.7;payout(amount);
+  const amount=bet*2.7;
+
+  payout(amount);
+
   document.getElementById("colorStatus").className="status win";
-  document.getElementById("colorStatus").innerText=`${result} • WIN • +${amount.toFixed(2)}`;
+
+  document.getElementById("colorStatus").innerText=
+   `${result} • WIN • +${amount.toFixed(2)}`;
+
   addHistory("Color Rush","win",bet,amount,2.7);
+
  }else{
+
   document.getElementById("colorStatus").className="status loss";
-  document.getElementById("colorStatus").innerText=`${result} • LOSS`;
+
+  document.getElementById("colorStatus").innerText=
+   `${result} • LOSS`;
+
   addHistory("Color Rush","loss",bet,0,0);
  }
 }
 
-/* =========================================================
-LIVE CASINO — DRAGON TIGER
-========================================================= */
+/* DRAGON TIGER */
 
 function dragonHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>BET</label><input id="dtBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>BET ON</label><select id="dtChoice"><option>Dragon</option><option>Tiger</option><option>Tie</option></select></div>
-  <div class="control"><label>TABLE</label><select><option>Live Style</option></select></div>
+
+  <div class="control"><label>BET ON</label>
+   <select id="dtChoice">
+    <option>Dragon</option>
+    <option>Tiger</option>
+    <option>Tie</option>
+   </select>
+  </div>
+
+  <div class="control"><label>TABLE</label>
+   <select><option>Live Style</option></select>
+  </div>
  </div>
 
  <div class="casino">
@@ -1640,39 +2147,66 @@ function dragonHTML(){
   </div>
 
   <div id="dtStatus" class="status">Place your virtual bet and deal.</div>
+
   <button class="gameBtn" onclick="playDragon()">DEAL CARDS</button>
  </div>`;
 }
 
 function playDragon(){
  const bet=Number(document.getElementById("dtBet").value);
+
  if(!spend(bet))return;
 
  const d=deck();
- const dragon=d.pop(),tiger=d.pop();
+
+ const dragon=d.pop();
+ const tiger=d.pop();
 
  const box=document.getElementById("dtCards");
- box.innerHTML=`<div class="playing">🂠</div><div style="color:#fff">VS</div><div class="playing">🂠</div>`;
+
+ box.innerHTML=
+  `<div class="playing">🂠</div>
+   <div style="color:#fff">VS</div>
+   <div class="playing">🂠</div>`;
 
  const timer=setTimeout(()=>{
-  box.innerHTML=card(dragon)+`<div style="color:#d7bd64;font-weight:900">VS</div>`+card(tiger);
+  box.innerHTML=
+   card(dragon)+
+   `<div style="color:#d7bd64;font-weight:900">VS</div>`+
+   card(tiger);
 
   let winner;
-  if(dragon.value>tiger.value)winner="Dragon";
-  else if(tiger.value>dragon.value)winner="Tiger";
-  else winner="Tie";
+
+  if(dragon.value>tiger.value)
+   winner="Dragon";
+  else if(tiger.value>dragon.value)
+   winner="Tiger";
+  else
+   winner="Tie";
 
   const choice=document.getElementById("dtChoice").value;
 
   if(choice===winner){
    const mult=winner==="Tie"?10:1.95;
-   const amount=bet*mult;payout(amount);
+
+   const amount=bet*mult;
+
+   payout(amount);
+
    document.getElementById("dtStatus").className="status win";
-   document.getElementById("dtStatus").innerText=`${winner} WINS • +${amount.toFixed(2)}`;
+
+   document.getElementById("dtStatus").innerText=
+    `${winner} WINS • +${amount.toFixed(2)}`;
+
    addHistory("Dragon Tiger","win",bet,amount,mult);
+
   }else{
+
    document.getElementById("dtStatus").className="status loss";
-   document.getElementById("dtStatus").innerText=`${winner} wins • LOSS`;
+
+   document.getElementById("dtStatus").innerText=
+    `${winner} wins • LOSS`;
+
    addHistory("Dragon Tiger","loss",bet,0,0);
   }
  },650);
@@ -1680,16 +2214,24 @@ function playDragon(){
  timers.push(timer);
 }
 
-/* =========================================================
-BACCARAT
-========================================================= */
+/* BACCARAT */
 
 function baccaratHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>BET</label><input id="bacBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>BET ON</label><select id="bacChoice"><option>Player</option><option>Banker</option><option>Tie</option></select></div>
-  <div class="control"><label>TABLE</label><select><option>Premium</option></select></div>
+
+  <div class="control"><label>BET ON</label>
+   <select id="bacChoice">
+    <option>Player</option>
+    <option>Banker</option>
+    <option>Tie</option>
+   </select>
+  </div>
+
+  <div class="control"><label>TABLE</label>
+   <select><option>Premium</option></select>
+  </div>
  </div>
 
  <div class="casino">
@@ -1710,45 +2252,72 @@ function baccaratHTML(){
   <div id="bacBV" class="casinoCenter">?</div>
 
   <div id="bacStatus" class="status">Place your virtual bet.</div>
+
   <button class="gameBtn" onclick="playBaccarat()">DEAL</button>
  </div>`;
 }
 
 function playBaccarat(){
  const bet=Number(document.getElementById("bacBet").value);
+
  if(!spend(bet))return;
 
  const d=deck();
+
  const p=[d.pop(),d.pop()];
  const b=[d.pop(),d.pop()];
 
- document.getElementById("bacPlayer").innerHTML=`<div class="playing">🂠</div><div class="playing">🂠</div>`;
- document.getElementById("bacBanker").innerHTML=`<div class="playing">🂠</div><div class="playing">🂠</div>`;
+ document.getElementById("bacPlayer").innerHTML=
+  `<div class="playing">🂠</div><div class="playing">🂠</div>`;
+
+ document.getElementById("bacBanker").innerHTML=
+  `<div class="playing">🂠</div><div class="playing">🂠</div>`;
 
  const timer=setTimeout(()=>{
-  const pv=cardValue(p),bv=cardValue(b);
+  const pv=cardValue(p);
+  const bv=cardValue(b);
 
-  document.getElementById("bacPlayer").innerHTML=p.map(card).join("");
-  document.getElementById("bacBanker").innerHTML=b.map(card).join("");
+  document.getElementById("bacPlayer").innerHTML=
+   p.map(card).join("");
+
+  document.getElementById("bacBanker").innerHTML=
+   b.map(card).join("");
+
   document.getElementById("bacPV").innerText="TOTAL "+pv;
   document.getElementById("bacBV").innerText="TOTAL "+bv;
 
   let winner;
-  if(pv>bv)winner="Player";
-  else if(bv>pv)winner="Banker";
-  else winner="Tie";
+
+  if(pv>bv)
+   winner="Player";
+  else if(bv>pv)
+   winner="Banker";
+  else
+   winner="Tie";
 
   const choice=document.getElementById("bacChoice").value;
 
   if(choice===winner){
    const mult=winner==="Tie"?8:1.95;
-   const amount=bet*mult;payout(amount);
+
+   const amount=bet*mult;
+
+   payout(amount);
+
    document.getElementById("bacStatus").className="status win";
-   document.getElementById("bacStatus").innerText=`${winner} WINS • +${amount.toFixed(2)}`;
+
+   document.getElementById("bacStatus").innerText=
+    `${winner} WINS • +${amount.toFixed(2)}`;
+
    addHistory("Baccarat","win",bet,amount,mult);
+
   }else{
+
    document.getElementById("bacStatus").className="status loss";
-   document.getElementById("bacStatus").innerText=`${winner} wins • LOSS`;
+
+   document.getElementById("bacStatus").innerText=
+    `${winner} wins • LOSS`;
+
    addHistory("Baccarat","loss",bet,0,0);
   }
  },700);
@@ -1756,69 +2325,131 @@ function playBaccarat(){
  timers.push(timer);
 }
 
-/* =========================================================
-SIC BO
-========================================================= */
+/* SIC BO */
 
 function sicboHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>BET</label><input id="sicBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>BET TYPE</label><select id="sicChoice"><option>Small</option><option>Big</option><option>Triple</option></select></div>
-  <div class="control"><label>TABLE</label><select><option>Classic</option></select></div>
+
+  <div class="control"><label>BET TYPE</label>
+   <select id="sicChoice">
+    <option>Small</option>
+    <option>Big</option>
+    <option>Triple</option>
+   </select>
+  </div>
+
+  <div class="control"><label>TABLE</label>
+   <select><option>Classic</option></select>
+  </div>
  </div>
 
  <div class="casino">
   <div class="casinoTitle">🎲 SIC BO</div>
+
   <div id="sicDice" class="diceBox">
-   <div class="die">?</div><div class="die">?</div><div class="die">?</div>
+   <div class="die">?</div>
+   <div class="die">?</div>
+   <div class="die">?</div>
   </div>
+
   <div class="betAreas">
    <div class="betArea"><strong>SMALL</strong>1.9x</div>
    <div class="betArea"><strong>BIG</strong>1.9x</div>
    <div class="betArea"><strong>TRIPLE</strong>30x</div>
   </div>
+
   <div id="sicStatus" class="status">Roll three dice.</div>
+
   <button class="gameBtn" onclick="playSicbo()">ROLL DICE</button>
  </div>`;
 }
 
 function playSicbo(){
  const bet=Number(document.getElementById("sicBet").value);
+
  if(!spend(bet))return;
 
- const dice=[1+Math.floor(Math.random()*6),1+Math.floor(Math.random()*6),1+Math.floor(Math.random()*6)];
+ const dice=[
+  1+Math.floor(Math.random()*6),
+  1+Math.floor(Math.random()*6),
+  1+Math.floor(Math.random()*6)
+ ];
+
  const els=document.querySelectorAll("#sicDice .die");
 
  els.forEach(e=>e.classList.add("rolling"));
 
  let ticks=0;
+
  const timer=setInterval(()=>{
-  els.forEach(e=>e.innerText=1+Math.floor(Math.random()*6));
+  els.forEach(e=>
+   e.innerText=1+Math.floor(Math.random()*6)
+  );
+
   ticks++;
 
   if(ticks>12){
    clearInterval(timer);
-   els.forEach((e,i)=>{e.classList.remove("rolling");e.innerText=dice[i]});
+
+   els.forEach((e,i)=>{
+    e.classList.remove("rolling");
+    e.innerText=dice[i];
+   });
 
    const total=dice.reduce((a,b)=>a+b,0);
-   const triple=dice[0]===dice[1]&&dice[1]===dice[2];
-   const choice=document.getElementById("sicChoice").value;
 
-   let win=false,mult=0;
+   const triple=
+    dice[0]===dice[1]&&
+    dice[1]===dice[2];
 
-   if(choice==="Triple"&&triple){win=true;mult=30}
-   else if(!triple&&choice==="Small"&&total>=4&&total<=10){win=true;mult=1.9}
-   else if(!triple&&choice==="Big"&&total>=11&&total<=17){win=true;mult=1.9}
+   const choice=
+    document.getElementById("sicChoice").value;
+
+   let win=false;
+   let mult=0;
+
+   if(choice==="Triple"&&triple){
+    win=true;
+    mult=30;
+   }else if(
+    !triple&&
+    choice==="Small"&&
+    total>=4&&
+    total<=10
+   ){
+    win=true;
+    mult=1.9;
+   }else if(
+    !triple&&
+    choice==="Big"&&
+    total>=11&&
+    total<=17
+   ){
+    win=true;
+    mult=1.9;
+   }
 
    if(win){
-    const amount=bet*mult;payout(amount);
+    const amount=bet*mult;
+
+    payout(amount);
+
     document.getElementById("sicStatus").className="status win";
-    document.getElementById("sicStatus").innerText=`${dice.join(" • ")} = ${total} • WIN • +${amount.toFixed(2)}`;
+
+    document.getElementById("sicStatus").innerText=
+     `${dice.join(" • ")} = ${total} • WIN • +${amount.toFixed(2)}`;
+
     addHistory("Sic Bo","win",bet,amount,mult);
+
    }else{
+
     document.getElementById("sicStatus").className="status loss";
-    document.getElementById("sicStatus").innerText=`${dice.join(" • ")} = ${total} • LOSS`;
+
+    document.getElementById("sicStatus").innerText=
+     `${dice.join(" • ")} = ${total} • LOSS`;
+
     addHistory("Sic Bo","loss",bet,0,0);
    }
   }
@@ -1827,71 +2458,130 @@ function playSicbo(){
  timers.push(timer);
 }
 
-/* =========================================================
-TEEN PATTI
-========================================================= */
+/* TEEN PATTI */
 
 function teenPattiHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>BET</label><input id="tpBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>MODE</label><select><option>Classic</option></select></div>
-  <div class="control"><label>TABLE</label><select><option>Private Room</option></select></div>
+
+  <div class="control"><label>MODE</label>
+   <select><option>Classic</option></select>
+  </div>
+
+  <div class="control"><label>TABLE</label>
+   <select><option>Private Room</option></select>
+  </div>
  </div>
 
  <div class="casino">
   <div class="casinoTitle">🃏 TEEN PATTI TABLE</div>
+
   <div class="casinoCenter">DEALER</div>
+
   <div id="tpDealer" class="casinoCards">
-   <div class="playing">?</div><div class="playing">?</div><div class="playing">?</div>
+   <div class="playing">?</div>
+   <div class="playing">?</div>
+   <div class="playing">?</div>
   </div>
+
   <div class="casinoCenter">VS</div>
+
   <div class="casinoCenter">YOU</div>
+
   <div id="tpPlayer" class="casinoCards"></div>
+
   <div id="tpStatus" class="status">Deal three cards.</div>
+
   <button class="gameBtn" onclick="playTeenPatti()">DEAL CARDS</button>
  </div>`;
 }
 
 function tpScore(hand){
  const vals=hand.map(c=>c.value).sort((a,b)=>b-a);
- const same=vals[0]===vals[1]&&vals[1]===vals[2];
- const pair=vals[0]===vals[1]||vals[1]===vals[2]||vals[0]===vals[2];
+
+ const same=
+  vals[0]===vals[1]&&
+  vals[1]===vals[2];
+
+ const pair=
+  vals[0]===vals[1]||
+  vals[1]===vals[2]||
+  vals[0]===vals[2];
 
  if(same)return 100+vals[0];
  if(pair)return 50+vals[1];
+
  return vals[0]+vals[1]+vals[2];
 }
 
 function playTeenPatti(){
  const bet=Number(document.getElementById("tpBet").value);
+
  if(!spend(bet))return;
 
  const d=deck();
- const player=[d.pop(),d.pop(),d.pop()];
- const dealer=[d.pop(),d.pop(),d.pop()];
 
- document.getElementById("tpPlayer").innerHTML=`<div class="playing">🂠</div><div class="playing">🂠</div><div class="playing">🂠</div>`;
- document.getElementById("tpDealer").innerHTML=`<div class="playing">🂠</div><div class="playing">🂠</div><div class="playing">🂠</div>`;
+ const player=[
+  d.pop(),
+  d.pop(),
+  d.pop()
+ ];
+
+ const dealer=[
+  d.pop(),
+  d.pop(),
+  d.pop()
+ ];
+
+ document.getElementById("tpPlayer").innerHTML=
+  `<div class="playing">🂠</div>
+   <div class="playing">🂠</div>
+   <div class="playing">🂠</div>`;
+
+ document.getElementById("tpDealer").innerHTML=
+  `<div class="playing">🂠</div>
+   <div class="playing">🂠</div>
+   <div class="playing">🂠</div>`;
 
  const timer=setTimeout(()=>{
-  document.getElementById("tpPlayer").innerHTML=player.map(card).join("");
-  document.getElementById("tpDealer").innerHTML=dealer.map(card).join("");
+  document.getElementById("tpPlayer").innerHTML=
+   player.map(card).join("");
 
-  const ps=tpScore(player),ds=tpScore(dealer);
+  document.getElementById("tpDealer").innerHTML=
+   dealer.map(card).join("");
+
+  const ps=tpScore(player);
+  const ds=tpScore(dealer);
 
   if(ps>ds){
-   const amount=bet*2;payout(amount);
+   const amount=bet*2;
+
+   payout(amount);
+
    document.getElementById("tpStatus").className="status win";
-   document.getElementById("tpStatus").innerText="YOU WIN • 2x";
+
+   document.getElementById("tpStatus").innerText=
+    "YOU WIN • 2x";
+
    addHistory("Teen Patti","win",bet,amount,2);
+
   }else if(ps===ds){
+
    payout(bet);
-   document.getElementById("tpStatus").innerText="TIE • BET RETURNED";
+
+   document.getElementById("tpStatus").innerText=
+    "TIE • BET RETURNED";
+
    addHistory("Teen Patti","win",bet,bet,1);
+
   }else{
+
    document.getElementById("tpStatus").className="status loss";
-   document.getElementById("tpStatus").innerText="DEALER WINS";
+
+   document.getElementById("tpStatus").innerText=
+    "DEALER WINS";
+
    addHistory("Teen Patti","loss",bet,0,0);
   }
  },700);
@@ -1899,56 +2589,83 @@ function playTeenPatti(){
  timers.push(timer);
 }
 
-/* =========================================================
-ANDAR BAHAR
-========================================================= */
+/* ANDAR BAHAR */
 
 function andarHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>BET</label><input id="abBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>BET ON</label><select id="abChoice"><option>Andar</option><option>Bahar</option></select></div>
-  <div class="control"><label>TABLE</label><select><option>Classic</option></select></div>
+
+  <div class="control"><label>BET ON</label>
+   <select id="abChoice">
+    <option>Andar</option>
+    <option>Bahar</option>
+   </select>
+  </div>
+
+  <div class="control"><label>TABLE</label>
+   <select><option>Classic</option></select>
+  </div>
  </div>
 
  <div class="casino">
   <div class="casinoTitle">🂡 ANDAR BAHAR</div>
+
   <div id="abTarget" class="casinoCenter">TARGET CARD: ?</div>
+
   <div class="casinoCards" id="abTargetCard"></div>
+
   <div class="betAreas">
    <div class="betArea"><strong>ANDAR</strong>1.9x</div>
    <div class="betArea"><strong>BAHAR</strong>1.9x</div>
   </div>
+
   <div id="abSequence" class="casinoCards" style="flex-wrap:wrap"></div>
+
   <div id="abStatus" class="status">Choose a side and deal.</div>
+
   <button class="gameBtn" onclick="playAndarBahar()">DEAL</button>
  </div>`;
 }
 
 function playAndarBahar(){
  const bet=Number(document.getElementById("abBet").value);
+
  if(!spend(bet))return;
 
  const d=deck();
+
  const target=d.pop();
+
  const choice=document.getElementById("abChoice").value;
+
  const seq=[];
  let foundSide="";
 
  for(let i=0;i<30;i++){
   const c=d.pop();
+
   seq.push(c);
+
   if(c.rank===target.rank){
-   foundSide=i%2===0?"Andar":"Bahar";
+   foundSide=
+    i%2===0?
+    "Andar":
+    "Bahar";
+
    break;
   }
  }
 
- document.getElementById("abTargetCard").innerHTML=card(target);
+ document.getElementById("abTargetCard").innerHTML=
+  card(target);
+
  const seqBox=document.getElementById("abSequence");
+
  seqBox.innerHTML="";
 
  let i=0;
+
  const timer=setInterval(()=>{
   if(i>=seq.length){
    clearInterval(timer);
@@ -1957,6 +2674,7 @@ function playAndarBahar(){
   }
 
   seqBox.innerHTML+=card(seq[i]);
+
   i++;
 
   if(i===seq.length){
@@ -1969,28 +2687,48 @@ function playAndarBahar(){
 
  function finishAB(){
   if(choice===foundSide){
-   const amount=bet*1.9;payout(amount);
+   const amount=bet*1.9;
+
+   payout(amount);
+
    document.getElementById("abStatus").className="status win";
-   document.getElementById("abStatus").innerText=`${foundSide} • WIN • +${amount.toFixed(2)}`;
+
+   document.getElementById("abStatus").innerText=
+    `${foundSide} • WIN • +${amount.toFixed(2)}`;
+
    addHistory("Andar Bahar","win",bet,amount,1.9);
+
   }else{
+
    document.getElementById("abStatus").className="status loss";
-   document.getElementById("abStatus").innerText=`${foundSide} got the match • LOSS`;
+
+   document.getElementById("abStatus").innerText=
+    `${foundSide} got the match • LOSS`;
+
    addHistory("Andar Bahar","loss",bet,0,0);
   }
  }
 }
 
-/* =========================================================
-HORSE RACING
-========================================================= */
+/* HORSE RACING */
 
 function horsesHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>BET</label><input id="horseBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>HORSE</label><select id="horseChoice"><option value="0">🏇 Horse 1</option><option value="1">🐎 Horse 2</option><option value="2">🏇 Horse 3</option><option value="3">🐎 Horse 4</option></select></div>
-  <div class="control"><label>RACE</label><select><option>4 Horses</option></select></div>
+
+  <div class="control"><label>HORSE</label>
+   <select id="horseChoice">
+    <option value="0">🏇 Horse 1</option>
+    <option value="1">🐎 Horse 2</option>
+    <option value="2">🏇 Horse 3</option>
+    <option value="3">🐎 Horse 4</option>
+   </select>
+  </div>
+
+  <div class="control"><label>RACE</label>
+   <select><option>4 Horses</option></select>
+  </div>
  </div>
 
  <div class="race">
@@ -2001,31 +2739,49 @@ function horsesHTML(){
  </div>
 
  <div id="horseStatus" class="status">Choose your horse.</div>
- <button class="gameBtn" onclick="startHorseRace()">START RACE</button>`;
+
+ <button class="gameBtn" onclick="startHorseRace()">START RACE</button>
+ </div>`;
 }
 
 function startHorseRace(){
  const bet=Number(document.getElementById("horseBet").value);
+
  if(!spend(bet))return;
 
  const winner=Math.floor(Math.random()*4);
- const chosen=Number(document.getElementById("horseChoice").value);
+
+ const chosen=
+  Number(document.getElementById("horseChoice").value);
 
  for(let i=0;i<4;i++){
-  document.getElementById("h"+i).style.left=(55+Math.random()*40)+"%";
+  document.getElementById("h"+i).style.left=
+   (55+Math.random()*40)+"%";
  }
 
- document.getElementById("h"+winner).style.left="calc(100% - 35px)";
+ document.getElementById("h"+winner).style.left=
+  "calc(100% - 35px)";
 
  const timer=setTimeout(()=>{
   if(chosen===winner){
-   const amount=bet*3.5;payout(amount);
+   const amount=bet*3.5;
+
+   payout(amount);
+
    document.getElementById("horseStatus").className="status win";
-   document.getElementById("horseStatus").innerText=`HORSE ${winner+1} WINS • +${amount.toFixed(2)}`;
+
+   document.getElementById("horseStatus").innerText=
+    `HORSE ${winner+1} WINS • +${amount.toFixed(2)}`;
+
    addHistory("Horse Racing","win",bet,amount,3.5);
+
   }else{
+
    document.getElementById("horseStatus").className="status loss";
-   document.getElementById("horseStatus").innerText=`HORSE ${winner+1} WINS • LOSS`;
+
+   document.getElementById("horseStatus").innerText=
+    `HORSE ${winner+1} WINS • LOSS`;
+
    addHistory("Horse Racing","loss",bet,0,0);
   }
  },3000);
@@ -2033,71 +2789,123 @@ function startHorseRace(){
  timers.push(timer);
 }
 
-/* =========================================================
-GAME SHOW WHEEL
-========================================================= */
+/* GAME SHOW WHEEL */
 
 function wheelShowHTML(){
  return`
  <div class="toolbar">
   <div class="control"><label>BET</label><input id="wsBet" type="number" value="10" min="1"></div>
-  <div class="control"><label>SEGMENT</label><select id="wsChoice"><option>2x</option><option>3x</option><option>5x</option><option>10x</option></select></div>
-  <div class="control"><label>SHOW</label><select><option>LIVE STYLE</option></select></div>
+
+  <div class="control"><label>SEGMENT</label>
+   <select id="wsChoice">
+    <option>2x</option>
+    <option>3x</option>
+    <option>5x</option>
+    <option>10x</option>
+   </select>
+  </div>
+
+  <div class="control"><label>SHOW</label>
+   <select><option>LIVE STYLE</option></select>
+  </div>
  </div>
 
  <div class="casino">
   <div class="casinoTitle">🎡 STAKEWIN GAME SHOW</div>
+
   <div style="text-align:center;font-size:20px;margin-top:8px">▼</div>
+
   <div id="showWheel" class="showWheel">
    <div class="wheelInner">SPIN</div>
   </div>
+
   <div id="wsStatus" class="status">Pick a multiplier and spin.</div>
+
   <button class="gameBtn" onclick="spinShowWheel()">SPIN THE WHEEL</button>
  </div>`;
 }
 
 function spinShowWheel(){
  const bet=Number(document.getElementById("wsBet").value);
+
  if(!spend(bet))return;
 
  const choices=[2,3,5,10];
- const result=choices[Math.floor(Math.random()*choices.length)];
- const choice=Number(document.getElementById("wsChoice").value.replace("x",""));
 
- document.getElementById("showWheel").style.transform=`rotate(${1440+Math.random()*720}deg)`;
+ const result=
+  choices[Math.floor(Math.random()*choices.length)];
+
+ const choice=
+  Number(
+   document.getElementById("wsChoice")
+    .value.replace("x","")
+  );
+
+ document.getElementById("showWheel").style.transform=
+  `rotate(${1440+Math.random()*720}deg)`;
 
  const timer=setTimeout(()=>{
   if(choice===result){
-   const amount=bet*result;payout(amount);
+   const amount=bet*result;
+
+   payout(amount);
+
    document.getElementById("wsStatus").className="status win";
-   document.getElementById("wsStatus").innerText=`WHEEL LANDED ${result}x • +${amount.toFixed(2)}`;
-   addHistory("Game Show Wheel","win",bet,amount,result);
+
+   document.getElementById("wsStatus").innerText=
+    `WHEEL LANDED ${result}x • +${amount.toFixed(2)}`;
+
+   addHistory(
+    "Game Show Wheel",
+    "win",
+    bet,
+    amount,
+    result
+   );
+
   }else{
+
    document.getElementById("wsStatus").className="status loss";
-   document.getElementById("wsStatus").innerText=`WHEEL LANDED ${result}x • LOSS`;
-   addHistory("Game Show Wheel","loss",bet,0,0);
+
+   document.getElementById("wsStatus").innerText=
+    `WHEEL LANDED ${result}x • LOSS`;
+
+   addHistory(
+    "Game Show Wheel",
+    "loss",
+    bet,
+    0,
+    0
+   );
   }
  },2500);
 
  timers.push(timer);
 }
 
-/* =========================================================
-HISTORY
-========================================================= */
+/* HISTORY */
 
 function openHistory(){
  if(!currentUser)return;
+
  document.getElementById("historyModal").style.display="flex";
+
  buildLedgerTabs();
  showHistory("all");
 }
 
 function buildLedgerTabs(){
  const tabs=document.getElementById("ledgerTabs");
- const names=["all",...games.map(g=>g.name)];
+
+ const names=[
+  "all",
+  ...games.map(g=>g.name)
+ ];
+
  tabs.innerHTML=names.map(name=>`
-  <button class="${historyFilter===name?"active":""}" onclick="showHistory('${name}')">
+  <button
+   class="${historyFilter===name?"active":""}"
+   onclick="showHistory('${name}')">
    ${name==="all"?"ALL":name}
   </button>
  `).join("");
@@ -2105,57 +2913,94 @@ function buildLedgerTabs(){
 
 function showHistory(filter){
  historyFilter=filter;
+
  let data=getHistory();
 
- if(filter!=="all")data=data.filter(x=>x.game===filter);
+ if(filter!=="all")
+  data=data.filter(x=>x.game===filter);
 
- const total=data.reduce((a,x)=>a+Number(x.bet||0),0);
- const wins=data.filter(x=>x.result==="win").length;
- const net=data.reduce((a,x)=>a+Number(x.payout||0)-Number(x.bet||0),0);
+ const total=
+  data.reduce((a,x)=>a+Number(x.bet||0),0);
 
- document.getElementById("sumBet").innerText=total.toFixed(2);
- document.getElementById("sumWins").innerText=wins;
- document.getElementById("sumNet").innerText=(net>=0?"+":"")+net.toFixed(2);
- document.getElementById("sumNet").style.color=net>=0?"var(--green)":"var(--red)";
+ const wins=
+  data.filter(x=>x.result==="win").length;
+
+ const net=
+  data.reduce(
+   (a,x)=>a+Number(x.payout||0)-Number(x.bet||0),
+   0
+  );
+
+ document.getElementById("sumBet").innerText=
+  total.toFixed(2);
+
+ document.getElementById("sumWins").innerText=
+  wins;
+
+ document.getElementById("sumNet").innerText=
+  (net>=0?"+":"")+net.toFixed(2);
+
+ document.getElementById("sumNet").style.color=
+  net>=0?
+  "var(--green)":
+  "var(--red)";
 
  const list=document.getElementById("historyList");
 
  if(!data.length){
-  list.innerHTML=`<div class="empty">No bets recorded yet.</div>`;
+  list.innerHTML=
+   `<div class="empty">No bets recorded yet.</div>`;
+
   buildLedgerTabs();
+
   return;
  }
 
  list.innerHTML=data.map(x=>{
   const win=x.result==="win";
+
   return`
    <div class="historyRow">
+
     <div class="historyTime">${x.time}</div>
+
     <div class="historyGame">
      <b>${x.game}</b>
+
      <div style="color:#71887c">
       Bet ${Number(x.bet).toFixed(2)}
-      ${x.multiplier?" • "+Number(x.multiplier).toFixed(2)+"x":""}
+      ${x.multiplier?
+       " • "+Number(x.multiplier).toFixed(2)+"x":
+       ""}
      </div>
     </div>
-    <div class="${win?"historyWin":"historyLoss"}">${win?"WIN":"LOSS"}</div>
+
     <div class="${win?"historyWin":"historyLoss"}">
-     ${win?"+":"-"}${Number(win?x.payout:x.bet).toFixed(2)}
+     ${win?"WIN":"LOSS"}
     </div>
+
+    <div class="${win?"historyWin":"historyLoss"}">
+     ${win?"+":"-"}
+     ${Number(win?x.payout:x.bet).toFixed(2)}
+    </div>
+
    </div>`;
  }).join("");
 
  buildLedgerTabs();
 }
 
-/* =========================================================
-PROFILE / MODALS
-========================================================= */
+/* PROFILE */
 
 function openProfile(){
  if(!currentUser)return;
- document.getElementById("profileName").innerText=currentUser;
- document.getElementById("profileBalance").innerText=Math.floor(balanceAmount).toLocaleString();
+
+ document.getElementById("profileName").innerText=
+  currentUser;
+
+ document.getElementById("profileBalance").innerText=
+  Math.floor(balanceAmount).toLocaleString();
+
  document.getElementById("profileModal").style.display="flex";
 }
 
@@ -2173,32 +3018,35 @@ document.querySelectorAll(".overlay").forEach(overlay=>{
  });
 });
 
-/* =========================================================
-STARTUP
-========================================================= */
+/* STARTUP */
 
 restoreSession();
 
 if(currentUser){
- document.getElementById("account").innerText="👤 "+currentUser;
+ document.getElementById("account").innerText=
+  "👤 "+currentUser;
+
  document.getElementById("auth").style.display="none";
 }
 
 renderGames();
 updateBalance();
 
-/* Rotating demo promotions */
+/* DEMO PROMOTIONS */
+
 const promotions=[
- "✦ STAKEWIN DEMO ✦ 20% BONUS VIRTUAL CREDITS ✦",
+ "✦ STAKEWIN DEMO ✦ VIRTUAL CREDITS ONLY ✦",
  "✦ NEW LIVE CASINO TABLES ✦ PLAY WITH VIRTUAL CREDITS ✦",
  "✦ DRAGON TIGER • BACCARAT • SIC BO ✦",
  "✦ HORSE RACING • GAME SHOW WHEEL ✦",
- "✦ DEMO ACCOUNT • 1,000 VIRTUAL CREDITS ✦"
+ "✦ DEMO ACCOUNT • VIRTUAL CREDITS ✦"
 ];
 
 let promoIndex=0;
+
 setInterval(()=>{
  promoIndex=(promoIndex+1)%promotions.length;
+
  showPromo(promotions[promoIndex]);
 },7000);
 
