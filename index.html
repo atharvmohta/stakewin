@@ -1636,6 +1636,1172 @@ desc:"Big multiplier game-show wheel."
 
 ];
 
+/* ================================
+   EXTRA LIVE CASINO GAMES
+================================ */
+
+games.push(
+
+{
+ id:"liveblackjack",
+ name:"Live Blackjack",
+ cat:"Live",
+ icon:"♠️",
+ desc:"Live dealer style blackjack table."
+},
+
+{
+ id:"speedblackjack",
+ name:"Speed Blackjack",
+ cat:"Live",
+ icon:"⚡",
+ desc:"Fast-paced live dealer blackjack."
+},
+
+{
+ id:"vipblackjack",
+ name:"VIP Blackjack",
+ cat:"Live",
+ icon:"💎",
+ desc:"Premium VIP blackjack table."
+},
+
+{
+ id:"livebaccarat",
+ name:"Live Baccarat",
+ cat:"Live",
+ icon:"🃏",
+ desc:"Live dealer baccarat table."
+},
+
+{
+ id:"lightningbaccarat",
+ name:"Lightning Baccarat",
+ cat:"Live",
+ icon:"⚡",
+ desc:"Fast live baccarat experience."
+},
+
+{
+ id:"liveroulette",
+ name:"Live Roulette",
+ cat:"Live",
+ icon:"🎡",
+ desc:"Live dealer roulette table."
+},
+
+{
+ id:"autoroulette",
+ name:"Auto Roulette",
+ cat:"Live",
+ icon:"🎯",
+ desc:"Automated roulette table."
+},
+
+{
+ id:"immersiveroulette",
+ name:"Immersive Roulette",
+ cat:"Live",
+ icon:"🎥",
+ desc:"Premium immersive roulette table."
+},
+
+{
+ id:"casinoholdem",
+ name:"Casino Hold'em",
+ cat:"Live",
+ icon:"♣️",
+ desc:"Casino poker table."
+},
+
+{
+ id:"threecardpoker",
+ name:"Three Card Poker",
+ cat:"Live",
+ icon:"🃏",
+ desc:"Three card poker table."
+},
+
+{
+ id:"ultimateholdem",
+ name:"Ultimate Texas Hold'em",
+ cat:"Live",
+ icon:"♠️",
+ desc:"Texas Hold'em casino table."
+},
+
+{
+ id:"caribbeanstud",
+ name:"Caribbean Stud Poker",
+ cat:"Live",
+ icon:"🌴",
+ desc:"Classic Caribbean Stud table."
+},
+
+{
+ id:"casinowar",
+ name:"Casino War",
+ cat:"Live",
+ icon:"⚔️",
+ desc:"Dealer versus player card game."
+},
+
+{
+ id:"craps",
+ name:"Craps",
+ cat:"Live",
+ icon:"🎲",
+ desc:"Live casino craps table."
+},
+
+{
+ id:"fantan",
+ name:"Fan Tan",
+ cat:"Live",
+ icon:"🔴",
+ desc:"Classic Fan Tan table game."
+},
+
+{
+ id:"keno",
+ name:"Keno",
+ cat:"Live",
+ icon:"🔢",
+ desc:"Casino number drawing game."
+},
+
+{
+ id:"bingo",
+ name:"Live Bingo",
+ cat:"Live",
+ icon:"🎱",
+ desc:"Live bingo room."
+},
+
+{
+ id:"crazytime",
+ name:"Crazy Time",
+ cat:"Live",
+ icon:"🎡",
+ desc:"Game-show style wheel experience."
+},
+
+{
+ id:"dreamcatcher",
+ name:"Dream Catcher",
+ cat:"Live",
+ icon:"🎯",
+ desc:"Game-show multiplier wheel."
+},
+
+{
+ id:"monopolylive",
+ name:"Monopoly Style Live",
+ cat:"Live",
+ icon:"🎩",
+ desc:"Board-game style live wheel."
+},
+
+{
+ id:"megaball",
+ name:"Mega Ball",
+ cat:"Live",
+ icon:"🔮",
+ desc:"Live game-show ball draw."
+},
+
+{
+ id:"cashcrash",
+ name:"Cash or Crash",
+ cat:"Live",
+ icon:"💰",
+ desc:"Live multiplier game-show demo."
+},
+
+{
+ id:"footballstudio",
+ name:"Football Studio",
+ cat:"Live",
+ icon:"⚽",
+ desc:"Football themed card game."
+},
+
+{
+ id:"footballstudiodice",
+ name:"Football Studio Dice",
+ cat:"Live",
+ icon:"⚽",
+ desc:"Football themed dice game."
+},
+
+{
+ id:"wheeloffortune",
+ name:"Wheel of Fortune",
+ cat:"Live",
+ icon:"🎡",
+ desc:"Classic game-show wheel."
+},
+
+{
+ id:"livewheel",
+ name:"Live Mega Wheel",
+ cat:"Live",
+ icon:"🎰",
+ desc:"Large live dealer wheel."
+},
+
+{
+ id:"viproulette",
+ name:"VIP Roulette",
+ cat:"Live",
+ icon:"💎",
+ desc:"Premium VIP roulette table."
+},
+
+{
+ id:"speedroulette",
+ name:"Speed Roulette",
+ cat:"Live",
+ icon:"⚡",
+ desc:"Fast live roulette."
+},
+
+{
+ id:"lightningroulette",
+ name:"Lightning Roulette",
+ cat:"Live",
+ icon:"⚡",
+ desc:"Lightning-style roulette demo."
+},
+
+{
+ id:"vipbaccarat",
+ name:"VIP Baccarat",
+ cat:"Live",
+ icon:"💎",
+ desc:"Premium VIP baccarat table."
+}
+
+);
+
+
+/* UPDATE GAME COUNT */
+
+document.getElementById(
+ "gameCount"
+).innerText = games.length;
+
+
+/* ================================
+   LIVE DEALER GAME UI
+================================ */
+
+function liveDealerHTML(id){
+
+const game =
+games.find(g => g.id === id);
+
+return `
+
+<div class="casino">
+
+<div class="casinoTitle">
+🎥 STAKEWIN LIVE DEALER
+</div>
+
+<div style="
+height:210px;
+border-radius:12px;
+margin:10px 0;
+background:
+radial-gradient(circle at 50% 30%,#275e43,#0b2015 60%,#030a06);
+border:1px solid #527c62;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+overflow:hidden;
+">
+
+<div style="
+position:absolute;
+top:10px;
+left:12px;
+background:#b51d32;
+padding:5px 8px;
+border-radius:5px;
+font-size:7px;
+font-weight:900;
+">
+● LIVE DEMO
+</div>
+
+<div style="
+text-align:center;
+">
+
+<div style="font-size:52px">
+🧑‍💼
+</div>
+
+<div style="
+font-size:10px;
+font-weight:900;
+margin-top:6px;
+">
+LIVE DEALER
+</div>
+
+<div style="
+font-size:7px;
+color:#91aa9c;
+margin-top:4px;
+">
+StakeWin Studio
+</div>
+
+</div>
+
+</div>
+
+
+<div style="
+display:flex;
+justify-content:center;
+gap:7px;
+margin:12px 0;
+">
+
+<div class="playing">?</div>
+<div class="playing">?</div>
+<div class="playing">?</div>
+
+</div>
+
+
+<div class="betAreas">
+
+<div class="betArea">
+<strong>PLAYER</strong>
+1.95x
+</div>
+
+<div class="betArea">
+<strong>DRAW</strong>
+8x
+</div>
+
+<div class="betArea">
+<strong>BANKER</strong>
+1.95x
+</div>
+
+</div>
+
+
+<div class="toolbar">
+
+<div class="control">
+
+<label>BET</label>
+
+<input
+id="liveBet"
+type="number"
+value="10"
+min="1">
+
+</div>
+
+<div class="control">
+
+<label>BET ON</label>
+
+<select id="liveChoice">
+
+<option>Player</option>
+<option>Banker</option>
+<option>Draw</option>
+
+</select>
+
+</div>
+
+<div class="control">
+
+<label>ROUND</label>
+
+<select>
+<option>Live Table</option>
+</select>
+
+</div>
+
+</div>
+
+
+<div
+id="liveTimer"
+style="
+text-align:center;
+font-size:22px;
+font-weight:950;
+color:var(--gold);
+margin:8px;
+">
+BETTING OPEN
+</div>
+
+
+<div
+id="liveStatus"
+class="status">
+Place your virtual bet.
+</div>
+
+
+<button
+class="gameBtn"
+onclick="playLiveDealer('${id}')">
+PLACE BET
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+   GAME-SHOW WHEEL UI
+================================ */
+
+function gameShowDealerHTML(id){
+
+return `
+
+<div class="casino">
+
+<div class="casinoTitle">
+🎥 STAKEWIN GAME SHOW
+</div>
+
+<div style="
+height:190px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:
+radial-gradient(circle,#2c6245,#08180f);
+border-radius:12px;
+border:1px solid #557d62;
+">
+
+<div
+id="liveShowWheel"
+class="showWheel"
+style="width:175px;height:175px;">
+
+<div class="wheelInner">
+SPIN
+</div>
+
+</div>
+
+</div>
+
+
+<div class="toolbar">
+
+<div class="control">
+
+<label>BET</label>
+
+<input
+id="liveShowBet"
+type="number"
+value="10"
+min="1">
+
+</div>
+
+
+<div class="control">
+
+<label>CHOICE</label>
+
+<select id="liveShowChoice">
+
+<option value="2">2x</option>
+<option value="3">3x</option>
+<option value="5">5x</option>
+<option value="10">10x</option>
+<option value="25">25x</option>
+<option value="50">50x</option>
+
+</select>
+
+</div>
+
+
+<div class="control">
+
+<label>TABLE</label>
+
+<select>
+<option>LIVE</option>
+</select>
+
+</div>
+
+</div>
+
+
+<div
+id="liveShowStatus"
+class="status">
+Choose your multiplier.
+</div>
+
+
+<button
+class="gameBtn"
+onclick="playLiveShow('${id}')">
+SPIN
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+   DICE LIVE GAME
+================================ */
+
+function liveDiceHTML(id){
+
+return `
+
+<div class="casino">
+
+<div class="casinoTitle">
+🎥 LIVE DEALER DICE
+</div>
+
+
+<div
+id="liveDice"
+class="diceBox">
+
+<div class="die">?</div>
+<div class="die">?</div>
+<div class="die">?</div>
+
+</div>
+
+
+<div class="toolbar">
+
+<div class="control">
+
+<label>BET</label>
+
+<input
+id="liveDiceBet"
+type="number"
+value="10"
+min="1">
+
+</div>
+
+
+<div class="control">
+
+<label>BET ON</label>
+
+<select id="liveDiceChoice">
+
+<option>Small</option>
+<option>Big</option>
+<option>Triple</option>
+
+</select>
+
+</div>
+
+<div class="control">
+
+<label>TABLE</label>
+
+<select>
+<option>LIVE</option>
+</select>
+
+</div>
+
+</div>
+
+
+<div
+id="liveDiceStatus"
+class="status">
+Dealer is ready.
+</div>
+
+
+<button
+class="gameBtn"
+onclick="playLiveDice('${id}')">
+ROLL
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+   LIVE DEALER PLAY
+================================ */
+
+function playLiveDealer(id){
+
+const bet =
+Number(
+document.getElementById("liveBet").value
+);
+
+if(!spend(bet)) return;
+
+
+const choices =
+["Player","Banker","Draw"];
+
+const winner =
+choices[
+Math.floor(
+Math.random()*choices.length
+)
+];
+
+
+let seconds = 5;
+
+const timer =
+setInterval(()=>{
+
+const timerEl =
+document.getElementById("liveTimer");
+
+if(timerEl){
+
+timerEl.innerText =
+"DEALING • "+seconds;
+
+}
+
+seconds--;
+
+if(seconds < 0){
+
+clearInterval(timer);
+
+const status =
+document.getElementById("liveStatus");
+
+if(winner === "Draw"){
+
+if(
+document.getElementById(
+"liveChoice"
+).value === "Draw"
+){
+
+const amount =
+bet*8;
+
+payout(amount);
+
+status.className =
+"status win";
+
+status.innerText =
+"DRAW • WIN • +"+amount.toFixed(2);
+
+addHistory(
+games.find(g=>g.id===id)?.name || "Live Dealer",
+"win",
+bet,
+amount,
+8
+);
+
+}else{
+
+status.className =
+"status loss";
+
+status.innerText =
+"DRAW • LOSS";
+
+addHistory(
+games.find(g=>g.id===id)?.name || "Live Dealer",
+"loss",
+bet,
+0,
+0
+);
+
+}
+
+}else{
+
+if(
+document.getElementById(
+"liveChoice"
+).value === winner
+){
+
+const amount =
+bet*1.95;
+
+payout(amount);
+
+status.className =
+"status win";
+
+status.innerText =
+winner+
+" WINS • +"+
+amount.toFixed(2);
+
+addHistory(
+games.find(g=>g.id===id)?.name || "Live Dealer",
+"win",
+bet,
+amount,
+1.95
+);
+
+}else{
+
+status.className =
+"status loss";
+
+status.innerText =
+winner+" WINS • LOSS";
+
+addHistory(
+games.find(g=>g.id===id)?.name || "Live Dealer",
+"loss",
+bet,
+0,
+0
+);
+
+}
+
+}
+
+const timerText =
+document.getElementById(
+"liveTimer"
+);
+
+if(timerText){
+
+timerText.innerText =
+"ROUND COMPLETE";
+
+}
+
+}
+
+},1000);
+
+timers.push(timer);
+
+}
+
+
+/* ================================
+   LIVE SHOW PLAY
+================================ */
+
+function playLiveShow(id){
+
+const bet =
+Number(
+document.getElementById(
+"liveShowBet"
+).value
+);
+
+if(!spend(bet)) return;
+
+
+const results =
+[2,3,5,10,25,50];
+
+const result =
+results[
+Math.floor(
+Math.random()*results.length
+)
+];
+
+
+const wheel =
+document.getElementById(
+"liveShowWheel"
+);
+
+wheel.style.transform =
+`rotate(${1800+Math.random()*1000}deg)`;
+
+
+const timer =
+setTimeout(()=>{
+
+const choice =
+Number(
+document.getElementById(
+"liveShowChoice"
+).value
+);
+
+
+const status =
+document.getElementById(
+"liveShowStatus"
+);
+
+
+if(choice === result){
+
+const amount =
+bet*result;
+
+payout(amount);
+
+status.className =
+"status win";
+
+status.innerText =
+"LANDED "+result+
+"x • +"+amount.toFixed(2);
+
+addHistory(
+games.find(g=>g.id===id)?.name ||
+"Live Game Show",
+"win",
+bet,
+amount,
+result
+);
+
+}else{
+
+status.className =
+"status loss";
+
+status.innerText =
+"LANDED "+result+"x • LOSS";
+
+addHistory(
+games.find(g=>g.id===id)?.name ||
+"Live Game Show",
+"loss",
+bet,
+0,
+0
+);
+
+}
+
+},3000);
+
+timers.push(timer);
+
+}
+
+
+/* ================================
+   LIVE DICE PLAY
+================================ */
+
+function playLiveDice(id){
+
+const bet =
+Number(
+document.getElementById(
+"liveDiceBet"
+).value
+);
+
+if(!spend(bet)) return;
+
+
+const dice = [
+1+Math.floor(Math.random()*6),
+1+Math.floor(Math.random()*6),
+1+Math.floor(Math.random()*6)
+];
+
+
+const els =
+document.querySelectorAll(
+"#liveDice .die"
+);
+
+
+els.forEach(
+e=>e.classList.add("rolling")
+);
+
+
+let count = 0;
+
+
+const timer =
+setInterval(()=>{
+
+els.forEach(
+e=>{
+e.innerText =
+1+Math.floor(
+Math.random()*6
+);
+}
+);
+
+
+count++;
+
+
+if(count >= 12){
+
+clearInterval(timer);
+
+
+els.forEach(
+(e,i)=>{
+e.classList.remove("rolling");
+e.innerText =
+dice[i];
+}
+);
+
+
+const total =
+dice.reduce(
+(a,b)=>a+b,
+0
+);
+
+
+const triple =
+dice[0]===dice[1] &&
+dice[1]===dice[2];
+
+
+const choice =
+document.getElementById(
+"liveDiceChoice"
+).value;
+
+
+let win = false;
+let mult = 0;
+
+
+if(
+choice==="Triple" &&
+triple
+){
+
+win = true;
+mult = 30;
+
+}else if(
+choice==="Small" &&
+!triple &&
+total>=4 &&
+total<=10
+){
+
+win = true;
+mult = 1.9;
+
+}else if(
+choice==="Big" &&
+!triple &&
+total>=11 &&
+total<=17
+){
+
+win = true;
+mult = 1.9;
+
+}
+
+
+const status =
+document.getElementById(
+"liveDiceStatus"
+);
+
+
+if(win){
+
+const amount =
+bet*mult;
+
+payout(amount);
+
+status.className =
+"status win";
+
+status.innerText =
+dice.join(" • ")+
+" = "+total+
+" • WIN • +"+
+amount.toFixed(2);
+
+addHistory(
+games.find(g=>g.id===id)?.name ||
+"Live Dice",
+"win",
+bet,
+amount,
+mult
+);
+
+}else{
+
+status.className =
+"status loss";
+
+status.innerText =
+dice.join(" • ")+
+" = "+total+
+" • LOSS";
+
+addHistory(
+games.find(g=>g.id===id)?.name ||
+"Live Dice",
+"loss",
+bet,
+0,
+0
+);
+
+}
+
+}
+
+},80);
+
+
+timers.push(timer);
+
+}
+
+
+/* ================================
+   ROUTER FOR NEW GAMES
+================================ */
+
+const oldGetGameHTML =
+getGameHTML;
+
+
+getGameHTML =
+function(id){
+
+const liveDealerGames = [
+
+"liveblackjack",
+"speedblackjack",
+"vipblackjack",
+"livebaccarat",
+"lightningbaccarat",
+"liveroulette",
+"autoroulette",
+"immersiveroulette",
+"casinoholdem",
+"threecardpoker",
+"ultimateholdem",
+"caribbeanstud",
+"casinowar",
+"craps",
+"fantan",
+"keno",
+"bingo",
+"viproulette",
+"speedroulette",
+"lightningroulette",
+"vipbaccarat"
+];
+
+
+const showGames = [
+
+"crazytime",
+"dreamcatcher",
+"monopolylive",
+"megaball",
+"cashcrash",
+"footballstudio",
+"footballstudiodice",
+"wheeloffortune",
+"livewheel"
+];
+
+
+if(
+liveDealerGames.includes(id)
+){
+
+return liveDealerHTML(id);
+
+}
+
+
+if(
+showGames.includes(id)
+){
+
+return gameShowDealerHTML(id);
+
+}
+
+
+if(
+id==="footballstudiodice"
+){
+
+return liveDiceHTML(id);
+
+}
+
+
+return oldGetGameHTML(id);
+
+};
+
+
+/* ================================
+   INITIALIZE NEW GAMES
+================================ */
+
+renderGames();
 
 document.getElementById(
 "gameCount"
