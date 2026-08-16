@@ -3,203 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>StakeWin — Demo Games</title>
+<title>StakeWin</title>
 
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
 margin:0;
-background:#040806;
+background:#050b08;
 color:#f5faf7;
-font-family:Inter,Arial,Helvetica,sans-serif;
-overflow-x:hidden
+font-family:Arial,Helvetica,sans-serif
 }
 button,input,select{font:inherit}
 button{cursor:pointer}
 :root{
 --green:#20df82;
---green2:#0ba45e;
---dark:#040806;
---panel:#0b1510;
---panel2:#101e16;
---border:#21392b;
---muted:#71897b;
+--dark:#06100b;
+--panel:#0c1912;
+--border:#294536;
+--muted:#7d9689;
 --red:#ff5265;
---gold:#ffd34d;
---blue:#54caff
-}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:#050906}
-::-webkit-scrollbar-thumb{background:#294638;border-radius:10px}
-
-/* =====================================================
-   GLOBAL
-===================================================== */
-
-button{
-transition:transform .12s ease,filter .12s ease,
-background .12s ease,border-color .12s ease
+--gold:#ffd34d
 }
 button:active{transform:scale(.97)}
 button:disabled{opacity:.45;cursor:not-allowed}
 
-.primary,.secondary,.cash,.gameButton{
-height:39px;
-padding:0 14px;
-border-radius:7px;
-font-size:11px;
-font-weight:900
-}
-
-.primary{
-border:0;
-background:var(--green);
-color:#031109;
-box-shadow:0 5px 20px #20df8220
-}
-.primary:hover{filter:brightness(1.08)}
-
-.secondary{
-border:1px solid #294536;
-background:#101e16;
-color:#edf7f1
-}
-
-.cash{
-border:0;
-background:var(--gold);
-color:#251d00
-}
-
-.gameButton{
-width:100%;
-border:0;
-background:var(--green);
-color:#031109
-}
-
-/* =====================================================
-   HEADER
-===================================================== */
-
 .header{
 height:62px;
-padding:0 4%;
+padding:0 3%;
 display:flex;
 align-items:center;
-gap:12px;
-background:rgba(5,11,8,.95);
-border-bottom:1px solid #1b2e23;
+gap:9px;
+background:#07100df5;
+border-bottom:1px solid #1d3026;
 position:sticky;
 top:0;
-z-index:200;
-backdrop-filter:blur(18px)
+z-index:100;
+backdrop-filter:blur(15px)
 }
 
 .logo{
 font-size:19px;
 font-weight:950;
-letter-spacing:-.8px;
 white-space:nowrap
 }
 .logo span{color:var(--green)}
 
 .nav{
 display:flex;
-gap:3px;
+gap:2px;
 flex:1
 }
 
 .nav button{
 border:0;
-background:transparent;
-color:#779083;
-padding:8px 11px;
+background:none;
+color:#81988c;
+padding:8px 10px;
 border-radius:7px;
 font-size:11px
 }
 
-.nav button:hover,
-.nav button.active{
-background:#12251a;
+.nav button.active,
+.nav button:hover{
+background:#14261d;
 color:#fff
 }
 
 .headerRight{
+margin-left:auto;
 display:flex;
 align-items:center;
-gap:6px;
-margin-left:auto
+gap:5px
 }
 
-.balance{
-background:#0e2117;
-border:1px solid #2b4a37;
-border-radius:7px;
-padding:7px 9px;
-font-size:11px;
-font-weight:900;
-color:var(--green)
-}
-
+.balance,
 .account{
-background:#0d1913;
-border:1px solid #21392b;
+background:#102219;
+border:1px solid var(--border);
 border-radius:7px;
 padding:7px 8px;
 font-size:10px
 }
 
-.iconBtn{
-width:33px;
-height:33px;
+.balance{
+color:var(--green);
+font-weight:900
+}
+
+.icon{
+width:32px;
+height:32px;
 border-radius:7px;
-border:1px solid #263f30;
+border:1px solid var(--border);
 background:#101d16;
-color:#fff
+color:white
 }
-
-.mobileOnly{display:none}
-
-/* =====================================================
-   PROMO BAR
-===================================================== */
-
-.promoBar{
-height:30px;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden;
-background:
-linear-gradient(90deg,#062b1b,#0d4d30,#062b1b);
-border-bottom:1px solid #1a5438;
-color:#c9ffe3;
-font-size:9px;
-font-weight:900;
-letter-spacing:.5px;
-white-space:nowrap
-}
-
-.promoTrack{
-animation:promoMove 16s linear infinite
-}
-
-@keyframes promoMove{
-from{transform:translateX(35%)}
-to{transform:translateX(-35%)}
-}
-
-/* =====================================================
-   HERO
-===================================================== */
 
 .hero{
-max-width:1220px;
-min-height:400px;
+max-width:1200px;
+min-height:390px;
 margin:auto;
-padding:55px 5%;
+padding:48px 5%;
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -207,21 +112,9 @@ position:relative;
 overflow:hidden
 }
 
-.hero:after{
-content:"";
-position:absolute;
-width:500px;
-height:500px;
-right:-170px;
-top:-130px;
-background:radial-gradient(circle,#20df8225,transparent 68%);
-pointer-events:none
-}
-
 .heroText{
-position:relative;
-z-index:2;
-max-width:650px
+max-width:650px;
+z-index:2
 }
 
 .eyebrow{
@@ -232,8 +125,8 @@ letter-spacing:2px
 }
 
 .hero h1{
-font-size:clamp(42px,7vw,74px);
-line-height:.93;
+font-size:clamp(42px,7vw,72px);
+line-height:.95;
 letter-spacing:-4px;
 margin:13px 0
 }
@@ -241,9 +134,8 @@ margin:13px 0
 .hero h1 span{color:var(--green)}
 
 .hero p{
-color:#82978b;
+color:#82998d;
 line-height:1.6;
-max-width:520px;
 font-size:12px
 }
 
@@ -253,120 +145,164 @@ gap:7px;
 margin-top:20px
 }
 
+.primary,
+.secondary,
+.cash,
+.gameBtn{
+border-radius:7px;
+padding:9px 13px;
+font-weight:900;
+font-size:10px;
+border:0
+}
+
+.primary{
+background:var(--green);
+color:#03130a
+}
+
+.secondary{
+background:#102019;
+color:#e8f2ec;
+border:1px solid var(--border)
+}
+
+.cash{
+background:var(--gold);
+color:#241c00
+}
+
+.gameBtn{
+width:100%;
+height:38px;
+background:var(--green);
+color:#03130a
+}
+
 .orb{
-width:190px;
-height:190px;
+width:180px;
+height:180px;
 border-radius:50%;
 display:grid;
 place-items:center;
-font-size:48px;
+font-size:55px;
 font-weight:950;
 background:
-radial-gradient(circle at 32% 25%,#53ffa9,#0c7448 44%,#03140c 75%);
-box-shadow:0 0 90px #20df8230;
-animation:float 4s ease-in-out infinite
+radial-gradient(circle at 35% 25%,#3cff9d,#087749 45%,#03170d 75%);
+box-shadow:0 0 100px #1cdb7c33;
+animation:float 3s ease-in-out infinite
 }
 
 @keyframes float{
-50%{transform:translateY(-10px) rotate(2deg)}
+50%{transform:translateY(-9px) rotate(-3deg)}
 }
 
-/* =====================================================
-   STATS
-===================================================== */
+.promo{
+height:28px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+background:linear-gradient(90deg,#062416,#0b4b2c,#062416);
+border-bottom:1px solid #205337;
+font-size:8px;
+font-weight:900;
+color:#c9ffe0;
+white-space:nowrap
+}
+
+.promo span{
+animation:promo 15s linear infinite
+}
+
+@keyframes promo{
+from{transform:translateX(40%)}
+to{transform:translateX(-40%)}
+}
 
 .stats{
-border-top:1px solid #17281e;
-border-bottom:1px solid #17281e;
-padding:14px;
+border-top:1px solid #172a20;
+border-bottom:1px solid #172a20;
+padding:13px;
 display:flex;
 justify-content:center;
-gap:65px;
-color:#70877a;
-font-size:10px
+gap:55px;
+color:#7d9589;
+font-size:9px
 }
 
 .stats b{color:#fff}
 
-/* =====================================================
-   GAMES
-===================================================== */
-
 .games{
-max-width:1220px;
+max-width:1200px;
 margin:auto;
-padding:38px 5% 70px
+padding:35px 5% 65px
 }
 
-.gamesTop{
+.top{
 display:flex;
 justify-content:space-between;
-align-items:center;
-gap:12px
+align-items:center
 }
 
-.gamesTop h2{
+.top h2{
 margin:0;
 font-size:25px
 }
 
-.gamesTop p{
+.top p{
 margin:4px 0;
-color:#6e8578;
-font-size:10px
+color:#71887b;
+font-size:9px
 }
 
 .search{
 width:210px;
-height:37px;
-background:#0b1610;
-border:1px solid #263f30;
+height:35px;
+background:#0b1711;
+border:1px solid #263e31;
 color:#fff;
-padding:0 10px;
+padding:0 9px;
 border-radius:7px;
 outline:0;
-font-size:10px
+font-size:9px
 }
-
-.search:focus{border-color:var(--green)}
 
 .chips{
 display:flex;
-gap:6px;
+gap:5px;
 overflow:auto;
-margin:18px 0 15px;
-padding-bottom:2px
+margin:17px 0 12px
 }
 
 .chips button{
 white-space:nowrap;
-background:#0c1811;
-border:1px solid #21382a;
-color:#7f968a;
+background:#0c1912;
+border:1px solid #23392d;
+color:#81988b;
 border-radius:18px;
-padding:7px 12px;
-font-size:9px
+padding:6px 11px;
+font-size:8px
 }
 
 .chips button.active{
 background:var(--green);
+color:#03130a;
 border-color:var(--green);
-color:#031109;
 font-weight:900
 }
 
-/* 4 cards per row */
-
+/* 4 compact cards */
 .grid{
 display:grid;
-grid-template-columns:repeat(4,minmax(0,1fr));
-gap:10px
+grid-template-columns:repeat(4,1fr);
+gap:9px
 }
 
 .card{
-background:#0a1510;
+background:#0b1711;
 border:1px solid #20372a;
-border-radius:10px;
+border-radius:9px;
 overflow:hidden;
 transition:.18s;
 cursor:pointer
@@ -374,123 +310,137 @@ cursor:pointer
 
 .card:hover{
 transform:translateY(-3px);
-border-color:#397052;
-box-shadow:0 10px 28px #0008
+border-color:#356449
 }
 
-.cardArt{
-height:110px;
+.art{
+height:105px;
 display:grid;
 place-items:center;
-position:relative;
-font-size:42px;
+font-size:40px;
 background:
-radial-gradient(circle at 50% 20%,#1b3928,#0a1510 70%)
+radial-gradient(circle at 50% 20%,#1c3928,#0b1510 70%);
+position:relative
 }
 
 .tag{
 position:absolute;
 left:6px;
 top:6px;
-z-index:2;
 background:var(--green);
-color:#031109;
+color:#03130a;
 border-radius:4px;
 padding:3px 5px;
 font-size:6px;
-font-weight:950
+font-weight:900
 }
 
-.cardInfo{
-padding:8px;
+.info{
+padding:7px;
 display:flex;
 justify-content:space-between;
-align-items:center
+align-items:center;
+color:#6e8679
 }
 
-.cardInfo b{
-font-size:10px;
-display:block
-}
-
-.cardInfo small{
-font-size:7px;
-color:#657c70
-}
-
-.cardArrow{
-color:#658071;
-font-size:14px
-}
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer{
-border-top:1px solid #17291f;
-padding:25px 5%;
-text-align:center;
-color:#5e7669;
+.info b{
+display:block;
+color:#edf6f1;
 font-size:9px
 }
 
-/* =====================================================
-   AUTH
-===================================================== */
+.info small{
+font-size:6px
+}
 
+.arrow{
+font-size:13px
+}
+
+footer{
+text-align:center;
+border-top:1px solid #172a20;
+padding:25px;
+color:#61796c;
+font-size:9px
+}
+
+/* AUTH */
 .auth{
 position:fixed;
 inset:0;
-z-index:1000;
+z-index:9999;
+background:
+radial-gradient(circle at 50% 20%,#174a31,#050b07 55%,#020403);
 display:flex;
 align-items:center;
 justify-content:center;
-padding:18px;
-background:
-radial-gradient(circle at 50% 20%,#16472f,#050a07 55%,#020403)
+padding:18px
 }
 
 .authCard{
-width:min(400px,100%);
+width:min(390px,100%);
+background:#0d1a13;
+border:1px solid #315640;
+border-radius:17px;
 padding:25px;
-background:#0c1811;
-border:1px solid #2c4c38;
-border-radius:18px;
-box-shadow:0 30px 100px #000;
-text-align:center
+text-align:center;
+box-shadow:0 30px 100px #000
 }
+
+.authLogo{
+font-size:23px;
+font-weight:950
+}
+
+.authLogo span{color:var(--green)}
 
 .authIcon{
 font-size:38px;
-margin-top:12px
+margin-top:10px
 }
 
 .authCard h2{
-margin:12px 0 6px;
-font-size:20px
+margin:12px 0 5px;
+font-size:19px
 }
 
 .authCard p{
-color:#7e9589;
-font-size:11px;
+color:#81988d;
+font-size:10px;
 line-height:1.5
 }
 
 .authInput{
 width:100%;
 height:42px;
-background:#07100b;
-border:1px solid #294436;
-color:white;
-border-radius:7px;
-padding:0 11px;
 margin:4px 0;
+background:#09130e;
+color:#fff;
+border:1px solid #294536;
+border-radius:7px;
+padding:0 10px;
 outline:0;
-font-size:11px
+font-size:10px
 }
 
-.authInput:focus{border-color:var(--green)}
+.authInput:focus{
+border-color:var(--green)
+}
+
+.remember{
+display:flex;
+align-items:center;
+gap:6px;
+text-align:left;
+color:#71887c;
+font-size:8px;
+margin:8px 0
+}
+
+.remember input{
+accent-color:var(--green)
+}
 
 .authBtn{
 width:100%;
@@ -499,195 +449,149 @@ margin-top:7px;
 border:0;
 border-radius:7px;
 background:var(--green);
-color:#031109;
-font-weight:950;
-font-size:11px
-}
-
-.remember{
-display:flex;
-align-items:center;
-gap:7px;
-text-align:left;
-color:#71877b;
-font-size:9px;
-margin:8px 0
-}
-
-.remember input{
-accent-color:var(--green)
-}
-
-.authSwitch{
-font-size:10px;
-color:#71877b;
-margin-top:13px
-}
-
-.authSwitch button{
-border:0;
-background:none;
-color:var(--green);
+color:#03130a;
 font-weight:900;
 font-size:10px
 }
 
-.error{
-height:15px;
-color:var(--red);
+.authSwitch{
+margin-top:12px;
 font-size:9px;
-margin-top:4px
+color:#71887c
 }
 
-/* =====================================================
-   LOADING
-===================================================== */
+.authSwitch button{
+background:none;
+border:0;
+color:var(--green);
+font-weight:900;
+font-size:9px
+}
 
-.loadingOverlay{
+.error{
+min-height:15px;
+color:var(--red);
+font-size:8px;
+margin-top:5px
+}
+
+/* LOADER */
+.loading{
 position:fixed;
 inset:0;
-z-index:900;
+z-index:9998;
 display:none;
 align-items:center;
 justify-content:center;
 background:
-radial-gradient(circle at center,#0b2c1d,#020604 65%);
-backdrop-filter:blur(10px)
+radial-gradient(circle,#0b2d1d,#020604 70%)
 }
 
-.loaderBox{
-text-align:center
-}
+.loaderBox{text-align:center}
 
 .loaderLogo{
-font-size:28px;
-font-weight:950;
-letter-spacing:-1px
+font-size:27px;
+font-weight:950
 }
 
 .loaderLogo span{color:var(--green)}
 
 .loaderCircle{
-width:46px;
-height:46px;
-margin:17px auto 10px;
-border:3px solid #173b29;
+width:43px;
+height:43px;
+border:3px solid #183a29;
 border-top-color:var(--green);
 border-radius:50%;
-animation:loaderSpin .75s linear infinite
+margin:15px auto 10px;
+animation:loader .7s linear infinite
 }
 
 .loaderText{
-color:#779084;
-font-size:9px;
-letter-spacing:2px
+font-size:8px;
+letter-spacing:2px;
+color:#71887c
 }
 
-@keyframes loaderSpin{
+@keyframes loader{
 to{transform:rotate(360deg)}
 }
 
-/* =====================================================
-   MODALS
-===================================================== */
-
+/* MODALS */
 .overlay{
 position:fixed;
 inset:0;
+background:#000c;
+backdrop-filter:blur(8px);
 z-index:500;
 display:none;
-align-items:flex-start;
+align-items:center;
 justify-content:center;
-padding:72px 10px 18px;
-background:#000c;
-backdrop-filter:blur(9px)
+padding:10px
 }
 
 .modal{
 width:min(720px,100%);
-max-height:calc(100vh - 88px);
+max-height:94vh;
 overflow:auto;
-background:#09140e;
-border:1px solid #2a4936;
-border-radius:15px;
+background:#0a1710;
+border:1px solid #2c4d3a;
+border-radius:14px;
 padding:13px;
-box-shadow:0 30px 100px #000;
-position:relative
+position:relative;
+box-shadow:0 30px 100px #000
 }
 
 .close{
 position:absolute;
-right:10px;
-top:10px;
+right:9px;
+top:9px;
 border:0;
-background:#15251c;
+background:#17271f;
 color:#fff;
-width:30px;
-height:30px;
-border-radius:7px
+width:29px;
+height:29px;
+border-radius:6px
 }
-
-.modalHeader{
-padding-right:38px
-}
-
-.modalTitle{
-display:flex;
-align-items:center;
-gap:7px
-}
-
-.modalTitleIcon{
-font-size:25px
-}
-
-.modalTitle h2{
-font-size:18px;
-margin:0
-}
-
-.modalDesc{
-color:#71897c;
-font-size:9px;
-margin:4px 0 9px
-}
-
-/* =====================================================
-   CONTROLS
-===================================================== */
 
 .toolbar{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:6px;
-margin:8px 0
+margin:9px 0
 }
 
 .control label{
 display:block;
-color:#71897b;
-font-size:8px;
+color:#71887c;
+font-size:7px;
 margin-bottom:3px
 }
 
 .control input,
 .control select{
 width:100%;
-height:34px;
-background:#0e1d15;
+height:33px;
+background:#0f2017;
 border:1px solid #294436;
-color:white;
-border-radius:6px;
+color:#fff;
 padding:0 7px;
+border-radius:6px;
 outline:0;
-font-size:10px
+font-size:9px
+}
+
+.gamearea{
+background:#06100b;
+border:1px solid #20372a;
+border-radius:10px;
+padding:11px
 }
 
 .status{
-min-height:18px;
-margin:5px 0;
 text-align:center;
-color:#779084;
+min-height:18px;
+margin:6px 0;
+color:#81998d;
 font-size:9px
 }
 
@@ -709,83 +613,269 @@ margin-top:7px
 
 .actions>*{flex:1}
 
-/* =====================================================
-   GAME AREAS
-===================================================== */
-
-.gamearea{
-background:#06100b;
-border:1px solid #1d392b;
-border-radius:11px;
-padding:12px
+/* MINES */
+.minegrid{
+display:grid;
+gap:4px;
+margin:10px auto;
+max-width:390px
 }
 
-/* =====================================================
-   PLINKO
-===================================================== */
-
-.plinkoWrap{
-width:100%;
-background:#061019;
-border:1px solid #294253;
-border-radius:13px;
-padding:7px;
-box-shadow:inset 0 0 45px #000a;
-overflow:hidden
+.mine{
+aspect-ratio:1;
+background:linear-gradient(145deg,#14291e,#0b1711);
+border:1px solid #294638;
+border-radius:5px;
+color:#fff;
+font-size:15px
 }
 
-.plinkoBoard{
+.mine.g{
+background:#196342;
+animation:pop .2s
+}
+
+.mine.b{
+background:#591821;
+animation:shake .25s
+}
+
+@keyframes pop{
+from{transform:scale(.7)}
+to{transform:scale(1)}
+}
+
+@keyframes shake{
+25%{transform:rotate(-7deg)}
+75%{transform:rotate(7deg)}
+}
+
+/* CRASH */
+.mult{
+font-size:48px;
+font-weight:950;
+color:var(--green);
+text-align:center;
+margin:38px 0 5px
+}
+
+.mult.dead{color:var(--red)}
+
+.rocket{
+text-align:center;
+font-size:35px
+}
+
+/* DICE */
+.diceNum{
+font-size:52px;
+text-align:center;
+color:var(--green);
+font-weight:950
+}
+
+.slider{
 width:100%;
-height:410px;
+accent-color:var(--green)
+}
+
+/* CARDS */
+.cards{
+display:flex;
+gap:5px;
+flex-wrap:wrap;
+min-height:65px
+}
+
+.playing{
+width:46px;
+height:64px;
+background:#f6f5ef;
+color:#111;
+border-radius:5px;
+display:grid;
+place-items:center;
+font-weight:900;
+font-size:17px
+}
+
+.redcard{color:#d11d38}
+
+/* SLOTS */
+.reels{
+display:flex;
+gap:5px;
+background:#321a0b;
+border:3px solid #b47a24;
+padding:13px;
+border-radius:11px
+}
+
+.reel{
+flex:1;
+height:75px;
+background:#f7f4e9;
+color:#111;
+border-radius:6px;
+display:grid;
+place-items:center;
+font-size:32px
+}
+
+.spin{
+animation:slotspin .1s infinite
+}
+
+@keyframes slotspin{
+50%{transform:translateY(5px)}
+}
+
+/* ROULETTE */
+.wheel{
+width:195px;
+height:195px;
+margin:8px auto;
+border-radius:50%;
+border:6px solid #b99237;
+background:
+conic-gradient(
+#b5172d 0 12deg,#111 12deg 24deg,
+#b5172d 24deg 36deg,#111 36deg 48deg,
+#b5172d 48deg 60deg,#111 60deg 72deg,
+#b5172d 72deg 84deg,#111 84deg 96deg,
+#b5172d 96deg 108deg,#111 108deg 120deg,
+#b5172d 120deg 132deg,#111 132deg 144deg,
+#b5172d 144deg 156deg,#111 156deg 168deg,
+#b5172d 168deg 180deg,#111 180deg 192deg,
+#b5172d 192deg 204deg,#111 204deg 216deg,
+#b5172d 216deg 228deg,#111 228deg 240deg,
+#b5172d 240deg 252deg,#111 252deg 264deg,
+#b5172d 264deg 276deg,#111 276deg 288deg,
+#b5172d 288deg 300deg,#111 300deg 312deg,
+#b5172d 312deg 324deg,#111 324deg 336deg,
+#b5172d 336deg 348deg,#111 348deg 360deg
+);
+display:grid;
+place-items:center;
+transition:transform 2.2s cubic-bezier(.12,.8,.18,1)
+}
+
+.wheelcenter{
+width:56px;
+height:56px;
+border-radius:50%;
+background:#08633d;
+border:4px solid #d5ae49;
+display:grid;
+place-items:center;
+font-weight:900
+}
+
+/* TOWER */
+.tower{
+display:flex;
+flex-direction:column-reverse;
+gap:4px
+}
+
+.trow{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:4px
+}
+
+.tcell{
+height:38px;
+background:#12241b;
+border:1px solid #294438;
+border-radius:5px;
+color:white;
+font-size:10px
+}
+
+.safe{
+background:#196342!important
+}
+
+.danger{
+background:#591821!important
+}
+
+/* KENO */
+.keno{
+display:grid;
+grid-template-columns:repeat(8,1fr);
+gap:3px
+}
+
+.kn{
+aspect-ratio:1;
+background:#12241a;
+border:1px solid #294437;
+color:#9eb1a8;
+border-radius:4px;
+font-size:8px
+}
+
+.kn.sel{
+background:var(--green);
+color:#03130a
+}
+
+.kn.hit{
+background:var(--gold);
+color:#211800
+}
+
+/* PLINKO */
+.plinko{
+height:400px;
 position:relative;
 overflow:hidden;
-border-radius:10px;
+border-radius:11px;
 background:
-radial-gradient(circle at 50% 5%,#29495d 0,#122b3d 32%,#06121c 78%);
-box-shadow:inset 0 0 50px #000b
+radial-gradient(circle at 50% 15%,#243e51,#101e2c 43%,#07111b);
+border:1px solid #2c4657;
+box-shadow:inset 0 0 55px #0009
 }
 
 .plinkoPegs{
 position:absolute;
-left:3%;
-right:3%;
-top:30px;
-bottom:70px;
+top:24px;
+left:4%;
+right:4%;
+bottom:61px;
 display:flex;
 flex-direction:column;
-justify-content:space-between;
-pointer-events:none
+justify-content:space-between
 }
 
 .plinkoRow{
-width:100%;
 display:flex;
 justify-content:center;
-gap:clamp(13px,3.5vw,32px)
+gap:clamp(8px,2.5vw,25px)
 }
 
 .plinkoPeg{
-width:10px;
-height:10px;
-flex:0 0 10px;
+width:9px;
+height:9px;
+flex:none;
 border-radius:50%;
 background:
-radial-gradient(circle at 28% 22%,#fff,#f2fcff 35%,#91c8dc 68%,#496c7a);
-border:1px solid #d9f6ff;
+radial-gradient(circle at 30% 20%,#fff,#eafcff 35%,#83b9c9 75%);
+border:1px solid #fff;
 box-shadow:
-0 1px 2px #000,
-0 0 6px #fff,
-0 0 13px #61d5ff66;
-transition:transform .06s ease,filter .06s ease
+0 0 5px #fff,
+0 0 10px #d9f6ff;
+transition:.06s
 }
 
 .plinkoPeg.hit{
-transform:scale(1.45);
-filter:brightness(1.5);
+transform:scale(1.7);
 box-shadow:
 0 0 8px #fff,
-0 0 18px #72ddff,
-0 0 30px #34bfff
+0 0 18px #65d9ff,
+0 0 28px #65d9ff
 }
 
 .plinkoBall{
@@ -794,25 +884,32 @@ width:18px;
 height:18px;
 border-radius:50%;
 background:
-radial-gradient(circle at 27% 20%,#fff,#fff 22%,#dff8ff 42%,#68d5ff 70%,#118bc2);
-border:1px solid #eaffff;
+radial-gradient(
+circle at 28% 20%,
+#fff 0 20%,
+#eaffff 30%,
+#8de2ff 62%,
+#149ad1
+);
+border:1px solid #efffff;
 box-shadow:
-0 1px 3px #000,
-0 0 8px #fff,
-0 0 18px #65ddff,
-0 0 32px #1abaff88;
-z-index:20;
+0 0 7px #fff,
+0 0 17px #7cddff,
+0 0 28px #28bfff;
+left:50%;
+top:8px;
+transform:translate(-50%,-50%);
 display:none;
-pointer-events:none;
+z-index:20;
 will-change:left,top,transform
 }
 
 .plinkoBins{
 position:absolute;
-left:1.5%;
-right:1.5%;
-bottom:7px;
-height:49px;
+left:2%;
+right:2%;
+bottom:5px;
+height:45px;
 display:flex;
 gap:3px
 }
@@ -820,450 +917,119 @@ gap:3px
 .plinkoBin{
 flex:1;
 min-width:0;
-height:49px;
+border-radius:5px;
+border:1px solid #ff63c1;
+background:
+linear-gradient(180deg,#ff66c5,#ed168f);
+color:#ffe4f5;
 display:grid;
 place-items:center;
-border:1px solid #ff55bb;
-border-radius:5px;
-background:linear-gradient(#ff70ca,#e90091);
-color:#ffe8f7;
-font-size:clamp(7px,1.4vw,11px);
+font-size:clamp(6px,1.4vw,11px);
 font-weight:950;
-text-shadow:0 1px 3px #8c0057;
-box-shadow:
-inset 0 0 9px #ff9bdd44,
-0 0 5px #ff36af22;
-transition:.18s
-}
-
-.plinkoBin.land{
-transform:scale(1.07);
-filter:brightness(1.35)
+text-shadow:0 1px 3px #98005e;
+transition:.15s
 }
 
 .plinkoBin.high{
-background:linear-gradient(#ff88d4,#f00099)
+box-shadow:0 0 15px #ff35b577
 }
 
-.plinkoInfo{
-text-align:center;
-color:#668092;
-font-size:8px;
-margin:4px
+.plinkoBin.land{
+transform:scale(1.08);
+filter:brightness(1.35)
 }
 
-/* =====================================================
-   MINES
-===================================================== */
-
-.mineGrid{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:5px;
-margin:10px auto;
-max-width:400px
-}
-
-.mine{
-aspect-ratio:1;
-border:1px solid #294536;
-border-radius:6px;
-background:linear-gradient(145deg,#14291e,#0a1510);
-color:#fff;
-font-size:17px
-}
-
-.mine.safe{
-background:linear-gradient(#1d7750,#0f4d34);
-box-shadow:0 0 15px #20df8233
-}
-
-.mine.bomb{
-background:linear-gradient(#6b1d2a,#341016)
-}
-
-.mineMultiplier{
-font-size:24px;
-font-weight:950;
-color:var(--green);
-text-align:center;
-margin:5px
-}
-
-/* =====================================================
-   CRASH
-===================================================== */
-
-.crashArea{
-height:240px;
-border:1px solid #1d3b2c;
-border-radius:11px;
-overflow:hidden;
-position:relative;
-background:
-radial-gradient(circle at 50% 110%,#16442e,transparent 55%),
-linear-gradient(#07120c,#06100b)
-}
-
-.crashMultiplier{
-position:absolute;
-left:0;
-right:0;
-top:65px;
-text-align:center;
-font-size:48px;
-font-weight:950;
-color:var(--green);
-z-index:2
-}
-
-.crashMultiplier.dead{color:var(--red)}
-
-.rocket{
-position:absolute;
-left:50%;
-bottom:35px;
-transform:translateX(-50%);
-font-size:42px;
-z-index:2;
-filter:drop-shadow(0 0 15px #20df8277);
-transition:.1s
-}
-
-/* =====================================================
-   DICE
-===================================================== */
-
-.diceArea{
-border:1px solid #1d392b;
-border-radius:11px;
-padding:15px;
-background:#07110b
-}
-
-.diceNumber{
-text-align:center;
-font-size:48px;
-font-weight:950;
-color:var(--green);
-margin:4px
-}
-
-.slider{
-width:100%;
-accent-color:var(--green)
-}
-
-.diceFace{
-font-size:45px;
-text-align:center;
-margin:8px;
-animation:diceFloat 1s ease-in-out infinite
-}
-
-@keyframes diceFloat{
-50%{transform:translateY(-4px) rotate(5deg)}
-}
-
-/* =====================================================
-   CARDS
-===================================================== */
-
-.cards{
-display:flex;
-gap:5px;
-flex-wrap:wrap;
-min-height:74px;
-margin:5px 0 9px
-}
-
-.playCard{
-width:47px;
-height:66px;
-border-radius:6px;
-background:#f5f3ec;
-color:#111;
-display:grid;
-place-items:center;
-font-size:18px;
-font-weight:900;
-box-shadow:0 4px 10px #0006
-}
-
-.redCard{color:#d41f3c}
-
-/* =====================================================
-   SLOTS
-===================================================== */
-
-.reels{
-display:flex;
-gap:6px;
-padding:13px;
-background:#251408;
-border:3px solid #9f7024;
-border-radius:11px
-}
-
-.reel{
-flex:1;
-height:82px;
-display:grid;
-place-items:center;
-background:linear-gradient(#fffdf1,#ddd8c7);
-color:#111;
-border-radius:6px;
-font-size:38px
-}
-
-.reel.spinning{
-animation:reelShake .08s infinite
-}
-
-@keyframes reelShake{
-50%{transform:translateY(5px)}
-}
-
-/* =====================================================
-   ROULETTE
-===================================================== */
-
-.roulette{
-width:205px;
-height:205px;
-margin:10px auto;
-border-radius:50%;
-border:7px solid #bd943b;
-position:relative;
-background:
-conic-gradient(
-#111 0deg 18deg,#b5172d 18deg 36deg,
-#111 36deg 54deg,#b5172d 54deg 72deg,
-#111 72deg 90deg,#b5172d 90deg 108deg,
-#111 108deg 126deg,#b5172d 126deg 144deg,
-#111 144deg 162deg,#b5172d 162deg 180deg,
-#111 180deg 198deg,#b5172d 198deg 216deg,
-#111 216deg 234deg,#b5172d 234deg 252deg,
-#111 252deg 270deg,#b5172d 270deg 288deg,
-#111 288deg 306deg,#b5172d 306deg 324deg,
-#111 324deg 342deg,#b5172d 342deg 360deg
-);
-transition:transform 2.3s cubic-bezier(.12,.75,.18,1)
-}
-
-.rouletteCenter{
-position:absolute;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
-width:58px;
-height:58px;
-border-radius:50%;
-background:#087044;
-border:4px solid #d7b44e;
-display:grid;
-place-items:center;
-font-weight:950
-}
-
-/* =====================================================
-   TOWER
-===================================================== */
-
-.tower{
-display:flex;
-flex-direction:column-reverse;
-gap:5px
-}
-
-.towerRow{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:5px
-}
-
-.towerCell{
-height:40px;
-border:1px solid #294436;
-border-radius:6px;
-background:#11251a;
-color:#fff;
-font-size:11px
-}
-
-.towerCell.safe{
-background:#196343;
-box-shadow:0 0 12px #20df8230
-}
-
-.towerCell.danger{
-background:#5a1a25
-}
-
-/* =====================================================
-   KENO
-===================================================== */
-
-.keno{
-display:grid;
-grid-template-columns:repeat(8,1fr);
-gap:4px
-}
-
-.keno button{
-aspect-ratio:1;
-border:1px solid #294436;
-background:#102119;
-color:#8fa69b;
-border-radius:5px;
-font-size:9px
-}
-
-.keno button.selected{
-background:var(--green);
-color:#031109
-}
-
-.keno button.hit{
-background:var(--gold);
-color:#1d1700
-}
-
-/* =====================================================
-   EXTRA GAMES
-===================================================== */
-
-.coinArea,
-wheelArea,
-colorArea,
-higherArea{
-background:#07110c;
-border:1px solid #1d392b;
-border-radius:11px;
-padding:18px;
-text-align:center
-}
-
-.bigGameIcon{
-font-size:62px;
-margin:8px
-}
-
-.choiceRow{
-display:flex;
-gap:7px
-}
-
-.choiceRow button{
-flex:1
-}
-
-.resultBig{
-font-size:30px;
-font-weight:950;
-margin:8px;
-color:var(--green)
-}
-
-/* =====================================================
-   LEDGER
-===================================================== */
-
+/* HISTORY */
 .ledgerTabs{
 display:flex;
-gap:5px;
+gap:4px;
 overflow:auto;
 margin:8px 0
 }
 
 .ledgerTabs button{
-border:1px solid #263f30;
+white-space:nowrap;
 background:#0d1a13;
+border:1px solid #263f30;
 color:#81988b;
-border-radius:15px;
-padding:6px 10px;
-font-size:8px;
-white-space:nowrap
+border-radius:14px;
+padding:6px 9px;
+font-size:7px
 }
 
 .ledgerTabs button.active{
 background:var(--green);
-color:#031109;
-border-color:var(--green)
+color:#03130a
 }
 
-.ledgerSummary{
+.summary{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:6px;
+gap:5px;
 margin-bottom:8px
 }
 
 .summaryBox{
 background:#0d1b13;
 border:1px solid #20392b;
-border-radius:7px;
-padding:9px;
+border-radius:6px;
+padding:7px;
 text-align:center
 }
 
 .summaryBox small{
 display:block;
-font-size:7px;
-color:#70877a
+color:#70877a;
+font-size:6px
 }
 
 .summaryBox b{
-font-size:13px
+font-size:11px
 }
 
 .historyList{
-max-height:420px;
+max-height:390px;
 overflow:auto
 }
 
 .historyRow{
 display:grid;
-grid-template-columns:65px 1fr 45px 75px;
+grid-template-columns:55px 1fr 42px 65px;
+gap:5px;
 align-items:center;
-gap:6px;
-padding:8px 4px;
-border-bottom:1px solid #182a20;
-font-size:8px
-}
-
-.historyTime{
-color:#61796c;
+padding:8px 3px;
+border-bottom:1px solid #1c3025;
 font-size:7px
 }
 
+.historyTime{
+color:#627a6d;
+font-size:6px
+}
+
 .historyGame b{
-font-size:9px
+color:#dce8e1;
+font-size:8px
 }
 
 .historyWin{
 color:var(--green);
-font-weight:900;
-text-align:right
+font-weight:900
 }
 
 .historyLoss{
 color:var(--red);
-font-weight:900;
-text-align:right
+font-weight:900
 }
 
-.emptyHistory{
+.empty{
 text-align:center;
 padding:35px;
-color:#61796c;
-font-size:10px
+color:#71887c;
+font-size:9px
 }
 
-/* =====================================================
-   MOBILE
-===================================================== */
-
+/* MOBILE */
 .mobileMenu{
 display:none;
 position:fixed;
@@ -1271,88 +1037,77 @@ top:62px;
 left:0;
 right:0;
 background:#09130e;
-border-bottom:1px solid #243d2e;
-z-index:190;
+border-bottom:1px solid #22392c;
+z-index:90;
 padding:5px
 }
 
 .mobileMenu button{
 display:block;
 width:100%;
-padding:10px;
 text-align:left;
-background:none;
 border:0;
+background:none;
 color:#81988c;
-font-size:10px
+padding:9px;
+font-size:9px
 }
 
 @media(max-width:850px){
 
+.nav{display:none}
+
 .header{
-padding:0 2.5%;
-gap:6px
+padding:0 2.5%
 }
 
-.nav{display:none}
-.mobileOnly{display:block}
-
 .hero{
-min-height:390px;
-padding:48px 5%
+min-height:410px
 }
 
 .orb{
 position:absolute;
 right:-70px;
-opacity:.2
+opacity:.22
 }
 
 .stats{
-gap:20px;
+gap:15px;
 justify-content:space-around
 }
 
 .stats div{
-font-size:8px
+font-size:7px
 }
 
 .stats div:nth-child(2){
 display:none
 }
 
-/*
-4 compact cards on mobile
-*/
-
 .grid{
-grid-template-columns:repeat(4,minmax(0,1fr));
+grid-template-columns:repeat(4,1fr);
 gap:5px
 }
 
-.card{
-border-radius:7px
-}
-
-.cardArt{
-height:74px;
+.art{
+height:72px;
 font-size:25px
 }
 
-.cardInfo{
+.info{
 padding:5px
 }
 
-.cardInfo b{
-font-size:7px
+.info b{
+font-size:6px
 }
 
-.cardInfo small{
+.info small{
 font-size:5px
 }
 
-.cardArrow{
-font-size:10px
+.arrow{
+font-size:9px
 }
 
 .tag{
@@ -1360,154 +1115,83 @@ font-size:4px;
 padding:2px 3px
 }
 
-.gamesTop{
+.top{
 display:block
 }
 
 .search{
 width:100%;
-margin-top:10px
+margin-top:9px
 }
 
-.plinkoBoard{
-height:390px
-}
-}
-
-@media(max-width:500px){
-
-.header{
-height:58px
+.plinko{
+height:380px
 }
 
-.promoBar{
-height:27px;
-font-size:7px
+}
+
+@media(max-width:450px){
+
+.hero h1{
+font-size:43px;
+letter-spacing:-2px
 }
 
 .account{
 display:none
 }
 
-.balance{
-font-size:9px;
-padding:6px 7px
-}
-
-.hero{
-min-height:390px
-}
-
-.hero h1{
-font-size:45px;
-letter-spacing:-3px
-}
-
-.hero p{
-font-size:10px
-}
-
-.orb{
-width:160px;
-height:160px;
-font-size:40px
-}
-
 .grid{
-gap:4px
+grid-template-columns:repeat(4,1fr)
 }
 
-.cardArt{
-height:70px;
+.art{
+height:68px;
 font-size:23px
+}
+
+.info b{
+font-size:5.5px
+}
+
+.plinko{
+height:370px
+}
+
+.plinkoPeg{
+width:8px;
+height:8px
+}
+
+.plinkoRow{
+gap:7px
 }
 
 .toolbar{
 grid-template-columns:1fr 1fr
 }
 
-.toolbar .control:last-child:nth-child(3){
+.toolbar .control:last-child{
 grid-column:1/-1
 }
 
 .modal{
-padding:10px
+padding:11px
 }
 
-.overlay{
-padding-top:64px
-}
-
-.plinkoBoard{
-height:380px
-}
-
-.plinkoRow{
-gap:10px
-}
-
-.plinkoPeg{
-width:9px;
-height:9px;
-flex-basis:9px
-}
-
-.plinkoBall{
-width:17px;
-height:17px
-}
-
-.plinkoBin{
-font-size:6px
-}
-
-.crashMultiplier{
-font-size:44px
-}
-
-.roulette{
-width:190px;
-height:190px
-}
-
-.historyRow{
-grid-template-columns:48px 1fr 38px 60px
-}
-}
-
-@media(max-width:360px){
-
-.grid{
-grid-template-columns:repeat(4,minmax(0,1fr))
-}
-
-.cardArt{
-height:64px;
-font-size:20px
-}
-
-.cardInfo b{
-font-size:6px
-}
-
-.hero h1{
-font-size:40px
-}
 }
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     AUTH
-===================================================== -->
+<!-- AUTH -->
 
 <div id="auth" class="auth">
 
 <div class="authCard">
 
-<div class="logo">
+<div class="authLogo">
 STAKE<span>WIN</span>
 </div>
 
@@ -1515,10 +1199,10 @@ STAKE<span>WIN</span>
 
 <div class="authIcon">🔐</div>
 
-<h2>Welcome Back</h2>
+<h2>Login to Play</h2>
 
 <p>
-Login to access your virtual-credit demo games.
+Your account can be remembered on this device.
 </p>
 
 <input
@@ -1535,36 +1219,44 @@ placeholder="Password"
 autocomplete="current-password">
 
 <label class="remember">
-<input id="rememberMe" type="checkbox" checked>
-Remember this account on this device
+<input
+id="rememberMe"
+type="checkbox"
+checked>
+Remember this account
 </label>
 
 <button
 class="authBtn"
-onclick="login()">
+onclick="loginUser()">
 LOGIN & PLAY
 </button>
 
-<div id="loginError" class="error"></div>
+<div
+id="loginError"
+class="error">
+</div>
 
 <div class="authSwitch">
 New here?
 <button onclick="showSignup()">
-Create account
+Create Account
 </button>
 </div>
 
 </div>
 
 
-<div id="signupBox" style="display:none">
+<div
+id="signupBox"
+style="display:none">
 
 <div class="authIcon">👤</div>
 
 <h2>Create Account</h2>
 
 <p>
-Create your free demo account with 1,000 virtual credits.
+Free virtual-credit demo account.
 </p>
 
 <input
@@ -1590,7 +1282,10 @@ onclick="createAccount()">
 CREATE ACCOUNT
 </button>
 
-<div id="signupError" class="error"></div>
+<div
+id="signupError"
+class="error">
+</div>
 
 <div class="authSwitch">
 Already have an account?
@@ -1602,14 +1297,13 @@ Login
 </div>
 
 </div>
+
 </div>
 
 
-<!-- =====================================================
-     LOADING
-===================================================== -->
+<!-- LOADING -->
 
-<div id="loadingOverlay" class="loadingOverlay">
+<div id="loading" class="loading">
 
 <div class="loaderBox">
 
@@ -1619,8 +1313,10 @@ STAKE<span>WIN</span>
 
 <div class="loaderCircle"></div>
 
-<div id="loaderText" class="loaderText">
-LOADING GAME
+<div
+id="loaderText"
+class="loaderText">
+LOADING
 </div>
 
 </div>
@@ -1628,14 +1324,12 @@ LOADING GAME
 </div>
 
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<!-- HEADER -->
 
 <header class="header">
 
 <button
-class="iconBtn mobileOnly"
+class="icon"
 onclick="toggleMenu()">
 ☰
 </button>
@@ -1676,20 +1370,23 @@ Arcade
 
 <div class="headerRight">
 
-<div id="account" class="account"></div>
+<div
+id="account"
+class="account">
+</div>
 
 <div class="balance">
-💰 <span id="balance">1000</span>
+💰 <b id="balance">1000</b>
 </div>
 
 <button
-class="iconBtn"
+class="icon"
 onclick="openHistory()">
-▤
+📜
 </button>
 
 <button
-class="iconBtn"
+class="icon"
 onclick="openProfile()">
 👤
 </button>
@@ -1699,36 +1396,51 @@ onclick="openProfile()">
 </header>
 
 
-<div id="mobileMenu" class="mobileMenu">
+<div
+id="mobileMenu"
+class="mobileMenu">
 
-<button onclick="filterGames('All');toggleMenu()">🏠 Home</button>
-<button onclick="filterGames('Originals');toggleMenu()">🎯 Originals</button>
-<button onclick="filterGames('Slots');toggleMenu()">🎰 Slots</button>
-<button onclick="filterGames('Table');toggleMenu()">🃏 Table</button>
-<button onclick="filterGames('Arcade');toggleMenu()">🚀 Arcade</button>
-<button onclick="openHistory();toggleMenu()">▤ Bet Ledger</button>
+<button onclick="filterGames('All');toggleMenu()">
+🏠 Home
+</button>
+
+<button onclick="filterGames('Originals');toggleMenu()">
+🎯 Originals
+</button>
+
+<button onclick="filterGames('Slots');toggleMenu()">
+🎰 Slots
+</button>
+
+<button onclick="filterGames('Table');toggleMenu()">
+🃏 Table
+</button>
+
+<button onclick="filterGames('Arcade');toggleMenu()">
+🚀 Arcade
+</button>
+
+<button onclick="openHistory();toggleMenu()">
+📜 Bet Ledger
+</button>
 
 </div>
 
 
-<!-- =====================================================
-     PROMO
-===================================================== -->
+<!-- PROMO -->
 
-<div class="promoBar">
+<div class="promo">
 
-<div class="promoTrack">
-✦ STAKEWIN DEMO ✦ GET 20% BONUS VIRTUAL CREDITS ✦
-DEMO ONLY ✦ PLAY WITH VIRTUAL CREDITS ✦
-NEW GAMES EVERY WEEK ✦ STAKEWIN DEMO ✦
-</div>
+<span>
+✦ STAKEWIN DEMO ✦ 20% BONUS VIRTUAL CREDITS ✦
+DEMO ONLY ✦ NEW GAMES ✦ PLAY WITH VIRTUAL CREDITS ✦
+STAKEWIN ORIGINALS ✦
+</span>
 
 </div>
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+<!-- HERO -->
 
 <section class="hero">
 
@@ -1744,9 +1456,8 @@ Play the moment.<br>
 </h1>
 
 <p>
-A polished casino-style gaming experience using
-virtual demo credits only. No real-money deposits,
-withdrawals or wagering.
+Smooth casino-style demo games with virtual credits,
+animated interfaces and a complete personal bet ledger.
 </p>
 
 <div class="heroActions">
@@ -1760,7 +1471,7 @@ onclick="scrollGames()">
 <button
 class="secondary"
 onclick="openHistory()">
-▤ LEDGER
+📜 LEDGER
 </button>
 
 </div>
@@ -1774,10 +1485,6 @@ SW
 </section>
 
 
-<!-- =====================================================
-     STATS
-===================================================== -->
-
 <div class="stats">
 
 <div>
@@ -1785,7 +1492,7 @@ SW
 </div>
 
 <div>
-🎲 <b id="gameCount">16</b> demo games
+🎲 <b id="gameCount">12</b> games
 </div>
 
 <div>
@@ -1795,20 +1502,20 @@ SW
 </div>
 
 
-<!-- =====================================================
-     GAMES
-===================================================== -->
+<!-- GAMES -->
 
-<section id="games" class="games">
+<section
+id="games"
+class="games">
 
-<div class="gamesTop">
+<div class="top">
 
 <div>
 
 <h2>Games</h2>
 
 <p>
-Virtual-credit demo • smooth animated games
+Virtual credits • smooth demo experience
 </p>
 
 </div>
@@ -1830,26 +1537,33 @@ onclick="filterGames('All',this)">
 All
 </button>
 
-<button onclick="filterGames('Originals',this)">
+<button
+onclick="filterGames('Originals',this)">
 Originals
 </button>
 
-<button onclick="filterGames('Slots',this)">
+<button
+onclick="filterGames('Slots',this)">
 Slots
 </button>
 
-<button onclick="filterGames('Table',this)">
+<button
+onclick="filterGames('Table',this)">
 Table
 </button>
 
-<button onclick="filterGames('Arcade',this)">
+<button
+onclick="filterGames('Arcade',this)">
 Arcade
 </button>
 
 </div>
 
 
-<div id="gameGrid" class="grid"></div>
+<div
+id="gameGrid"
+class="grid">
+</div>
 
 </section>
 
@@ -1870,11 +1584,11 @@ deposits or withdrawals
 </footer>
 
 
-<!-- =====================================================
-     GAME MODAL
-===================================================== -->
+<!-- GAME MODAL -->
 
-<div id="gameModal" class="overlay">
+<div
+id="gameModal"
+class="overlay">
 
 <div class="modal">
 
@@ -1884,25 +1598,20 @@ onclick="closeGame()">
 ✕
 </button>
 
-<div class="modalHeader">
-
-<div class="modalTitle">
-
 <div
 id="gameIcon"
-class="modalTitleIcon">
+style="font-size:28px">
 </div>
 
-<h2 id="gameTitle"></h2>
-
-</div>
+<h2
+id="gameTitle"
+style="margin:4px 0">
+</h2>
 
 <p
 id="gameDescription"
-class="modalDesc">
+style="color:#789083;font-size:9px">
 </p>
-
-</div>
 
 <div id="gameContent"></div>
 
@@ -1911,13 +1620,15 @@ class="modalDesc">
 </div>
 
 
-<!-- =====================================================
-     PROFILE
-===================================================== -->
+<!-- PROFILE -->
 
-<div id="profileModal" class="overlay">
+<div
+id="profileModal"
+class="overlay">
 
-<div class="modal" style="text-align:center">
+<div
+class="modal"
+style="text-align:center">
 
 <button
 class="close"
@@ -1925,13 +1636,13 @@ onclick="closeModal('profileModal')">
 ✕
 </button>
 
-<div style="font-size:42px">
+<div style="font-size:40px">
 👤
 </div>
 
 <h2 id="profileName"></h2>
 
-<p style="color:#789083;font-size:10px">
+<p style="color:#789083;font-size:9px">
 Demo account
 </p>
 
@@ -1943,15 +1654,15 @@ font-weight:900;
 color:var(--green)">
 </div>
 
-<p style="color:#789083;font-size:9px">
+<p style="color:#789083;font-size:8px">
 virtual credits
 </p>
 
 <button
 class="secondary"
-style="width:100%;margin-top:8px"
+style="width:100%;margin-top:6px"
 onclick="openHistory()">
-▤ VIEW BET LEDGER
+📜 BET LEDGER
 </button>
 
 <button
@@ -1966,11 +1677,11 @@ LOG OUT
 </div>
 
 
-<!-- =====================================================
-     HISTORY
-===================================================== -->
+<!-- HISTORY -->
 
-<div id="historyModal" class="overlay">
+<div
+id="historyModal"
+class="overlay">
 
 <div class="modal">
 
@@ -1980,36 +1691,51 @@ onclick="closeModal('historyModal')">
 ✕
 </button>
 
-<h2 style="margin:0 0 4px">
-Bet Ledger
+<h2 style="margin:0">
+📜 Bet Ledger
 </h2>
 
-<p style="margin:0;color:#71897c;font-size:9px">
-All games and individual game history
+<p
+style="
+color:#789083;
+font-size:8px">
+Separate game history + overall history
 </p>
 
-<div id="ledgerTabs" class="ledgerTabs"></div>
+<div
+id="ledgerTabs"
+class="ledgerTabs">
+</div>
 
-<div class="ledgerSummary">
+<div class="summary">
 
 <div class="summaryBox">
 <small>TOTAL BET</small>
-<b id="ledgerBet">0</b>
+<b id="sumBet">0</b>
 </div>
 
 <div class="summaryBox">
 <small>WINS</small>
-<b id="ledgerWins" style="color:var(--green)">0</b>
+<b
+id="sumWins"
+style="color:var(--green)">
+0
+</b>
 </div>
 
 <div class="summaryBox">
 <small>NET</small>
-<b id="ledgerNet">0</b>
+<b id="sumNet">
+0
+</b>
 </div>
 
 </div>
 
-<div id="historyList" class="historyList"></div>
+<div
+id="historyList"
+class="historyList">
+</div>
 
 </div>
 
@@ -2018,14 +1744,13 @@ All games and individual game history
 
 <script>
 
-/* =====================================================
-   STORAGE / AUTH
-===================================================== */
+/* =========================================================
+AUTH / STORAGE
+========================================================= */
 
-const USERS_KEY="stakewin_users_v3";
-const SESSION_KEY="stakewin_session_v3";
-const REMEMBER_KEY="stakewin_remember_v3";
-const HISTORY_PREFIX="stakewin_history_v3_";
+const USERS_KEY="stakewin_users";
+const SESSION_KEY="stakewin_session";
+const HISTORY_PREFIX="stakewin_history_";
 
 let currentUser=null;
 let balanceAmount=1000;
@@ -2071,7 +1796,7 @@ HISTORY_PREFIX+currentUser
 )||"[]"
 );
 }catch{
-return[];
+return [];
 }
 
 }
@@ -2097,17 +1822,13 @@ payoutAmount,
 multiplier=0
 ){
 
-if(!currentUser)return;
-
 const data=getHistory();
 
 data.unshift({
 
-id:Date.now()+Math.random(),
+game:game,
 
-game,
-
-result,
+result:result,
 
 bet:Number(bet)||0,
 
@@ -2115,12 +1836,15 @@ payout:Number(payoutAmount)||0,
 
 multiplier:Number(multiplier)||0,
 
-time:new Date().toLocaleString([],{
+time:new Date().toLocaleString(
+[],
+{
 day:"2-digit",
 month:"short",
 hour:"2-digit",
 minute:"2-digit"
-})
+}
+)
 
 });
 
@@ -2129,22 +1853,32 @@ saveHistory(data);
 }
 
 
-/* =====================================================
-   AUTH
-===================================================== */
+/* =========================================================
+LOGIN
+========================================================= */
 
 function showSignup(){
 
-document.getElementById("loginBox").style.display="none";
-document.getElementById("signupBox").style.display="block";
+document.getElementById(
+"loginBox"
+).style.display="none";
+
+document.getElementById(
+"signupBox"
+).style.display="block";
 
 }
 
 
 function showLogin(){
 
-document.getElementById("loginBox").style.display="block";
-document.getElementById("signupBox").style.display="none";
+document.getElementById(
+"loginBox"
+).style.display="block";
+
+document.getElementById(
+"signupBox"
+).style.display="none";
 
 }
 
@@ -2152,19 +1886,24 @@ document.getElementById("signupBox").style.display="none";
 function createAccount(){
 
 const username=
-document.getElementById("signupUser")
-.value.trim();
+document.getElementById(
+"signupUser"
+).value.trim();
 
 const password=
-document.getElementById("signupPass")
-.value;
+document.getElementById(
+"signupPass"
+).value;
 
 const confirm=
-document.getElementById("signupConfirm")
-.value;
+document.getElementById(
+"signupConfirm"
+).value;
 
 const error=
-document.getElementById("signupError");
+document.getElementById(
+"signupError"
+);
 
 error.innerText="";
 
@@ -2178,6 +1917,7 @@ return;
 
 }
 
+
 if(password.length<4){
 
 error.innerText=
@@ -2186,6 +1926,7 @@ error.innerText=
 return;
 
 }
+
 
 if(password!==confirm){
 
@@ -2198,6 +1939,7 @@ return;
 
 
 const users=getUsers();
+
 
 if(users[username]){
 
@@ -2224,34 +1966,45 @@ SESSION_KEY,
 username
 );
 
-localStorage.setItem(
-REMEMBER_KEY,
-"1"
-);
-
 unlock();
 
 }
 
 
-function login(){
+function loginUser(){
 
 const username=
-document.getElementById("loginUser")
-.value.trim();
+document.getElementById(
+"loginUser"
+).value.trim();
 
 const password=
-document.getElementById("loginPass")
-.value;
+document.getElementById(
+"loginPass"
+).value;
 
 const remember=
-document.getElementById("rememberMe")
-.checked;
+document.getElementById(
+"rememberMe"
+).checked;
 
 const error=
-document.getElementById("loginError");
+document.getElementById(
+"loginError"
+);
 
 error.innerText="";
+
+
+if(!username||!password){
+
+error.innerText=
+"Enter username and password.";
+
+return;
+
+}
+
 
 const users=getUsers();
 
@@ -2259,7 +2012,7 @@ const users=getUsers();
 if(!users[username]){
 
 error.innerText=
-"Account not found. Create an account first.";
+"Account not found.";
 
 return;
 
@@ -2289,11 +2042,6 @@ SESSION_KEY,
 username
 );
 
-localStorage.setItem(
-REMEMBER_KEY,
-"1"
-);
-
 }else{
 
 sessionStorage.setItem(
@@ -2305,11 +2053,8 @@ localStorage.removeItem(
 SESSION_KEY
 );
 
-localStorage.removeItem(
-REMEMBER_KEY
-);
-
 }
+
 
 unlock();
 
@@ -2318,13 +2063,51 @@ unlock();
 
 function unlock(){
 
-document.getElementById("auth")
-.style.display="none";
+document.getElementById(
+"auth"
+).style.display="none";
 
-document.getElementById("account")
-.innerText="👤 "+currentUser;
+document.getElementById(
+"account"
+).innerText=
+"👤 "+currentUser;
 
 updateBalance();
+
+renderGames();
+
+}
+
+
+function restoreSession(){
+
+const username=
+localStorage.getItem(
+SESSION_KEY
+)||
+sessionStorage.getItem(
+SESSION_KEY
+);
+
+if(!username)return;
+
+const users=getUsers();
+
+if(!users[username])return;
+
+currentUser=username;
+
+balanceAmount=
+Number(users[username].balance||1000);
+
+document.getElementById(
+"auth"
+).style.display="none";
+
+document.getElementById(
+"account"
+).innerText=
+"👤 "+currentUser;
 
 }
 
@@ -2337,23 +2120,30 @@ saveBalance();
 
 currentUser=null;
 
-localStorage.removeItem(SESSION_KEY);
-sessionStorage.removeItem(SESSION_KEY);
+localStorage.removeItem(
+SESSION_KEY
+);
 
-document.getElementById("profileModal")
-.style.display="none";
+sessionStorage.removeItem(
+SESSION_KEY
+);
 
-document.getElementById("auth")
-.style.display="flex";
+document.getElementById(
+"profileModal"
+).style.display="none";
+
+document.getElementById(
+"auth"
+).style.display="flex";
 
 showLogin();
 
 }
 
 
-/* =====================================================
-   BALANCE
-===================================================== */
+/* =========================================================
+BALANCE
+========================================================= */
 
 function saveBalance(){
 
@@ -2374,8 +2164,8 @@ saveUsers(users);
 function updateBalance(){
 
 /*
-Automatically reset demo balance
-when it falls below 100.
+DEMO REFILL:
+below 100 automatically becomes 1000.
 */
 
 if(
@@ -2386,27 +2176,38 @@ balanceAmount<100
 balanceAmount=1000;
 
 showPromo(
-"🎁 DEMO BONUS — BALANCE REFILLED TO 1,000 VIRTUAL CREDITS"
+"🎁 STAKEWIN BONUS • 1,000 DEMO CREDITS REFILLED"
 );
 
 }
 
 
-const value=
+const formatted=
 Math.floor(balanceAmount)
 .toLocaleString();
 
 
-document.getElementById("balance")
-.innerText=value;
+document.getElementById(
+"balance"
+).innerText=formatted;
 
-document.getElementById("statsBalance")
-.innerText=value;
+document.getElementById(
+"statsBalance"
+).innerText=formatted;
 
 
-if(document.getElementById("profileBalance"))
-document.getElementById("profileBalance")
-.innerText=value;
+if(
+document.getElementById(
+"profileBalance"
+)
+){
+
+document.getElementById(
+"profileBalance"
+).innerText=formatted;
+
+}
+
 
 saveBalance();
 
@@ -2453,42 +2254,53 @@ updateBalance();
 }
 
 
-/* =====================================================
-   PROMO
-===================================================== */
+/* =========================================================
+PROMO
+========================================================= */
 
-function showPromo(message){
+function showPromo(text){
 
-const bar=
-document.querySelector(".promoTrack");
+const p=
+document.querySelector(
+".promo span"
+);
 
-if(!bar)return;
+if(!p)return;
 
-const old=bar.innerText;
+const old=p.innerText;
 
-bar.innerText=message;
+p.innerText=text;
 
-setTimeout(()=>{
-
-bar.innerText=old;
-
-},3500);
+setTimeout(
+()=>{
+p.innerText=old;
+},
+3500
+);
 
 }
 
 
-/* =====================================================
-   GAME LIST
-===================================================== */
+/* =========================================================
+GAMES
+========================================================= */
 
 const games=[
+
+{
+id:"plinko",
+name:"Plinko",
+cat:"Originals",
+icon:"🔵",
+desc:"Realistic bouncing ball physics through the peg board."
+},
 
 {
 id:"mines",
 name:"Mines",
 cat:"Originals",
 icon:"💣",
-desc:"Reveal diamonds while avoiding hidden mines."
+desc:"Reveal diamonds without hitting a mine."
 },
 
 {
@@ -2496,7 +2308,7 @@ id:"crash",
 name:"Crash",
 cat:"Originals",
 icon:"🚀",
-desc:"Watch the multiplier climb and cash out."
+desc:"Watch the multiplier rise and cash out."
 },
 
 {
@@ -2504,15 +2316,7 @@ id:"dice",
 name:"Dice",
 cat:"Originals",
 icon:"🎲",
-desc:"Choose under or over and roll."
-},
-
-{
-id:"plinko",
-name:"Plinko",
-cat:"Originals",
-icon:"🔵",
-desc:"Watch the ball bounce through the pegs."
+desc:"Choose your number and roll."
 },
 
 {
@@ -2520,7 +2324,7 @@ id:"tower",
 name:"Tower",
 cat:"Originals",
 icon:"🗼",
-desc:"Climb the tower and choose safe tiles."
+desc:"Climb higher by choosing safe tiles."
 },
 
 {
@@ -2532,19 +2336,11 @@ desc:"Beat the dealer without going over 21."
 },
 
 {
-id:"poker",
-name:"Poker",
-cat:"Table",
-icon:"🃏",
-desc:"Compare five-card poker hands."
-},
-
-{
 id:"roulette",
 name:"Roulette",
 cat:"Table",
 icon:"🎡",
-desc:"Spin the wheel and choose your result."
+desc:"Spin the virtual roulette wheel."
 },
 
 {
@@ -2556,39 +2352,15 @@ desc:"Pick numbers and match the draw."
 },
 
 {
-id:"lucky7",
-name:"Lucky 7",
+id:"slots",
+name:"Neon Slots",
 cat:"Slots",
-icon:"7️⃣",
-desc:"Classic three-reel slot demo."
+icon:"🎰",
+desc:"Spin the neon slot machine."
 },
 
 {
-id:"fruits",
-name:"Neon Fruits",
-cat:"Slots",
-icon:"🍒",
-desc:"Fast fruit slot animation."
-},
-
-{
-id:"dragon",
-name:"Dragon Gold",
-cat:"Slots",
-icon:"🐉",
-desc:"Dragon-themed slot demo."
-},
-
-{
-id:"rocket",
-name:"Rocket Rush",
-cat:"Arcade",
-icon:"🌌",
-desc:"Rising multiplier arcade game."
-},
-
-{
-id:"coinflip",
+id:"coin",
 name:"Coin Flip",
 cat:"Arcade",
 icon:"🪙",
@@ -2596,11 +2368,11 @@ desc:"Heads or tails."
 },
 
 {
-id:"higherlower",
-name:"Higher / Lower",
+id:"higher",
+name:"Higher Lower",
 cat:"Arcade",
 icon:"📈",
-desc:"Predict whether the next number is higher."
+desc:"Predict the next number."
 },
 
 {
@@ -2613,63 +2385,69 @@ desc:"Predict the next color."
 
 ];
 
-document.getElementById("gameCount")
-.innerText=games.length;
+
+document.getElementById(
+"gameCount"
+).innerText=games.length;
 
 
 function renderGames(){
 
-const query=
-document.getElementById("search")
-.value
-.toLowerCase();
+const search=
+document.getElementById(
+"search"
+).value.toLowerCase();
+
 
 const list=
-games.filter(game=>
+games.filter(g=>
 (
 currentCategory==="All"||
-game.cat===currentCategory
+g.cat===currentCategory
 )&&
-game.name.toLowerCase()
-.includes(query)
+g.name.toLowerCase()
+.includes(search)
 );
 
 
-document.getElementById("gameGrid")
-.innerHTML=
-list.map((game,index)=>`
+document.getElementById(
+"gameGrid"
+).innerHTML=
+list.map(
+(g,i)=>`
 
 <div
 class="card"
-onclick="openGame('${game.id}')">
+onclick="openGame('${g.id}')">
 
-<div class="cardArt">
+<div class="art">
 
-${index<4?
-'<span class="tag">HOT</span>':
-''}
+${i<4?
+`<span class="tag">HOT</span>`:
+""}
 
-<span>${game.icon}</span>
+${g.icon}
 
 </div>
 
-<div class="cardInfo">
+<div class="info">
 
 <div>
 
-<b>${game.name}</b>
+<b>${g.name}</b>
 
-<small>${game.cat}</small>
-
-</div>
-
-<span class="cardArrow">›</span>
+<small>${g.cat}</small>
 
 </div>
 
+<div class="arrow">›</div>
+
 </div>
 
-`).join("");
+</div>
+
+`
+).join("");
 
 }
 
@@ -2680,8 +2458,8 @@ currentCategory=category;
 
 document.querySelectorAll(
 ".chips button"
-).forEach(b=>
-b.classList.remove("active")
+).forEach(
+b=>b.classList.remove("active")
 );
 
 if(button)
@@ -2694,63 +2472,60 @@ renderGames();
 
 function openGame(id){
 
-if(!currentUser){
-
-document.getElementById("auth")
-.style.display="flex";
-
-return;
-
-}
-
-
 clearTimers();
 
 const game=
-games.find(g=>g.id===id);
+games.find(
+g=>g.id===id
+);
 
 if(!game)return;
 
 currentGame=id;
 
-
-/*
-StakeWin loading animation
-*/
-
-const loader=
-document.getElementById("loadingOverlay");
-
-loader.style.display="flex";
-
-document.getElementById("loaderText")
-.innerText=
+document.getElementById(
+"loaderText"
+).innerText=
 "LOADING "+game.name.toUpperCase();
 
+document.getElementById(
+"loading"
+).style.display="flex";
 
-setTimeout(()=>{
 
-document.getElementById("gameIcon")
-.innerText=game.icon;
+setTimeout(
+()=>{
 
-document.getElementById("gameTitle")
-.innerText=game.name;
+document.getElementById(
+"gameIcon"
+).innerText=game.icon;
 
-document.getElementById("gameDescription")
-.innerText=game.desc;
+document.getElementById(
+"gameTitle"
+).innerText=game.name;
 
-document.getElementById("gameContent")
-.innerHTML=
+document.getElementById(
+"gameDescription"
+).innerText=game.desc;
+
+document.getElementById(
+"gameContent"
+).innerHTML=
 getGameHTML(id);
 
-document.getElementById("gameModal")
-.style.display="flex";
+document.getElementById(
+"gameModal"
+).style.display="flex";
 
-loader.style.display="none";
+document.getElementById(
+"loading"
+).style.display="none";
 
 initGame(id);
 
-},650);
+},
+550
+);
 
 }
 
@@ -2759,37 +2534,23 @@ function closeGame(){
 
 clearTimers();
 
-document.getElementById("gameModal")
-.style.display="none";
-
-}
-
-
-function closeModal(id){
-
-document.getElementById(id)
-.style.display="none";
-
-clearTimers();
+document.getElementById(
+"gameModal"
+).style.display="none";
 
 }
 
 
 function clearTimers(){
 
-timers.forEach(t=>{
-
-if(typeof t==="number"){
-
-clearInterval(t);
+timers.forEach(
+t=>{
 clearTimeout(t);
-
+clearInterval(t);
 }
-
-});
+);
 
 timers=[];
-
 
 animationFrames.forEach(
 f=>cancelAnimationFrame(f)
@@ -2802,8 +2563,9 @@ animationFrames=[];
 
 function scrollGames(){
 
-document.getElementById("games")
-.scrollIntoView({
+document.getElementById(
+"games"
+).scrollIntoView({
 behavior:"smooth"
 });
 
@@ -2813,7 +2575,9 @@ behavior:"smooth"
 function toggleMenu(){
 
 const menu=
-document.getElementById("mobileMenu");
+document.getElementById(
+"mobileMenu"
+);
 
 menu.style.display=
 menu.style.display==="block"
@@ -2823,271 +2587,752 @@ menu.style.display==="block"
 }
 
 
-/* =====================================================
-   LEDGER
-===================================================== */
-
-function openHistory(){
-
-if(!currentUser)return;
-
-document.getElementById("historyModal")
-.style.display="flex";
-
-buildLedgerTabs();
-
-showHistory("all");
-
-}
-
-
-function buildLedgerTabs(){
-
-const tabs=
-document.getElementById("ledgerTabs");
-
-const names=
-["all",...games.map(g=>g.id)];
-
-tabs.innerHTML=
-names.map(id=>{
-
-const name=
-id==="all"
-?"ALL"
-:games.find(g=>g.id===id)?.name||id;
-
-return`
-
-<button
-class="${historyFilter===id?"active":""}"
-onclick="showHistory('${id}')">
-${name}
-</button>
-
-`;
-
-}).join("");
-
-}
-
-
-function showHistory(filter){
-
-historyFilter=filter;
-
-let data=getHistory();
-
-if(filter!=="all"){
-
-const game=
-games.find(g=>g.id===filter);
-
-if(game)
-data=data.filter(
-x=>x.game===game.name
-);
-
-}
-
-const totalBet=
-data.reduce(
-(a,x)=>a+Number(x.bet||0),
-0
-);
-
-const wins=
-data.filter(
-x=>x.result==="win"
-).length;
-
-const net=
-data.reduce(
-(a,x)=>
-a+
-(
-Number(x.payout||0)-
-Number(x.bet||0)
-),
-0
-);
-
-
-document.getElementById("ledgerBet")
-.innerText=
-totalBet.toFixed(2);
-
-document.getElementById("ledgerWins")
-.innerText=wins;
-
-const netEl=
-document.getElementById("ledgerNet");
-
-netEl.innerText=
-(net>=0?"+":"")+
-net.toFixed(2);
-
-netEl.style.color=
-net>=0
-?"var(--green)"
-:"var(--red)";
-
-
-const list=
-document.getElementById("historyList");
-
-
-if(!data.length){
-
-list.innerHTML=
-`<div class="emptyHistory">
-No bets recorded yet.
-</div>`;
-
-buildLedgerTabs();
-
-return;
-
-}
-
-
-list.innerHTML=
-data.map(x=>{
-
-const win=
-x.result==="win";
-
-return`
-
-<div class="historyRow">
-
-<div class="historyTime">
-${x.time}
-</div>
-
-<div class="historyGame">
-
-<b>${x.game}</b>
-
-<div style="color:#71887c">
-Bet ${Number(x.bet).toFixed(2)}
-${x.multiplier?
-" • "+Number(x.multiplier).toFixed(2)+"x":
-""}
-</div>
-
-</div>
-
-<div class="${win?
-"historyWin":
-"historyLoss"}">
-
-${win?"WIN":"LOSS"}
-
-</div>
-
-<div class="${win?
-"historyWin":
-"historyLoss"}">
-
-${win?
-"+"+Number(x.payout).toFixed(2):
-"-"+Number(x.bet).toFixed(2)}
-
-</div>
-
-</div>
-
-`;
-
-}).join("");
-
-buildLedgerTabs();
-
-}
-
-
-/* =====================================================
-   ROUTER
-===================================================== */
+/* =========================================================
+GAME ROUTER
+========================================================= */
 
 function getGameHTML(id){
 
+if(id==="plinko")return plinkoHTML();
+
 if(id==="mines")return minesHTML();
 
-if(id==="crash"||id==="rocket")
-return crashHTML();
+if(id==="crash")return crashHTML();
 
-if(id==="dice")
-return diceHTML();
+if(id==="dice")return diceHTML();
 
-if(id==="plinko")
-return plinkoHTML();
+if(id==="tower")return towerHTML();
 
-if(id==="blackjack")
-return blackjackHTML();
+if(id==="blackjack")return blackjackHTML();
 
-if(id==="poker")
-return pokerHTML();
+if(id==="roulette")return rouletteHTML();
 
-if(id==="roulette")
-return rouletteHTML();
+if(id==="keno")return kenoHTML();
 
-if(["lucky7","fruits","dragon"].includes(id))
-return slotsHTML();
+if(id==="slots")return slotsHTML();
 
-if(id==="tower")
-return towerHTML();
+if(id==="coin")return coinHTML();
 
-if(id==="keno")
-return kenoHTML();
+if(id==="higher")return higherHTML();
 
-if(id==="coinflip")
-return coinHTML();
+if(id==="color")return colorHTML();
 
-if(id==="higherlower")
-return higherLowerHTML();
-
-if(id==="color")
-return colorHTML();
-
-return"";
+return "";
 
 }
 
 
 function initGame(id){
 
-if(id==="mines")initMines();
-
-if(id==="dice")updateDice();
-
 if(id==="plinko")buildPlinko();
+
+if(id==="mines")buildMines();
 
 if(id==="tower")buildTower();
 
-if(id==="keno")initKeno();
+if(id==="keno")buildKeno();
 
-if(id==="higherlower")initHigherLower();
-
-if(id==="color")initColor();
+if(id==="higher")initHigher();
 
 }
 
 
-/* =====================================================
-   MINES
-===================================================== */
+/* =========================================================
+PLINKO
+========================================================= */
+
+const PLINKO={
+
+8:{
+Low:[5.6,2.1,1.1,1,.5,1,1.1,2.1,5.6],
+Medium:[13,3,1.3,.7,.4,.7,1.3,3,13],
+High:[29,4,1.5,.3,.2,.3,1.5,4,29]
+},
+
+10:{
+Low:[9,4,2,1.2,.7,.5,.7,1.2,2,4,9],
+Medium:[25,5,2,.9,.5,.4,.5,.9,2,5,25],
+High:[55,8,2.5,.6,.3,.2,.3,.6,2.5,8,55]
+},
+
+12:{
+Low:[16,6,3,1.5,.8,.5,.4,.5,.8,1.5,3,6,16],
+Medium:[40,7,2.7,1.1,.6,.4,.3,.4,.6,1.1,2.7,7,40],
+High:[100,14,4,.8,.4,.2,.15,.2,.4,.8,4,14,100]
+},
+
+14:{
+Low:[25,8,4,2,1,.7,.5,.4,.5,.7,1,2,4,8,25],
+Medium:[65,10,3.5,1.3,.7,.45,.3,.25,.3,.45,.7,1.3,3.5,10,65],
+High:[180,25,6,1.2,.5,.25,.15,.1,.15,.25,.5,1.2,6,25,180]
+},
+
+16:{
+Low:[40,12,6,2.5,1.2,.8,.5,.4,.35,.4,.5,.8,1.2,2.5,6,12,40],
+Medium:[100,16,5,1.8,.9,.5,.3,.2,.15,.2,.3,.5,.9,1.8,5,16,100],
+High:[1000,50,10,2,.7,.35,.15,.08,.05,.08,.15,.35,.7,2,10,50,1000]
+}
+
+};
+
+
+function plinkoHTML(){
+
+return`
+
+<div class="toolbar">
+
+<div class="control">
+
+<label>MODE</label>
+
+<select
+id="plinkoMode"
+onchange="buildPlinko()">
+
+<option>Low</option>
+<option selected>Medium</option>
+<option>High</option>
+
+</select>
+
+</div>
+
+<div class="control">
+
+<label>ROWS</label>
+
+<select
+id="plinkoRows"
+onchange="buildPlinko()">
+
+<option value="8">8</option>
+<option value="10">10</option>
+<option selected value="12">12</option>
+<option value="14">14</option>
+<option value="16">16</option>
+
+</select>
+
+</div>
+
+<div class="control">
+
+<label>BET</label>
+
+<input
+id="plinkoBet"
+type="number"
+value="10"
+min="1">
+
+</div>
+
+</div>
+
+<div class="plinko">
+
+<div
+id="plinkoPegs"
+class="plinkoPegs">
+</div>
+
+<div
+id="plinkoBall"
+class="plinkoBall">
+</div>
+
+<div
+id="plinkoBins"
+class="plinkoBins">
+</div>
+
+</div>
+
+<div
+id="plinkoStatus"
+class="status">
+Ready — drop the ball.
+</div>
+
+<button
+class="gameBtn"
+onclick="dropPlinko()">
+DROP BALL
+</button>
+
+`;
+
+}
+
+
+function buildPlinko(){
+
+const rows=
+Number(
+document.getElementById(
+"plinkoRows"
+).value
+);
+
+const mode=
+document.getElementById(
+"plinkoMode"
+).value;
+
+const values=
+PLINKO[rows][mode];
+
+
+const pegBox=
+document.getElementById(
+"plinkoPegs"
+);
+
+pegBox.innerHTML="";
+
+
+for(
+let r=0;
+r<rows;
+r++
+){
+
+const row=
+document.createElement(
+"div"
+);
+
+row.className=
+"plinkoRow";
+
+
+const count=
+r+4;
+
+
+for(
+let i=0;
+i<count;
+i++
+){
+
+const peg=
+document.createElement(
+"span"
+);
+
+peg.className=
+"plinkoPeg";
+
+row.appendChild(peg);
+
+}
+
+pegBox.appendChild(row);
+
+}
+
+
+const bins=
+document.getElementById(
+"plinkoBins"
+);
+
+bins.innerHTML="";
+
+
+values.forEach(
+v=>{
+
+const bin=
+document.createElement(
+"div"
+);
+
+bin.className=
+"plinkoBin";
+
+if(v>=10)
+bin.classList.add("high");
+
+bin.innerText=
+v+"x";
+
+bins.appendChild(bin);
+
+}
+);
+
+}
+
+
+function dropPlinko(){
+
+const bet=
+Number(
+document.getElementById(
+"plinkoBet"
+).value
+);
+
+if(!spend(bet))return;
+
+clearTimers();
+
+const rows=
+Number(
+document.getElementById(
+"plinkoRows"
+).value
+);
+
+const mode=
+document.getElementById(
+"plinkoMode"
+).value
+;
+
+const values=
+PLINKO[rows][mode];
+
+const board=
+document.querySelector(
+".plinko"
+);
+
+const ball=
+document.getElementById(
+"plinkoBall"
+);
+
+const pegs=[
+...document.querySelectorAll(
+".plinkoPeg"
+)
+];
+
+const rect=
+board.getBoundingClientRect();
+
 
 /*
-1 mine max = 24.7x
-2 mines max = 297x
-
-Higher mine counts continue progressively upward.
-Demo balance only.
+Create real coordinates from the
+actual rendered pegs.
 */
 
-const MINE_MULTIPLIERS={
+let pegRows=[];
+let index=0;
+
+for(
+let r=0;
+r<rows;
+r++
+){
+
+const row=[];
+
+const count=r+4;
+
+for(
+let i=0;
+i<count;
+i++
+){
+
+const p=pegs[index++];
+
+if(!p)continue;
+
+const pr=
+p.getBoundingClientRect();
+
+row.push({
+
+el:p,
+
+x:
+pr.left+
+pr.width/2-
+rect.left,
+
+y:
+pr.top+
+pr.height/2-
+rect.top
+
+});
+
+}
+
+pegRows.push(row);
+
+}
+
+
+/*
+Ball state
+*/
+
+let x=
+board.clientWidth/2;
+
+let y=8;
+
+let vx=
+(Math.random()-.5)*80;
+
+let vy=0;
+
+let last=
+performance.now();
+
+let done=false;
+
+const hitMap=
+new WeakMap();
+
+
+ball.style.display="block";
+
+ball.style.left=x+"px";
+
+ball.style.top=y+"px";
+
+
+function impact(){
+
+for(
+const row of pegRows
+){
+
+for(
+const peg of row
+){
+
+const dx=x-peg.x;
+const dy=y-peg.y;
+
+const dist=
+Math.sqrt(dx*dx+dy*dy);
+
+if(dist<14){
+
+const now=
+performance.now();
+
+const previous=
+hitMap.get(peg.el)||0;
+
+if(now-previous<90)
+continue;
+
+hitMap.set(
+peg.el,
+now
+);
+
+const nx=
+dx/(dist||1);
+
+const ny=
+dy/(dist||1);
+
+x=
+peg.x+
+nx*14.5;
+
+y=
+peg.y+
+ny*14.5;
+
+
+const dot=
+vx*nx+
+vy*ny;
+
+vx=
+vx-2*dot*nx;
+
+vy=
+vy-2*dot*ny;
+
+
+vx*=.84;
+
+vy*=.67;
+
+vy=
+Math.min(vy,-180);
+
+
+vx+=
+(Math.random()-.5)*110;
+
+
+peg.el.classList.add(
+"hit"
+);
+
+setTimeout(
+()=>{
+peg.el.classList.remove(
+"hit"
+);
+},
+70
+);
+
+
+/*
+Real bounce visual:
+ball compresses vertically and
+stretches horizontally.
+*/
+
+ball.style.transform=
+"translate(-50%,-50%) scaleX(1.25) scaleY(.75)";
+
+setTimeout(
+()=>{
+ball.style.transform=
+"translate(-50%,-50%) scaleX(1) scaleY(1)";
+},
+75
+);
+
+}
+
+}
+
+}
+
+}
+
+
+function finish(){
+
+if(done)return;
+
+done=true;
+
+
+const left=
+board.clientWidth*.02;
+
+const usable=
+board.clientWidth*.96;
+
+let normalized=
+(x-left)/usable;
+
+normalized=
+Math.max(
+0,
+Math.min(0.9999,normalized)
+);
+
+let slot=
+Math.floor(
+normalized*values.length
+);
+
+slot=
+Math.max(
+0,
+Math.min(
+values.length-1,
+slot
+)
+);
+
+const multiplier=
+values[slot];
+
+const win=
+bet*multiplier;
+
+
+const bins=
+document.querySelectorAll(
+".plinkoBin"
+);
+
+if(bins[slot]){
+
+bins[slot].classList.add(
+"land"
+);
+
+}
+
+
+payout(win);
+
+document.getElementById(
+"plinkoStatus"
+).className=
+"status "+
+(multiplier>=1?"win":"loss");
+
+document.getElementById(
+"plinkoStatus"
+).innerText=
+`Ball landed • ${multiplier}x • +${win.toFixed(2)} credits`;
+
+
+addHistory(
+"Plinko",
+multiplier>=1?"win":"loss",
+bet,
+win,
+multiplier
+);
+
+
+setTimeout(
+()=>{
+ball.style.display="none";
+
+bins.forEach(
+b=>b.classList.remove("land")
+);
+
+},
+400
+);
+
+}
+
+
+function animatePlinko(now){
+
+if(done)return;
+
+const dt=
+Math.min(
+(now-last)/1000,
+.025
+);
+
+last=now;
+
+
+/*
+Gravity
+*/
+
+vy+=
+1080*dt;
+
+
+/*
+Air drag
+*/
+
+vx*=.996;
+
+
+/*
+Move
+*/
+
+x+=vx*dt;
+
+y+=vy*dt;
+
+
+/*
+Side wall bounce
+*/
+
+if(x<9){
+
+x=9;
+
+vx=
+Math.abs(vx)*.72;
+
+}
+
+if(
+x>
+board.clientWidth-9
+){
+
+x=
+board.clientWidth-9;
+
+vx=
+-Math.abs(vx)*.72;
+
+}
+
+
+impact();
+
+
+ball.style.left=
+x+"px";
+
+ball.style.top=
+y+"px";
+
+
+/*
+Subtle ball stretching
+based on velocity.
+*/
+
+const stretch=
+Math.min(
+Math.abs(vy)/1400,
+.22
+);
+
+ball.style.transform=
+`translate(-50%,-50%)
+scaleX(${1+stretch*.25})
+scaleY(${1-stretch*.35})`;
+
+
+if(
+y>=
+board.clientHeight-62
+){
+
+finish();
+
+return;
+
+}
+
+
+const frame=
+requestAnimationFrame(
+animatePlinko
+);
+
+animationFrames.push(frame);
+
+}
+
+
+const frame=
+requestAnimationFrame(
+animatePlinko
+);
+
+animationFrames.push(frame);
+
+}
+
+
+/* =========================================================
+MINES
+========================================================= */
+
+const MINE_TABLE={
 
 1:[
 1.15,1.32,1.55,1.85,2.25,
@@ -3137,9 +3382,11 @@ return`
 <div class="toolbar">
 
 <div class="control">
+
 <label>MINES</label>
 
 <select id="mineCount">
+
 <option>1</option>
 <option>2</option>
 <option selected>3</option>
@@ -3147,22 +3394,13 @@ return`
 <option>8</option>
 <option>12</option>
 <option>18</option>
+
 </select>
 
 </div>
 
 <div class="control">
-<label>LEVEL</label>
 
-<select id="mineLevel">
-<option>Easy</option>
-<option selected>Medium</option>
-<option>Hard</option>
-</select>
-
-</div>
-
-<div class="control">
 <label>BET</label>
 
 <input
@@ -3173,11 +3411,29 @@ min="1">
 
 </div>
 
+<div class="control">
+
+<label>LEVEL</label>
+
+<select id="mineLevel">
+
+<option>Easy</option>
+<option selected>Medium</option>
+<option>Hard</option>
+
+</select>
+
+</div>
+
 </div>
 
 <div
 id="mineMultiplier"
-class="mineMultiplier">
+style="
+text-align:center;
+font-size:25px;
+font-weight:950;
+color:var(--green)">
 1.00x
 </div>
 
@@ -3187,7 +3443,10 @@ class="status">
 Choose your mines and start.
 </div>
 
-<div id="mineGrid" class="mineGrid"></div>
+<div
+id="mineGrid"
+class="minegrid">
+</div>
 
 <div class="actions">
 
@@ -3212,21 +3471,30 @@ CASH OUT
 }
 
 
-function initMines(){
+function buildMines(){
 
 const grid=
-document.getElementById("mineGrid");
+document.getElementById(
+"mineGrid"
+);
 
 grid.innerHTML="";
 
-for(let i=0;i<25;i++){
+grid.style.gridTemplateColumns=
+"repeat(5,1fr)";
+
+for(
+let i=0;
+i<25;
+i++
+){
 
 const cell=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 cell.className="mine";
-
-cell.id="mine-"+i;
 
 cell.disabled=true;
 
@@ -3244,24 +3512,31 @@ function startMines(){
 
 const bet=
 Number(
-document.getElementById("mineBet").value
+document.getElementById(
+"mineBet"
+).value
 );
 
-const mineCount=
+if(!spend(bet))return;
+
+
+const count=
 Number(
-document.getElementById("mineCount").value
+document.getElementById(
+"mineCount"
+).value
 );
-
-if(!spend(bet))
-return;
-
 
 let mines=[];
 
-while(mines.length<mineCount){
+while(
+mines.length<count
+){
 
 const n=
-Math.floor(Math.random()*25);
+Math.floor(
+Math.random()*25
+);
 
 if(!mines.includes(n))
 mines.push(n);
@@ -3271,81 +3546,85 @@ mines.push(n);
 
 gameState={
 active:true,
-bet,
-mineCount,
-mines,
+bet:bet,
+count:count,
+mines:mines,
 opened:0,
 cash:bet
 };
 
 
-initMines();
+buildMines();
 
-document.querySelectorAll(".mine")
-.forEach(
-c=>c.disabled=false
+document.querySelectorAll(
+".mine"
+).forEach(
+x=>x.disabled=false
 );
 
-document.getElementById("mineCash")
-.disabled=true;
+document.getElementById(
+"mineCash"
+).disabled=true;
 
-document.getElementById("mineMultiplier")
-.innerText="1.00x";
+document.getElementById(
+"mineMultiplier"
+).innerText="1.00x";
 
-document.getElementById("mineStatus")
-.className="status";
-
-document.getElementById("mineStatus")
-.innerText=
+document.getElementById(
+"mineStatus"
+).innerText=
 "Find diamonds and cash out.";
 
 }
 
 
-function clickMine(index){
+function clickMine(i){
 
-if(!gameState.active)
-return;
+if(!gameState.active)return;
+
 
 const cell=
-document.getElementById(
-"mine-"+index
-);
+document.querySelectorAll(
+".mine"
+)[i];
 
 cell.disabled=true;
 
 
-if(gameState.mines.includes(index)){
+if(
+gameState.mines.includes(i)
+){
 
 cell.innerText="💣";
-cell.classList.add("bomb");
+
+cell.classList.add("b");
 
 gameState.active=false;
 
-
-gameState.mines.forEach(i=>{
+gameState.mines.forEach(
+n=>{
 
 const c=
-document.getElementById(
-"mine-"+i
-);
+document.querySelectorAll(
+".mine"
+)[n];
 
 c.innerText="💣";
-c.classList.add("bomb");
+c.classList.add("b");
 c.disabled=true;
 
-});
+}
+);
 
+document.getElementById(
+"mineStatus"
+).className=
+"status loss";
 
-document.getElementById("mineCash")
-.disabled=true;
-
-document.getElementById("mineStatus")
-.className="status loss";
-
-document.getElementById("mineStatus")
-.innerText=
-"BOOM! Mine hit — round lost.";
+document.getElementById(
+"mineStatus"
+).innerText=
+"BOOM! Mine hit.";
 
 addHistory(
 "Mines",
@@ -3363,34 +3642,33 @@ return;
 gameState.opened++;
 
 cell.innerText="💎";
-cell.classList.add("safe");
+
+cell.classList.add("g");
 
 
-const table=
-MINE_MULTIPLIERS[
-gameState.mineCount
+let table=
+MINE_TABLE[
+gameState.count
 ];
 
-let index=
+let multiplier=
+table[
 Math.min(
 gameState.opened-1,
 table.length-1
-);
-
-let multiplier=
-table[index]||1;
-
-
-if(
-document.getElementById("mineLevel")
-.value==="Easy"
 )
+];
+
+
+const level=
+document.getElementById(
+"mineLevel"
+).value;
+
+if(level==="Easy")
 multiplier*=.9;
 
-if(
-document.getElementById("mineLevel")
-.value==="Hard"
-)
+if(level==="Hard")
 multiplier*=1.1;
 
 
@@ -3398,21 +3676,24 @@ gameState.cash=
 gameState.bet*multiplier;
 
 
-document.getElementById("mineMultiplier")
-.innerText=
+document.getElementById(
+"mineMultiplier"
+).innerText=
 multiplier.toFixed(2)+"x";
 
+document.getElementById(
+"mineCash"
+).disabled=false;
 
-document.getElementById("mineCash")
-.disabled=false;
+document.getElementById(
+"mineStatus"
+).className=
+"status win";
 
-
-document.getElementById("mineStatus")
-.className="status win";
-
-document.getElementById("mineStatus")
-.innerText=
-`${multiplier.toFixed(2)}x • Cash out ${gameState.cash.toFixed(2)} credits`;
+document.getElementById(
+"mineStatus"
+).innerText=
+`${multiplier.toFixed(2)}x • Cash out ${gameState.cash.toFixed(2)}`;
 
 }
 
@@ -3421,24 +3702,27 @@ function cashMines(){
 
 if(
 !gameState.active||
-gameState.opened===0
-)
-return;
+gameState.opened<1
+)return;
 
 
 gameState.active=false;
 
 payout(gameState.cash);
 
-document.getElementById("mineCash")
-.disabled=true;
+document.getElementById(
+"mineCash"
+).disabled=true;
 
-document.getElementById("mineStatus")
-.className="status win";
+document.getElementById(
+"mineStatus"
+).className=
+"status win";
 
-document.getElementById("mineStatus")
-.innerText=
-`Cashed out • +${gameState.cash.toFixed(2)} credits`;
+document.getElementById(
+"mineStatus"
+).innerText=
+`Cashed out • +${gameState.cash.toFixed(2)}`;
 
 addHistory(
 "Mines",
@@ -3451,9 +3735,9 @@ gameState.cash/gameState.bet
 }
 
 
-/* =====================================================
-   CRASH
-===================================================== */
+/* =========================================================
+CRASH
+========================================================= */
 
 function crashHTML(){
 
@@ -3462,17 +3746,7 @@ return`
 <div class="toolbar">
 
 <div class="control">
-<label>LEVEL</label>
 
-<select id="crashLevel">
-<option>Easy</option>
-<option selected>Medium</option>
-<option>Hard</option>
-</select>
-
-</div>
-
-<div class="control">
 <label>BET</label>
 
 <input
@@ -3484,40 +3758,55 @@ min="1">
 </div>
 
 <div class="control">
+
+<label>LEVEL</label>
+
+<select id="crashLevel">
+
+<option>Easy</option>
+<option selected>Medium</option>
+<option>Hard</option>
+
+</select>
+
+</div>
+
+<div class="control">
+
 <label>AUTO CASH</label>
 
 <select id="autoCash">
+
 <option value="0">Manual</option>
 <option value="1.5">1.50x</option>
 <option value="2">2.00x</option>
 <option value="3">3.00x</option>
 <option value="5">5.00x</option>
+
 </select>
 
 </div>
 
 </div>
 
-<div class="crashArea">
+<div class="gamearea">
 
 <div
-id="crashMultiplier"
-class="crashMultiplier">
+id="crashMult"
+class="mult">
 1.00x
 </div>
 
 <div
-id="crashRocket"
+id="rocket"
 class="rocket">
 🚀
-</div>
-
 </div>
 
 <div
 id="crashStatus"
 class="status">
-Start the rocket.
+Ready.
 </div>
 
 <div class="actions">
@@ -3529,12 +3818,14 @@ START
 </button>
 
 <button
-id="crashCash"
 class="cash"
+id="crashCash"
 disabled
-onclick="cashoutCrash()">
+onclick="cashCrash()">
 CASH OUT
 </button>
+
+</div>
 
 </div>
 
@@ -3547,109 +3838,100 @@ function startCrash(){
 
 const bet=
 Number(
-document.getElementById("crashBet").value
+document.getElementById(
+"crashBet"
+).value
 );
 
-if(!spend(bet))
-return;
+if(!spend(bet))return;
 
 
 let crash=
-1.15+
-Math.random()*8;
+1.1+
+Math.random()*7;
 
 
 const level=
-document.getElementById("crashLevel")
-.value;
+document.getElementById(
+"crashLevel"
+).value;
 
 if(level==="Easy")
-crash=2+Math.random()*9;
+crash=2+Math.random()*8;
 
 if(level==="Hard")
-crash=1.05+Math.random()*5;
+crash=1.05+Math.random()*4;
 
 
 gameState={
 active:true,
-bet,
-multiplier:1,
-crash
+bet:bet,
+mult:1,
+crash:crash
 };
 
 
-document.getElementById("crashMultiplier")
-.classList.remove("dead");
-
-document.getElementById("crashCash")
-.disabled=false;
-
-
-const rocket=
-document.getElementById("crashRocket");
-
-
 const timer=
-setInterval(()=>{
+setInterval(
+()=>{
 
-if(!gameState.active)
-return;
+if(!gameState.active)return;
 
-
-gameState.multiplier+=
+gameState.mult+=
 .025+
-gameState.multiplier*.008;
-
+gameState.mult*.008;
 
 document.getElementById(
-"crashMultiplier"
+"crashMult"
 ).innerText=
-gameState.multiplier.toFixed(2)+"x";
+gameState.mult.toFixed(2)+"x";
 
-
-rocket.style.bottom=
-(35+
-Math.min(
-130,
-gameState.multiplier*8
-))+"px";
+document.getElementById(
+"rocket"
+).style.transform=
+`translateY(-${Math.min(100,gameState.mult*5)}px)`;
 
 
 const auto=
 Number(
-document.getElementById("autoCash")
-.value
+document.getElementById(
+"autoCash"
+).value
 );
-
 
 if(
 auto>0 &&
-gameState.multiplier>=auto
+gameState.mult>=auto
 ){
 
-cashoutCrash();
+cashCrash();
 
 }
 
 
 if(
 gameState.active &&
-gameState.multiplier>=gameState.crash
+gameState.mult>=gameState.crash
 ){
 
 gameState.active=false;
 
-document.getElementById("crashCash")
-.disabled=true;
+document.getElementById(
+"crashMult"
+).classList.add("dead");
 
-document.getElementById("crashMultiplier")
-.classList.add("dead");
+document.getElementById(
+"crashCash"
+).disabled=true;
 
-document.getElementById("crashStatus")
-.className="status loss";
+document.getElementById(
+"crashStatus"
+).className=
+"status loss";
 
-document.getElementById("crashStatus")
-.innerText=
+document.getElementById(
+"crashStatus"
+).innerText=
 `CRASHED at ${gameState.crash.toFixed(2)}x`;
 
 addHistory(
@@ -3664,54 +3946,59 @@ clearInterval(timer);
 
 }
 
-},100);
-
+},
+90
+);
 
 timers.push(timer);
+
+document.getElementById(
+"crashCash"
+).disabled=false;
 
 }
 
 
-function cashoutCrash(){
+function cashCrash(){
 
-if(!gameState.active)
-return;
+if(!gameState.active)return;
 
-
-const win=
+const amount=
 gameState.bet*
-gameState.multiplier;
+gameState.mult;
 
 gameState.active=false;
 
-payout(win);
+payout(amount);
 
-document.getElementById("crashCash")
-.disabled=true;
+document.getElementById(
+"crashCash"
+).disabled=true;
 
-document.getElementById("crashStatus")
-.className="status win";
+document.getElementById(
+"crashStatus"
+).className=
+"status win";
 
-document.getElementById("crashStatus")
-.innerText=
-`Cashed out at ${gameState.multiplier.toFixed(2)}x • +${win.toFixed(2)}`;
+document.getElementById(
+"crashStatus"
+).innerText=
+`Cashed out ${gameState.mult.toFixed(2)}x • +${amount.toFixed(2)}`;
 
 addHistory(
 "Crash",
 "win",
 gameState.bet,
-win,
-gameState.multiplier
+amount,
+gameState.mult
 );
-
-clearTimers();
 
 }
 
 
-/* =====================================================
-   DICE
-===================================================== */
+/* =========================================================
+DICE
+========================================================= */
 
 function diceHTML(){
 
@@ -3720,17 +4007,7 @@ return`
 <div class="toolbar">
 
 <div class="control">
-<label>LEVEL</label>
 
-<select>
-<option>Easy</option>
-<option selected>Medium</option>
-<option>Hard</option>
-</select>
-
-</div>
-
-<div class="control">
 <label>BET</label>
 
 <input
@@ -3742,7 +4019,8 @@ min="1">
 </div>
 
 <div class="control">
-<label>CONDITION</label>
+
+<label>MODE</label>
 
 <select
 id="diceMode"
@@ -3760,13 +4038,27 @@ OVER
 
 </div>
 
+<div class="control">
+
+<label>TARGET</label>
+
+<input
+id="diceTarget"
+type="number"
+value="50"
+min="5"
+max="95"
+oninput="updateDice()">
+
 </div>
 
-<div class="diceArea">
+</div>
+
+<div class="gamearea">
 
 <div
-id="diceTarget"
-class="diceNumber">
+id="diceNumber"
+class="diceNum">
 50
 </div>
 
@@ -3777,22 +4069,27 @@ type="range"
 min="5"
 max="95"
 value="50"
-oninput="updateDice()">
+oninput="
+document.getElementById('diceTarget').value=this.value;
+updateDice();
+">
 
 <div
 id="diceInfo"
 class="status">
-50% win chance
+50% chance
 </div>
 
 <div
-id="diceRoll"
-class="diceFace">
+id="diceResult"
+style="
+font-size:42px;
+text-align:center">
 🎲
 </div>
 
 <button
-class="gameButton"
+class="gameBtn"
 onclick="rollDice()">
 ROLL DICE
 </button>
@@ -3808,13 +4105,19 @@ function updateDice(){
 
 const target=
 Number(
-document.getElementById("diceSlider")
-.value
+document.getElementById(
+"diceTarget"
+).value
 );
 
 const mode=
-document.getElementById("diceMode")
-.value;
+document.getElementById(
+"diceMode"
+).value;
+
+document.getElementById(
+"diceSlider"
+).value=target;
 
 const chance=
 mode==="under"
@@ -3824,17 +4127,16 @@ mode==="under"
 const multiplier=
 Math.max(
 1.01,
-(100/chance)*.96
+100/chance*.96
 );
 
-document.getElementById("diceTarget")
-.innerText=target;
+document.getElementById(
+"diceNumber"
+).innerText=target;
 
-document.getElementById("diceInfo")
-.className="status";
-
-document.getElementById("diceInfo")
-.innerText=
+document.getElementById(
+"diceInfo"
+).innerText=
 `${chance}% chance • ${multiplier.toFixed(2)}x`;
 
 }
@@ -3844,22 +4146,24 @@ function rollDice(){
 
 const bet=
 Number(
-document.getElementById("diceBet")
-.value
+document.getElementById(
+"diceBet"
+).value
 );
 
-if(!spend(bet))
-return;
+if(!spend(bet))return;
 
 const target=
 Number(
-document.getElementById("diceSlider")
-.value
+document.getElementById(
+"diceTarget"
+).value
 );
 
 const mode=
-document.getElementById("diceMode")
-.value;
+document.getElementById(
+"diceMode"
+).value;
 
 const roll=
 Number(
@@ -3874,17 +4178,19 @@ mode==="under"
 const multiplier=
 Math.max(
 1.01,
-(100/chance)*.96
+100/chance*.96
 );
-
-document.getElementById("diceRoll")
-.innerText=
-roll.toFixed(2);
 
 const win=
 mode==="under"
 ?roll<target
 :roll>target;
+
+
+document.getElementById(
+"diceResult"
+).innerText=
+roll.toFixed(2);
 
 
 if(win){
@@ -3894,11 +4200,14 @@ bet*multiplier;
 
 payout(amount);
 
-document.getElementById("diceInfo")
-.className="status win";
+document.getElementById(
+"diceInfo"
+).className=
+"status win";
 
-document.getElementById("diceInfo")
-.innerText=
+document.getElementById(
+"diceInfo"
+).innerText=
 `WIN • ${roll.toFixed(2)} • +${amount.toFixed(2)}`;
 
 addHistory(
@@ -3911,11 +4220,14 @@ multiplier
 
 }else{
 
-document.getElementById("diceInfo")
-.className="status loss";
+document.getElementById(
+"diceInfo"
+).className=
+"status loss";
 
-document.getElementById("diceInfo")
-.innerText=
+document.getElementById(
+"diceInfo"
+).innerText=
 `LOSS • ${roll.toFixed(2)}`;
 
 addHistory(
@@ -3931,1833 +4243,9 @@ bet,
 }
 
 
-/* =====================================================
-   PLINKO
-===================================================== */
-
-const PLINKO_MULTIPLIERS={
-
-8:{
-Low:[5.6,2.1,1.1,1,.5,1,1.1,2.1,5.6],
-Medium:[13,3,1.3,.7,.4,.7,1.3,3,13],
-High:[29,4,1.5,.3,.2,.3,1.5,4,29]
-},
-
-9:{
-Low:[7,3,1.5,1,.6,.6,1,1.5,3,7],
-Medium:[18,4,1.8,.8,.5,.5,.8,1.8,4,18],
-High:[40,6,2,.5,.3,.3,.5,2,6,40]
-},
-
-10:{
-Low:[9,4,2,1.2,.7,.5,.7,1.2,2,4,9],
-Medium:[25,5,2,.9,.5,.4,.5,.9,2,5,25],
-High:[55,8,2.5,.6,.3,.2,.3,.6,2.5,8,55]
-},
-
-11:{
-Low:[12,5,2.5,1.3,.8,.5,.5,.8,1.3,2.5,5,12],
-Medium:[32,6,2.3,1,.55,.4,.4,.55,1,2.3,6,32],
-High:[75,10,3,.7,.35,.2,.2,.35,.7,3,10,75]
-},
-
-12:{
-Low:[16,6,3,1.5,.8,.5,.4,.5,.8,1.5,3,6,16],
-Medium:[40,7,2.7,1.1,.6,.4,.3,.4,.6,1.1,2.7,7,40],
-High:[100,14,4,.8,.4,.2,.15,.2,.4,.8,4,14,100]
-},
-
-13:{
-Low:[20,7,3.5,1.7,.9,.6,.4,.4,.6,.9,1.7,3.5,7,20],
-Medium:[50,8,3,1.2,.6,.4,.3,.3,.4,.6,1.2,3,8,50],
-High:[130,18,5,1,.45,.25,.15,.15,.25,.45,1,5,18,130]
-},
-
-14:{
-Low:[25,8,4,2,1,.7,.5,.4,.5,.7,1,2,4,8,25],
-Medium:[65,10,3.5,1.3,.7,.45,.3,.25,.3,.45,.7,1.3,3.5,10,65],
-High:[180,25,6,1.2,.5,.25,.15,.1,.15,.25,.5,1.2,6,25,180]
-},
-
-15:{
-Low:[32,10,5,2.2,1.1,.7,.5,.4,.4,.5,.7,1.1,2.2,5,10,32],
-Medium:[85,12,4,1.5,.8,.5,.3,.25,.2,.25,.3,.5,.8,1.5,4,12,85],
-High:[250,35,8,1.5,.6,.3,.15,.1,.08,.1,.15,.3,.6,1.5,8,35,250]
-},
-
-16:{
-Low:[40,12,6,2.5,1.2,.8,.5,.4,.35,.4,.5,.8,1.2,2.5,6,12,40],
-Medium:[100,16,5,1.8,.9,.5,.3,.2,.15,.2,.3,.5,.9,1.8,5,16,100],
-High:[1000,50,10,2,.7,.35,.15,.08,.05,.08,.15,.35,.7,2,10,50,1000]
-}
-
-};
-
-
-function plinkoHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>MODE</label>
-
-<select
-id="plinkoMode"
-onchange="buildPlinko()">
-
-<option>Low</option>
-<option selected>Medium</option>
-<option>High</option>
-
-</select>
-
-</div>
-
-<div class="control">
-<label>ROWS</label>
-
-<select
-id="plinkoRows"
-onchange="buildPlinko()">
-
-${Array.from(
-{length:9},
-(_,i)=>
-`<option value="${i+8}"
-${i===8?"selected":""}>
-${i+8}
-</option>`
-).join("")}
-
-</select>
-
-</div>
-
-<div class="control">
-<label>BET</label>
-
-<input
-id="plinkoBet"
-type="number"
-value="10"
-min="1">
-
-</div>
-
-</div>
-
-<div class="plinkoWrap">
-
-<div
-id="plinkoBoard"
-class="plinkoBoard">
-
-<div
-id="plinkoPegs"
-class="plinkoPegs">
-</div>
-
-<div
-id="plinkoBall"
-class="plinkoBall">
-</div>
-
-<div
-id="plinkoBins"
-class="plinkoBins">
-</div>
-
-</div>
-
-</div>
-
-<div
-id="plinkoInfo"
-class="plinkoInfo">
-</div>
-
-<div
-id="plinkoStatus"
-class="status">
-Ready.
-</div>
-
-<button
-class="gameButton"
-onclick="dropPlinko()">
-DROP BALL
-</button>
-
-`;
-
-}
-
-
-function buildPlinko(){
-
-const rows=
-Number(
-document.getElementById("plinkoRows")
-.value
-);
-
-const mode=
-document.getElementById("plinkoMode")
-.value;
-
-const multipliers=
-PLINKO_MULTIPLIERS[rows][mode];
-
-
-const pegBox=
-document.getElementById("plinkoPegs");
-
-pegBox.innerHTML="";
-
-
-for(let r=0;r<rows;r++){
-
-const row=
-document.createElement("div");
-
-row.className="plinkoRow";
-
-
-const count=
-Math.min(18,r+3);
-
-
-for(let i=0;i<count;i++){
-
-const peg=
-document.createElement("span");
-
-peg.className="plinkoPeg";
-
-row.appendChild(peg);
-
-}
-
-pegBox.appendChild(row);
-
-}
-
-
-const bins=
-document.getElementById("plinkoBins");
-
-bins.innerHTML="";
-
-
-multipliers.forEach(m=>{
-
-const bin=
-document.createElement("div");
-
-bin.className="plinkoBin";
-
-if(m>=10)
-bin.classList.add("high");
-
-bin.innerText=
-m+"x";
-
-bins.appendChild(bin);
-
-});
-
-
-document.getElementById("plinkoInfo")
-.innerText=
-`${rows} rows • ${multipliers.length} slots • ${mode} mode`;
-
-document.getElementById("plinkoStatus")
-.className="status";
-
-document.getElementById("plinkoStatus")
-.innerText=
-"Ready — drop the ball.";
-
-}
-
-
-/* =====================================================
-   REALISTIC PLINKO PHYSICS
-===================================================== */
-
-function dropPlinko(){
-
-const bet=
-Number(
-document.getElementById("plinkoBet")
-.value
-);
-
-if(!spend(bet))
-return;
-
-clearTimers();
-
-
-const rows=
-Number(
-document.getElementById("plinkoRows")
-.value
-);
-
-const mode=
-document.getElementById("plinkoMode")
-.value;
-
-const multipliers=
-PLINKO_MULTIPLIERS[rows][mode];
-
-const board=
-document.getElementById("plinkoBoard");
-
-const ball=
-document.getElementById("plinkoBall");
-
-
-const boardRect=
-board.getBoundingClientRect();
-
-const pegElements=
-[
-...document.querySelectorAll(".plinkoPeg")
-];
-
-
-ball.style.display="block";
-
-ball.style.left=
-board.clientWidth/2+"px";
-
-ball.style.top="8px";
-
-ball.style.transform=
-"translate(-50%,-50%) scale(1)";
-
-
-/*
-Build actual peg coordinates.
-*/
-
-const pegRows=[];
-
-let cursor=0;
-
-
-for(let r=0;r<rows;r++){
-
-const row=[];
-
-const count=
-Math.min(18,r+3);
-
-for(let i=0;i<count;i++){
-
-const peg=
-pegElements[cursor++];
-
-if(!peg)continue;
-
-const rect=
-peg.getBoundingClientRect();
-
-row.push({
-
-element:peg,
-
-x:
-rect.left+
-rect.width/2-
-boardRect.left,
-
-y:
-rect.top+
-rect.height/2-
-boardRect.top
-
-});
-
-}
-
-pegRows.push(row);
-
-}
-
-
-/*
-Physics state
-*/
-
-let x=
-board.clientWidth/2;
-
-let y=8;
-
-let vx=
-(Math.random()-.5)*80;
-
-let vy=0;
-
-const gravity=1050;
-
-const bounce=.67;
-
-const horizontalBounce=.78;
-
-const drag=.994;
-
-let last=
-performance.now();
-
-let finished=false;
-
-const hitCooldown=
-new WeakMap();
-
-
-function draw(){
-
-const speed=
-Math.sqrt(vx*vx+vy*vy);
-
-const stretch=
-Math.min(
-speed/1000,
-.20
-);
-
-
-ball.style.left=x+"px";
-ball.style.top=y+"px";
-
-
-if(vy>120){
-
-ball.style.transform=
-`translate(-50%,-50%)
-scaleX(${1-stretch})
-scaleY(${1+stretch})`;
-
-}else{
-
-ball.style.transform=
-`translate(-50%,-50%)
-scaleX(${1+stretch*.3})
-scaleY(${1-stretch*.3})`;
-
-}
-
-}
-
-
-function collide(){
-
-for(
-let r=0;
-r<pegRows.length;
-r++
-){
-
-for(
-const peg of pegRows[r]
-){
-
-const dx=x-peg.x;
-const dy=y-peg.y;
-
-const dist=
-Math.sqrt(dx*dx+dy*dy);
-
-const radius=14;
-
-
-if(dist<radius){
-
-const now=
-performance.now();
-
-const lastHit=
-hitCooldown.get(
-peg.element
-)||0;
-
-if(now-lastHit<80)
-continue;
-
-hitCooldown.set(
-peg.element,
-now
-);
-
-
-/*
-Normal
-*/
-
-const nx=
-dx/(dist||1);
-
-const ny=
-dy/(dist||1);
-
-
-/*
-Push ball out
-*/
-
-x=
-peg.x+
-nx*(radius+.5);
-
-y=
-peg.y+
-ny*(radius+.5);
-
-
-/*
-Reflect velocity
-*/
-
-const dot=
-vx*nx+
-vy*ny;
-
-vx=
-vx-
-2*dot*nx;
-
-vy=
-vy-
-2*dot*ny;
-
-
-/*
-Energy loss
-*/
-
-vx*=horizontalBounce;
-vy*=bounce;
-
-
-/*
-Natural random deflection
-*/
-
-vx+=
-(Math.random()-.5)*90;
-
-
-/*
-Force upward bounce
-*/
-
-if(vy>-220){
-
-vy=
--220-
-Math.random()*100;
-}
-
-
-/*
-Impact animation
-*/
-
-peg.element.classList.add("hit");
-
-setTimeout(()=>{
-
-peg.element.classList.remove("hit");
-
-},70);
-
-
-/*
-Slight camera-like impact
-*/
-
-board.style.transform=
-"scale(1.002)";
-
-setTimeout(()=>{
-
-board.style.transform=
-"scale(1)";
-
-},45);
-
-}
-
-}
-
-}
-
-}
-
-
-function finishPlinko(){
-
-if(finished)return;
-
-finished=true;
-
-
-/*
-Find final slot from horizontal position.
-*/
-
-const left=
-board.clientWidth*.015;
-
-const width=
-board.clientWidth*.97;
-
-let normalized=
-(x-left)/width;
-
-normalized=
-Math.max(
-0,
-Math.min(1,normalized)
-);
-
-
-let index=
-Math.floor(
-normalized*
-multipliers.length
-);
-
-index=
-Math.max(
-0,
-Math.min(
-multipliers.length-1,
-index
-)
-);
-
-
-const multiplier=
-multipliers[index];
-
-const amount=
-bet*multiplier;
-
-
-/*
-Highlight result slot
-*/
-
-const bins=
-document.querySelectorAll(
-".plinkoBin"
-);
-
-if(bins[index])
-bins[index].classList.add("land");
-
-
-payout(amount);
-
-
-const status=
-document.getElementById(
-"plinkoStatus"
-);
-
-status.className=
-"status "+
-(multiplier>=1?"win":"loss");
-
-status.innerText=
-`Landed on ${multiplier}x • +${amount.toFixed(2)} credits`;
-
-
-addHistory(
-"Plinko",
-multiplier>=1?"win":"loss",
-bet,
-amount,
-multiplier
-);
-
-
-setTimeout(()=>{
-
-ball.style.display="none";
-
-bins.forEach(
-b=>b.classList.remove("land")
-);
-
-},350);
-
-}
-
-
-/*
-Animation loop
-*/
-
-function physics(now){
-
-if(finished)return;
-
-const dt=
-Math.min(
-(now-last)/1000,
-.025
-);
-
-last=now;
-
-
-/*
-Gravity
-*/
-
-vy+=
-gravity*dt;
-
-
-/*
-Air resistance
-*/
-
-vx*=
-Math.pow(
-drag,
-dt*60
-);
-
-
-/*
-Movement
-*/
-
-x+=
-vx*dt;
-
-y+=
-vy*dt;
-
-
-/*
-Side walls
-*/
-
-const wall=9;
-
-if(x<wall){
-
-x=wall;
-
-vx=
-Math.abs(vx)*.72;
-
-}
-
-if(
-x>
-board.clientWidth-wall
-){
-
-x=
-board.clientWidth-wall;
-
-vx=
--Math.abs(vx)*.72;
-
-}
-
-
-/*
-Peg collision
-*/
-
-collide();
-
-
-/*
-Bottom area
-*/
-
-const bottom=
-board.clientHeight-61;
-
-
-if(y>=bottom){
-
-y=bottom;
-
-finishPlinko();
-
-return;
-
-}
-
-
-draw();
-
-
-const frame=
-requestAnimationFrame(
-physics
-);
-
-animationFrames.push(frame);
-
-}
-
-
-draw();
-
-const frame=
-requestAnimationFrame(
-physics
-);
-
-animationFrames.push(frame);
-
-}
-
-
-/* =====================================================
-   BLACKJACK
-===================================================== */
-
-const suits=[
-"♠","♥","♦","♣"
-];
-
-const ranks=[
-["A",11],
-["2",2],
-["3",3],
-["4",4],
-["5",5],
-["6",6],
-["7",7],
-["8",8],
-["9",9],
-["10",10],
-["J",10],
-["Q",10],
-["K",10]
-];
-
-
-function createDeck(){
-
-let deck=[];
-
-suits.forEach(s=>{
-
-ranks.forEach(r=>{
-
-deck.push({
-suit:s,
-rank:r[0],
-value:r[1]
-});
-
-});
-
-});
-
-return deck.sort(
-()=>Math.random()-.5
-);
-
-}
-
-
-function handValue(hand){
-
-let value=
-hand.reduce(
-(a,c)=>a+c.value,
-0
-);
-
-let aces=
-hand.filter(
-c=>c.rank==="A"
-).length;
-
-while(
-value>21 &&
-aces>0
-){
-
-value-=10;
-aces--;
-
-}
-
-return value;
-
-}
-
-
-function cardHTML(card){
-
-return`
-
-<div class="playCard ${
-card.suit==="♥"||
-card.suit==="♦"
-?"redCard":""
-}">
-
-${card.rank}${card.suit}
-
-</div>
-
-`;
-
-}
-
-
-function blackjackHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>LEVEL</label>
-
-<select>
-<option>Easy</option>
-<option selected>Medium</option>
-<option>Hard</option>
-</select>
-
-</div>
-
-<div class="control">
-<label>BET</label>
-
-<input
-id="bjBet"
-type="number"
-value="10"
-min="1">
-
-</div>
-
-</div>
-
-<div class="gamearea">
-
-<small>DEALER</small>
-
-<div id="dealerValue">
-?
-</div>
-
-<div
-id="dealerCards"
-class="cards">
-</div>
-
-<small>PLAYER</small>
-
-<div id="playerValue">
-0
-</div>
-
-<div
-id="playerCards"
-class="cards">
-</div>
-
-<div
-id="bjStatus"
-class="status">
-Deal to start.
-</div>
-
-<div class="actions">
-
-<button
-class="primary"
-onclick="dealBlackjack()">
-DEAL
-</button>
-
-<button
-id="hitButton"
-class="secondary"
-disabled
-onclick="hitBlackjack()">
-HIT
-</button>
-
-<button
-id="standButton"
-class="secondary"
-disabled
-onclick="standBlackjack()">
-STAND
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-function dealBlackjack(){
-
-const bet=
-Number(
-document.getElementById("bjBet")
-.value
-);
-
-if(!spend(bet))
-return;
-
-
-const deck=
-createDeck();
-
-gameState={
-bet,
-deck,
-player:[
-deck.pop(),
-deck.pop()
-],
-dealer:[
-deck.pop(),
-deck.pop()
-],
-active:true
-};
-
-
-renderBlackjack(false);
-
-document.getElementById("hitButton")
-.disabled=false;
-
-document.getElementById("standButton")
-.disabled=false;
-
-}
-
-
-function renderBlackjack(showDealer){
-
-document.getElementById("playerCards")
-.innerHTML=
-gameState.player
-.map(cardHTML)
-.join("");
-
-document.getElementById("dealerCards")
-.innerHTML=
-cardHTML(gameState.dealer[0])+
-(
-showDealer
-?gameState.dealer.slice(1)
-.map(cardHTML)
-.join("")
-:`<div class="playCard">?</div>`
-);
-
-document.getElementById("playerValue")
-.innerText=
-handValue(gameState.player);
-
-document.getElementById("dealerValue")
-.innerText=
-showDealer
-?handValue(gameState.dealer)
-:"?";
-
-}
-
-
-function hitBlackjack(){
-
-if(!gameState.active)return;
-
-gameState.player.push(
-gameState.deck.pop()
-);
-
-renderBlackjack(false);
-
-if(
-handValue(gameState.player)>21
-)
-finishBlackjack("loss");
-
-}
-
-
-function standBlackjack(){
-
-if(!gameState.active)return;
-
-while(
-handValue(gameState.dealer)<17
-){
-
-gameState.dealer.push(
-gameState.deck.pop()
-);
-
-}
-
-renderBlackjack(true);
-
-const p=
-handValue(gameState.player);
-
-const d=
-handValue(gameState.dealer);
-
-
-if(p>d||d>21)
-finishBlackjack("win");
-
-else if(p===d)
-finishBlackjack("push");
-
-else
-finishBlackjack("loss");
-
-}
-
-
-function finishBlackjack(result){
-
-gameState.active=false;
-
-document.getElementById("hitButton")
-.disabled=true;
-
-document.getElementById("standButton")
-.disabled=true;
-
-renderBlackjack(true);
-
-
-if(result==="win"){
-
-const amount=
-gameState.bet*2;
-
-payout(amount);
-
-document.getElementById("bjStatus")
-.className="status win";
-
-document.getElementById("bjStatus")
-.innerText=
-"YOU WIN • 2x";
-
-addHistory(
-"Blackjack",
-"win",
-gameState.bet,
-amount,
-2
-);
-
-}
-
-else if(result==="push"){
-
-payout(gameState.bet);
-
-document.getElementById("bjStatus")
-.innerText=
-"PUSH • Bet returned.";
-
-addHistory(
-"Blackjack",
-"win",
-gameState.bet,
-gameState.bet,
-1
-);
-
-}
-
-else{
-
-document.getElementById("bjStatus")
-.className="status loss";
-
-document.getElementById("bjStatus")
-.innerText=
-"Dealer wins.";
-
-addHistory(
-"Blackjack",
-"loss",
-gameState.bet,
-0,
-0
-);
-
-}
-
-}
-
-
-/* =====================================================
-   POKER
-===================================================== */
-
-function pokerHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>LEVEL</label>
-
-<select>
-<option>Easy</option>
-<option selected>Medium</option>
-<option>Hard</option>
-</select>
-
-</div>
-
-<div class="control">
-<label>BET</label>
-
-<input
-id="pokerBet"
-type="number"
-value="10"
-min="1">
-
-</div>
-
-</div>
-
-<div class="gamearea">
-
-<small>DEALER</small>
-
-<div
-id="dealerPoker"
-class="cards">
-</div>
-
-<small>YOU</small>
-
-<div
-id="playerPoker"
-class="cards">
-</div>
-
-<div
-id="pokerStatus"
-class="status">
-Deal five cards.
-</div>
-
-<button
-class="gameButton"
-onclick="dealPoker()">
-DEAL
-</button>
-
-</div>
-
-`;
-
-}
-
-
-function pokerScore(hand){
-
-const values=
-hand.map(c=>
-c.rank==="A"?14:
-c.rank==="K"?13:
-c.rank==="Q"?12:
-c.rank==="J"?11:
-Number(c.rank)
-).sort((a,b)=>b-a);
-
-const counts={};
-
-values.forEach(
-v=>counts[v]=(counts[v]||0)+1
-);
-
-const cv=
-Object.values(counts)
-.sort((a,b)=>b-a);
-
-const flush=
-hand.every(
-c=>c.suit===hand[0].suit
-);
-
-const unique=
-[...new Set(values)];
-
-const straight=
-unique.length===5&&
-(
-unique[0]-unique[4]===4||
-JSON.stringify(unique)==="[14,5,4,3,2]"
-);
-
-if(straight&&flush)return 8;
-if(cv[0]===4)return 7;
-if(cv[0]===3&&cv[1]===2)return 6;
-if(flush)return 5;
-if(straight)return 4;
-if(cv[0]===3)return 3;
-if(cv[0]===2&&cv[1]===2)return 2;
-if(cv[0]===2)return 1;
-
-return 0;
-
-}
-
-
-const pokerNames=[
-"High Card",
-"Pair",
-"Two Pair",
-"Three of a Kind",
-"Straight",
-"Flush",
-"Full House",
-"Four of a Kind",
-"Straight Flush"
-];
-
-
-function dealPoker(){
-
-const bet=
-Number(
-document.getElementById("pokerBet")
-.value
-);
-
-if(!spend(bet))
-return;
-
-
-const deck=
-createDeck();
-
-const player=
-deck.splice(0,5);
-
-const dealer=
-deck.splice(0,5);
-
-document.getElementById("playerPoker")
-.innerHTML=
-player.map(cardHTML).join("");
-
-document.getElementById("dealerPoker")
-.innerHTML=
-dealer.map(cardHTML).join("");
-
-
-const ps=
-pokerScore(player);
-
-const ds=
-pokerScore(dealer);
-
-
-if(ps>ds){
-
-const amount=bet*2;
-
-payout(amount);
-
-document.getElementById("pokerStatus")
-.className="status win";
-
-document.getElementById("pokerStatus")
-.innerText=
-`YOU WIN • ${pokerNames[ps]}`;
-
-addHistory(
-"Poker",
-"win",
-bet,
-amount,
-2
-);
-
-}
-
-else if(ps===ds){
-
-payout(bet);
-
-document.getElementById("pokerStatus")
-.innerText=
-`PUSH • ${pokerNames[ps]}`;
-
-addHistory(
-"Poker",
-"win",
-bet,
-bet,
-1
-);
-
-}
-
-else{
-
-document.getElementById("pokerStatus")
-.className="status loss";
-
-document.getElementById("pokerStatus")
-.innerText=
-`DEALER WINS • ${pokerNames[ds]}`;
-
-addHistory(
-"Poker",
-"loss",
-bet,
-0,
-0
-);
-
-}
-
-}
-
-
-/* =====================================================
-   ROULETTE
-===================================================== */
-
-function rouletteHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>BET</label>
-
-<input
-id="rouletteBet"
-type="number"
-value="10"
-min="1">
-
-</div>
-
-<div class="control">
-<label>BET ON</label>
-
-<select id="rouletteType">
-
-<option value="red">Red</option>
-<option value="black">Black</option>
-<option value="even">Even</option>
-<option value="odd">Odd</option>
-<option value="green">Green 0</option>
-
-</select>
-
-</div>
-
-<div class="control">
-<label>MODE</label>
-
-<select>
-<option>Classic</option>
-<option selected>Standard</option>
-</select>
-
-</div>
-
-</div>
-
-<div class="gamearea">
-
-<div
-id="rouletteWheel"
-class="roulette">
-
-<div
-id="rouletteNumber"
-class="rouletteCenter">
-?
-</div>
-
-</div>
-
-<div
-id="rouletteStatus"
-class="status">
-Spin the wheel.
-</div>
-
-<button
-class="gameButton"
-onclick="spinRoulette()">
-SPIN
-</button>
-
-</div>
-
-`;
-
-}
-
-
-function spinRoulette(){
-
-const bet=
-Number(
-document.getElementById("rouletteBet")
-.value
-);
-
-if(!spend(bet))
-return;
-
-
-const number=
-Math.floor(Math.random()*37);
-
-const color=
-number===0
-?"green"
-:number%2
-?"red"
-:"black";
-
-const type=
-document.getElementById("rouletteType")
-.value;
-
-const wheel=
-document.getElementById("rouletteWheel");
-
-wheel.style.transform=
-`rotate(${900+Math.random()*360}deg)`;
-
-
-const timer=
-setTimeout(()=>{
-
-document.getElementById("rouletteNumber")
-.innerText=number;
-
-
-const win=
-type===color||
-(
-type==="even"&&
-number!==0&&
-number%2===0
-)||
-(
-type==="odd"&&
-number%2===1
-);
-
-
-if(win){
-
-const multiplier=
-type==="green"
-?14
-:2;
-
-const amount=
-bet*multiplier;
-
-payout(amount);
-
-document.getElementById("rouletteStatus")
-.className="status win";
-
-document.getElementById("rouletteStatus")
-.innerText=
-`WIN • ${number} ${color} • +${amount.toFixed(2)}`;
-
-addHistory(
-"Roulette",
-"win",
-bet,
-amount,
-multiplier
-);
-
-}else{
-
-document.getElementById("rouletteStatus")
-.className="status loss";
-
-document.getElementById("rouletteStatus")
-.innerText=
-`LOSS • ${number} ${color}`;
-
-addHistory(
-"Roulette",
-"loss",
-bet,
-0,
-0
-);
-
-}
-
-},2350);
-
-timers.push(timer);
-
-}
-
-
-/* =====================================================
-   SLOTS
-===================================================== */
-
-function slotsHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>BET</label>
-
-<input
-id="slotBet"
-type="number"
-value="10"
-min="1">
-
-</div>
-
-<div class="control">
-<label>MODE</label>
-
-<select>
-<option>Easy</option>
-<option selected>Classic</option>
-<option>Hard</option>
-</select>
-
-</div>
-
-<div class="control">
-<label>REELS</label>
-
-<select disabled>
-<option>3</option>
-</select>
-
-</div>
-
-</div>
-
-<div class="reels">
-
-<div id="reel0" class="reel">
-❔
-</div>
-
-<div id="reel1" class="reel">
-❔
-</div>
-
-<div id="reel2" class="reel">
-❔
-</div>
-
-</div>
-
-<div
-id="slotStatus"
-class="status">
-Spin the reels.
-</div>
-
-<button
-class="gameButton"
-onclick="spinSlots()">
-SPIN
-</button>
-
-`;
-
-}
-
-
-function spinSlots(){
-
-const bet=
-Number(
-document.getElementById("slotBet")
-.value
-);
-
-if(!spend(bet))
-return;
-
-
-const symbols=[
-"🍒","🍋","🍊","🍉","💎","⭐","7️⃣"
-];
-
-document.querySelectorAll(".reel")
-.forEach(
-r=>r.classList.add("spinning")
-);
-
-
-let count=0;
-
-const timer=
-setInterval(()=>{
-
-for(let i=0;i<3;i++){
-
-document.getElementById(
-"reel"+i
-).innerText=
-symbols[
-Math.floor(
-Math.random()*symbols.length
-)
-];
-
-}
-
-count++;
-
-
-if(count>18){
-
-clearInterval(timer);
-
-document.querySelectorAll(".reel")
-.forEach(
-r=>r.classList.remove("spinning")
-);
-
-
-const a=
-document.getElementById("reel0")
-.innerText;
-
-const b=
-document.getElementById("reel1")
-.innerText;
-
-const c=
-document.getElementById("reel2")
-.innerText;
-
-
-let multiplier=0;
-
-if(a===b&&b===c){
-
-multiplier=
-a==="7️⃣"
-?10
-:7;
-
-}
-else if(
-a===b||
-b===c||
-a===c
-){
-
-multiplier=2;
-
-}
-
-
-if(multiplier){
-
-const amount=
-bet*multiplier;
-
-payout(amount);
-
-document.getElementById("slotStatus")
-.className="status win";
-
-document.getElementById("slotStatus")
-.innerText=
-`WIN • ${multiplier}x • +${amount.toFixed(2)}`;
-
-addHistory(
-"Slots",
-"win",
-bet,
-amount,
-multiplier
-);
-
-}else{
-
-document.getElementById("slotStatus")
-.className="status loss";
-
-document.getElementById("slotStatus")
-.innerText=
-"No match.";
-
-addHistory(
-"Slots",
-"loss",
-bet,
-0,
-0
-);
-
-}
-
-}
-
-},75);
-
-
-timers.push(timer);
-
-}
-
-
-/* =====================================================
-   TOWER
-===================================================== */
+/* =========================================================
+TOWER
+========================================================= */
 
 function towerHTML(){
 
@@ -5766,17 +4254,33 @@ return`
 <div class="toolbar">
 
 <div class="control">
+
+<label>BET</label>
+
+<input
+id="towerBet"
+type="number"
+value="10"
+min="1">
+
+</div>
+
+<div class="control">
+
 <label>LEVEL</label>
 
 <select id="towerLevel">
+
 <option>Easy</option>
 <option selected>Medium</option>
 <option>Hard</option>
+
 </select>
 
 </div>
 
 <div class="control">
+
 <label>ROWS</label>
 
 <select
@@ -5791,17 +4295,6 @@ onchange="buildTower()">
 
 </div>
 
-<div class="control">
-<label>BET</label>
-
-<input
-id="towerBet"
-type="number"
-value="10"
-min="1">
-
-</div>
-
 </div>
 
 <div
@@ -5812,7 +4305,7 @@ class="tower">
 <div
 id="towerStatus"
 class="status">
-Start and choose safe tiles.
+Start the tower.
 </div>
 
 <div class="actions">
@@ -5842,36 +4335,46 @@ function buildTower(){
 
 const rows=
 Number(
-document.getElementById("towerRows")
-.value
+document.getElementById(
+"towerRows"
+).value
 );
 
 const board=
-document.getElementById("towerBoard");
+document.getElementById(
+"towerBoard"
+);
 
 board.innerHTML="";
 
 
-for(let i=0;i<rows;i++){
+for(
+let i=0;
+i<rows;
+i++
+){
 
 const row=
 document.createElement("div");
 
-row.className="towerRow";
+row.className="trow";
 
+for(
+let j=0;
+j<2;
+j++
+){
 
-for(let j=0;j<2;j++){
-
-const cell=
+const b=
 document.createElement("button");
 
-cell.className="towerCell";
+b.className="tcell";
 
-cell.innerText="◆";
+b.innerText="◆";
 
-cell.disabled=true;
+b.disabled=true;
 
-row.appendChild(cell);
+row.appendChild(b);
 
 }
 
@@ -5886,38 +4389,38 @@ function startTower(){
 
 const bet=
 Number(
-document.getElementById("towerBet")
-.value
+document.getElementById(
+"towerBet"
+).value
 );
 
-if(!spend(bet))
-return;
-
+if(!spend(bet))return;
 
 buildTower();
 
-
 gameState={
 active:true,
-bet,
+bet:bet,
 row:0,
 cash:bet
 };
 
+document.getElementById(
+"towerCash"
+).disabled=false;
 
-document.getElementById("towerCash")
-.disabled=false;
-
-enableTowerRow();
+enableTower();
 
 }
 
 
-function enableTowerRow(){
+function enableTower(){
 
 const rows=
 [
-...document.querySelectorAll(".towerRow")
+...document.querySelectorAll(
+".trow"
+)
 ];
 
 const row=
@@ -5925,35 +4428,36 @@ rows[
 rows.length-1-gameState.row
 ];
 
-row.querySelectorAll("button")
-.forEach(button=>{
+row.querySelectorAll(
+"button"
+).forEach(
+b=>{
 
-button.disabled=false;
+b.disabled=false;
 
-button.onclick=
-()=>chooseTower(button);
+b.onclick=
+()=>towerPick(b);
 
-});
+}
+);
 
 }
 
 
-function chooseTower(button){
+function towerPick(button){
 
 if(!gameState.active)return;
 
 
 const level=
-document.getElementById("towerLevel")
-.value;
+document.getElementById(
+"towerLevel"
+).value;
 
 let chance=.58;
 
 if(level==="Easy")chance=.72;
 if(level==="Hard")chance=.42;
-
-
-button.disabled=true;
 
 
 if(Math.random()>chance){
@@ -5963,15 +4467,19 @@ button.classList.add("danger");
 
 gameState.active=false;
 
-document.getElementById("towerCash")
-.disabled=true;
+document.getElementById(
+"towerCash"
+).disabled=true;
 
-document.getElementById("towerStatus")
-.className="status loss";
+document.getElementById(
+"towerStatus"
+).className=
+"status loss";
 
-document.getElementById("towerStatus")
-.innerText=
-"Wrong tile • Tower collapsed.";
+document.getElementById(
+"towerStatus"
+).innerText=
+"Wrong tile.";
 
 addHistory(
 "Tower",
@@ -5995,39 +4503,37 @@ button.parentElement
 b=>b.disabled=true
 );
 
-
 gameState.row++;
 
-
-let base=
+const base=
 level==="Easy"
 ?1.15
 :level==="Hard"
 ?1.55
 :1.3;
 
-
-let multiplier=
+const multiplier=
 Math.pow(base,gameState.row);
-
 
 gameState.cash=
 gameState.bet*multiplier;
 
+document.getElementById(
+"towerStatus"
+).className=
+"status win";
 
-document.getElementById("towerStatus")
-.className="status win";
-
-document.getElementById("towerStatus")
-.innerText=
-`Safe • ${gameState.cash.toFixed(2)} credits`;
-
+document.getElementById(
+"towerStatus"
+).innerText=
+`Safe • ${multiplier.toFixed(2)}x`;
 
 if(
 gameState.row>=
 Number(
-document.getElementById("towerRows")
-.value
+document.getElementById(
+"towerRows"
+).value
 )
 ){
 
@@ -6037,8 +4543,7 @@ return;
 
 }
 
-
-enableTowerRow();
+enableTower();
 
 }
 
@@ -6051,15 +4556,19 @@ gameState.active=false;
 
 payout(gameState.cash);
 
-document.getElementById("towerCash")
-.disabled=true;
+document.getElementById(
+"towerCash"
+).disabled=true;
 
-document.getElementById("towerStatus")
-.className="status win";
-
-document.getElementById("towerStatus")
-.innerText=
+document.getElementById(
+"towerStatus"
+).innerText=
 `Cashed out • +${gameState.cash.toFixed(2)}`;
+
+document.getElementById(
+"towerStatus"
+).className=
+"status win";
 
 addHistory(
 "Tower",
@@ -6072,9 +4581,823 @@ gameState.cash/gameState.bet
 }
 
 
-/* =====================================================
-   KENO
-===================================================== */
+/* =========================================================
+BLACKJACK
+========================================================= */
+
+const suits=[
+"♠","♥","♦","♣"
+];
+
+const ranks=[
+["A",11],
+["2",2],
+["3",3],
+["4",4],
+["5",5],
+["6",6],
+["7",7],
+["8",8],
+["9",9],
+["10",10],
+["J",10],
+["Q",10],
+["K",10]
+];
+
+
+function deck(){
+
+let d=[];
+
+suits.forEach(
+s=>{
+ranks.forEach(
+r=>{
+d.push({
+suit:s,
+rank:r[0],
+value:r[1]
+});
+}
+);
+}
+);
+
+return d.sort(
+()=>Math.random()-.5
+);
+
+}
+
+
+function value(hand){
+
+let v=
+hand.reduce(
+(a,c)=>a+c.value,
+0
+);
+
+let aces=
+hand.filter(
+c=>c.rank==="A"
+).length;
+
+while(v>21&&aces){
+
+v-=10;
+aces--;
+
+}
+
+return v;
+
+}
+
+
+function card(c){
+
+return`
+
+<div
+class="playing ${
+c.suit==="♥"||
+c.suit==="♦"
+?"redcard":""
+}">
+
+${c.rank}${c.suit}
+
+</div>
+
+`;
+
+}
+
+
+function blackjackHTML(){
+
+return`
+
+<div class="toolbar">
+
+<div class="control">
+
+<label>BET</label>
+
+<input
+id="bjBet"
+type="number"
+value="10"
+min="1">
+
+</div>
+
+<div class="control">
+
+<label>MODE</label>
+
+<select>
+<option>Easy</option>
+<option selected>Classic</option>
+<option>Hard</option>
+</select>
+
+</div>
+
+</div>
+
+<div class="gamearea">
+
+<small>DEALER</small>
+
+<div
+id="dealerCards"
+class="cards">
+</div>
+
+<div
+id="dealerValue">
+?
+</div>
+
+<small>PLAYER</small>
+
+<div
+id="playerCards"
+class="cards">
+</div>
+
+<div
+id="playerValue">
+0
+</div>
+
+<div
+id="bjStatus"
+class="status">
+Deal to start.
+</div>
+
+<div class="actions">
+
+<button
+class="primary"
+onclick="dealBJ()">
+DEAL
+</button>
+
+<button
+id="bjHit"
+class="secondary"
+disabled
+onclick="hitBJ()">
+HIT
+</button>
+
+<button
+id="bjStand"
+class="secondary"
+disabled
+onclick="standBJ()">
+STAND
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function dealBJ(){
+
+const bet=
+Number(
+document.getElementById(
+"bjBet"
+).value
+);
+
+if(!spend(bet))return;
+
+const d=deck();
+
+gameState={
+bet:bet,
+deck:d,
+player:[d.pop(),d.pop()],
+dealer:[d.pop(),d.pop()],
+active:true
+};
+
+renderBJ(false);
+
+document.getElementById(
+"bjHit"
+).disabled=false;
+
+document.getElementById(
+"bjStand"
+).disabled=false;
+
+}
+
+
+function renderBJ(show){
+
+document.getElementById(
+"playerCards"
+).innerHTML=
+gameState.player.map(card).join("");
+
+document.getElementById(
+"dealerCards"
+).innerHTML=
+card(gameState.dealer[0])+
+(
+show
+?gameState.dealer.slice(1).map(card).join("")
+:`<div class="playing">?</div>`
+);
+
+document.getElementById(
+"playerValue"
+).innerText=
+value(gameState.player);
+
+document.getElementById(
+"dealerValue"
+).innerText=
+show
+?value(gameState.dealer)
+:"?";
+
+}
+
+
+function hitBJ(){
+
+if(!gameState.active)return;
+
+gameState.player.push(
+gameState.deck.pop()
+);
+
+renderBJ(false);
+
+if(value(gameState.player)>21)
+finishBJ("loss");
+
+}
+
+
+function standBJ(){
+
+if(!gameState.active)return;
+
+while(
+value(gameState.dealer)<17
+){
+
+gameState.dealer.push(
+gameState.deck.pop()
+);
+
+}
+
+renderBJ(true);
+
+const p=value(
+gameState.player
+);
+
+const d=value(
+gameState.dealer
+);
+
+if(p>d||d>21)
+finishBJ("win");
+else if(p===d)
+finishBJ("push");
+else
+finishBJ("loss");
+
+}
+
+
+function finishBJ(result){
+
+gameState.active=false;
+
+document.getElementById(
+"bjHit"
+).disabled=true;
+
+document.getElementById(
+"bjStand"
+).disabled=true;
+
+renderBJ(true);
+
+if(result==="win"){
+
+const amount=
+gameState.bet*2;
+
+payout(amount);
+
+document.getElementById(
+"bjStatus"
+).className=
+"status win";
+
+document.getElementById(
+"bjStatus"
+).innerText=
+"YOU WIN • 2x";
+
+addHistory(
+"Blackjack",
+"win",
+gameState.bet,
+amount,
+2
+);
+
+}
+else if(result==="push"){
+
+payout(gameState.bet);
+
+document.getElementById(
+"bjStatus"
+).innerText=
+"PUSH • Bet returned.";
+
+addHistory(
+"Blackjack",
+"win",
+gameState.bet,
+gameState.bet,
+1
+);
+
+}
+else{
+
+document.getElementById(
+"bjStatus"
+).className=
+"status loss";
+
+document.getElementById(
+"bjStatus"
+).innerText=
+"DEALER WINS";
+
+addHistory(
+"Blackjack",
+"loss",
+gameState.bet,
+0,
+0
+);
+
+}
+
+}
+
+
+/* =========================================================
+ROULETTE
+========================================================= */
+
+function rouletteHTML(){
+
+return`
+
+<div class="toolbar">
+
+<div class="control">
+
+<label>BET</label>
+
+<input
+id="rouletteBet"
+type="number"
+value="10"
+min="1">
+
+</div>
+
+<div class="control">
+
+<label>BET</label>
+
+<select id="rouletteType">
+
+<option value="red">Red</option>
+<option value="black">Black</option>
+<option value="even">Even</option>
+<option value="odd">Odd</option>
+<option value="green">Green</option>
+
+</select>
+
+</div>
+
+<div class="control">
+
+<label>MODE</label>
+
+<select>
+<option>Classic</option>
+</select>
+
+</div>
+
+</div>
+
+<div class="gamearea">
+
+<div
+id="wheel"
+class="wheel">
+
+<div
+id="wheelCenter"
+class="wheelcenter">
+?
+</div>
+
+</div>
+
+<div
+id="rouletteStatus"
+class="status">
+Spin the wheel.
+</div>
+
+<button
+class="gameBtn"
+onclick="spinRoulette()">
+SPIN
+</button>
+
+</div>
+
+`;
+
+}
+
+
+function spinRoulette(){
+
+const bet=
+Number(
+document.getElementById(
+"rouletteBet"
+).value
+);
+
+if(!spend(bet))return;
+
+const number=
+Math.floor(
+Math.random()*37
+);
+
+const color=
+number===0
+?"green"
+:number%2
+?"red"
+:"black";
+
+const type=
+document.getElementById(
+"rouletteType"
+).value;
+
+document.getElementById(
+"wheel"
+).style.transform=
+`rotate(${900+Math.random()*400}deg)`;
+
+
+const timer=
+setTimeout(
+()=>{
+
+document.getElementById(
+"wheelCenter"
+).innerText=number;
+
+const win=
+type===color||
+(
+type==="even"&&
+number!==0&&
+number%2===0
+)||
+(
+type==="odd"&&
+number%2===1
+);
+
+
+if(win){
+
+const mult=
+type==="green"
+?14
+:2;
+
+const amount=
+bet*mult;
+
+payout(amount);
+
+document.getElementById(
+"rouletteStatus"
+).className=
+"status win";
+
+document.getElementById(
+"rouletteStatus"
+).innerText=
+`WIN • ${number} ${color} • +${amount.toFixed(2)}`;
+
+addHistory(
+"Roulette",
+"win",
+bet,
+amount,
+mult
+);
+
+}else{
+
+document.getElementById(
+"rouletteStatus"
+).className=
+"status loss";
+
+document.getElementById(
+"rouletteStatus"
+).innerText=
+`LOSS • ${number} ${color}`;
+
+addHistory(
+"Roulette",
+"loss",
+bet,
+0,
+0
+);
+
+}
+
+},
+2200
+);
+
+timers.push(timer);
+
+}
+
+
+/* =========================================================
+SLOTS
+========================================================= */
+
+function slotsHTML(){
+
+return`
+
+<div class="toolbar">
+
+<div class="control">
+
+<label>BET</label>
+
+<input
+id="slotBet"
+type="number"
+value="10"
+min="1">
+
+</div>
+
+<div class="control">
+
+<label>MODE</label>
+
+<select>
+<option>Classic</option>
+</select>
+
+</div>
+
+<div class="control">
+
+<label>REELS</label>
+
+<select disabled>
+<option>3</option>
+</select>
+
+</div>
+
+</div>
+
+<div class="reels">
+
+<div
+id="r0"
+class="reel">
+❔
+</div>
+
+<div
+id="r1"
+class="reel">
+❔
+</div>
+
+<div
+id="r2"
+class="reel">
+❔
+</div>
+
+</div>
+
+<div
+id="slotStatus"
+class="status">
+Spin the reels.
+</div>
+
+<button
+class="gameBtn"
+onclick="spinSlots()">
+SPIN
+</button>
+
+`;
+
+}
+
+
+function spinSlots(){
+
+const bet=
+Number(
+document.getElementById(
+"slotBet"
+).value
+);
+
+if(!spend(bet))return;
+
+const symbols=[
+"🍒",
+"🍋",
+"🍊",
+"🍉",
+"💎",
+"⭐",
+"7️⃣"
+];
+
+document.querySelectorAll(
+".reel"
+).forEach(
+r=>r.classList.add("spin")
+);
+
+let count=0;
+
+const timer=
+setInterval(
+()=>{
+
+for(
+let i=0;
+i<3;
+i++
+){
+
+document.getElementById(
+"r"+i
+).innerText=
+symbols[
+Math.floor(
+Math.random()*symbols.length
+)
+];
+
+}
+
+count++;
+
+if(count>20){
+
+clearInterval(timer);
+
+document.querySelectorAll(
+".reel"
+).forEach(
+r=>r.classList.remove("spin")
+);
+
+const a=
+document.getElementById("r0")
+.innerText;
+
+const b=
+document.getElementById("r1")
+.innerText;
+
+const c=
+document.getElementById("r2")
+.innerText;
+
+let mult=0;
+
+if(a===b&&b===c)
+mult=a==="7️⃣"?10:7;
+
+else if(a===b||b===c||a===c)
+mult=2;
+
+
+if(mult){
+
+const amount=
+bet*mult;
+
+payout(amount);
+
+document.getElementById(
+"slotStatus"
+).className=
+"status win";
+
+document.getElementById(
+"slotStatus"
+).innerText=
+`WIN • ${mult}x • +${amount.toFixed(2)}`;
+
+addHistory(
+"Neon Slots",
+"win",
+bet,
+amount,
+mult
+);
+
+}else{
+
+document.getElementById(
+"slotStatus"
+).className=
+"status loss";
+
+document.getElementById(
+"slotStatus"
+).innerText=
+"NO MATCH";
+
+addHistory(
+"Neon Slots",
+"loss",
+bet,
+0,
+0
+);
+
+}
+
+}
+
+},
+70
+);
+
+timers.push(timer);
+
+}
+
+
+/* =========================================================
+KENO
+========================================================= */
 
 function kenoHTML(){
 
@@ -6083,18 +5406,22 @@ return`
 <div class="toolbar">
 
 <div class="control">
-<label>PICK</label>
+
+<label>NUMBERS</label>
 
 <select id="kenoPick">
+
 <option>4</option>
 <option selected>6</option>
 <option>8</option>
 <option>10</option>
+
 </select>
 
 </div>
 
 <div class="control">
+
 <label>BET</label>
 
 <input
@@ -6106,6 +5433,7 @@ min="1">
 </div>
 
 <div class="control">
+
 <label>DRAW</label>
 
 <select disabled>
@@ -6128,7 +5456,7 @@ Pick your numbers.
 </div>
 
 <button
-class="gameButton"
+class="gameBtn"
 onclick="drawKeno()">
 DRAW
 </button>
@@ -6138,72 +5466,70 @@ DRAW
 }
 
 
-function initKeno(){
+function buildKeno(){
 
 const grid=
-document.getElementById("kenoGrid");
+document.getElementById(
+"kenoGrid"
+);
 
 grid.innerHTML="";
 
 gameState.selected=[];
 
+for(
+let i=1;
+i<=40;
+i++
+){
 
-for(let i=1;i<=40;i++){
+const b=
+document.createElement(
+"button"
+);
 
-const button=
-document.createElement("button");
+b.className="kn";
 
-button.innerText=i;
+b.innerText=i;
 
-button.onclick=
-()=>toggleKeno(button,i);
-
-grid.appendChild(button);
-
-}
-
-}
-
-
-function toggleKeno(button,number){
+b.onclick=
+()=>{
 
 const max=
 Number(
-document.getElementById("kenoPick")
-.value
+document.getElementById(
+"kenoPick"
+).value
 );
 
-
-if(gameState.selected.includes(number)){
+if(
+gameState.selected.includes(i)
+){
 
 gameState.selected=
 gameState.selected.filter(
-n=>n!==number
+n=>n!==i
 );
 
-button.classList.remove("selected");
+b.classList.remove("sel");
 
 return;
 
 }
-
 
 if(
 gameState.selected.length>=max
-){
+)return;
 
-document.getElementById("kenoStatus")
-.innerText=
-`Select maximum ${max}.`;
+gameState.selected.push(i);
 
-return;
+b.classList.add("sel");
+
+};
+
+grid.appendChild(b);
 
 }
-
-
-gameState.selected.push(number);
-
-button.classList.add("selected");
 
 }
 
@@ -6212,16 +5538,17 @@ function drawKeno(){
 
 const max=
 Number(
-document.getElementById("kenoPick")
-.value
+document.getElementById(
+"kenoPick"
+).value
 );
 
 const bet=
 Number(
-document.getElementById("kenoBet")
-.value
+document.getElementById(
+"kenoBet"
+).value
 );
-
 
 if(
 gameState.selected.length!==max
@@ -6235,15 +5562,13 @@ return;
 
 }
 
-
-if(!spend(bet))
-return;
-
+if(!spend(bet))return;
 
 let drawn=[];
 
-
-while(drawn.length<20){
+while(
+drawn.length<20
+){
 
 const n=
 1+
@@ -6256,73 +5581,73 @@ drawn.push(n);
 
 }
 
-
 const hits=
 gameState.selected.filter(
 n=>drawn.includes(n)
 ).length;
 
 
-document.querySelectorAll(".keno button")
-.forEach(button=>{
-
+document.querySelectorAll(
+".kn"
+).forEach(
+b=>{
 if(
 drawn.includes(
-Number(button.innerText)
+Number(b.innerText)
 )
-){
-
-button.classList.add("hit");
-
+)
+b.classList.add("hit");
 }
+);
 
-});
 
-
-const payouts={
-
+const table={
 4:[0,0,1.5,5,25],
 6:[0,0,0,1.2,3,10,60],
 8:[0,0,0,0,1.5,4,12,80,300],
 10:[0,0,0,0,0,1.5,4,10,60,250,800]
-
 };
 
+const mult=
+table[max][hits]||0;
 
-const multiplier=
-payouts[max][hits]||0;
 
-
-if(multiplier){
+if(mult){
 
 const amount=
-bet*multiplier;
+bet*mult;
 
 payout(amount);
 
-document.getElementById("kenoStatus")
-.className="status win";
+document.getElementById(
+"kenoStatus"
+).className=
+"status win";
 
-document.getElementById("kenoStatus")
-.innerText=
-`${hits}/${max} hits • ${multiplier}x • +${amount.toFixed(2)}`;
+document.getElementById(
+"kenoStatus"
+).innerText=
+`${hits}/${max} • ${mult}x • +${amount.toFixed(2)}`;
 
 addHistory(
 "Keno",
 "win",
 bet,
 amount,
-multiplier
+mult
 );
 
 }else{
 
-document.getElementById("kenoStatus")
-.className="status loss";
+document.getElementById(
+"kenoStatus"
+).className=
+"status loss";
 
-document.getElementById("kenoStatus")
-.innerText=
-`${hits}/${max} hits • no win`;
+document.getElementById(
+"kenoStatus"
+).innerText=
+`${hits}/${max} • LOSS`;
 
 addHistory(
 "Keno",
@@ -6337,31 +5662,28 @@ bet,
 }
 
 
-/* =====================================================
-   COIN FLIP
-===================================================== */
+/* =========================================================
+COIN
+========================================================= */
 
 function coinHTML(){
 
 return`
 
-<div class="coinArea">
+<div class="gamearea" style="text-align:center">
 
 <div
 id="coinIcon"
-class="bigGameIcon">
+style="
+font-size:60px;
+margin:10px">
 🪙
-</div>
-
-<div
-id="coinStatus"
-class="status">
-Choose heads or tails.
 </div>
 
 <div class="toolbar">
 
 <div class="control">
+
 <label>BET</label>
 
 <input
@@ -6373,21 +5695,30 @@ min="1">
 </div>
 
 <div class="control">
+
 <label>CHOICE</label>
 
 <select id="coinChoice">
+
 <option>Heads</option>
 <option>Tails</option>
+
 </select>
 
 </div>
 
 </div>
 
+<div
+id="coinStatus"
+class="status">
+Choose heads or tails.
+</div>
+
 <button
-class="gameButton"
+class="gameBtn"
 onclick="flipCoin()">
-FLIP
+FLIP COIN
 </button>
 
 </div>
@@ -6401,17 +5732,17 @@ function flipCoin(){
 
 const bet=
 Number(
-document.getElementById("coinBet")
-.value
+document.getElementById(
+"coinBet"
+).value
 );
 
-if(!spend(bet))
-return;
-
+if(!spend(bet))return;
 
 const choice=
-document.getElementById("coinChoice")
-.value;
+document.getElementById(
+"coinChoice"
+).value;
 
 const result=
 Math.random()<.5
@@ -6420,9 +5751,9 @@ Math.random()<.5
 
 
 const icon=
-document.getElementById("coinIcon");
-
-icon.innerText="🪙";
+document.getElementById(
+"coinIcon"
+);
 
 icon.animate(
 [
@@ -6436,25 +5767,29 @@ duration:700
 );
 
 
-setTimeout(()=>{
+setTimeout(
+()=>{
 
 icon.innerText=
 result==="Heads"
 ?"🙂"
 :"🪙";
 
-
 if(result===choice){
 
-const amount=bet*1.9;
+const amount=
+bet*1.9;
 
 payout(amount);
 
-document.getElementById("coinStatus")
-.className="status win";
+document.getElementById(
+"coinStatus"
+).className=
+"status win";
 
-document.getElementById("coinStatus")
-.innerText=
+document.getElementById(
+"coinStatus"
+).innerText=
 `${result} • WIN • +${amount.toFixed(2)}`;
 
 addHistory(
@@ -6467,11 +5802,14 @@ amount,
 
 }else{
 
-document.getElementById("coinStatus")
-.className="status loss";
+document.getElementById(
+"coinStatus"
+).className=
+"status loss";
 
-document.getElementById("coinStatus")
-.innerText=
+document.getElementById(
+"coinStatus"
+).innerText=
 `${result} • LOSS`;
 
 addHistory(
@@ -6484,40 +5822,40 @@ bet,
 
 }
 
-},700);
+},
+700
+);
 
 }
 
 
-/* =====================================================
-   HIGHER / LOWER
-===================================================== */
+/* =========================================================
+HIGHER / LOWER
+========================================================= */
 
-function higherLowerHTML(){
+function higherHTML(){
 
 return`
 
-<div class="higherArea">
+<div class="gamearea" style="text-align:center">
 
 <div
-id="hlCurrent"
-class="resultBig">
+id="higherNumber"
+style="
+font-size:55px;
+font-weight:950;
+color:var(--green)">
 50
-</div>
-
-<div
-id="hlNext"
-style="font-size:14px;color:#71897c">
-Next number?
 </div>
 
 <div class="toolbar">
 
 <div class="control">
+
 <label>BET</label>
 
 <input
-id="hlBet"
+id="higherBet"
 type="number"
 value="10"
 min="1">
@@ -6525,9 +5863,10 @@ min="1">
 </div>
 
 <div class="control">
+
 <label>LEVEL</label>
 
-<select id="hlLevel">
+<select>
 <option>Easy</option>
 <option selected>Medium</option>
 <option>Hard</option>
@@ -6537,26 +5876,26 @@ min="1">
 
 </div>
 
-<div class="choiceRow">
+<div
+id="higherStatus"
+class="status">
+Predict the next number.
+</div>
+
+<div class="actions">
 
 <button
 class="primary"
-onclick="guessHigher('higher')">
+onclick="higherGuess('higher')">
 HIGHER
 </button>
 
 <button
 class="secondary"
-onclick="guessHigher('lower')">
+onclick="higherGuess('lower')">
 LOWER
 </button>
 
-</div>
-
-<div
-id="hlStatus"
-class="status">
-Predict the next number.
 </div>
 
 </div>
@@ -6566,45 +5905,47 @@ Predict the next number.
 }
 
 
-function initHigherLower(){
+function initHigher(){
 
-gameState.hl=
+gameState.higher=
 Math.floor(
-20+Math.random()*60
+20+
+Math.random()*60
 );
 
-document.getElementById("hlCurrent")
-.innerText=
-gameState.hl;
+document.getElementById(
+"higherNumber"
+).innerText=
+gameState.higher;
 
 }
 
 
-function guessHigher(choice){
+function higherGuess(choice){
 
 const bet=
 Number(
-document.getElementById("hlBet")
-.value
+document.getElementById(
+"higherBet"
+).value
 );
 
-if(!spend(bet))
-return;
-
+if(!spend(bet))return;
 
 const old=
-gameState.hl;
+gameState.higher;
 
 const next=
 Math.floor(
-1+Math.random()*100
+1+
+Math.random()*100
 );
 
-gameState.hl=next;
+gameState.higher=next;
 
-document.getElementById("hlCurrent")
-.innerText=next;
-
+document.getElementById(
+"higherNumber"
+).innerText=next;
 
 const win=
 choice==="higher"
@@ -6614,19 +5955,23 @@ choice==="higher"
 
 if(win){
 
-const amount=bet*1.8;
+const amount=
+bet*1.8;
 
 payout(amount);
 
-document.getElementById("hlStatus")
-.className="status win";
+document.getElementById(
+"higherStatus"
+).className=
+"status win";
 
-document.getElementById("hlStatus")
-.innerText=
-`${old} → ${next} • WIN • +${amount.toFixed(2)}`;
+document.getElementById(
+"higherStatus"
+).innerText=
+`${old} → ${next} • WIN`;
 
 addHistory(
-"Higher / Lower",
+"Higher Lower",
 "win",
 bet,
 amount,
@@ -6635,15 +5980,18 @@ amount,
 
 }else{
 
-document.getElementById("hlStatus")
-.className="status loss";
+document.getElementById(
+"higherStatus"
+).className=
+"status loss";
 
-document.getElementById("hlStatus")
-.innerText=
+document.getElementById(
+"higherStatus"
+).innerText=
 `${old} → ${next} • LOSS`;
 
 addHistory(
-"Higher / Lower",
+"Higher Lower",
 "loss",
 bet,
 0,
@@ -6655,25 +6003,28 @@ bet,
 }
 
 
-/* =====================================================
-   COLOR
-===================================================== */
+/* =========================================================
+COLOR
+========================================================= */
 
 function colorHTML(){
 
 return`
 
-<div class="colorArea">
+<div class="gamearea" style="text-align:center">
 
 <div
 id="colorIcon"
-class="bigGameIcon">
+style="
+font-size:60px;
+margin:10px">
 🎨
 </div>
 
 <div class="toolbar">
 
 <div class="control">
+
 <label>BET</label>
 
 <input
@@ -6685,12 +6036,15 @@ min="1">
 </div>
 
 <div class="control">
+
 <label>COLOR</label>
 
 <select id="colorChoice">
+
 <option>Green</option>
 <option>Blue</option>
 <option>Pink</option>
+
 </select>
 
 </div>
@@ -6704,7 +6058,7 @@ Choose a color.
 </div>
 
 <button
-class="gameButton"
+class="gameBtn"
 onclick="pickColor()">
 DRAW COLOR
 </button>
@@ -6716,41 +6070,34 @@ DRAW COLOR
 }
 
 
-function initColor(){
+function pickColor(){
 
-gameState.colors=[
+const bet=
+Number(
+document.getElementById(
+"colorBet"
+).value
+);
+
+if(!spend(bet))return;
+
+const choice=
+document.getElementById(
+"colorChoice"
+).value;
+
+const colors=[
 "Green",
 "Blue",
 "Pink"
 ];
 
-}
-
-
-function pickColor(){
-
-const bet=
-Number(
-document.getElementById("colorBet")
-.value
-);
-
-if(!spend(bet))
-return;
-
-
-const choice=
-document.getElementById("colorChoice")
-.value;
-
 const result=
-gameState.colors[
+colors[
 Math.floor(
-Math.random()*
-gameState.colors.length
+Math.random()*3
 )
 ];
-
 
 const icons={
 Green:"🟢",
@@ -6758,22 +6105,27 @@ Blue:"🔵",
 Pink:"🩷"
 };
 
-document.getElementById("colorIcon")
-.innerText=
+document.getElementById(
+"colorIcon"
+).innerText=
 icons[result];
 
 
 if(result===choice){
 
-const amount=bet*2.7;
+const amount=
+bet*2.7;
 
 payout(amount);
 
-document.getElementById("colorStatus")
-.className="status win";
+document.getElementById(
+"colorStatus"
+).className=
+"status win";
 
-document.getElementById("colorStatus")
-.innerText=
+document.getElementById(
+"colorStatus"
+).innerText=
 `${result} • WIN • +${amount.toFixed(2)}`;
 
 addHistory(
@@ -6786,11 +6138,14 @@ amount,
 
 }else{
 
-document.getElementById("colorStatus")
-.className="status loss";
+document.getElementById(
+"colorStatus"
+).className=
+"status loss";
 
-document.getElementById("colorStatus")
-.innerText=
+document.getElementById(
+"colorStatus"
+).innerText=
 `${result} • LOSS`;
 
 addHistory(
@@ -6806,58 +6161,283 @@ bet,
 }
 
 
-/* =====================================================
-   STARTUP
-===================================================== */
+/* =========================================================
+HISTORY / LEDGER
+========================================================= */
 
-function restoreSession(){
+function openHistory(){
 
-const savedLocal=
-localStorage.getItem(SESSION_KEY);
+if(!currentUser)return;
 
-const savedSession=
-sessionStorage.getItem(SESSION_KEY);
+document.getElementById(
+"historyModal"
+).style.display="flex";
 
-const users=
-getUsers();
+buildLedgerTabs();
 
-const username=
-savedLocal||savedSession;
+showHistory("all");
+
+}
+
+
+function buildLedgerTabs(){
+
+const tabs=
+document.getElementById(
+"ledgerTabs"
+);
+
+const names=[
+"all",
+...games.map(
+g=>g.name
+)
+];
+
+tabs.innerHTML=
+names.map(
+name=>`
+
+<button
+class="${historyFilter===name?"active":""}"
+onclick="showHistory('${name}')">
+
+${name==="all"?"ALL":name}
+
+</button>
+
+`
+).join("");
+
+}
+
+
+function showHistory(filter){
+
+historyFilter=filter;
+
+let data=
+getHistory();
 
 
 if(
-username &&
-users[username]
+filter!=="all"&&
+filter!=="win"&&
+filter!=="loss"
 ){
 
-currentUser=username;
-
-balanceAmount=
-Number(
-users[username].balance||1000
+data=data.filter(
+x=>x.game===filter
 );
 
-document.getElementById("auth")
-.style.display="none";
-
-document.getElementById("account")
-.innerText=
-"👤 "+currentUser;
-
-}
-
 }
 
 
-document
-.querySelectorAll(".overlay")
-.forEach(overlay=>{
+if(filter==="win"){
+
+data=data.filter(
+x=>x.result==="win"
+);
+
+}
+
+
+if(filter==="loss"){
+
+data=data.filter(
+x=>x.result==="loss"
+);
+
+}
+
+
+const total=
+data.reduce(
+(a,x)=>a+Number(x.bet||0),
+0
+);
+
+const wins=
+data.filter(
+x=>x.result==="win"
+).length;
+
+const net=
+data.reduce(
+(a,x)=>
+a+
+(
+Number(x.payout||0)-
+Number(x.bet||0)
+),
+0
+);
+
+
+document.getElementById(
+"sumBet"
+).innerText=
+total.toFixed(2);
+
+document.getElementById(
+"sumWins"
+).innerText=wins;
+
+document.getElementById(
+"sumNet"
+).innerText=
+(net>=0?"+":"")+
+net.toFixed(2);
+
+document.getElementById(
+"sumNet"
+).style.color=
+net>=0
+?"var(--green)"
+:"var(--red)";
+
+
+const list=
+document.getElementById(
+"historyList"
+);
+
+
+if(!data.length){
+
+list.innerHTML=
+`<div class="empty">
+No bets recorded yet.
+</div>`;
+
+buildLedgerTabs();
+
+return;
+
+}
+
+
+list.innerHTML=
+data.map(
+x=>{
+
+const win=
+x.result==="win";
+
+return`
+
+<div class="historyRow">
+
+<div class="historyTime">
+${x.time}
+</div>
+
+<div class="historyGame">
+
+<b>${x.game}</b>
+
+<div
+style="color:#71887c">
+
+Bet ${Number(x.bet).toFixed(2)}
+${x.multiplier?
+" • "+Number(x.multiplier).toFixed(2)+"x":
+""}
+
+</div>
+
+</div>
+
+<div
+class="${win?
+"historyWin":
+"historyLoss"}">
+
+${win?"WIN":"LOSS"}
+
+</div>
+
+<div
+class="${win?
+"historyWin":
+"historyLoss"}">
+
+${win
+?"+"
+:"-"
+}${Number(
+win?x.payout:x.bet
+).toFixed(2)}
+
+</div>
+
+</div>
+
+`;
+
+}
+).join("");
+
+buildLedgerTabs();
+
+}
+
+
+/* =========================================================
+PROFILE
+========================================================= */
+
+function openProfile(){
+
+if(!currentUser)return;
+
+document.getElementById(
+"profileName"
+).innerText=currentUser;
+
+document.getElementById(
+"profileBalance"
+).innerText=
+Math.floor(
+balanceAmount
+).toLocaleString();
+
+document.getElementById(
+"profileModal"
+).style.display="flex";
+
+}
+
+
+/* =========================================================
+GENERIC MODAL
+========================================================= */
+
+function closeModal(id){
+
+document.getElementById(
+id
+).style.display="none";
+
+clearTimers();
+
+}
+
+
+/* =========================================================
+STARTUP
+========================================================= */
+
+document.querySelectorAll(
+".overlay"
+).forEach(
+overlay=>{
 
 overlay.addEventListener(
 "click",
-event=>{
+e=>{
 
-if(event.target===overlay){
+if(e.target===overlay){
 
 overlay.style.display="none";
 
@@ -6865,12 +6445,27 @@ clearTimers();
 
 }
 
-});
+}
+);
 
-});
+}
+);
 
 
 restoreSession();
+
+if(currentUser){
+
+document.getElementById(
+"account"
+).innerText=
+"👤 "+currentUser;
+
+document.getElementById(
+"auth"
+).style.display="none";
+
+}
 
 renderGames();
 
