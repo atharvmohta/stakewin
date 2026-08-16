@@ -8,87 +8,41 @@
 <style>
 *{box-sizing:border-box}
 body{
-margin:0;
-background:#050b08;
-color:#f5faf7;
-font-family:Arial,sans-serif;
-padding:20px
+margin:0;background:#050b08;color:#f5faf7;
+font-family:Arial,sans-serif;padding:20px
 }
 .card{
-max-width:800px;
-margin:30px auto;
-background:#0d1a13;
-border:1px solid #294536;
-border-radius:14px;
-padding:20px
+max-width:800px;margin:30px auto;background:#0d1a13;
+border:1px solid #294536;border-radius:14px;padding:20px
 }
 h1{margin-top:0}
 input,button{
-height:40px;
-border-radius:7px;
-border:1px solid #294536;
-padding:0 12px;
-font-size:14px
+height:40px;border-radius:7px;border:1px solid #294536;
+padding:0 12px;font-size:14px
 }
 input{
-background:#09130e;
-color:white;
-width:100%;
-margin:5px 0
+background:#09130e;color:white;width:100%;margin:5px 0
 }
 button{
-background:#20df82;
-color:#03130a;
-font-weight:900;
-cursor:pointer
+background:#20df82;color:#03130a;font-weight:900;cursor:pointer
 }
-.danger{
-background:#ff5265;
-color:white
-}
-.login button{
-width:100%;
-margin-top:8px
-}
+.danger{background:#ff5265;color:white}
+.login button{width:100%;margin-top:8px}
 .admin{display:none}
 .user{
-border:1px solid #20372a;
-border-radius:9px;
-padding:12px;
-margin:8px 0
+border:1px solid #20372a;border-radius:9px;padding:12px;margin:8px 0
 }
 .row{
-display:flex;
-gap:7px;
-align-items:center;
-flex-wrap:wrap
+display:flex;gap:7px;align-items:center;flex-wrap:wrap
 }
-.row input{
-width:150px;
-margin:0
-}
-.name{
-font-weight:900;
-font-size:16px;
-flex:1
-}
-.balance{
-color:#20df82;
-font-weight:900
-}
-.msg{
-min-height:20px;
-font-size:12px;
-color:#ff5265;
-margin:8px 0
-}
+.row input{width:150px;margin:0}
+.name{font-weight:900;font-size:16px;flex:1}
+.balance{color:#20df82;font-weight:900}
+.msg{min-height:20px;font-size:12px;color:#ff5265;margin:8px 0}
 .success{color:#20df82}
-.logout{
-float:right;
-background:#17271f;
-color:white
-}
+.logout{float:right;background:#17271f;color:white}
 small{color:#789083}
+.loading{text-align:center;color:#20df82;padding:20px}
 </style>
 </head>
 
@@ -97,17 +51,10 @@ small{color:#789083}
 <div class="card login" id="login">
 
 <h1>STAKE<span style="color:#20df82">WIN</span> Admin</h1>
-
 <small>Play-money credit management</small>
 
-<input
-id="adminUser"
-placeholder="Admin username">
-
-<input
-id="adminPass"
-type="password"
-placeholder="Admin password">
+<input id="adminUser" placeholder="Admin username">
+<input id="adminPass" type="password" placeholder="Admin password">
 
 <div id="loginMsg" class="msg"></div>
 
@@ -118,33 +65,19 @@ placeholder="Admin password">
 
 <div class="card admin" id="panel">
 
-<button
-class="logout"
-onclick="logoutAdmin()">
-LOG OUT
-</button>
+<button class="logout" onclick="logoutAdmin()">LOG OUT</button>
 
 <h1>Admin Panel</h1>
-
-<small>Manage player credits</small>
+<small>Manage player credits • Supabase Cloud</small>
 
 <hr style="border-color:#20372a;margin:18px 0">
 
 <h3>Add Credits</h3>
 
-<input
-id="newUser"
-placeholder="Username">
+<input id="newUser" placeholder="Username">
+<input id="newAmount" type="number" min="1" placeholder="Credits amount">
 
-<input
-id="newAmount"
-type="number"
-min="1"
-placeholder="Credits amount">
-
-<button onclick="addCredits()">
-ADD CREDITS
-</button>
+<button onclick="addCredits()">ADD CREDITS</button>
 
 <div id="actionMsg" class="msg"></div>
 
@@ -152,112 +85,170 @@ ADD CREDITS
 
 <h3>Users</h3>
 
-<div id="users"></div>
+<div id="users">
+<div class="loading">Loading users...</div>
+</div>
 
 </div>
 
 
 <script>
 
-const USERS_KEY="stakewin_users";
+/* =========================================================
+SUPABASE
+========================================================= */
 
-/*
-IMPORTANT:
-This is a client-side demo admin.
-It is NOT secure for real-money systems.
-*/
+const SUPABASE_URL="https://ljfuowfocmnmowksfuvp.supabase.co";
+const SUPABASE_KEY="sb_publishable_smUQUWvB4rgac0afKMgmog_5YpFhowH";
+
+const TABLE="stakewin_users";
+
+
+async function supabaseRequest(path,options={}){
+
+const response=await fetch(
+SUPABASE_URL+"/rest/v1/"+path,
+{
+...options,
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Content-Type":"application/json",
+"Prefer":"return=representation",
+...(options.headers||{})
+}
+}
+);
+
+const text=await response.text();
+
+let data=null;
+
+try{
+data=text?JSON.parse(text):null;
+}catch{
+data=text;
+}
+
+if(!response.ok){
+
+console.error("Supabase error:",data);
+
+throw new Error(
+data?.message||
+data?.error_description||
+"Supabase request failed"
+);
+
+}
+
+return data;
+}
+
+
+/* =========================================================
+ADMIN LOGIN
+========================================================= */
 
 const ADMIN_USER="admin";
 const ADMIN_PASS="#12Atharv";
 
 
-function getUsers(){
-
-try{
-return JSON.parse(
-localStorage.getItem(USERS_KEY)||"{}"
-);
-}catch{
-return {};
-}
-
-}
-
-
-function saveUsers(users){
-
-localStorage.setItem(
-USERS_KEY,
-JSON.stringify(users)
-);
-
-}
-
-
 function adminLogin(){
 
-const u=
+const username=
 document.getElementById("adminUser").value.trim();
 
-const p=
+const password=
 document.getElementById("adminPass").value;
 
 const msg=
 document.getElementById("loginMsg");
 
-if(
-u!==ADMIN_USER||
-p!==ADMIN_PASS
-){
+msg.className="msg";
+msg.innerText="";
+
+if(username!==ADMIN_USER||password!==ADMIN_PASS){
 
 msg.innerText="Invalid admin login.";
 return;
-
 }
 
-sessionStorage.setItem(
-"stakewin_admin",
-"1"
-);
+sessionStorage.setItem("stakewin_admin","1");
 
-document.getElementById(
-"login"
-).style.display="none";
+document.getElementById("login").style.display="none";
+document.getElementById("panel").style.display="block";
 
-document.getElementById(
-"panel"
-).style.display="block";
-
-renderUsers();
+loadUsers();
 
 }
 
 
 function logoutAdmin(){
 
-sessionStorage.removeItem(
-"stakewin_admin"
-);
+sessionStorage.removeItem("stakewin_admin");
 
 location.reload();
 
 }
 
 
-function addCredits(){
+/* =========================================================
+LOAD USERS FROM SUPABASE
+========================================================= */
+
+async function getUsers(){
+
+return await supabaseRequest(
+TABLE+"?select=username,balance,created_at,updated_at&order=created_at.desc"
+);
+
+}
+
+
+async function loadUsers(){
+
+const box=document.getElementById("users");
+
+box.innerHTML=
+'<div class="loading">Loading users...</div>';
+
+try{
+
+const users=await getUsers();
+
+renderUsers(users);
+
+}catch(error){
+
+box.innerHTML=
+`<div class="msg">
+Failed to load users.<br>
+${escapeHTML(error.message)}
+</div>`;
+
+}
+
+}
+
+
+/* =========================================================
+ADD CREDITS
+========================================================= */
+
+async function addCredits(){
 
 const username=
 document.getElementById("newUser").value.trim();
 
 const amount=
-Number(
-document.getElementById("newAmount").value
-);
+Number(document.getElementById("newAmount").value);
 
 const msg=
 document.getElementById("actionMsg");
 
 msg.className="msg";
+msg.innerText="";
 
 if(!username){
 
@@ -273,98 +264,201 @@ return;
 
 }
 
-const users=getUsers();
+try{
 
-if(!users[username]){
+const users=await supabaseRequest(
+TABLE+
+"?username=eq."+
+encodeURIComponent(username)+
+"&select=username,balance"
+);
+
+if(!users.length){
 
 msg.innerText="User does not exist.";
 return;
 
 }
 
-users[username].balance=
-Number(users[username].balance||0)+amount;
+const newBalance=
+Number(users[0].balance||0)+amount;
 
-saveUsers(users);
+await supabaseRequest(
+TABLE+
+"?username=eq."+
+encodeURIComponent(username),
+{
+method:"PATCH",
+body:JSON.stringify({
+balance:newBalance,
+updated_at:new Date().toISOString()
+})
+}
+);
 
 msg.className="msg success";
 
 msg.innerText=
 `${amount} credits added to ${username}.`;
 
-document.getElementById(
-"newUser"
-).value="";
+document.getElementById("newUser").value="";
+document.getElementById("newAmount").value="";
 
-document.getElementById(
-"newAmount"
-).value="";
+await loadUsers();
 
-renderUsers();
+}catch(error){
+
+msg.innerText=error.message;
+
+}
 
 }
 
 
-function removeCredits(username){
+/* =========================================================
+QUICK ADD
+========================================================= */
+
+async function addQuick(username,amount){
+
+try{
+
+const users=await supabaseRequest(
+TABLE+
+"?username=eq."+
+encodeURIComponent(username)+
+"&select=username,balance"
+);
+
+if(!users.length)return;
+
+const newBalance=
+Number(users[0].balance||0)+amount;
+
+await supabaseRequest(
+TABLE+
+"?username=eq."+
+encodeURIComponent(username),
+{
+method:"PATCH",
+body:JSON.stringify({
+balance:newBalance,
+updated_at:new Date().toISOString()
+})
+}
+);
+
+await loadUsers();
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+}
+
+
+/* =========================================================
+REMOVE
+========================================================= */
+
+async function removeCredits(username){
 
 const amount=
 Number(
 prompt(
-`Credits to remove from ${username}:`
+"Credits to remove from "+username+":"
 )
 );
 
 if(!amount||amount<=0)return;
 
-const users=getUsers();
+try{
 
-if(!users[username])return;
-
-users[username].balance=
-Math.max(
-0,
-Number(users[username].balance||0)-amount
+const users=await supabaseRequest(
+TABLE+
+"?username=eq."+
+encodeURIComponent(username)+
+"&select=username,balance"
 );
 
-saveUsers(users);
+if(!users.length)return;
 
-renderUsers();
+const newBalance=Math.max(
+0,
+Number(users[0].balance||0)-amount
+);
+
+await supabaseRequest(
+TABLE+
+"?username=eq."+
+encodeURIComponent(username),
+{
+method:"PATCH",
+body:JSON.stringify({
+balance:newBalance,
+updated_at:new Date().toISOString()
+})
+}
+);
+
+await loadUsers();
+
+}catch(error){
+
+alert(error.message);
+
+}
 
 }
 
 
-function resetCredits(username){
+/* =========================================================
+RESET
+========================================================= */
 
-if(
-!confirm(
-`Set ${username}'s credits to 0?`
-)
-)return;
+async function resetCredits(username){
 
-const users=getUsers();
+if(!confirm(
+"Set "+username+"'s credits to 0?"
+))return;
 
-if(!users[username])return;
+try{
 
-users[username].balance=0;
+await supabaseRequest(
+TABLE+
+"?username=eq."+
+encodeURIComponent(username),
+{
+method:"PATCH",
+body:JSON.stringify({
+balance:0,
+updated_at:new Date().toISOString()
+})
+}
+);
 
-saveUsers(users);
+await loadUsers();
 
-renderUsers();
+}catch(error){
+
+alert(error.message);
+
+}
 
 }
 
 
-function renderUsers(){
+/* =========================================================
+RENDER USERS
+========================================================= */
 
-const users=getUsers();
+function renderUsers(users){
 
-const box=
-document.getElementById("users");
+const box=document.getElementById("users");
 
-const names=
-Object.keys(users);
-
-if(!names.length){
+if(!users.length){
 
 box.innerHTML=
 "<p><small>No users created yet.</small></p>";
@@ -373,15 +467,14 @@ return;
 
 }
 
-box.innerHTML=
-names.map(username=>{
+box.innerHTML=users.map(user=>{
+
+const username=String(user.username);
 
 const balance=
-Number(
-users[username].balance||0
-);
+Number(user.balance||0);
 
-return `
+return`
 
 <div class="user">
 
@@ -437,28 +530,13 @@ RESET
 }
 
 
-function addQuick(encoded,amount){
-
-const username=
-decodeURIComponent(encoded);
-
-const users=getUsers();
-
-if(!users[username])return;
-
-users[username].balance=
-Number(users[username].balance||0)+amount;
-
-saveUsers(users);
-
-renderUsers();
-
-}
-
+/* =========================================================
+ESCAPE
+========================================================= */
 
 function escapeHTML(text){
 
-return text
+return String(text)
 .replaceAll("&","&amp;")
 .replaceAll("<","&lt;")
 .replaceAll(">","&gt;")
@@ -468,19 +546,18 @@ return text
 }
 
 
+/* =========================================================
+SESSION
+========================================================= */
+
 if(
 sessionStorage.getItem("stakewin_admin")==="1"
 ){
 
-document.getElementById(
-"login"
-).style.display="none";
+document.getElementById("login").style.display="none";
+document.getElementById("panel").style.display="block";
 
-document.getElementById(
-"panel"
-).style.display="block";
-
-renderUsers();
+loadUsers();
 
 }
 
