@@ -7,42 +7,112 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
-margin:0;background:#050b08;color:#f5faf7;
-font-family:Arial,sans-serif;padding:20px
+margin:0;
+background:#050b08;
+color:#f5faf7;
+font-family:Arial,sans-serif;
+padding:20px
 }
+
 .card{
-max-width:800px;margin:30px auto;background:#0d1a13;
-border:1px solid #294536;border-radius:14px;padding:20px
+max-width:800px;
+margin:30px auto;
+background:#0d1a13;
+border:1px solid #294536;
+border-radius:14px;
+padding:20px
 }
+
 h1{margin-top:0}
+
 input,button{
-height:40px;border-radius:7px;border:1px solid #294536;
-padding:0 12px;font-size:14px
+height:40px;
+border-radius:7px;
+border:1px solid #294536;
+padding:0 12px;
+font-size:14px
 }
+
 input{
-background:#09130e;color:white;width:100%;margin:5px 0
+background:#09130e;
+color:white;
+width:100%;
+margin:5px 0
 }
+
 button{
-background:#20df82;color:#03130a;font-weight:900;cursor:pointer
+background:#20df82;
+color:#03130a;
+font-weight:900;
+cursor:pointer
 }
-.danger{background:#ff5265;color:white}
-.login button{width:100%;margin-top:8px}
-.admin{display:none}
+
+.danger{
+background:#ff5265;
+color:white
+}
+
+.login button{
+width:100%;
+margin-top:8px
+}
+
+.admin{
+display:none
+}
+
 .user{
-border:1px solid #20372a;border-radius:9px;padding:12px;margin:8px 0
+border:1px solid #20372a;
+border-radius:9px;
+padding:12px;
+margin:8px 0
 }
+
 .row{
-display:flex;gap:7px;align-items:center;flex-wrap:wrap
+display:flex;
+gap:7px;
+align-items:center;
+flex-wrap:wrap
 }
-.row input{width:150px;margin:0}
-.name{font-weight:900;font-size:16px;flex:1}
-.balance{color:#20df82;font-weight:900}
-.msg{min-height:20px;font-size:12px;color:#ff5265;margin:8px 0}
-.success{color:#20df82}
-.logout{float:right;background:#17271f;color:white}
-small{color:#789083}
-.loading{text-align:center;color:#20df82;padding:20px}
+
+.row input{
+width:150px;
+margin:0
+}
+
+.name{
+font-weight:900;
+font-size:16px;
+flex:1
+}
+
+.balance{
+color:#20df82;
+font-weight:900
+}
+
+.msg{
+min-height:20px;
+font-size:12px;
+color:#ff5265;
+margin:8px 0
+}
+
+.success{
+color:#20df82
+}
+
+.logout{
+float:right;
+background:#17271f;
+color:white
+}
+
+small{
+color:#789083
+}
 </style>
 </head>
 
@@ -50,105 +120,94 @@ small{color:#789083}
 
 <div class="card login" id="login">
 
-<h1>STAKE<span style="color:#20df82">WIN</span> Admin</h1>
-<small>Play-money credit management</small>
+<h1>
+STAKE<span style="color:#20df82">WIN</span> Admin
+</h1>
 
-<input id="adminUser" placeholder="Admin username">
-<input id="adminPass" type="password" placeholder="Admin password">
+<small>
+Virtual-credit demo management
+</small>
+
+<input
+id="adminUser"
+placeholder="Admin username">
+
+<input
+id="adminPass"
+type="password"
+placeholder="Admin password">
 
 <div id="loginMsg" class="msg"></div>
 
-<button onclick="adminLogin()">LOGIN</button>
+<button onclick="adminLogin()">
+LOGIN
+</button>
 
 </div>
 
 
 <div class="card admin" id="panel">
 
-<button class="logout" onclick="logoutAdmin()">LOG OUT</button>
+<button
+class="logout"
+onclick="logoutAdmin()">
+LOG OUT
+</button>
 
 <h1>Admin Panel</h1>
-<small>Manage player credits • Supabase Cloud</small>
+
+<small>
+Changes sync through Supabase.
+</small>
 
 <hr style="border-color:#20372a;margin:18px 0">
 
-<h3>Add Credits</h3>
 
-<input id="newUser" placeholder="Username">
-<input id="newAmount" type="number" min="1" placeholder="Credits amount">
+<h3>Set Credits</h3>
 
-<button onclick="addCredits()">ADD CREDITS</button>
+<input
+id="newUser"
+placeholder="Username">
+
+<input
+id="newAmount"
+type="number"
+min="0"
+placeholder="New balance">
+
+<button onclick="setCredits()">
+SET CREDITS
+</button>
 
 <div id="actionMsg" class="msg"></div>
 
+
 <hr style="border-color:#20372a;margin:18px 0">
+
 
 <h3>Users</h3>
 
-<div id="users">
-<div class="loading">Loading users...</div>
-</div>
+<div id="users"></div>
 
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-/* =========================================================
-SUPABASE
-========================================================= */
+const SUPABASE_URL=
+"https://ljfuowfocmnmowksfuvp.supabase.co";
 
-const SUPABASE_URL="https://ljfuowfocmnmowksfuvp.supabase.co";
-const SUPABASE_KEY="sb_publishable_smUQUWvB4rgac0afKMgmog_5YpFhowH";
+const SUPABASE_KEY=
+"sb_publishable_smUQUWvB4rgac0afKMgmog_5YpFhowH";
 
-const TABLE="stakewin_users";
-
-
-async function supabaseRequest(path,options={}){
-
-const response=await fetch(
-SUPABASE_URL+"/rest/v1/"+path,
-{
-...options,
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY,
-"Content-Type":"application/json",
-"Prefer":"return=representation",
-...(options.headers||{})
-}
-}
+const db=
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
-const text=await response.text();
-
-let data=null;
-
-try{
-data=text?JSON.parse(text):null;
-}catch{
-data=text;
-}
-
-if(!response.ok){
-
-console.error("Supabase error:",data);
-
-throw new Error(
-data?.message||
-data?.error_description||
-"Supabase request failed"
-);
-
-}
-
-return data;
-}
-
-
-/* =========================================================
-ADMIN LOGIN
-========================================================= */
 
 const ADMIN_USER="admin";
 const ADMIN_PASS="#12Atharv";
@@ -156,309 +215,256 @@ const ADMIN_PASS="#12Atharv";
 
 function adminLogin(){
 
-const username=
-document.getElementById("adminUser").value.trim();
+const u=
+document.getElementById("adminUser")
+.value.trim();
 
-const password=
-document.getElementById("adminPass").value;
+const p=
+document.getElementById("adminPass")
+.value;
 
 const msg=
 document.getElementById("loginMsg");
 
-msg.className="msg";
-msg.innerText="";
 
-if(username!==ADMIN_USER||password!==ADMIN_PASS){
+if(
+u!==ADMIN_USER ||
+p!==ADMIN_PASS
+){
 
-msg.innerText="Invalid admin login.";
+msg.innerText=
+"Invalid admin login.";
+
 return;
 }
 
-sessionStorage.setItem("stakewin_admin","1");
 
-document.getElementById("login").style.display="none";
-document.getElementById("panel").style.display="block";
+sessionStorage.setItem(
+"stakewin_admin",
+"1"
+);
 
-loadUsers();
+
+document.getElementById("login")
+.style.display="none";
+
+
+document.getElementById("panel")
+.style.display="block";
+
+
+renderUsers();
 
 }
 
 
 function logoutAdmin(){
 
-sessionStorage.removeItem("stakewin_admin");
+sessionStorage.removeItem(
+"stakewin_admin"
+);
 
 location.reload();
 
 }
 
 
-/* =========================================================
-LOAD USERS FROM SUPABASE
-========================================================= */
-
 async function getUsers(){
 
-return await supabaseRequest(
-TABLE+"?select=username,balance,created_at,updated_at&order=created_at.desc"
-);
+const {data,error}=
+await db
+.from("stakewin_users")
+.select("username,balance")
+.order("username");
+
+
+if(error){
+
+console.error(error);
+
+return [];
 
 }
 
 
-async function loadUsers(){
-
-const box=document.getElementById("users");
-
-box.innerHTML=
-'<div class="loading">Loading users...</div>';
-
-try{
-
-const users=await getUsers();
-
-renderUsers(users);
-
-}catch(error){
-
-box.innerHTML=
-`<div class="msg">
-Failed to load users.<br>
-${escapeHTML(error.message)}
-</div>`;
-
-}
+return data || [];
 
 }
 
 
-/* =========================================================
-ADD CREDITS
-========================================================= */
-
-async function addCredits(){
+async function setCredits(){
 
 const username=
-document.getElementById("newUser").value.trim();
+document.getElementById("newUser")
+.value.trim();
 
 const amount=
-Number(document.getElementById("newAmount").value);
+Number(
+document.getElementById("newAmount")
+.value
+);
 
 const msg=
 document.getElementById("actionMsg");
 
+
 msg.className="msg";
-msg.innerText="";
+
 
 if(!username){
 
-msg.innerText="Enter a username.";
+msg.innerText=
+"Enter a username.";
+
 return;
 
 }
 
-if(!amount||amount<=0){
 
-msg.innerText="Enter a valid credit amount.";
-return;
-
-}
-
-try{
-
-const users=await supabaseRequest(
-TABLE+
-"?username=eq."+
-encodeURIComponent(username)+
-"&select=username,balance"
-);
-
-if(!users.length){
-
-msg.innerText="User does not exist.";
-return;
-
-}
-
-const newBalance=
-Number(users[0].balance||0)+amount;
-
-await supabaseRequest(
-TABLE+
-"?username=eq."+
-encodeURIComponent(username),
-{
-method:"PATCH",
-body:JSON.stringify({
-balance:newBalance,
-updated_at:new Date().toISOString()
-})
-}
-);
-
-msg.className="msg success";
+if(
+!Number.isFinite(amount) ||
+amount<0
+){
 
 msg.innerText=
-`${amount} credits added to ${username}.`;
+"Enter a valid amount.";
 
-document.getElementById("newUser").value="";
-document.getElementById("newAmount").value="";
-
-await loadUsers();
-
-}catch(error){
-
-msg.innerText=error.message;
-
-}
+return;
 
 }
 
 
-/* =========================================================
-QUICK ADD
-========================================================= */
-
-async function addQuick(username,amount){
-
-try{
-
-const users=await supabaseRequest(
-TABLE+
-"?username=eq."+
-encodeURIComponent(username)+
-"&select=username,balance"
-);
-
-if(!users.length)return;
-
-const newBalance=
-Number(users[0].balance||0)+amount;
-
-await supabaseRequest(
-TABLE+
-"?username=eq."+
-encodeURIComponent(username),
-{
-method:"PATCH",
-body:JSON.stringify({
-balance:newBalance,
-updated_at:new Date().toISOString()
+const {data,error}=
+await db
+.from("stakewin_users")
+.update({
+balance:amount
 })
+.eq("username",username)
+.select("username,balance");
+
+
+if(error){
+
+console.error(error);
+
+msg.innerText=
+"Database error.";
+
+return;
+
 }
+
+
+if(
+!data ||
+!data.length
+){
+
+msg.innerText=
+"User does not exist.";
+
+return;
+
+}
+
+
+msg.className=
+"msg success";
+
+msg.innerText=
+`${username} balance set to ${amount} credits.`;
+
+
+document.getElementById("newUser")
+.value="";
+
+document.getElementById("newAmount")
+.value="";
+
+
+renderUsers();
+
+}
+
+
+async function quick(
+username,
+amount
+){
+
+const users=
+await getUsers();
+
+
+const user=
+users.find(
+x=>x.username===username
 );
 
-await loadUsers();
 
-}catch(error){
+if(!user)return;
 
-alert(error.message);
+
+await db
+.from("stakewin_users")
+.update({
+balance:
+Number(user.balance||0)+amount
+})
+.eq(
+"username",
+username
+);
+
+
+renderUsers();
 
 }
 
-}
 
+async function resetCredits(
+username
+){
 
-/* =========================================================
-REMOVE
-========================================================= */
-
-async function removeCredits(username){
-
-const amount=
-Number(
-prompt(
-"Credits to remove from "+username+":"
+if(
+!confirm(
+`Set ${username}'s credits to 0?`
 )
-);
+)return;
 
-if(!amount||amount<=0)return;
 
-try{
-
-const users=await supabaseRequest(
-TABLE+
-"?username=eq."+
-encodeURIComponent(username)+
-"&select=username,balance"
-);
-
-if(!users.length)return;
-
-const newBalance=Math.max(
-0,
-Number(users[0].balance||0)-amount
-);
-
-await supabaseRequest(
-TABLE+
-"?username=eq."+
-encodeURIComponent(username),
-{
-method:"PATCH",
-body:JSON.stringify({
-balance:newBalance,
-updated_at:new Date().toISOString()
+await db
+.from("stakewin_users")
+.update({
+balance:0
 })
-}
+.eq(
+"username",
+username
 );
 
-await loadUsers();
 
-}catch(error){
-
-alert(error.message);
-
-}
+renderUsers();
 
 }
 
 
-/* =========================================================
-RESET
-========================================================= */
+async function renderUsers(){
 
-async function resetCredits(username){
-
-if(!confirm(
-"Set "+username+"'s credits to 0?"
-))return;
-
-try{
-
-await supabaseRequest(
-TABLE+
-"?username=eq."+
-encodeURIComponent(username),
-{
-method:"PATCH",
-body:JSON.stringify({
-balance:0,
-updated_at:new Date().toISOString()
-})
-}
-);
-
-await loadUsers();
-
-}catch(error){
-
-alert(error.message);
-
-}
-
-}
+const box=
+document.getElementById("users");
 
 
-/* =========================================================
-RENDER USERS
-========================================================= */
+box.innerHTML=
+"<small>Loading...</small>";
 
-function renderUsers(users){
 
-const box=document.getElementById("users");
+const list=
+await getUsers();
 
-if(!users.length){
+
+if(!list.length){
 
 box.innerHTML=
 "<p><small>No users created yet.</small></p>";
@@ -467,55 +473,68 @@ return;
 
 }
 
-box.innerHTML=users.map(user=>{
 
-const username=String(user.username);
-
-const balance=
-Number(user.balance||0);
-
-return`
+box.innerHTML=
+list.map(u=>`
 
 <div class="user">
 
 <div class="row">
 
 <div class="name">
-${escapeHTML(username)}
+${escapeHTML(u.username)}
 </div>
 
 <div class="balance">
-${balance.toLocaleString()} credits
+${Number(
+u.balance||0
+).toLocaleString()} credits
 </div>
 
 </div>
 
-<div class="row" style="margin-top:9px">
+
+<div
+class="row"
+style="margin-top:9px"
+>
 
 <button
-onclick="addQuick('${encodeURIComponent(username)}',100)">
+onclick="quick(
+'${encodeURIComponent(u.username)}',
+100
+)"
+>
 +100
 </button>
 
+
 <button
-onclick="addQuick('${encodeURIComponent(username)}',500)">
+onclick="quick(
+'${encodeURIComponent(u.username)}',
+500
+)"
+>
 +500
 </button>
 
+
 <button
-onclick="addQuick('${encodeURIComponent(username)}',1000)">
+onclick="quick(
+'${encodeURIComponent(u.username)}',
+1000
+)"
+>
 +1000
 </button>
 
-<button
-class="danger"
-onclick="removeCredits('${encodeURIComponent(username)}')">
-REMOVE
-</button>
 
 <button
 class="danger"
-onclick="resetCredits('${encodeURIComponent(username)}')">
+onclick="resetCredits(
+'${encodeURIComponent(u.username)}'
+)"
+>
 RESET
 </button>
 
@@ -523,41 +542,56 @@ RESET
 
 </div>
 
-`;
-
-}).join("");
+`).join("");
 
 }
 
-
-/* =========================================================
-ESCAPE
-========================================================= */
 
 function escapeHTML(text){
 
 return String(text)
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
+
+.replaceAll(
+"&",
+"&amp;"
+)
+
+.replaceAll(
+"<",
+"&lt;"
+)
+
+.replaceAll(
+">",
+"&gt;"
+)
+
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"'",
+"&#039;"
+);
 
 }
 
 
-/* =========================================================
-SESSION
-========================================================= */
-
 if(
-sessionStorage.getItem("stakewin_admin")==="1"
+sessionStorage.getItem(
+"stakewin_admin"
+)==="1"
 ){
 
-document.getElementById("login").style.display="none";
-document.getElementById("panel").style.display="block";
+document.getElementById("login")
+.style.display="none";
 
-loadUsers();
+document.getElementById("panel")
+.style.display="block";
+
+renderUsers();
 
 }
 
