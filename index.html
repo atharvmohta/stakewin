@@ -9,10 +9,8 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-margin:0;
-background:#050b08;
-color:#f5faf7;
-font-family:Arial,Helvetica,sans-serif
+ margin:0;background:#050b08;color:#f5faf7;
+ font-family:Arial,Helvetica,sans-serif
 }
 button,input,select{font:inherit}
 button{cursor:pointer}
@@ -20,155 +18,131 @@ button:active{transform:scale(.97)}
 button:disabled{opacity:.45;cursor:not-allowed}
 
 :root{
---green:#20df82;
---dark:#06100b;
---panel:#0c1912;
---border:#294536;
---muted:#7d9689;
---red:#ff5265;
---gold:#ffd34d
+ --green:#20df82;--dark:#06100b;--panel:#0c1912;
+ --border:#294536;--muted:#7d9689;--red:#ff5265;
+ --gold:#ffd34d;--blue:#48bfff
 }
 
-/* HEADER */
 .header{
-height:62px;
-padding:0 3%;
-display:flex;
-align-items:center;
-gap:8px;
-background:#07100df5;
-border-bottom:1px solid #1d3026;
-position:sticky;
-top:0;
-z-index:100;
-backdrop-filter:blur(15px)
+ height:62px;padding:0 3%;display:flex;align-items:center;gap:9px;
+ background:#07100df5;border-bottom:1px solid #1d3026;
+ position:sticky;top:0;z-index:100;backdrop-filter:blur(15px)
 }
 .logo{font-size:19px;font-weight:950;white-space:nowrap}
 .logo span{color:var(--green)}
 .nav{display:flex;gap:2px;flex:1}
 .nav button{
-border:0;background:none;color:#81988c;
-padding:8px 10px;border-radius:7px;font-size:11px
+ border:0;background:none;color:#81988c;padding:8px 10px;
+ border-radius:7px;font-size:11px
 }
 .nav button.active,.nav button:hover{background:#14261d;color:#fff}
 .headerRight{margin-left:auto;display:flex;align-items:center;gap:5px}
 .balance,.account{
-background:#102219;border:1px solid var(--border);
-border-radius:7px;padding:7px 8px;font-size:10px
+ background:#102219;border:1px solid var(--border);
+ border-radius:7px;padding:7px 8px;font-size:10px
 }
 .balance{color:var(--green);font-weight:900}
 .icon{
-width:32px;height:32px;border-radius:7px;
-border:1px solid var(--border);
-background:#101d16;color:white
+ width:32px;height:32px;border-radius:7px;border:1px solid var(--border);
+ background:#101d16;color:white
 }
 
-/* HERO */
 .hero{
-max-width:1200px;min-height:360px;margin:auto;padding:45px 5%;
-display:flex;align-items:center;justify-content:space-between;
-position:relative;overflow:hidden
+ max-width:1200px;min-height:360px;margin:auto;padding:48px 5%;
+ display:flex;align-items:center;justify-content:space-between;
+ position:relative;overflow:hidden
 }
 .heroText{max-width:650px;z-index:2}
 .eyebrow{color:var(--green);font-size:9px;font-weight:900;letter-spacing:2px}
-.hero h1{
-font-size:clamp(42px,7vw,72px);
-line-height:.95;letter-spacing:-4px;margin:13px 0
-}
+.hero h1{font-size:clamp(42px,7vw,72px);line-height:.95;letter-spacing:-4px;margin:13px 0}
 .hero h1 span{color:var(--green)}
 .hero p{color:#82998d;line-height:1.6;font-size:12px}
 .heroActions{display:flex;gap:7px;margin-top:20px}
+
 .primary,.secondary,.cash,.gameBtn{
-border-radius:7px;padding:9px 13px;
-font-weight:900;font-size:10px;border:0
+ border-radius:7px;padding:9px 13px;font-weight:900;font-size:10px;border:0
 }
 .primary{background:var(--green);color:#03130a}
 .secondary{background:#102019;color:#e8f2ec;border:1px solid var(--border)}
 .cash{background:var(--gold);color:#241c00}
 .gameBtn{width:100%;height:38px;background:var(--green);color:#03130a}
+
 .orb{
-width:170px;height:170px;border-radius:50%;
-display:grid;place-items:center;font-size:50px;font-weight:950;
-background:radial-gradient(circle at 35% 25%,#3cff9d,#087749 45%,#03170d 75%);
-box-shadow:0 0 100px #1cdb7c33;
-animation:float 3s ease-in-out infinite
+ width:180px;height:180px;border-radius:50%;display:grid;place-items:center;
+ font-size:55px;font-weight:950;
+ background:radial-gradient(circle at 35% 25%,#3cff9d,#087749 45%,#03170d 75%);
+ box-shadow:0 0 100px #1cdb7c33;animation:float 3s ease-in-out infinite
 }
 @keyframes float{50%{transform:translateY(-9px) rotate(-3deg)}}
 
-/* PROMO */
 .promo{
-height:28px;display:flex;align-items:center;justify-content:center;
-overflow:hidden;background:linear-gradient(90deg,#062416,#0b4b2c,#062416);
-border-bottom:1px solid #205337;font-size:8px;font-weight:900;
-color:#c9ffe0;white-space:nowrap
+ height:28px;display:flex;align-items:center;justify-content:center;
+ overflow:hidden;background:linear-gradient(90deg,#062416,#0b4b2c,#062416);
+ border-bottom:1px solid #205337;font-size:8px;font-weight:900;
+ color:#c9ffe0;white-space:nowrap
 }
 .promo span{animation:promo 15s linear infinite}
 @keyframes promo{from{transform:translateX(40%)}to{transform:translateX(-40%)}}
 
-/* STATS */
 .stats{
-border-top:1px solid #172a20;border-bottom:1px solid #172a20;
-padding:13px;display:flex;justify-content:center;gap:55px;
-color:#7d9589;font-size:9px
+ border-top:1px solid #172a20;border-bottom:1px solid #172a20;
+ padding:13px;display:flex;justify-content:center;gap:55px;
+ color:#7d9589;font-size:9px
 }
 .stats b{color:#fff}
 
-/* GAMES */
 .games{max-width:1200px;margin:auto;padding:35px 5% 65px}
 .top{display:flex;justify-content:space-between;align-items:center}
 .top h2{margin:0;font-size:25px}
 .top p{margin:4px 0;color:#71887b;font-size:9px}
 .search{
-width:210px;height:35px;background:#0b1711;
-border:1px solid #263e31;color:#fff;padding:0 9px;
-border-radius:7px;outline:0;font-size:9px
+ width:210px;height:35px;background:#0b1711;border:1px solid #263e31;
+ color:#fff;padding:0 9px;border-radius:7px;outline:0;font-size:9px
 }
 .chips{display:flex;gap:5px;overflow:auto;margin:17px 0 12px}
 .chips button{
-white-space:nowrap;background:#0c1912;border:1px solid #23392d;
-color:#81988b;border-radius:18px;padding:6px 11px;font-size:8px
+ white-space:nowrap;background:#0c1912;border:1px solid #23392d;
+ color:#81988b;border-radius:18px;padding:6px 11px;font-size:8px
 }
-.chips button.active{
-background:var(--green);color:#03130a;border-color:var(--green);font-weight:900
-}
-.grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:9px
-}
+.chips button.active{background:var(--green);color:#03130a;border-color:var(--green);font-weight:900}
+
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
 .card{
-background:#0b1711;border:1px solid #20372a;
-border-radius:9px;overflow:hidden;transition:.18s;cursor:pointer
+ background:#0b1711;border:1px solid #20372a;border-radius:9px;
+ overflow:hidden;transition:.18s;cursor:pointer
 }
 .card:hover{transform:translateY(-3px);border-color:#356449}
 .art{
-height:105px;display:grid;place-items:center;font-size:40px;
-background:radial-gradient(circle at 50% 20%,#1c3928,#0b1510 70%);
-position:relative
+ height:105px;display:grid;place-items:center;font-size:40px;
+ background:radial-gradient(circle at 50% 20%,#1c3928,#0b1510 70%);
+ position:relative
 }
 .tag{
-position:absolute;left:6px;top:6px;background:var(--green);
-color:#03130a;border-radius:4px;padding:3px 5px;
-font-size:6px;font-weight:900
+ position:absolute;left:6px;top:6px;background:var(--green);
+ color:#03130a;border-radius:4px;padding:3px 5px;font-size:6px;font-weight:900
 }
 .info{
-padding:7px;display:flex;justify-content:space-between;
-align-items:center;color:#6e8679
+ padding:7px;display:flex;justify-content:space-between;
+ align-items:center;color:#6e8679
 }
 .info b{display:block;color:#edf6f1;font-size:9px}
 .info small{font-size:6px}
 .arrow{font-size:13px}
 
+footer{
+ text-align:center;border-top:1px solid #172a20;
+ padding:25px;color:#61796c;font-size:9px
+}
+
 /* AUTH */
 .auth{
-position:fixed;inset:0;z-index:9999;
-background:radial-gradient(circle at 50% 20%,#174a31,#050b07 55%,#020403);
-display:flex;align-items:center;justify-content:center;padding:18px
+ position:fixed;inset:0;z-index:9999;
+ background:radial-gradient(circle at 50% 20%,#174a31,#050b07 55%,#020403);
+ display:flex;align-items:center;justify-content:center;padding:18px
 }
 .authCard{
-width:min(390px,100%);background:#0d1a13;
-border:1px solid #315640;border-radius:17px;padding:25px;
-text-align:center;box-shadow:0 30px 100px #000
+ width:min(390px,100%);background:#0d1a13;border:1px solid #315640;
+ border-radius:17px;padding:25px;text-align:center;box-shadow:0 30px 100px #000
 }
 .authLogo{font-size:23px;font-weight:950}
 .authLogo span{color:var(--green)}
@@ -176,71 +150,62 @@ text-align:center;box-shadow:0 30px 100px #000
 .authCard h2{margin:12px 0 5px;font-size:19px}
 .authCard p{color:#81988d;font-size:10px;line-height:1.5}
 .authInput{
-width:100%;height:42px;margin:4px 0;background:#09130e;
-color:#fff;border:1px solid #294536;border-radius:7px;
-padding:0 10px;outline:0;font-size:10px
+ width:100%;height:42px;margin:4px 0;background:#09130e;color:#fff;
+ border:1px solid #294536;border-radius:7px;padding:0 10px;outline:0;font-size:10px
 }
-.authInput:focus{border-color:var(--green)}
 .remember{
-display:flex;align-items:center;gap:6px;text-align:left;
-color:#71887c;font-size:8px;margin:8px 0
+ display:flex;align-items:center;gap:6px;text-align:left;color:#71887c;
+ font-size:8px;margin:8px 0
 }
 .remember input{accent-color:var(--green)}
 .authBtn{
-width:100%;height:42px;margin-top:7px;border:0;border-radius:7px;
-background:var(--green);color:#03130a;font-weight:900;font-size:10px
+ width:100%;height:42px;margin-top:7px;border:0;border-radius:7px;
+ background:var(--green);color:#03130a;font-weight:900;font-size:10px
 }
 .authSwitch{margin-top:12px;font-size:9px;color:#71887c}
 .authSwitch button{
-background:none;border:0;color:var(--green);
-font-weight:900;font-size:9px
+ background:none;border:0;color:var(--green);font-weight:900;font-size:9px
 }
 .error{min-height:15px;color:var(--red);font-size:8px;margin-top:5px}
 
 /* LOADING */
 .loading{
-position:fixed;inset:0;z-index:9998;display:none;
-align-items:center;justify-content:center;
-background:radial-gradient(circle,#0b2d1d,#020604 70%)
+ position:fixed;inset:0;z-index:9998;display:none;align-items:center;
+ justify-content:center;background:radial-gradient(circle,#0b2d1d,#020604 70%)
 }
 .loaderBox{text-align:center}
 .loaderLogo{font-size:27px;font-weight:950}
 .loaderLogo span{color:var(--green)}
 .loaderCircle{
-width:43px;height:43px;border:3px solid #183a29;
-border-top-color:var(--green);border-radius:50%;
-margin:15px auto 10px;animation:loader .7s linear infinite
+ width:43px;height:43px;border:3px solid #183a29;
+ border-top-color:var(--green);border-radius:50%;margin:15px auto 10px;
+ animation:loader .7s linear infinite
 }
 .loaderText{font-size:8px;letter-spacing:2px;color:#71887c}
 @keyframes loader{to{transform:rotate(360deg)}}
 
-/* MODAL */
+/* MODALS */
 .overlay{
-position:fixed;inset:0;background:#000c;backdrop-filter:blur(8px);
-z-index:500;display:none;align-items:center;justify-content:center;padding:10px
+ position:fixed;inset:0;background:#000c;backdrop-filter:blur(8px);
+ z-index:500;display:none;align-items:center;justify-content:center;padding:10px
 }
 .modal{
-width:min(720px,100%);max-height:94vh;overflow:auto;
-background:#0a1710;border:1px solid #2c4d3a;border-radius:14px;
-padding:13px;position:relative;box-shadow:0 30px 100px #000
+ width:min(720px,100%);max-height:94vh;overflow:auto;background:#0a1710;
+ border:1px solid #2c4d3a;border-radius:14px;padding:13px;
+ position:relative;box-shadow:0 30px 100px #000
 }
 .close{
-position:absolute;right:9px;top:9px;border:0;
-background:#17271f;color:#fff;width:29px;height:29px;border-radius:6px
+ position:absolute;right:9px;top:9px;border:0;background:#17271f;
+ color:#fff;width:29px;height:29px;border-radius:6px
 }
-.toolbar{
-display:grid;grid-template-columns:repeat(3,1fr);
-gap:6px;margin:9px 0
-}
+.toolbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:9px 0}
 .control label{display:block;color:#71887c;font-size:7px;margin-bottom:3px}
 .control input,.control select{
-width:100%;height:33px;background:#0f2017;
-border:1px solid #294436;color:#fff;padding:0 7px;
-border-radius:6px;outline:0;font-size:9px
+ width:100%;height:33px;background:#0f2017;border:1px solid #294436;
+ color:#fff;padding:0 7px;border-radius:6px;outline:0;font-size:9px
 }
 .gamearea{
-background:#06100b;border:1px solid #20372a;
-border-radius:10px;padding:11px
+ background:#06100b;border:1px solid #20372a;border-radius:10px;padding:11px
 }
 .status{text-align:center;min-height:18px;margin:6px 0;color:#81998d;font-size:9px}
 .status.win{color:var(--green);font-weight:900}
@@ -248,11 +213,93 @@ border-radius:10px;padding:11px
 .actions{display:flex;gap:6px;margin-top:7px}
 .actions>*{flex:1}
 
+/* CASINO TABLE */
+.casino{
+ background:
+ radial-gradient(circle at 50% 20%,#17623d,#082517 60%,#04130b);
+ border:2px solid #c49a43;border-radius:14px;padding:18px 12px;
+ box-shadow:inset 0 0 50px #0008
+}
+.casinoTitle{text-align:center;color:#d9b75d;font-size:9px;letter-spacing:2px;font-weight:900}
+.casinoCenter{text-align:center;padding:10px 0;color:#9ab1a4;font-size:8px}
+.casinoCards{
+ display:flex;justify-content:center;gap:7px;min-height:72px;align-items:center
+}
+.playing{
+ width:47px;height:65px;background:#f6f5ef;color:#111;border-radius:5px;
+ display:grid;place-items:center;font-weight:900;font-size:17px;
+ box-shadow:0 4px 12px #0008;animation:deal .25s ease-out
+}
+.redcard{color:#d11d38}
+@keyframes deal{
+ from{transform:translateY(-30px) rotate(-10deg);opacity:0}
+ to{transform:none;opacity:1}
+}
+.chipRow{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:9px 0}
+.chip{
+ border-radius:50%;width:39px;height:39px;border:2px dashed #fff8;
+ background:#17251e;color:white;font-weight:900;font-size:8px
+}
+.chip:hover{background:#24583b}
+.betAreas{display:flex;gap:6px;margin-top:10px}
+.betArea{
+ flex:1;border:1px solid #5d8d72;background:#0b2a1b;
+ border-radius:7px;padding:10px;text-align:center;font-size:8px;color:#c9e1d3
+}
+.betArea strong{display:block;font-size:12px;color:#fff}
+
+/* DICE */
+.diceBox{display:flex;justify-content:center;gap:8px;margin:15px}
+.die{
+ width:58px;height:58px;border-radius:10px;background:#f6f4ed;color:#111;
+ display:grid;place-items:center;font-size:27px;font-weight:900;
+ box-shadow:0 5px 15px #0007
+}
+.rolling{animation:diceRoll .12s infinite}
+@keyframes diceRoll{50%{transform:rotate(7deg) translateY(-4px)}}
+
+/* HORSE */
+.race{
+ background:linear-gradient(180deg,#102619,#07140c);
+ border:1px solid #31563e;border-radius:10px;padding:12px;overflow:hidden
+}
+.track{
+ height:48px;border-bottom:2px dashed #5c8066;position:relative;margin:4px 0
+}
+.horse{
+ position:absolute;left:0;top:6px;font-size:28px;
+ transition:left 2.8s cubic-bezier(.15,.75,.2,1)
+}
+.finishLine{
+ position:absolute;right:8px;top:0;height:100%;
+ border-left:3px dashed #eee;opacity:.7
+}
+
+/* WHEEL */
+.showWheel{
+ width:220px;height:220px;border-radius:50%;margin:12px auto;
+ border:7px solid #d1a844;
+ background:conic-gradient(
+ #e33 0 45deg,#101010 45deg 90deg,
+ #24b978 90deg 135deg,#101010 135deg 180deg,
+ #e33 180deg 225deg,#101010 225deg 270deg,
+ #24b978 270deg 315deg,#101010 315deg 360deg
+ );
+ display:grid;place-items:center;
+ transition:transform 2.5s cubic-bezier(.12,.8,.18,1);
+ box-shadow:0 0 30px #000
+}
+.wheelInner{
+ width:65px;height:65px;border-radius:50%;background:#07120c;
+ border:3px solid #d1a844;display:grid;place-items:center;
+ font-size:9px;font-weight:900
+}
+
 /* MINES */
-.minegrid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:10px auto;max-width:390px}
+.minegrid{display:grid;gap:4px;margin:10px auto;max-width:390px}
 .mine{
-aspect-ratio:1;background:linear-gradient(145deg,#14291e,#0b1711);
-border:1px solid #294638;border-radius:5px;color:#fff;font-size:15px
+ aspect-ratio:1;background:linear-gradient(145deg,#14291e,#0b1711);
+ border:1px solid #294638;border-radius:5px;color:#fff;font-size:15px
 }
 .mine.g{background:#196342;animation:pop .2s}
 .mine.b{background:#591821;animation:shake .25s}
@@ -260,104 +307,64 @@ border:1px solid #294638;border-radius:5px;color:#fff;font-size:15px
 @keyframes shake{25%{transform:rotate(-7deg)}75%{transform:rotate(7deg)}}
 
 /* CRASH */
-.mult{
-font-size:44px;font-weight:950;color:var(--green);
-text-align:center;margin:35px 0 5px
-}
+.mult{font-size:48px;font-weight:950;color:var(--green);text-align:center;margin:38px 0 5px}
 .mult.dead{color:var(--red)}
 .rocket{text-align:center;font-size:35px}
 
-/* DICE */
-.diceNum{font-size:52px;text-align:center;color:var(--green);font-weight:950}
-.slider{width:100%;accent-color:var(--green)}
-
-/* CARDS */
-.cards{display:flex;gap:5px;flex-wrap:wrap;min-height:65px}
-.playing{
-width:46px;height:64px;background:#f6f5ef;color:#111;
-border-radius:5px;display:grid;place-items:center;font-weight:900;font-size:17px
+/* PLINKO */
+.plinko{
+ height:390px;position:relative;overflow:hidden;border-radius:11px;
+ background:radial-gradient(circle at 50% 15%,#243e51,#101e2c 43%,#07111b);
+ border:1px solid #2c4657;box-shadow:inset 0 0 55px #0009
 }
-.redcard{color:#d11d38}
-
-/* SLOTS */
-.reels{
-display:flex;gap:5px;background:#321a0b;border:3px solid #b47a24;
-padding:13px;border-radius:11px
+.plinkoPegs{
+ position:absolute;top:24px;left:4%;right:4%;bottom:61px;
+ display:flex;flex-direction:column;justify-content:space-between
 }
-.reel{
-flex:1;height:75px;background:#f7f4e9;color:#111;
-border-radius:6px;display:grid;place-items:center;font-size:32px
+.plinkoRow{display:flex;justify-content:center;gap:clamp(8px,2.5vw,25px)}
+.plinkoPeg{
+ width:9px;height:9px;flex:none;border-radius:50%;
+ background:radial-gradient(circle at 30% 20%,#fff,#eafcff 35%,#83b9c9 75%);
+ border:1px solid #fff;box-shadow:0 0 5px #fff,0 0 10px #d9f6ff
 }
-.spin{animation:slotspin .1s infinite}
-@keyframes slotspin{50%{transform:translateY(5px)}}
-
-/* ROULETTE */
-.wheel{
-width:195px;height:195px;margin:8px auto;border-radius:50%;
-border:6px solid #b99237;
-background:conic-gradient(
-#b5172d 0 12deg,#111 12deg 24deg,
-#b5172d 24deg 36deg,#111 36deg 48deg,
-#b5172d 48deg 60deg,#111 60deg 72deg,
-#b5172d 72deg 84deg,#111 84deg 96deg,
-#b5172d 96deg 108deg,#111 108deg 120deg,
-#b5172d 120deg 132deg,#111 132deg 144deg,
-#b5172d 144deg 156deg,#111 156deg 168deg,
-#b5172d 168deg 180deg,#111 180deg 192deg,
-#b5172d 192deg 204deg,#111 204deg 216deg,
-#b5172d 216deg 228deg,#111 228deg 240deg,
-#b5172d 240deg 252deg,#111 252deg 264deg,
-#b5172d 264deg 276deg,#111 276deg 288deg,
-#b5172d 288deg 300deg,#111 300deg 312deg,
-#b5172d 312deg 324deg,#111 324deg 336deg,
-#b5172d 336deg 348deg,#111 348deg 360deg
-);
-display:grid;place-items:center;
-transition:transform 2.2s cubic-bezier(.12,.8,.18,1)
+.plinkoPeg.hit{transform:scale(1.7);box-shadow:0 0 8px #fff,0 0 18px #65d9ff}
+.plinkoBall{
+ position:absolute;width:18px;height:18px;border-radius:50%;
+ background:radial-gradient(circle at 28% 20%,#fff 0 20%,#eaffff 30%,#8de2ff 62%,#149ad1);
+ border:1px solid #efffff;box-shadow:0 0 7px #fff,0 0 17px #7cddff,0 0 28px #28bfff;
+ left:50%;top:8px;transform:translate(-50%,-50%);
+ display:none;z-index:20;will-change:left,top,transform
 }
-.wheelcenter{
-width:56px;height:56px;border-radius:50%;background:#08633d;
-border:4px solid #d5ae49;display:grid;place-items:center;font-weight:900
+.plinkoBins{
+ position:absolute;left:2%;right:2%;bottom:5px;height:45px;
+ display:flex;gap:3px
 }
-
-/* TOWER */
-.tower{display:flex;flex-direction:column-reverse;gap:4px}
-.trow{display:grid;grid-template-columns:1fr 1fr;gap:4px}
-.tcell{
-height:38px;background:#12241b;border:1px solid #294438;
-border-radius:5px;color:white;font-size:10px
+.plinkoBin{
+ flex:1;border-radius:5px;border:1px solid #ff63c1;
+ background:linear-gradient(180deg,#ff66c5,#ed168f);
+ color:#ffe4f5;display:grid;place-items:center;
+ font-size:clamp(6px,1.4vw,11px);font-weight:950
 }
-.safe{background:#196342!important}
-.danger{background:#591821!important}
-
-/* KENO */
-.keno{display:grid;grid-template-columns:repeat(8,1fr);gap:3px}
-.kn{
-aspect-ratio:1;background:#12241a;border:1px solid #294437;
-color:#9eb1a8;border-radius:4px;font-size:8px
-}
-.kn.sel{background:var(--green);color:#03130a}
-.kn.hit{background:var(--gold);color:#211800}
+.plinkoBin.land{transform:scale(1.08);filter:brightness(1.35)}
 
 /* LEDGER */
 .ledgerTabs{display:flex;gap:4px;overflow:auto;margin:8px 0}
 .ledgerTabs button{
-white-space:nowrap;background:#0d1a13;border:1px solid #263f30;
-color:#81988b;border-radius:14px;padding:6px 9px;font-size:7px
+ white-space:nowrap;background:#0d1a13;border:1px solid #263f30;
+ color:#81988b;border-radius:14px;padding:6px 9px;font-size:7px
 }
 .ledgerTabs button.active{background:var(--green);color:#03130a}
 .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:8px}
 .summaryBox{
-background:#0d1b13;border:1px solid #20392b;
-border-radius:6px;padding:7px;text-align:center
+ background:#0d1b13;border:1px solid #20392b;border-radius:6px;
+ padding:7px;text-align:center
 }
 .summaryBox small{display:block;color:#70877a;font-size:6px}
 .summaryBox b{font-size:11px}
 .historyList{max-height:390px;overflow:auto}
 .historyRow{
-display:grid;grid-template-columns:55px 1fr 42px 65px;
-gap:5px;align-items:center;padding:8px 3px;
-border-bottom:1px solid #1c3025;font-size:7px
+ display:grid;grid-template-columns:55px 1fr 42px 65px;gap:5px;
+ align-items:center;padding:8px 3px;border-bottom:1px solid #1c3025;font-size:7px
 }
 .historyTime{color:#627a6d;font-size:6px}
 .historyGame b{color:#dce8e1;font-size:8px}
@@ -367,43 +374,43 @@ border-bottom:1px solid #1c3025;font-size:7px
 
 /* MOBILE */
 .mobileMenu{
-display:none;position:fixed;top:62px;left:0;right:0;
-background:#09130e;border-bottom:1px solid #22392c;
-z-index:90;padding:5px
+ display:none;position:fixed;top:62px;left:0;right:0;background:#09130e;
+ border-bottom:1px solid #22392c;z-index:90;padding:5px
 }
 .mobileMenu button{
-display:block;width:100%;text-align:left;border:0;
-background:none;color:#81988c;padding:9px;font-size:9px
+ display:block;width:100%;text-align:left;border:0;background:none;
+ color:#81988c;padding:9px;font-size:9px
 }
 
 @media(max-width:850px){
-.nav{display:none}
-.header{padding:0 2.5%}
-.hero{min-height:400px}
-.orb{position:absolute;right:-70px;opacity:.22}
-.stats{gap:15px;justify-content:space-around}
-.stats div{font-size:7px}
-.stats div:nth-child(2){display:none}
-.grid{grid-template-columns:repeat(4,1fr);gap:5px}
-.art{height:72px;font-size:25px}
-.info{padding:5px}
-.info b{font-size:6px}
-.info small{font-size:5px}
-.arrow{font-size:9px}
-.tag{font-size:4px;padding:2px 3px}
-.top{display:block}
-.search{width:100%;margin-top:9px}
+ .nav{display:none}
+ .header{padding:0 2.5%}
+ .hero{min-height:410px}
+ .orb{position:absolute;right:-70px;opacity:.22}
+ .stats{gap:15px;justify-content:space-around}
+ .stats div{font-size:7px}
+ .stats div:nth-child(2){display:none}
+ .grid{grid-template-columns:repeat(4,1fr);gap:5px}
+ .art{height:72px;font-size:25px}
+ .info{padding:5px}
+ .info b{font-size:6px}
+ .info small{font-size:5px}
+ .arrow{font-size:9px}
+ .tag{font-size:4px;padding:2px 3px}
+ .top{display:block}
+ .search{width:100%;margin-top:9px}
 }
-
 @media(max-width:450px){
-.hero h1{font-size:43px;letter-spacing:-2px}
-.account{display:none}
-.grid{grid-template-columns:repeat(4,1fr)}
-.art{height:68px;font-size:23px}
-.info b{font-size:5.5px}
-.toolbar{grid-template-columns:1fr 1fr}
-.toolbar .control:last-child{grid-column:1/-1}
-.modal{padding:11px}
+ .hero h1{font-size:43px;letter-spacing:-2px}
+ .account{display:none}
+ .grid{grid-template-columns:repeat(4,1fr)}
+ .art{height:68px;font-size:23px}
+ .info b{font-size:5.5px}
+ .plinko{height:370px}
+ .plinkoPeg{width:8px;height:8px}
+ .plinkoRow{gap:7px}
+ .toolbar{grid-template-columns:1fr 1fr}
+ .modal{padding:11px}
 }
 </style>
 </head>
@@ -413,16 +420,15 @@ background:none;color:#81988c;padding:9px;font-size:9px
 <!-- AUTH -->
 <div id="auth" class="auth">
 <div class="authCard">
-
 <div class="authLogo">STAKE<span>WIN</span></div>
 
 <div id="loginBox">
 <div class="authIcon">🔐</div>
 <h2>Login to Play</h2>
-<p>Your account can be remembered on this device.</p>
+<p>Your demo account can be remembered on this device.</p>
 
-<input id="loginUser" class="authInput" placeholder="Username">
-<input id="loginPass" class="authInput" type="password" placeholder="Password">
+<input id="loginUser" class="authInput" placeholder="Username" autocomplete="username">
+<input id="loginPass" class="authInput" type="password" placeholder="Password" autocomplete="current-password">
 
 <label class="remember">
 <input id="rememberMe" type="checkbox" checked>
@@ -455,7 +461,6 @@ Already have an account?
 <button onclick="showLogin()">Login</button>
 </div>
 </div>
-
 </div>
 </div>
 
@@ -470,106 +475,77 @@ Already have an account?
 
 <!-- HEADER -->
 <header class="header">
-
 <button class="icon" onclick="toggleMenu()">☰</button>
-
 <div class="logo">STAKE<span>WIN</span></div>
 
 <nav class="nav">
 <button class="active" onclick="filterGames('All',this)">Home</button>
 <button onclick="filterGames('Originals',this)">Originals</button>
+<button onclick="filterGames('Live',this)">Live Casino</button>
 <button onclick="filterGames('Slots',this)">Slots</button>
 <button onclick="filterGames('Table',this)">Table</button>
-<button onclick="filterGames('Arcade',this)">Arcade</button>
 </nav>
 
 <div class="headerRight">
-
 <div id="account" class="account"></div>
-
-<div class="balance">
-💰 <b id="balance">1000</b>
-</div>
-
+<div class="balance">💰 <b id="balance">1000</b></div>
 <button class="icon" onclick="openHistory()">📜</button>
 <button class="icon" onclick="openProfile()">👤</button>
-
 </div>
 </header>
 
 <div id="mobileMenu" class="mobileMenu">
 <button onclick="filterGames('All');toggleMenu()">🏠 Home</button>
 <button onclick="filterGames('Originals');toggleMenu()">🎯 Originals</button>
+<button onclick="filterGames('Live');toggleMenu()">🎰 Live Casino</button>
 <button onclick="filterGames('Slots');toggleMenu()">🎰 Slots</button>
 <button onclick="filterGames('Table');toggleMenu()">🃏 Table</button>
-<button onclick="filterGames('Arcade');toggleMenu()">🚀 Arcade</button>
 <button onclick="openHistory();toggleMenu()">📜 Bet Ledger</button>
 </div>
 
-<!-- PROMO -->
 <div class="promo">
-<span>
-✦ STAKEWIN DEMO ✦ 20% BONUS VIRTUAL CREDITS ✦
-DEMO ONLY ✦ NEW GAMES ✦ PLAY WITH VIRTUAL CREDITS ✦
+<span id="promoText">
+✦ STAKEWIN DEMO ✦ 20% BONUS VIRTUAL CREDITS ✦ DEMO ONLY ✦ NEW LIVE TABLES ✦ PLAY WITH VIRTUAL CREDITS ✦
 </span>
 </div>
 
-<!-- HERO -->
 <section class="hero">
-
 <div class="heroText">
 <div class="eyebrow">✦ STAKEWIN ORIGINALS</div>
-
-<h1>
-Play the moment.<br>
-<span>Own the thrill.</span>
-</h1>
-
-<p>
-Smooth casino-style demo games with virtual credits,
-animated interfaces and a complete personal bet ledger.
-</p>
-
+<h1>Play the moment.<br><span>Own the thrill.</span></h1>
+<p>Smooth casino-style demo games with animated interfaces, virtual credits and a complete personal bet ledger.</p>
 <div class="heroActions">
 <button class="primary" onclick="scrollGames()">▶ PLAY DEMO</button>
 <button class="secondary" onclick="openHistory()">📜 LEDGER</button>
 </div>
 </div>
-
 <div class="orb">SW</div>
-
 </section>
 
 <div class="stats">
 <div>🏆 <b>12,840</b> players</div>
-<div>🎲 <b id="gameCount">11</b> games</div>
+<div>🎲 <b id="gameCount">0</b> games</div>
 <div>💰 <b id="statsBalance">1,000</b> credits</div>
 </div>
 
-<!-- GAMES -->
 <section id="games" class="games">
-
 <div class="top">
 <div>
 <h2>Games</h2>
-<p>Virtual credits • smooth demo experience</p>
+<p>Virtual credits • premium casino-style demo experience</p>
 </div>
-
-<input id="search" class="search"
-placeholder="🔍 Search games"
-oninput="renderGames()">
+<input id="search" class="search" placeholder="🔍 Search games" oninput="renderGames()">
 </div>
 
 <div class="chips">
 <button class="active" onclick="filterGames('All',this)">All</button>
 <button onclick="filterGames('Originals',this)">Originals</button>
+<button onclick="filterGames('Live',this)">Live Casino</button>
 <button onclick="filterGames('Slots',this)">Slots</button>
 <button onclick="filterGames('Table',this)">Table</button>
-<button onclick="filterGames('Arcade',this)">Arcade</button>
 </div>
 
 <div id="gameGrid" class="grid"></div>
-
 </section>
 
 <footer>
@@ -581,84 +557,50 @@ oninput="renderGames()">
 <!-- GAME MODAL -->
 <div id="gameModal" class="overlay">
 <div class="modal">
-
 <button class="close" onclick="closeGame()">✕</button>
-
 <div id="gameIcon" style="font-size:28px"></div>
 <h2 id="gameTitle" style="margin:4px 0"></h2>
 <p id="gameDescription" style="color:#789083;font-size:9px"></p>
-
 <div id="gameContent"></div>
-
 </div>
 </div>
 
 <!-- PROFILE -->
 <div id="profileModal" class="overlay">
 <div class="modal" style="text-align:center">
-
 <button class="close" onclick="closeModal('profileModal')">✕</button>
-
 <div style="font-size:40px">👤</div>
 <h2 id="profileName"></h2>
-
 <p style="color:#789083;font-size:9px">Demo account</p>
-
-<div id="profileBalance"
-style="font-size:32px;font-weight:900;color:var(--green)">
-</div>
-
+<div id="profileBalance" style="font-size:32px;font-weight:900;color:var(--green)"></div>
 <p style="color:#789083;font-size:8px">virtual credits</p>
-
-<button class="secondary" style="width:100%;margin-top:6px"
-onclick="openHistory()">📜 BET LEDGER</button>
-
-<button class="secondary" style="width:100%;margin-top:6px"
-onclick="logout()">LOG OUT</button>
-
+<button class="secondary" style="width:100%;margin-top:6px" onclick="openHistory()">📜 BET LEDGER</button>
+<button class="secondary" style="width:100%;margin-top:6px" onclick="logout()">LOG OUT</button>
 </div>
 </div>
 
 <!-- HISTORY -->
 <div id="historyModal" class="overlay">
 <div class="modal">
-
 <button class="close" onclick="closeModal('historyModal')">✕</button>
-
 <h2 style="margin:0">📜 Bet Ledger</h2>
-<p style="color:#789083;font-size:8px">
-Separate game history + overall history
-</p>
+<p style="color:#789083;font-size:8px">Game-by-game and overall virtual-credit history.</p>
 
 <div id="ledgerTabs" class="ledgerTabs"></div>
 
 <div class="summary">
-
-<div class="summaryBox">
-<small>TOTAL BET</small>
-<b id="sumBet">0</b>
-</div>
-
-<div class="summaryBox">
-<small>WINS</small>
-<b id="sumWins" style="color:var(--green)">0</b>
-</div>
-
-<div class="summaryBox">
-<small>NET</small>
-<b id="sumNet">0</b>
-</div>
-
+<div class="summaryBox"><small>TOTAL BET</small><b id="sumBet">0</b></div>
+<div class="summaryBox"><small>WINS</small><b id="sumWins" style="color:var(--green)">0</b></div>
+<div class="summaryBox"><small>NET</small><b id="sumNet">0</b></div>
 </div>
 
 <div id="historyList" class="historyList"></div>
-
 </div>
 </div>
 
 <script>
 /* =========================================================
-STORAGE
+STORAGE / STATE
 ========================================================= */
 
 const USERS_KEY="stakewin_users";
@@ -671,53 +613,38 @@ let currentCategory="All";
 let currentGame=null;
 let gameState={};
 let timers=[];
+let animationFrames=[];
 let historyFilter="all";
 
 function getUsers(){
-try{return JSON.parse(localStorage.getItem(USERS_KEY)||"{}")}
-catch{return{}}
+ try{return JSON.parse(localStorage.getItem(USERS_KEY)||"{}")}
+ catch{return {}}
 }
 
 function saveUsers(users){
-localStorage.setItem(USERS_KEY,JSON.stringify(users));
+ localStorage.setItem(USERS_KEY,JSON.stringify(users));
 }
 
 function getHistory(){
-if(!currentUser)return[];
-try{
-return JSON.parse(
-localStorage.getItem(HISTORY_PREFIX+currentUser)||"[]"
-);
-}catch{return[]}
+ if(!currentUser)return[];
+ try{return JSON.parse(localStorage.getItem(HISTORY_PREFIX+currentUser)||"[]")}
+ catch{return[]}
 }
 
 function saveHistory(data){
-if(!currentUser)return;
-localStorage.setItem(
-HISTORY_PREFIX+currentUser,
-JSON.stringify(data.slice(0,500))
-);
+ if(currentUser)localStorage.setItem(HISTORY_PREFIX+currentUser,JSON.stringify(data.slice(0,500)));
 }
 
 function addHistory(game,result,bet,payoutAmount,multiplier=0){
-
-const data=getHistory();
-
-data.unshift({
-game,
-result,
-bet:Number(bet)||0,
-payout:Number(payoutAmount)||0,
-multiplier:Number(multiplier)||0,
-time:new Date().toLocaleString([],{
-day:"2-digit",
-month:"short",
-hour:"2-digit",
-minute:"2-digit"
-})
-});
-
-saveHistory(data);
+ const data=getHistory();
+ data.unshift({
+  game,result,
+  bet:Number(bet)||0,
+  payout:Number(payoutAmount)||0,
+  multiplier:Number(multiplier)||0,
+  time:new Date().toLocaleString([],{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"})
+ });
+ saveHistory(data);
 }
 
 /* =========================================================
@@ -725,143 +652,96 @@ AUTH
 ========================================================= */
 
 function showSignup(){
-document.getElementById("loginBox").style.display="none";
-document.getElementById("signupBox").style.display="block";
+ document.getElementById("loginBox").style.display="none";
+ document.getElementById("signupBox").style.display="block";
 }
 
 function showLogin(){
-document.getElementById("loginBox").style.display="block";
-document.getElementById("signupBox").style.display="none";
+ document.getElementById("loginBox").style.display="block";
+ document.getElementById("signupBox").style.display="none";
 }
 
 function createAccount(){
+ const username=document.getElementById("signupUser").value.trim();
+ const password=document.getElementById("signupPass").value;
+ const confirm=document.getElementById("signupConfirm").value;
+ const error=document.getElementById("signupError");
+ error.innerText="";
 
-const username=document.getElementById("signupUser").value.trim();
-const password=document.getElementById("signupPass").value;
-const confirm=document.getElementById("signupConfirm").value;
-const error=document.getElementById("signupError");
+ if(username.length<3){error.innerText="Username must contain at least 3 characters.";return}
+ if(password.length<4){error.innerText="Password must contain at least 4 characters.";return}
+ if(password!==confirm){error.innerText="Passwords do not match.";return}
 
-error.innerText="";
+ const users=getUsers();
+ if(users[username]){error.innerText="Username already exists.";return}
 
-if(username.length<3){
-error.innerText="Username must contain at least 3 characters.";
-return;
-}
+ users[username]={password,balance:1000};
+ saveUsers(users);
 
-if(password.length<4){
-error.innerText="Password must contain at least 4 characters.";
-return;
-}
-
-if(password!==confirm){
-error.innerText="Passwords do not match.";
-return;
-}
-
-const users=getUsers();
-
-if(users[username]){
-error.innerText="Username already exists.";
-return;
-}
-
-users[username]={
-password:password,
-balance:1000
-};
-
-saveUsers(users);
-
-currentUser=username;
-balanceAmount=1000;
-
-localStorage.setItem(SESSION_KEY,username);
-
-unlock();
+ currentUser=username;
+ balanceAmount=1000;
+ localStorage.setItem(SESSION_KEY,username);
+ unlock();
 }
 
 function loginUser(){
+ const username=document.getElementById("loginUser").value.trim();
+ const password=document.getElementById("loginPass").value;
+ const remember=document.getElementById("rememberMe").checked;
+ const error=document.getElementById("loginError");
 
-const username=document.getElementById("loginUser").value.trim();
-const password=document.getElementById("loginPass").value;
-const remember=document.getElementById("rememberMe").checked;
-const error=document.getElementById("loginError");
+ error.innerText="";
 
-error.innerText="";
+ if(!username||!password){error.innerText="Enter username and password.";return}
 
-if(!username||!password){
-error.innerText="Enter username and password.";
-return;
-}
+ const users=getUsers();
 
-const users=getUsers();
+ if(!users[username]){error.innerText="Account not found.";return}
+ if(users[username].password!==password){error.innerText="Incorrect password.";return}
 
-if(!users[username]){
-error.innerText="Account not found.";
-return;
-}
+ currentUser=username;
+ balanceAmount=Number(users[username].balance||1000);
 
-if(users[username].password!==password){
-error.innerText="Incorrect password.";
-return;
-}
+ if(remember){
+  localStorage.setItem(SESSION_KEY,username);
+  sessionStorage.removeItem(SESSION_KEY);
+ }else{
+  sessionStorage.setItem(SESSION_KEY,username);
+  localStorage.removeItem(SESSION_KEY);
+ }
 
-currentUser=username;
-balanceAmount=Number(users[username].balance||1000);
-
-if(remember){
-localStorage.setItem(SESSION_KEY,username);
-sessionStorage.removeItem(SESSION_KEY);
-}else{
-sessionStorage.setItem(SESSION_KEY,username);
-localStorage.removeItem(SESSION_KEY);
-}
-
-unlock();
+ unlock();
 }
 
 function unlock(){
-
-document.getElementById("auth").style.display="none";
-document.getElementById("account").innerText="👤 "+currentUser;
-
-updateBalance();
-renderGames();
+ document.getElementById("auth").style.display="none";
+ document.getElementById("account").innerText="👤 "+currentUser;
+ updateBalance();
+ renderGames();
 }
 
 function restoreSession(){
+ const username=localStorage.getItem(SESSION_KEY)||sessionStorage.getItem(SESSION_KEY);
+ if(!username)return;
 
-const username=
-localStorage.getItem(SESSION_KEY)||
-sessionStorage.getItem(SESSION_KEY);
+ const users=getUsers();
+ if(!users[username])return;
 
-if(!username)return;
-
-const users=getUsers();
-
-if(!users[username])return;
-
-currentUser=username;
-balanceAmount=Number(users[username].balance||1000);
-
-document.getElementById("auth").style.display="none";
-document.getElementById("account").innerText="👤 "+currentUser;
+ currentUser=username;
+ balanceAmount=Number(users[username].balance||1000);
+ document.getElementById("auth").style.display="none";
+ document.getElementById("account").innerText="👤 "+currentUser;
 }
 
 function logout(){
-
-clearTimers();
-saveBalance();
-
-currentUser=null;
-
-localStorage.removeItem(SESSION_KEY);
-sessionStorage.removeItem(SESSION_KEY);
-
-document.getElementById("profileModal").style.display="none";
-document.getElementById("auth").style.display="flex";
-
-showLogin();
+ clearTimers();
+ saveBalance();
+ currentUser=null;
+ localStorage.removeItem(SESSION_KEY);
+ sessionStorage.removeItem(SESSION_KEY);
+ document.getElementById("profileModal").style.display="none";
+ document.getElementById("auth").style.display="flex";
+ showLogin();
 }
 
 /* =========================================================
@@ -869,321 +749,204 @@ BALANCE
 ========================================================= */
 
 function saveBalance(){
-
-if(!currentUser)return;
-
-const users=getUsers();
-
-if(!users[currentUser])return;
-
-users[currentUser].balance=Math.max(0,balanceAmount);
-
-saveUsers(users);
+ if(!currentUser)return;
+ const users=getUsers();
+ if(!users[currentUser])return;
+ users[currentUser].balance=Math.max(0,balanceAmount);
+ saveUsers(users);
 }
 
 function updateBalance(){
+ if(currentUser&&balanceAmount<100){
+  balanceAmount=1000;
+  showPromo("🎁 STAKEWIN DEMO BONUS • 1,000 CREDITS REFILLED");
+ }
 
-if(currentUser&&balanceAmount<100){
-balanceAmount=1000;
-showPromo("🎁 1,000 DEMO CREDITS REFILLED");
-}
+ const f=Math.floor(balanceAmount).toLocaleString();
+ document.getElementById("balance").innerText=f;
+ document.getElementById("statsBalance").innerText=f;
 
-const formatted=Math.floor(balanceAmount).toLocaleString();
+ if(document.getElementById("profileBalance"))
+  document.getElementById("profileBalance").innerText=f;
 
-document.getElementById("balance").innerText=formatted;
-document.getElementById("statsBalance").innerText=formatted;
-
-if(document.getElementById("profileBalance")){
-document.getElementById("profileBalance").innerText=formatted;
-}
-
-saveBalance();
+ saveBalance();
 }
 
 function spend(amount){
-
-amount=Number(amount);
-
-if(!amount||amount<1){
-alert("Enter a valid demo bet.");
-return false;
-}
-
-if(amount>balanceAmount){
-alert("Not enough demo credits.");
-return false;
-}
-
-balanceAmount-=amount;
-updateBalance();
-
-return true;
+ amount=Number(amount);
+ if(!amount||amount<1){alert("Enter a valid demo bet.");return false}
+ if(amount>balanceAmount){alert("Not enough demo credits.");return false}
+ balanceAmount-=amount;
+ updateBalance();
+ return true;
 }
 
 function payout(amount){
-balanceAmount+=Number(amount);
-updateBalance();
+ balanceAmount+=Number(amount)||0;
+ updateBalance();
 }
-
-/* =========================================================
-PROMO
-========================================================= */
 
 function showPromo(text){
-
-const p=document.querySelector(".promo span");
-
-if(!p)return;
-
-const old=p.innerText;
-
-p.innerText=text;
-
-setTimeout(()=>{
-p.innerText=old;
-},3500);
+ const p=document.getElementById("promoText");
+ if(!p)return;
+ const old=p.innerText;
+ p.innerText=text;
+ setTimeout(()=>p.innerText=old,3500);
 }
 
 /* =========================================================
-GAMES
+GAME LIST
 ========================================================= */
 
 const games=[
+ {id:"mines",name:"Mines",cat:"Originals",icon:"💣",desc:"Reveal diamonds without hitting a mine."},
+ {id:"crash",name:"Crash",cat:"Originals",icon:"🚀",desc:"Watch the multiplier rise and cash out."},
+ {id:"dice",name:"Dice",cat:"Originals",icon:"🎲",desc:"Choose your number and roll."},
+ {id:"tower",name:"Tower",cat:"Originals",icon:"🗼",desc:"Climb higher by choosing safe tiles."},
+ {id:"roulette",name:"Roulette",cat:"Table",icon:"🎡",desc:"Spin the virtual roulette wheel."},
+ {id:"blackjack",name:"Blackjack",cat:"Table",icon:"♠️",desc:"Beat the dealer without going over 21."},
+ {id:"slots",name:"Neon Slots",cat:"Slots",icon:"🎰",desc:"Spin the neon slot machine."},
+ {id:"coin",name:"Coin Flip",cat:"Originals",icon:"🪙",desc:"Heads or tails."},
+ {id:"higher",name:"Higher Lower",cat:"Originals",icon:"📈",desc:"Predict the next number."},
+ {id:"color",name:"Color Rush",cat:"Originals",icon:"🎨",desc:"Predict the next color."},
 
-{
-id:"mines",
-name:"Mines",
-cat:"Originals",
-icon:"💣",
-desc:"Reveal diamonds without hitting a mine."
-},
-
-{
-id:"crash",
-name:"Crash",
-cat:"Originals",
-icon:"🚀",
-desc:"Watch the multiplier rise and cash out."
-},
-
-{
-id:"dice",
-name:"Dice",
-cat:"Originals",
-icon:"🎲",
-desc:"Choose your number and roll."
-},
-
-{
-id:"tower",
-name:"Tower",
-cat:"Originals",
-icon:"🗼",
-desc:"Climb higher by choosing safe tiles."
-},
-
-{
-id:"blackjack",
-name:"Blackjack",
-cat:"Table",
-icon:"♠️",
-desc:"Beat the dealer without going over 21."
-},
-
-{
-id:"roulette",
-name:"Roulette",
-cat:"Table",
-icon:"🎡",
-desc:"Spin the virtual roulette wheel."
-},
-
-{
-id:"keno",
-name:"Keno",
-cat:"Table",
-icon:"🔢",
-desc:"Pick numbers and match the draw."
-},
-
-{
-id:"slots",
-name:"Neon Slots",
-cat:"Slots",
-icon:"🎰",
-desc:"Spin the neon slot machine."
-},
-
-{
-id:"coin",
-name:"Coin Flip",
-cat:"Arcade",
-icon:"🪙",
-desc:"Heads or tails."
-},
-
-{
-id:"higher",
-name:"Higher Lower",
-cat:"Arcade",
-icon:"📈",
-desc:"Predict the next number."
-},
-
-{
-id:"color",
-name:"Color Rush",
-cat:"Arcade",
-icon:"🎨",
-desc:"Predict the next color."
-}
-
+ {id:"dragon",name:"Dragon Tiger",cat:"Live",icon:"🐉",desc:"Premium table-style Dragon vs Tiger demo."},
+ {id:"baccarat",name:"Baccarat",cat:"Live",icon:"🃏",desc:"Player, Banker or Tie table demo."},
+ {id:"sicbo",name:"Sic Bo",cat:"Live",icon:"🎲",desc:"Three-dice casino table experience."},
+ {id:"teenpatti",name:"Teen Patti",cat:"Live",icon:"🃏",desc:"Three-card Indian table-style demo."},
+ {id:"andar",name:"Andar Bahar",cat:"Live",icon:"🂡",desc:"Classic card dealing table demo."},
+ {id:"horses",name:"Horse Racing",cat:"Live",icon:"🐎",desc:"Animated virtual horse race."},
+ {id:"wheelshow",name:"Game Show Wheel",cat:"Live",icon:"🎡",desc:"Big multiplier game-show wheel."}
 ];
 
 document.getElementById("gameCount").innerText=games.length;
 
 function renderGames(){
+ const search=document.getElementById("search").value.toLowerCase();
 
-const search=
-document.getElementById("search").value.toLowerCase();
+ const list=games.filter(g=>
+  (currentCategory==="All"||g.cat===currentCategory)&&
+  g.name.toLowerCase().includes(search)
+ );
 
-const list=games.filter(g=>
-(currentCategory==="All"||g.cat===currentCategory)&&
-g.name.toLowerCase().includes(search)
-);
-
-document.getElementById("gameGrid").innerHTML=list.map(
-(g,i)=>`
-
-<div class="card" onclick="openGame('${g.id}')">
-
-<div class="art">
-
-${i<4?'<span class="tag">HOT</span>':""}
-
-${g.icon}
-
-</div>
-
-<div class="info">
-
-<div>
-<b>${g.name}</b>
-<small>${g.cat}</small>
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-</div>
-
-`
-).join("");
+ document.getElementById("gameGrid").innerHTML=list.map((g,i)=>`
+  <div class="card" onclick="openGame('${g.id}')">
+   <div class="art">
+    ${i<4?'<span class="tag">HOT</span>':""}
+    ${g.icon}
+   </div>
+   <div class="info">
+    <div>
+     <b>${g.name}</b>
+     <small>${g.cat}</small>
+    </div>
+    <div class="arrow">›</div>
+   </div>
+  </div>
+ `).join("");
 }
 
 function filterGames(category,button){
-
-currentCategory=category;
-
-document.querySelectorAll(".chips button")
-.forEach(b=>b.classList.remove("active"));
-
-if(button)button.classList.add("active");
-
-renderGames();
+ currentCategory=category;
+ document.querySelectorAll(".chips button").forEach(b=>b.classList.remove("active"));
+ if(button)button.classList.add("active");
+ renderGames();
 }
 
 function openGame(id){
+ clearTimers();
+ const game=games.find(g=>g.id===id);
+ if(!game)return;
 
-clearTimers();
+ currentGame=id;
+ document.getElementById("loaderText").innerText="LOADING "+game.name.toUpperCase();
+ document.getElementById("loading").style.display="flex";
 
-const game=games.find(g=>g.id===id);
-
-if(!game)return;
-
-currentGame=id;
-
-document.getElementById("loaderText").innerText=
-"LOADING "+game.name.toUpperCase();
-
-document.getElementById("loading").style.display="flex";
-
-setTimeout(()=>{
-
-document.getElementById("gameIcon").innerText=game.icon;
-document.getElementById("gameTitle").innerText=game.name;
-document.getElementById("gameDescription").innerText=game.desc;
-
-document.getElementById("gameContent").innerHTML=getGameHTML(id);
-
-document.getElementById("gameModal").style.display="flex";
-document.getElementById("loading").style.display="none";
-
-initGame(id);
-
-},450);
+ setTimeout(()=>{
+  document.getElementById("gameIcon").innerText=game.icon;
+  document.getElementById("gameTitle").innerText=game.name;
+  document.getElementById("gameDescription").innerText=game.desc;
+  document.getElementById("gameContent").innerHTML=getGameHTML(id);
+  document.getElementById("gameModal").style.display="flex";
+  document.getElementById("loading").style.display="none";
+  initGame(id);
+ },450);
 }
 
 function closeGame(){
-
-clearTimers();
-
-document.getElementById("gameModal").style.display="none";
+ clearTimers();
+ document.getElementById("gameModal").style.display="none";
 }
 
 function clearTimers(){
-
-timers.forEach(t=>{
-clearTimeout(t);
-clearInterval(t);
-});
-
-timers=[];
-
+ timers.forEach(t=>{clearTimeout(t);clearInterval(t)});
+ timers=[];
+ animationFrames.forEach(f=>cancelAnimationFrame(f));
+ animationFrames=[];
 }
 
 function scrollGames(){
-document.getElementById("games").scrollIntoView({
-behavior:"smooth"
-});
+ document.getElementById("games").scrollIntoView({behavior:"smooth"});
 }
 
 function toggleMenu(){
-
-const menu=document.getElementById("mobileMenu");
-
-menu.style.display=
-menu.style.display==="block"?"none":"block";
+ const m=document.getElementById("mobileMenu");
+ m.style.display=m.style.display==="block"?"none":"block";
 }
 
 /* =========================================================
-GAME ROUTER
+ROUTER
 ========================================================= */
 
 function getGameHTML(id){
-
-if(id==="mines")return minesHTML();
-if(id==="crash")return crashHTML();
-if(id==="dice")return diceHTML();
-if(id==="tower")return towerHTML();
-if(id==="blackjack")return blackjackHTML();
-if(id==="roulette")return rouletteHTML();
-if(id==="keno")return kenoHTML();
-if(id==="slots")return slotsHTML();
-if(id==="coin")return coinHTML();
-if(id==="higher")return higherHTML();
-if(id==="color")return colorHTML();
-
-return "";
+ if(id==="mines")return minesHTML();
+ if(id==="crash")return crashHTML();
+ if(id==="dice")return diceHTML();
+ if(id==="tower")return towerHTML();
+ if(id==="blackjack")return blackjackHTML();
+ if(id==="roulette")return rouletteHTML();
+ if(id==="slots")return slotsHTML();
+ if(id==="coin")return coinHTML();
+ if(id==="higher")return higherHTML();
+ if(id==="color")return colorHTML();
+ if(id==="dragon")return dragonHTML();
+ if(id==="baccarat")return baccaratHTML();
+ if(id==="sicbo")return sicboHTML();
+ if(id==="teenpatti")return teenPattiHTML();
+ if(id==="andar")return andarHTML();
+ if(id==="horses")return horsesHTML();
+ if(id==="wheelshow")return wheelShowHTML();
+ return "";
 }
 
 function initGame(id){
+ if(id==="mines")buildMines();
+ if(id==="tower")buildTower();
+ if(id==="higher")initHigher();
+}
 
-if(id==="mines")buildMines();
-if(id==="tower")buildTower();
-if(id==="keno")buildKeno();
-if(id==="higher")initHigher();
+/* =========================================================
+COMMON CARD FUNCTIONS
+========================================================= */
+
+const suits=["♠","♥","♦","♣"];
+const ranks=[
+ ["A",11],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],
+ ["8",8],["9",9],["10",10],["J",10],["Q",10],["K",10]
+];
+
+function deck(){
+ let d=[];
+ suits.forEach(s=>ranks.forEach(r=>d.push({suit:s,rank:r[0],value:r[1]})));
+ return d.sort(()=>Math.random()-.5);
+}
+
+function card(c){
+ return `<div class="playing ${c.suit==="♥"||c.suit==="♦"?"redcard":""}">${c.rank}${c.suit}</div>`;
+}
+
+function cardValue(cards){
+ return cards.reduce((a,c)=>a+c.value,0)%10;
 }
 
 /* =========================================================
@@ -1201,197 +964,98 @@ const MINE_TABLE={
 };
 
 function minesHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>MINES</label>
-<select id="mineCount">
-<option>1</option>
-<option>2</option>
-<option selected>3</option>
-<option>5</option>
-<option>8</option>
-<option>12</option>
-<option>18</option>
-</select>
-</div>
-
-<div class="control">
-<label>BET</label>
-<input id="mineBet" type="number" value="10" min="1">
-</div>
-
-<div class="control">
-<label>LEVEL</label>
-<select id="mineLevel">
-<option>Easy</option>
-<option selected>Medium</option>
-<option>Hard</option>
-</select>
-</div>
-
-</div>
-
-<div id="mineMultiplier"
-style="text-align:center;font-size:25px;font-weight:950;color:var(--green)">
-1.00x
-</div>
-
-<div id="mineStatus" class="status">
-Choose your mines and start.
-</div>
-
-<div id="mineGrid" class="minegrid"></div>
-
-<div class="actions">
-
-<button class="primary" onclick="startMines()">START</button>
-
-<button id="mineCash" class="cash" disabled onclick="cashMines()">
-CASH OUT
-</button>
-
-</div>
-`;
+ return`
+ <div class="toolbar">
+  <div class="control"><label>MINES</label>
+   <select id="mineCount"><option>1</option><option>2</option><option selected>3</option><option>5</option><option>8</option><option>12</option><option>18</option></select>
+  </div>
+  <div class="control"><label>BET</label><input id="mineBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>LEVEL</label><select id="mineLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+ </div>
+ <div id="mineMultiplier" style="text-align:center;font-size:25px;font-weight:950;color:var(--green)">1.00x</div>
+ <div id="mineStatus" class="status">Choose your mines and start.</div>
+ <div id="mineGrid" class="minegrid"></div>
+ <div class="actions">
+  <button class="primary" onclick="startMines()">START</button>
+  <button id="mineCash" class="cash" disabled onclick="cashMines()">CASH OUT</button>
+ </div>`;
 }
 
 function buildMines(){
-
-const grid=document.getElementById("mineGrid");
-
-grid.innerHTML="";
-
-for(let i=0;i<25;i++){
-
-const cell=document.createElement("button");
-
-cell.className="mine";
-cell.disabled=true;
-cell.onclick=()=>clickMine(i);
-
-grid.appendChild(cell);
-}
+ const grid=document.getElementById("mineGrid");
+ grid.innerHTML="";
+ grid.style.gridTemplateColumns="repeat(5,1fr)";
+ for(let i=0;i<25;i++){
+  const c=document.createElement("button");
+  c.className="mine";c.disabled=true;c.onclick=()=>clickMine(i);
+  grid.appendChild(c);
+ }
 }
 
 function startMines(){
+ const bet=Number(document.getElementById("mineBet").value);
+ if(!spend(bet))return;
 
-const bet=Number(document.getElementById("mineBet").value);
+ const count=Number(document.getElementById("mineCount").value);
+ let mines=[];
+ while(mines.length<count){
+  const n=Math.floor(Math.random()*25);
+  if(!mines.includes(n))mines.push(n);
+ }
 
-if(!spend(bet))return;
+ gameState={active:true,bet,count,mines,opened:0,cash:bet};
+ buildMines();
 
-const count=Number(document.getElementById("mineCount").value);
-
-let mines=[];
-
-while(mines.length<count){
-
-const n=Math.floor(Math.random()*25);
-
-if(!mines.includes(n))mines.push(n);
-}
-
-gameState={
-active:true,
-bet,
-count,
-mines,
-opened:0,
-cash:bet
-};
-
-buildMines();
-
-document.querySelectorAll(".mine")
-.forEach(x=>x.disabled=false);
-
-document.getElementById("mineCash").disabled=true;
-document.getElementById("mineMultiplier").innerText="1.00x";
-document.getElementById("mineStatus").innerText=
-"Find diamonds and cash out.";
+ document.querySelectorAll(".mine").forEach(x=>x.disabled=false);
+ document.getElementById("mineCash").disabled=true;
+ document.getElementById("mineMultiplier").innerText="1.00x";
+ document.getElementById("mineStatus").innerText="Find diamonds and cash out.";
 }
 
 function clickMine(i){
+ if(!gameState.active)return;
+ const cells=document.querySelectorAll(".mine");
+ const cell=cells[i];cell.disabled=true;
 
-if(!gameState.active)return;
+ if(gameState.mines.includes(i)){
+  cell.innerText="💣";cell.classList.add("b");
+  gameState.active=false;
 
-const cell=document.querySelectorAll(".mine")[i];
+  gameState.mines.forEach(n=>{
+   cells[n].innerText="💣";cells[n].classList.add("b");cells[n].disabled=true;
+  });
 
-cell.disabled=true;
+  document.getElementById("mineStatus").className="status loss";
+  document.getElementById("mineStatus").innerText="BOOM! Mine hit.";
+  addHistory("Mines","loss",gameState.bet,0,0);
+  return;
+ }
 
-if(gameState.mines.includes(i)){
+ gameState.opened++;
+ cell.innerText="💎";cell.classList.add("g");
 
-cell.innerText="💣";
-cell.classList.add("b");
+ let table=MINE_TABLE[gameState.count];
+ let multiplier=table[Math.min(gameState.opened-1,table.length-1)];
 
-gameState.active=false;
+ const level=document.getElementById("mineLevel").value;
+ if(level==="Easy")multiplier*=.9;
+ if(level==="Hard")multiplier*=1.1;
 
-gameState.mines.forEach(n=>{
-const c=document.querySelectorAll(".mine")[n];
-c.innerText="💣";
-c.classList.add("b");
-c.disabled=true;
-});
-
-document.getElementById("mineStatus").className="status loss";
-document.getElementById("mineStatus").innerText="BOOM! Mine hit.";
-
-addHistory("Mines","loss",gameState.bet,0,0);
-
-return;
-}
-
-gameState.opened++;
-
-cell.innerText="💎";
-cell.classList.add("g");
-
-let table=MINE_TABLE[gameState.count];
-
-let multiplier=table[
-Math.min(gameState.opened-1,table.length-1)
-];
-
-const level=document.getElementById("mineLevel").value;
-
-if(level==="Easy")multiplier*=.9;
-if(level==="Hard")multiplier*=1.1;
-
-gameState.cash=gameState.bet*multiplier;
-
-document.getElementById("mineMultiplier").innerText=
-multiplier.toFixed(2)+"x";
-
-document.getElementById("mineCash").disabled=false;
-
-document.getElementById("mineStatus").className="status win";
-document.getElementById("mineStatus").innerText=
-`${multiplier.toFixed(2)}x • Cash out ${gameState.cash.toFixed(2)}`;
+ gameState.cash=gameState.bet*multiplier;
+ document.getElementById("mineMultiplier").innerText=multiplier.toFixed(2)+"x";
+ document.getElementById("mineCash").disabled=false;
+ document.getElementById("mineStatus").className="status win";
+ document.getElementById("mineStatus").innerText=`${multiplier.toFixed(2)}x • Cash out ${gameState.cash.toFixed(2)}`;
 }
 
 function cashMines(){
-
-if(!gameState.active||gameState.opened<1)return;
-
-gameState.active=false;
-
-payout(gameState.cash);
-
-document.getElementById("mineCash").disabled=true;
-
-document.getElementById("mineStatus").className="status win";
-document.getElementById("mineStatus").innerText=
-`Cashed out • +${gameState.cash.toFixed(2)}`;
-
-addHistory(
-"Mines",
-"win",
-gameState.bet,
-gameState.cash,
-gameState.cash/gameState.bet
-);
+ if(!gameState.active||gameState.opened<1)return;
+ gameState.active=false;
+ payout(gameState.cash);
+ document.getElementById("mineCash").disabled=true;
+ document.getElementById("mineStatus").className="status win";
+ document.getElementById("mineStatus").innerText=`Cashed out • +${gameState.cash.toFixed(2)}`;
+ addHistory("Mines","win",gameState.bet,gameState.cash,gameState.cash/gameState.bet);
 }
 
 /* =========================================================
@@ -1399,143 +1063,68 @@ CRASH
 ========================================================= */
 
 function crashHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>BET</label>
-<input id="crashBet" type="number" value="10" min="1">
-</div>
-
-<div class="control">
-<label>LEVEL</label>
-<select id="crashLevel">
-<option>Easy</option>
-<option selected>Medium</option>
-<option>Hard</option>
-</select>
-</div>
-
-<div class="control">
-<label>AUTO CASH</label>
-<select id="autoCash">
-<option value="0">Manual</option>
-<option value="1.5">1.50x</option>
-<option value="2">2.00x</option>
-<option value="3">3.00x</option>
-<option value="5">5.00x</option>
-</select>
-</div>
-
-</div>
-
-<div class="gamearea">
-
-<div id="crashMult" class="mult">1.00x</div>
-<div id="rocket" class="rocket">🚀</div>
-
-<div id="crashStatus" class="status">Ready.</div>
-
-<div class="actions">
-
-<button class="primary" onclick="startCrash()">START</button>
-
-<button class="cash" id="crashCash" disabled onclick="cashCrash()">
-CASH OUT
-</button>
-
-</div>
-
-</div>
-`;
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="crashBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>LEVEL</label><select id="crashLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+  <div class="control"><label>AUTO CASH</label><select id="autoCash"><option value="0">Manual</option><option value="1.5">1.50x</option><option value="2">2.00x</option><option value="3">3.00x</option></select></div>
+ </div>
+ <div class="gamearea">
+  <div id="crashMult" class="mult">1.00x</div>
+  <div id="rocket" class="rocket">🚀</div>
+  <div id="crashStatus" class="status">Ready.</div>
+  <div class="actions">
+   <button class="primary" onclick="startCrash()">START</button>
+   <button class="cash" id="crashCash" disabled onclick="cashCrash()">CASH OUT</button>
+  </div>
+ </div>`;
 }
 
 function startCrash(){
+ const bet=Number(document.getElementById("crashBet").value);
+ if(!spend(bet))return;
 
-const bet=Number(document.getElementById("crashBet").value);
+ let crash=1.1+Math.random()*7;
+ const level=document.getElementById("crashLevel").value;
+ if(level==="Easy")crash=2+Math.random()*8;
+ if(level==="Hard")crash=1.05+Math.random()*4;
 
-if(!spend(bet))return;
+ gameState={active:true,bet,mult:1,crash};
 
-let crash=1.1+Math.random()*7;
+ const timer=setInterval(()=>{
+  if(!gameState.active)return;
 
-const level=document.getElementById("crashLevel").value;
+  gameState.mult+=.025+gameState.mult*.008;
+  document.getElementById("crashMult").innerText=gameState.mult.toFixed(2)+"x";
+  document.getElementById("rocket").style.transform=`translateY(-${Math.min(100,gameState.mult*5)}px)`;
 
-if(level==="Easy")crash=2+Math.random()*8;
-if(level==="Hard")crash=1.05+Math.random()*4;
+  const auto=Number(document.getElementById("autoCash").value);
+  if(auto>0&&gameState.mult>=auto){cashCrash();return}
 
-gameState={
-active:true,
-bet,
-mult:1,
-crash
-};
+  if(gameState.active&&gameState.mult>=gameState.crash){
+   gameState.active=false;
+   document.getElementById("crashMult").classList.add("dead");
+   document.getElementById("crashCash").disabled=true;
+   document.getElementById("crashStatus").className="status loss";
+   document.getElementById("crashStatus").innerText=`CRASHED at ${gameState.crash.toFixed(2)}x`;
+   addHistory("Crash","loss",bet,0,0);
+   clearInterval(timer);
+  }
+ },90);
 
-const timer=setInterval(()=>{
-
-if(!gameState.active)return;
-
-gameState.mult+=.025+gameState.mult*.008;
-
-document.getElementById("crashMult").innerText=
-gameState.mult.toFixed(2)+"x";
-
-document.getElementById("rocket").style.transform=
-`translateY(-${Math.min(100,gameState.mult*5)}px)`;
-
-const auto=Number(document.getElementById("autoCash").value);
-
-if(auto>0&&gameState.mult>=auto){
-cashCrash();
-}
-
-if(gameState.active&&gameState.mult>=gameState.crash){
-
-gameState.active=false;
-
-document.getElementById("crashMult").classList.add("dead");
-document.getElementById("crashCash").disabled=true;
-
-document.getElementById("crashStatus").className="status loss";
-document.getElementById("crashStatus").innerText=
-`CRASHED at ${gameState.crash.toFixed(2)}x`;
-
-addHistory("Crash","loss",gameState.bet,0,0);
-
-clearInterval(timer);
-}
-
-},90);
-
-timers.push(timer);
-
-document.getElementById("crashCash").disabled=false;
+ timers.push(timer);
+ document.getElementById("crashCash").disabled=false;
 }
 
 function cashCrash(){
-
-if(!gameState.active)return;
-
-const amount=gameState.bet*gameState.mult;
-
-gameState.active=false;
-
-payout(amount);
-
-document.getElementById("crashCash").disabled=true;
-
-document.getElementById("crashStatus").className="status win";
-document.getElementById("crashStatus").innerText=
-`Cashed out ${gameState.mult.toFixed(2)}x • +${amount.toFixed(2)}`;
-
-addHistory(
-"Crash",
-"win",
-gameState.bet,
-amount,
-gameState.mult
-);
+ if(!gameState.active)return;
+ const amount=gameState.bet*gameState.mult;
+ gameState.active=false;
+ payout(amount);
+ document.getElementById("crashCash").disabled=true;
+ document.getElementById("crashStatus").className="status win";
+ document.getElementById("crashStatus").innerText=`Cashed out ${gameState.mult.toFixed(2)}x • +${amount.toFixed(2)}`;
+ addHistory("Crash","win",gameState.bet,amount,gameState.mult);
 }
 
 /* =========================================================
@@ -1543,112 +1132,54 @@ DICE
 ========================================================= */
 
 function diceHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>BET</label>
-<input id="diceBet" type="number" value="10" min="1">
-</div>
-
-<div class="control">
-<label>MODE</label>
-<select id="diceMode" onchange="updateDice()">
-<option value="under">UNDER</option>
-<option value="over">OVER</option>
-</select>
-</div>
-
-<div class="control">
-<label>TARGET</label>
-<input id="diceTarget" type="number" value="50"
-min="5" max="95" oninput="updateDice()">
-</div>
-
-</div>
-
-<div class="gamearea">
-
-<div id="diceNumber" class="diceNum">50</div>
-
-<input id="diceSlider" class="slider"
-type="range" min="5" max="95" value="50"
-oninput="
-document.getElementById('diceTarget').value=this.value;
-updateDice();
-">
-
-<div id="diceInfo" class="status">50% chance</div>
-
-<div id="diceResult"
-style="font-size:42px;text-align:center">
-🎲
-</div>
-
-<button class="gameBtn" onclick="rollDice()">ROLL DICE</button>
-
-</div>
-`;
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="diceBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>MODE</label><select id="diceMode" onchange="updateDice()"><option value="under">UNDER</option><option value="over">OVER</option></select></div>
+  <div class="control"><label>TARGET</label><input id="diceTarget" type="number" value="50" min="5" max="95" oninput="updateDice()"></div>
+ </div>
+ <div class="gamearea">
+  <div id="diceNumber" class="diceNum" style="font-size:52px;text-align:center;color:var(--green);font-weight:950">50</div>
+  <input id="diceSlider" class="slider" type="range" min="5" max="95" value="50" oninput="document.getElementById('diceTarget').value=this.value;updateDice()">
+  <div id="diceInfo" class="status">50% chance</div>
+  <div id="diceResult" style="font-size:42px;text-align:center">🎲</div>
+  <button class="gameBtn" onclick="rollDice()">ROLL DICE</button>
+ </div>`;
 }
 
 function updateDice(){
-
-const target=Number(document.getElementById("diceTarget").value);
-const mode=document.getElementById("diceMode").value;
-
-document.getElementById("diceSlider").value=target;
-
-const chance=mode==="under"?target:100-target;
-
-const multiplier=Math.max(1.01,100/chance*.96);
-
-document.getElementById("diceNumber").innerText=target;
-
-document.getElementById("diceInfo").innerText=
-`${chance}% chance • ${multiplier.toFixed(2)}x`;
+ const target=Number(document.getElementById("diceTarget").value);
+ const mode=document.getElementById("diceMode").value;
+ document.getElementById("diceSlider").value=target;
+ const chance=mode==="under"?target:100-target;
+ const multiplier=Math.max(1.01,100/chance*.96);
+ document.getElementById("diceNumber").innerText=target;
+ document.getElementById("diceInfo").innerText=`${chance}% chance • ${multiplier.toFixed(2)}x`;
 }
 
 function rollDice(){
+ const bet=Number(document.getElementById("diceBet").value);
+ if(!spend(bet))return;
 
-const bet=Number(document.getElementById("diceBet").value);
+ const target=Number(document.getElementById("diceTarget").value);
+ const mode=document.getElementById("diceMode").value;
+ const roll=Number((Math.random()*100).toFixed(2));
+ const chance=mode==="under"?target:100-target;
+ const multiplier=Math.max(1.01,100/chance*.96);
+ const win=mode==="under"?roll<target:roll>target;
 
-if(!spend(bet))return;
+ document.getElementById("diceResult").innerText=roll.toFixed(2);
 
-const target=Number(document.getElementById("diceTarget").value);
-const mode=document.getElementById("diceMode").value;
-
-const roll=Number((Math.random()*100).toFixed(2));
-
-const chance=mode==="under"?target:100-target;
-
-const multiplier=Math.max(1.01,100/chance*.96);
-
-const win=mode==="under"?roll<target:roll>target;
-
-document.getElementById("diceResult").innerText=roll.toFixed(2);
-
-if(win){
-
-const amount=bet*multiplier;
-
-payout(amount);
-
-document.getElementById("diceInfo").className="status win";
-document.getElementById("diceInfo").innerText=
-`WIN • ${roll.toFixed(2)} • +${amount.toFixed(2)}`;
-
-addHistory("Dice","win",bet,amount,multiplier);
-
-}else{
-
-document.getElementById("diceInfo").className="status loss";
-document.getElementById("diceInfo").innerText=
-`LOSS • ${roll.toFixed(2)}`;
-
-addHistory("Dice","loss",bet,0,0);
-}
+ if(win){
+  const amount=bet*multiplier;payout(amount);
+  document.getElementById("diceInfo").className="status win";
+  document.getElementById("diceInfo").innerText=`WIN • ${roll.toFixed(2)} • +${amount.toFixed(2)}`;
+  addHistory("Dice","win",bet,amount,multiplier);
+ }else{
+  document.getElementById("diceInfo").className="status loss";
+  document.getElementById("diceInfo").innerText=`LOSS • ${roll.toFixed(2)}`;
+  addHistory("Dice","loss",bet,0,0);
+ }
 }
 
 /* =========================================================
@@ -1656,393 +1187,192 @@ TOWER
 ========================================================= */
 
 function towerHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>BET</label>
-<input id="towerBet" type="number" value="10" min="1">
-</div>
-
-<div class="control">
-<label>LEVEL</label>
-<select id="towerLevel">
-<option>Easy</option>
-<option selected>Medium</option>
-<option>Hard</option>
-</select>
-</div>
-
-<div class="control">
-<label>ROWS</label>
-<select id="towerRows" onchange="buildTower()">
-<option>5</option>
-<option selected>8</option>
-<option>12</option>
-</select>
-</div>
-
-</div>
-
-<div id="towerBoard" class="tower"></div>
-
-<div id="towerStatus" class="status">Start the tower.</div>
-
-<div class="actions">
-
-<button class="primary" onclick="startTower()">START</button>
-
-<button id="towerCash" class="cash" disabled onclick="cashTower()">
-CASH OUT
-</button>
-
-</div>
-`;
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="towerBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>LEVEL</label><select id="towerLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+  <div class="control"><label>ROWS</label><select id="towerRows" onchange="buildTower()"><option>5</option><option selected>8</option><option>12</option></select></div>
+ </div>
+ <div id="towerBoard" class="tower"></div>
+ <div id="towerStatus" class="status">Start the tower.</div>
+ <div class="actions">
+  <button class="primary" onclick="startTower()">START</button>
+  <button id="towerCash" class="cash" disabled onclick="cashTower()">CASH OUT</button>
+ </div>`;
 }
 
 function buildTower(){
-
-const rows=Number(document.getElementById("towerRows").value);
-const board=document.getElementById("towerBoard");
-
-board.innerHTML="";
-
-for(let i=0;i<rows;i++){
-
-const row=document.createElement("div");
-row.className="trow";
-
-for(let j=0;j<2;j++){
-
-const b=document.createElement("button");
-
-b.className="tcell";
-b.innerText="◆";
-b.disabled=true;
-
-row.appendChild(b);
-}
-
-board.appendChild(row);
-}
+ const rows=Number(document.getElementById("towerRows").value);
+ const board=document.getElementById("towerBoard");
+ board.innerHTML="";
+ for(let i=0;i<rows;i++){
+  const row=document.createElement("div");row.className="trow";
+  for(let j=0;j<2;j++){
+   const b=document.createElement("button");
+   b.className="tcell";b.innerText="◆";b.disabled=true;
+   row.appendChild(b);
+  }
+  board.appendChild(row);
+ }
 }
 
 function startTower(){
-
-const bet=Number(document.getElementById("towerBet").value);
-
-if(!spend(bet))return;
-
-buildTower();
-
-gameState={
-active:true,
-bet,
-row:0,
-cash:bet
-};
-
-document.getElementById("towerCash").disabled=false;
-
-enableTower();
+ const bet=Number(document.getElementById("towerBet").value);
+ if(!spend(bet))return;
+ buildTower();
+ gameState={active:true,bet,row:0,cash:bet};
+ document.getElementById("towerCash").disabled=false;
+ enableTower();
 }
 
 function enableTower(){
+ const rows=[...document.querySelectorAll(".trow")];
+ const row=rows[rows.length-1-gameState.row];
+ if(!row)return;
 
-const rows=[...document.querySelectorAll(".trow")];
-
-const row=rows[rows.length-1-gameState.row];
-
-if(!row)return;
-
-row.querySelectorAll("button").forEach(b=>{
-
-b.disabled=false;
-b.onclick=()=>towerPick(b);
-
-});
+ row.querySelectorAll("button").forEach(b=>{
+  b.disabled=false;
+  b.onclick=()=>towerPick(b);
+ });
 }
 
 function towerPick(button){
+ if(!gameState.active)return;
 
-if(!gameState.active)return;
+ const level=document.getElementById("towerLevel").value;
+ let chance=.58;
+ if(level==="Easy")chance=.72;
+ if(level==="Hard")chance=.42;
 
-const level=document.getElementById("towerLevel").value;
+ if(Math.random()>chance){
+  button.innerText="💥";button.classList.add("danger");
+  gameState.active=false;
+  document.getElementById("towerCash").disabled=true;
+  document.getElementById("towerStatus").className="status loss";
+  document.getElementById("towerStatus").innerText="Wrong tile.";
+  addHistory("Tower","loss",gameState.bet,0,0);
+  return;
+ }
 
-let chance=.58;
+ button.innerText="💎";button.classList.add("safe");
+ button.parentElement.querySelectorAll("button").forEach(b=>b.disabled=true);
 
-if(level==="Easy")chance=.72;
-if(level==="Hard")chance=.42;
+ gameState.row++;
+ const base=level==="Easy"?1.15:level==="Hard"?1.55:1.3;
+ const multiplier=Math.pow(base,gameState.row);
+ gameState.cash=gameState.bet*multiplier;
 
-if(Math.random()>chance){
+ document.getElementById("towerStatus").className="status win";
+ document.getElementById("towerStatus").innerText=`Safe • ${multiplier.toFixed(2)}x`;
 
-button.innerText="💥";
-button.classList.add("danger");
-
-gameState.active=false;
-
-document.getElementById("towerCash").disabled=true;
-document.getElementById("towerStatus").className="status loss";
-document.getElementById("towerStatus").innerText="Wrong tile.";
-
-addHistory("Tower","loss",gameState.bet,0,0);
-
-return;
-}
-
-button.innerText="💎";
-button.classList.add("safe");
-
-button.parentElement.querySelectorAll("button")
-.forEach(b=>b.disabled=true);
-
-gameState.row++;
-
-const base=
-level==="Easy"?1.15:
-level==="Hard"?1.55:1.3;
-
-const multiplier=Math.pow(base,gameState.row);
-
-gameState.cash=gameState.bet*multiplier;
-
-document.getElementById("towerStatus").className="status win";
-document.getElementById("towerStatus").innerText=
-`Safe • ${multiplier.toFixed(2)}x`;
-
-if(gameState.row>=Number(document.getElementById("towerRows").value)){
-cashTower();
-return;
-}
-
-enableTower();
+ if(gameState.row>=Number(document.getElementById("towerRows").value)){
+  cashTower();return;
+ }
+ enableTower();
 }
 
 function cashTower(){
-
-if(!gameState.active)return;
-
-gameState.active=false;
-
-payout(gameState.cash);
-
-document.getElementById("towerCash").disabled=true;
-
-document.getElementById("towerStatus").innerText=
-`Cashed out • +${gameState.cash.toFixed(2)}`;
-
-document.getElementById("towerStatus").className="status win";
-
-addHistory(
-"Tower",
-"win",
-gameState.bet,
-gameState.cash,
-gameState.cash/gameState.bet
-);
+ if(!gameState.active)return;
+ gameState.active=false;
+ payout(gameState.cash);
+ document.getElementById("towerCash").disabled=true;
+ document.getElementById("towerStatus").className="status win";
+ document.getElementById("towerStatus").innerText=`Cashed out • +${gameState.cash.toFixed(2)}`;
+ addHistory("Tower","win",gameState.bet,gameState.cash,gameState.cash/gameState.bet);
 }
 
 /* =========================================================
 BLACKJACK
 ========================================================= */
 
-const suits=["♠","♥","♦","♣"];
-
-const ranks=[
-["A",11],["2",2],["3",3],["4",4],["5",5],["6",6],
-["7",7],["8",8],["9",9],["10",10],["J",10],["Q",10],["K",10]
-];
-
-function deck(){
-
-let d=[];
-
-suits.forEach(s=>{
-ranks.forEach(r=>{
-d.push({suit:s,rank:r[0],value:r[1]});
-});
-});
-
-return d.sort(()=>Math.random()-.5);
-}
-
-function value(hand){
-
-let v=hand.reduce((a,c)=>a+c.value,0);
-
-let aces=hand.filter(c=>c.rank==="A").length;
-
-while(v>21&&aces){
-v-=10;
-aces--;
-}
-
-return v;
-}
-
-function card(c){
-
-return`
-<div class="playing ${
-c.suit==="♥"||c.suit==="♦"?"redcard":""
-}">
-${c.rank}${c.suit}
-</div>
-`;
-}
-
 function blackjackHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>BET</label>
-<input id="bjBet" type="number" value="10" min="1">
-</div>
-
-</div>
-
-<div class="gamearea">
-
-<small>DEALER</small>
-<div id="dealerCards" class="cards"></div>
-<div id="dealerValue">?</div>
-
-<br>
-
-<small>PLAYER</small>
-<div id="playerCards" class="cards"></div>
-<div id="playerValue">0</div>
-
-<div id="bjStatus" class="status">Deal to start.</div>
-
-<div class="actions">
-
-<button class="primary" onclick="dealBJ()">DEAL</button>
-
-<button id="bjHit" class="secondary" disabled onclick="hitBJ()">
-HIT
-</button>
-
-<button id="bjStand" class="secondary" disabled onclick="standBJ()">
-STAND
-</button>
-
-</div>
-
-</div>
-`;
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="bjBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>TABLE</label><select><option>Classic</option></select></div>
+ </div>
+ <div class="casino">
+  <div class="casinoTitle">STAKEWIN BLACKJACK</div>
+  <div class="casinoCenter">DEALER</div>
+  <div id="dealerCards" class="casinoCards"></div>
+  <div id="dealerValue" style="text-align:center;color:#fff">?</div>
+  <hr style="border-color:#ffffff18">
+  <div class="casinoCenter">PLAYER</div>
+  <div id="playerCards" class="casinoCards"></div>
+  <div id="playerValue" style="text-align:center;color:#fff">0</div>
+ </div>
+ <div id="bjStatus" class="status">Deal to start.</div>
+ <div class="actions">
+  <button class="primary" onclick="dealBJ()">DEAL</button>
+  <button id="bjHit" class="secondary" disabled onclick="hitBJ()">HIT</button>
+  <button id="bjStand" class="cash" disabled onclick="standBJ()">STAND</button>
+ </div>`;
 }
 
 function dealBJ(){
+ const bet=Number(document.getElementById("bjBet").value);
+ if(!spend(bet))return;
+ const d=deck();
+ gameState={bet,deck:d,player:[d.pop(),d.pop()],dealer:[d.pop(),d.pop()],active:true};
+ renderBJ(false);
+ document.getElementById("bjHit").disabled=false;
+ document.getElementById("bjStand").disabled=false;
+}
 
-const bet=Number(document.getElementById("bjBet").value);
-
-if(!spend(bet))return;
-
-const d=deck();
-
-gameState={
-bet,
-deck:d,
-player:[d.pop(),d.pop()],
-dealer:[d.pop(),d.pop()],
-active:true
-};
-
-renderBJ(false);
-
-document.getElementById("bjHit").disabled=false;
-document.getElementById("bjStand").disabled=false;
+function bjValue(hand){
+ let v=hand.reduce((a,c)=>a+c.value,0);
+ let aces=hand.filter(c=>c.rank==="A").length;
+ while(v>21&&aces){v-=10;aces--}
+ return v;
 }
 
 function renderBJ(show){
-
-document.getElementById("playerCards").innerHTML=
-gameState.player.map(card).join("");
-
-document.getElementById("dealerCards").innerHTML=
-card(gameState.dealer[0])+
-(show
-?gameState.dealer.slice(1).map(card).join("")
-:`<div class="playing">?</div>`);
-
-document.getElementById("playerValue").innerText=
-value(gameState.player);
-
-document.getElementById("dealerValue").innerText=
-show?value(gameState.dealer):"?";
+ document.getElementById("playerCards").innerHTML=gameState.player.map(card).join("");
+ document.getElementById("dealerCards").innerHTML=
+  card(gameState.dealer[0])+
+  (show?gameState.dealer.slice(1).map(card).join(""):`<div class="playing">?</div>`);
+ document.getElementById("playerValue").innerText=bjValue(gameState.player);
+ document.getElementById("dealerValue").innerText=show?bjValue(gameState.dealer):"?";
 }
 
 function hitBJ(){
-
-if(!gameState.active)return;
-
-gameState.player.push(gameState.deck.pop());
-
-renderBJ(false);
-
-if(value(gameState.player)>21)finishBJ("loss");
+ if(!gameState.active)return;
+ gameState.player.push(gameState.deck.pop());
+ renderBJ(false);
+ if(bjValue(gameState.player)>21)finishBJ("loss");
 }
 
 function standBJ(){
+ if(!gameState.active)return;
+ while(bjValue(gameState.dealer)<17)gameState.dealer.push(gameState.deck.pop());
+ renderBJ(true);
 
-if(!gameState.active)return;
-
-while(value(gameState.dealer)<17){
-gameState.dealer.push(gameState.deck.pop());
-}
-
-renderBJ(true);
-
-const p=value(gameState.player);
-const d=value(gameState.dealer);
-
-if(p>d||d>21)finishBJ("win");
-else if(p===d)finishBJ("push");
-else finishBJ("loss");
+ const p=bjValue(gameState.player),d=bjValue(gameState.dealer);
+ if(p>d||d>21)finishBJ("win");
+ else if(p===d)finishBJ("push");
+ else finishBJ("loss");
 }
 
 function finishBJ(result){
+ gameState.active=false;
+ document.getElementById("bjHit").disabled=true;
+ document.getElementById("bjStand").disabled=true;
+ renderBJ(true);
 
-gameState.active=false;
-
-document.getElementById("bjHit").disabled=true;
-document.getElementById("bjStand").disabled=true;
-
-renderBJ(true);
-
-if(result==="win"){
-
-const amount=gameState.bet*2;
-
-payout(amount);
-
-document.getElementById("bjStatus").className="status win";
-document.getElementById("bjStatus").innerText="YOU WIN • 2x";
-
-addHistory("Blackjack","win",gameState.bet,amount,2);
-
-}else if(result==="push"){
-
-payout(gameState.bet);
-
-document.getElementById("bjStatus").innerText=
-"PUSH • Bet returned.";
-
-addHistory("Blackjack","win",gameState.bet,gameState.bet,1);
-
-}else{
-
-document.getElementById("bjStatus").className="status loss";
-document.getElementById("bjStatus").innerText="DEALER WINS";
-
-addHistory("Blackjack","loss",gameState.bet,0,0);
-}
+ if(result==="win"){
+  const amount=gameState.bet*2;payout(amount);
+  document.getElementById("bjStatus").className="status win";
+  document.getElementById("bjStatus").innerText="YOU WIN • 2x";
+  addHistory("Blackjack","win",gameState.bet,amount,2);
+ }else if(result==="push"){
+  payout(gameState.bet);
+  document.getElementById("bjStatus").innerText="PUSH • Bet returned.";
+  addHistory("Blackjack","win",gameState.bet,gameState.bet,1);
+ }else{
+  document.getElementById("bjStatus").className="status loss";
+  document.getElementById("bjStatus").innerText="DEALER WINS";
+  addHistory("Blackjack","loss",gameState.bet,0,0);
+ }
 }
 
 /* =========================================================
@@ -2050,96 +1380,49 @@ ROULETTE
 ========================================================= */
 
 function rouletteHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>BET</label>
-<input id="rouletteBet" type="number" value="10" min="1">
-</div>
-
-<div class="control">
-<label>BET</label>
-<select id="rouletteType">
-<option value="red">Red</option>
-<option value="black">Black</option>
-<option value="even">Even</option>
-<option value="odd">Odd</option>
-<option value="green">Green</option>
-</select>
-</div>
-
-</div>
-
-<div class="gamearea">
-
-<div id="wheel" class="wheel">
-<div id="wheelCenter" class="wheelcenter">?</div>
-</div>
-
-<div id="rouletteStatus" class="status">
-Spin the wheel.
-</div>
-
-<button class="gameBtn" onclick="spinRoulette()">SPIN</button>
-
-</div>
-`;
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="rouletteBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>BET TYPE</label><select id="rouletteType"><option value="red">Red</option><option value="black">Black</option><option value="even">Even</option><option value="odd">Odd</option><option value="green">Green</option></select></div>
+  <div class="control"><label>TABLE</label><select><option>European</option></select></div>
+ </div>
+ <div class="gamearea">
+  <div id="wheel" class="showWheel"><div id="wheelCenter" class="wheelInner">?</div></div>
+  <div id="rouletteStatus" class="status">Spin the wheel.</div>
+  <button class="gameBtn" onclick="spinRoulette()">SPIN</button>
+ </div>`;
 }
 
 function spinRoulette(){
+ const bet=Number(document.getElementById("rouletteBet").value);
+ if(!spend(bet))return;
 
-const bet=Number(document.getElementById("rouletteBet").value);
+ const number=Math.floor(Math.random()*37);
+ const color=number===0?"green":number%2?"red":"black";
+ const type=document.getElementById("rouletteType").value;
 
-if(!spend(bet))return;
+ document.getElementById("wheel").style.transform=`rotate(${900+Math.random()*400}deg)`;
 
-const number=Math.floor(Math.random()*37);
+ const timer=setTimeout(()=>{
+  document.getElementById("wheelCenter").innerText=number;
 
-const color=
-number===0?"green":
-number%2?"red":"black";
+  const win=type===color||
+   (type==="even"&&number!==0&&number%2===0)||
+   (type==="odd"&&number%2===1);
 
-const type=document.getElementById("rouletteType").value;
-
-document.getElementById("wheel").style.transform=
-`rotate(${900+Math.random()*400}deg)`;
-
-const timer=setTimeout(()=>{
-
-document.getElementById("wheelCenter").innerText=number;
-
-const win=
-type===color||
-(type==="even"&&number!==0&&number%2===0)||
-(type==="odd"&&number%2===1);
-
-if(win){
-
-const mult=type==="green"?14:2;
-const amount=bet*mult;
-
-payout(amount);
-
-document.getElementById("rouletteStatus").className="status win";
-document.getElementById("rouletteStatus").innerText=
-`WIN • ${number} ${color} • +${amount.toFixed(2)}`;
-
-addHistory("Roulette","win",bet,amount,mult);
-
-}else{
-
-document.getElementById("rouletteStatus").className="status loss";
-document.getElementById("rouletteStatus").innerText=
-`LOSS • ${number} ${color}`;
-
-addHistory("Roulette","loss",bet,0,0);
-}
-
-},2200);
-
-timers.push(timer);
+  if(win){
+   const mult=type==="green"?14:2;
+   const amount=bet*mult;payout(amount);
+   document.getElementById("rouletteStatus").className="status win";
+   document.getElementById("rouletteStatus").innerText=`WIN • ${number} ${color} • +${amount.toFixed(2)}`;
+   addHistory("Roulette","win",bet,amount,mult);
+  }else{
+   document.getElementById("rouletteStatus").className="status loss";
+   document.getElementById("rouletteStatus").innerText=`LOSS • ${number} ${color}`;
+   addHistory("Roulette","loss",bet,0,0);
+  }
+ },2200);
+ timers.push(timer);
 }
 
 /* =========================================================
@@ -2147,678 +1430,777 @@ SLOTS
 ========================================================= */
 
 function slotsHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>BET</label>
-<input id="slotBet" type="number" value="10" min="1">
-</div>
-
-</div>
-
-<div class="reels">
-
-<div id="r0" class="reel">❔</div>
-<div id="r1" class="reel">❔</div>
-<div id="r2" class="reel">❔</div>
-
-</div>
-
-<div id="slotStatus" class="status">Spin the reels.</div>
-
-<button class="gameBtn" onclick="spinSlots()">SPIN</button>
-`;
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="slotBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>REELS</label><select><option>3</option></select></div>
+  <div class="control"><label>MODE</label><select><option>Classic</option></select></div>
+ </div>
+ <div style="display:flex;gap:5px;background:#321a0b;border:3px solid #b47a24;padding:13px;border-radius:11px">
+  <div id="r0" class="reel" style="flex:1;height:75px;background:#f7f4e9;color:#111;border-radius:6px;display:grid;place-items:center;font-size:32px">❔</div>
+  <div id="r1" class="reel" style="flex:1;height:75px;background:#f7f4e9;color:#111;border-radius:6px;display:grid;place-items:center;font-size:32px">❔</div>
+  <div id="r2" class="reel" style="flex:1;height:75px;background:#f7f4e9;color:#111;border-radius:6px;display:grid;place-items:center;font-size:32px">❔</div>
+ </div>
+ <div id="slotStatus" class="status">Spin the reels.</div>
+ <button class="gameBtn" onclick="spinSlots()">SPIN</button>`;
 }
 
 function spinSlots(){
+ const bet=Number(document.getElementById("slotBet").value);
+ if(!spend(bet))return;
 
-const bet=Number(document.getElementById("slotBet").value);
+ const symbols=["🍒","🍋","🍊","🍉","💎","⭐","7️⃣"];
+ let count=0;
 
-if(!spend(bet))return;
+ const timer=setInterval(()=>{
+  for(let i=0;i<3;i++)
+   document.getElementById("r"+i).innerText=symbols[Math.floor(Math.random()*symbols.length)];
 
-const symbols=["🍒","🍋","🍊","🍉","💎","⭐","7️⃣"];
+  count++;
 
-document.querySelectorAll(".reel")
-.forEach(r=>r.classList.add("spin"));
+  if(count>20){
+   clearInterval(timer);
 
-let count=0;
+   const a=document.getElementById("r0").innerText;
+   const b=document.getElementById("r1").innerText;
+   const c=document.getElementById("r2").innerText;
+   let mult=0;
 
-const timer=setInterval(()=>{
+   if(a===b&&b===c)mult=a==="7️⃣"?10:7;
+   else if(a===b||b===c||a===c)mult=2;
 
-for(let i=0;i<3;i++){
+   if(mult){
+    const amount=bet*mult;payout(amount);
+    document.getElementById("slotStatus").className="status win";
+    document.getElementById("slotStatus").innerText=`WIN • ${mult}x • +${amount.toFixed(2)}`;
+    addHistory("Neon Slots","win",bet,amount,mult);
+   }else{
+    document.getElementById("slotStatus").className="status loss";
+    document.getElementById("slotStatus").innerText="NO MATCH";
+    addHistory("Neon Slots","loss",bet,0,0);
+   }
+  }
+ },70);
 
-document.getElementById("r"+i).innerText=
-symbols[Math.floor(Math.random()*symbols.length)];
-}
-
-count++;
-
-if(count>20){
-
-clearInterval(timer);
-
-document.querySelectorAll(".reel")
-.forEach(r=>r.classList.remove("spin"));
-
-const a=document.getElementById("r0").innerText;
-const b=document.getElementById("r1").innerText;
-const c=document.getElementById("r2").innerText;
-
-let mult=0;
-
-if(a===b&&b===c)mult=a==="7️⃣"?10:7;
-else if(a===b||b===c||a===c)mult=2;
-
-if(mult){
-
-const amount=bet*mult;
-
-payout(amount);
-
-document.getElementById("slotStatus").className="status win";
-document.getElementById("slotStatus").innerText=
-`WIN • ${mult}x • +${amount.toFixed(2)}`;
-
-addHistory("Neon Slots","win",bet,amount,mult);
-
-}else{
-
-document.getElementById("slotStatus").className="status loss";
-document.getElementById("slotStatus").innerText="NO MATCH";
-
-addHistory("Neon Slots","loss",bet,0,0);
-}
-}
-
-},70);
-
-timers.push(timer);
+ timers.push(timer);
 }
 
 /* =========================================================
-KENO
-========================================================= */
-
-function kenoHTML(){
-
-return`
-
-<div class="toolbar">
-
-<div class="control">
-<label>NUMBERS</label>
-<select id="kenoPick">
-<option>4</option>
-<option selected>6</option>
-<option>8</option>
-<option>10</option>
-</select>
-</div>
-
-<div class="control">
-<label>BET</label>
-<input id="kenoBet" type="number" value="10" min="1">
-</div>
-
-</div>
-
-<div id="kenoGrid" class="keno"></div>
-
-<div id="kenoStatus" class="status">
-Pick your numbers.
-</div>
-
-<button class="gameBtn" onclick="drawKeno()">DRAW</button>
-`;
-}
-
-function buildKeno(){
-
-const grid=document.getElementById("kenoGrid");
-
-grid.innerHTML="";
-gameState.selected=[];
-
-for(let i=1;i<=40;i++){
-
-const b=document.createElement("button");
-
-b.className="kn";
-b.innerText=i;
-
-b.onclick=()=>{
-
-const max=Number(document.getElementById("kenoPick").value);
-
-if(gameState.selected.includes(i)){
-
-gameState.selected=
-gameState.selected.filter(n=>n!==i);
-
-b.classList.remove("sel");
-return;
-}
-
-if(gameState.selected.length>=max)return;
-
-gameState.selected.push(i);
-b.classList.add("sel");
-};
-
-grid.appendChild(b);
-}
-}
-
-function drawKeno(){
-
-const max=Number(document.getElementById("kenoPick").value);
-const bet=Number(document.getElementById("kenoBet").value);
-
-if(gameState.selected.length!==max){
-alert(`Select exactly ${max} numbers.`);
-return;
-}
-
-if(!spend(bet))return;
-
-let drawn=[];
-
-while(drawn.length<20){
-
-const n=1+Math.floor(Math.random()*40);
-
-if(!drawn.includes(n))drawn.push(n);
-}
-
-const hits=gameState.selected.filter(
-n=>drawn.includes(n)
-).length;
-
-document.querySelectorAll(".kn").forEach(b=>{
-if(drawn.includes(Number(b.innerText)))
-b.classList.add("hit");
-});
-
-const table={
-4:[0,0,1.5,5,25],
-6:[0,0,0,1.2,3,10,60],
-8:[0,0,0,0,1.5,4,12,80,300],
-10:[0,0,0,0,0,1.5,4,10,60,250,800]
-};
-
-const mult=table[max][hits]||0;
-
-if(mult){
-
-const amount=bet*mult;
-
-payout(amount);
-
-document.getElementById("kenoStatus").className="status win";
-document.getElementById("kenoStatus").innerText=
-`${hits}/${max} • ${mult}x • +${amount.toFixed(2)}`;
-
-addHistory("Keno","win",bet,amount,mult);
-
-}else{
-
-document.getElementById("kenoStatus").className="status loss";
-document.getElementById("kenoStatus").innerText=
-`${hits}/${max} • LOSS`;
-
-addHistory("Keno","loss",bet,0,0);
-}
-}
-
-/* =========================================================
-COIN
+COIN / HIGHER / COLOR
 ========================================================= */
 
 function coinHTML(){
-
-return`
-
-<div class="gamearea" style="text-align:center">
-
-<div id="coinIcon" style="font-size:60px;margin:10px">🪙</div>
-
-<div class="toolbar">
-
-<div class="control">
-<label>BET</label>
-<input id="coinBet" type="number" value="10" min="1">
-</div>
-
-<div class="control">
-<label>CHOICE</label>
-<select id="coinChoice">
-<option>Heads</option>
-<option>Tails</option>
-</select>
-</div>
-
-</div>
-
-<div id="coinStatus" class="status">
-Choose heads or tails.
-</div>
-
-<button class="gameBtn" onclick="flipCoin()">FLIP COIN</button>
-
-</div>
-`;
+ return`
+ <div class="gamearea" style="text-align:center">
+  <div id="coinIcon" style="font-size:60px;margin:10px">🪙</div>
+  <div class="toolbar">
+   <div class="control"><label>BET</label><input id="coinBet" type="number" value="10" min="1"></div>
+   <div class="control"><label>CHOICE</label><select id="coinChoice"><option>Heads</option><option>Tails</option></select></div>
+  </div>
+  <div id="coinStatus" class="status">Choose heads or tails.</div>
+  <button class="gameBtn" onclick="flipCoin()">FLIP COIN</button>
+ </div>`;
 }
 
 function flipCoin(){
+ const bet=Number(document.getElementById("coinBet").value);
+ if(!spend(bet))return;
 
-const bet=Number(document.getElementById("coinBet").value);
+ const choice=document.getElementById("coinChoice").value;
+ const result=Math.random()<.5?"Heads":"Tails";
+ const icon=document.getElementById("coinIcon");
 
-if(!spend(bet))return;
+ icon.animate(
+  [{transform:"rotateY(0deg)"},{transform:"rotateY(720deg)"},{transform:"rotateY(1440deg)"}],
+  {duration:700}
+ );
 
-const choice=document.getElementById("coinChoice").value;
+ const timer=setTimeout(()=>{
+  icon.innerText=result==="Heads"?"🙂":"🪙";
 
-const result=Math.random()<.5?"Heads":"Tails";
-
-const icon=document.getElementById("coinIcon");
-
-icon.animate(
-[
-{transform:"rotateY(0deg)"},
-{transform:"rotateY(720deg)"},
-{transform:"rotateY(1440deg)"}
-],
-{duration:700}
-);
-
-setTimeout(()=>{
-
-icon.innerText=result==="Heads"?"🙂":"🪙";
-
-if(result===choice){
-
-const amount=bet*1.9;
-
-payout(amount);
-
-document.getElementById("coinStatus").className="status win";
-document.getElementById("coinStatus").innerText=
-`${result} • WIN • +${amount.toFixed(2)}`;
-
-addHistory("Coin Flip","win",bet,amount,1.9);
-
-}else{
-
-document.getElementById("coinStatus").className="status loss";
-document.getElementById("coinStatus").innerText=
-`${result} • LOSS`;
-
-addHistory("Coin Flip","loss",bet,0,0);
+  if(result===choice){
+   const amount=bet*1.9;payout(amount);
+   document.getElementById("coinStatus").className="status win";
+   document.getElementById("coinStatus").innerText=`${result} • WIN • +${amount.toFixed(2)}`;
+   addHistory("Coin Flip","win",bet,amount,1.9);
+  }else{
+   document.getElementById("coinStatus").className="status loss";
+   document.getElementById("coinStatus").innerText=`${result} • LOSS`;
+   addHistory("Coin Flip","loss",bet,0,0);
+  }
+ },700);
+ timers.push(timer);
 }
-
-},700);
-}
-
-/* =========================================================
-HIGHER LOWER
-========================================================= */
 
 function higherHTML(){
-
-return`
-
-<div class="gamearea" style="text-align:center">
-
-<div id="higherNumber"
-style="font-size:55px;font-weight:950;color:var(--green)">
-50
-</div>
-
-<div class="toolbar">
-
-<div class="control">
-<label>BET</label>
-<input id="higherBet" type="number" value="10" min="1">
-</div>
-
-</div>
-
-<div id="higherStatus" class="status">
-Predict the next number.
-</div>
-
-<div class="actions">
-
-<button class="primary" onclick="higherGuess('higher')">
-HIGHER
-</button>
-
-<button class="secondary" onclick="higherGuess('lower')">
-LOWER
-</button>
-
-</div>
-
-</div>
-`;
+ return`
+ <div class="gamearea" style="text-align:center">
+  <div id="higherNumber" style="font-size:55px;font-weight:950;color:var(--green)">50</div>
+  <div class="toolbar">
+   <div class="control"><label>BET</label><input id="higherBet" type="number" value="10" min="1"></div>
+   <div class="control"><label>LEVEL</label><select><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+  </div>
+  <div id="higherStatus" class="status">Predict the next number.</div>
+  <div class="actions">
+   <button class="primary" onclick="higherGuess('higher')">HIGHER</button>
+   <button class="secondary" onclick="higherGuess('lower')">LOWER</button>
+  </div>
+ </div>`;
 }
 
 function initHigher(){
-
-gameState.higher=Math.floor(20+Math.random()*60);
-
-document.getElementById("higherNumber").innerText=
-gameState.higher;
+ gameState.higher=Math.floor(20+Math.random()*60);
+ document.getElementById("higherNumber").innerText=gameState.higher;
 }
 
 function higherGuess(choice){
+ const bet=Number(document.getElementById("higherBet").value);
+ if(!spend(bet))return;
 
-const bet=Number(document.getElementById("higherBet").value);
+ const old=gameState.higher;
+ const next=Math.floor(1+Math.random()*100);
+ gameState.higher=next;
+ document.getElementById("higherNumber").innerText=next;
 
-if(!spend(bet))return;
+ const win=choice==="higher"?next>old:next<old;
 
-const old=gameState.higher;
-
-const next=Math.floor(1+Math.random()*100);
-
-gameState.higher=next;
-
-document.getElementById("higherNumber").innerText=next;
-
-const win=choice==="higher"?next>old:next<old;
-
-if(win){
-
-const amount=bet*1.8;
-
-payout(amount);
-
-document.getElementById("higherStatus").className="status win";
-document.getElementById("higherStatus").innerText=
-`${old} → ${next} • WIN`;
-
-addHistory("Higher Lower","win",bet,amount,1.8);
-
-}else{
-
-document.getElementById("higherStatus").className="status loss";
-document.getElementById("higherStatus").innerText=
-`${old} → ${next} • LOSS`;
-
-addHistory("Higher Lower","loss",bet,0,0);
+ if(win){
+  const amount=bet*1.8;payout(amount);
+  document.getElementById("higherStatus").className="status win";
+  document.getElementById("higherStatus").innerText=`${old} → ${next} • WIN`;
+  addHistory("Higher Lower","win",bet,amount,1.8);
+ }else{
+  document.getElementById("higherStatus").className="status loss";
+  document.getElementById("higherStatus").innerText=`${old} → ${next} • LOSS`;
+  addHistory("Higher Lower","loss",bet,0,0);
+ }
 }
-}
-
-/* =========================================================
-COLOR
-========================================================= */
 
 function colorHTML(){
-
-return`
-
-<div class="gamearea" style="text-align:center">
-
-<div id="colorIcon" style="font-size:60px;margin:10px">🎨</div>
-
-<div class="toolbar">
-
-<div class="control">
-<label>BET</label>
-<input id="colorBet" type="number" value="10" min="1">
-</div>
-
-<div class="control">
-<label>COLOR</label>
-<select id="colorChoice">
-<option>Green</option>
-<option>Blue</option>
-<option>Pink</option>
-</select>
-</div>
-
-</div>
-
-<div id="colorStatus" class="status">
-Choose a color.
-</div>
-
-<button class="gameBtn" onclick="pickColor()">DRAW COLOR</button>
-
-</div>
-`;
+ return`
+ <div class="gamearea" style="text-align:center">
+  <div id="colorIcon" style="font-size:60px;margin:10px">🎨</div>
+  <div class="toolbar">
+   <div class="control"><label>BET</label><input id="colorBet" type="number" value="10" min="1"></div>
+   <div class="control"><label>COLOR</label><select id="colorChoice"><option>Green</option><option>Blue</option><option>Pink</option></select></div>
+  </div>
+  <div id="colorStatus" class="status">Choose a color.</div>
+  <button class="gameBtn" onclick="pickColor()">DRAW COLOR</button>
+ </div>`;
 }
 
 function pickColor(){
+ const bet=Number(document.getElementById("colorBet").value);
+ if(!spend(bet))return;
 
-const bet=Number(document.getElementById("colorBet").value);
+ const choice=document.getElementById("colorChoice").value;
+ const colors=["Green","Blue","Pink"];
+ const result=colors[Math.floor(Math.random()*3)];
+ const icons={Green:"🟢",Blue:"🔵",Pink:"🩷"};
 
-if(!spend(bet))return;
+ document.getElementById("colorIcon").innerText=icons[result];
 
-const choice=document.getElementById("colorChoice").value;
-
-const colors=["Green","Blue","Pink"];
-
-const result=colors[Math.floor(Math.random()*3)];
-
-const icons={
-Green:"🟢",
-Blue:"🔵",
-Pink:"🩷"
-};
-
-document.getElementById("colorIcon").innerText=icons[result];
-
-if(result===choice){
-
-const amount=bet*2.7;
-
-payout(amount);
-
-document.getElementById("colorStatus").className="status win";
-document.getElementById("colorStatus").innerText=
-`${result} • WIN • +${amount.toFixed(2)}`;
-
-addHistory("Color Rush","win",bet,amount,2.7);
-
-}else{
-
-document.getElementById("colorStatus").className="status loss";
-document.getElementById("colorStatus").innerText=
-`${result} • LOSS`;
-
-addHistory("Color Rush","loss",bet,0,0);
-}
+ if(result===choice){
+  const amount=bet*2.7;payout(amount);
+  document.getElementById("colorStatus").className="status win";
+  document.getElementById("colorStatus").innerText=`${result} • WIN • +${amount.toFixed(2)}`;
+  addHistory("Color Rush","win",bet,amount,2.7);
+ }else{
+  document.getElementById("colorStatus").className="status loss";
+  document.getElementById("colorStatus").innerText=`${result} • LOSS`;
+  addHistory("Color Rush","loss",bet,0,0);
+ }
 }
 
 /* =========================================================
-LEDGER
+LIVE CASINO — DRAGON TIGER
+========================================================= */
+
+function dragonHTML(){
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="dtBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>BET ON</label><select id="dtChoice"><option>Dragon</option><option>Tiger</option><option>Tie</option></select></div>
+  <div class="control"><label>TABLE</label><select><option>Live Style</option></select></div>
+ </div>
+
+ <div class="casino">
+  <div class="casinoTitle">🐉 DRAGON • TIGER 🐯</div>
+
+  <div class="betAreas">
+   <div class="betArea"><strong>🐉 DRAGON</strong>1.95x</div>
+   <div class="betArea"><strong>⚡ TIE</strong>10x</div>
+   <div class="betArea"><strong>🐯 TIGER</strong>1.95x</div>
+  </div>
+
+  <div id="dtCards" class="casinoCards">
+   <div class="playing">?</div>
+   <div style="color:#fff">VS</div>
+   <div class="playing">?</div>
+  </div>
+
+  <div id="dtStatus" class="status">Place your virtual bet and deal.</div>
+  <button class="gameBtn" onclick="playDragon()">DEAL CARDS</button>
+ </div>`;
+}
+
+function playDragon(){
+ const bet=Number(document.getElementById("dtBet").value);
+ if(!spend(bet))return;
+
+ const d=deck();
+ const dragon=d.pop(),tiger=d.pop();
+
+ const box=document.getElementById("dtCards");
+ box.innerHTML=`<div class="playing">🂠</div><div style="color:#fff">VS</div><div class="playing">🂠</div>`;
+
+ const timer=setTimeout(()=>{
+  box.innerHTML=card(dragon)+`<div style="color:#d7bd64;font-weight:900">VS</div>`+card(tiger);
+
+  let winner;
+  if(dragon.value>tiger.value)winner="Dragon";
+  else if(tiger.value>dragon.value)winner="Tiger";
+  else winner="Tie";
+
+  const choice=document.getElementById("dtChoice").value;
+
+  if(choice===winner){
+   const mult=winner==="Tie"?10:1.95;
+   const amount=bet*mult;payout(amount);
+   document.getElementById("dtStatus").className="status win";
+   document.getElementById("dtStatus").innerText=`${winner} WINS • +${amount.toFixed(2)}`;
+   addHistory("Dragon Tiger","win",bet,amount,mult);
+  }else{
+   document.getElementById("dtStatus").className="status loss";
+   document.getElementById("dtStatus").innerText=`${winner} wins • LOSS`;
+   addHistory("Dragon Tiger","loss",bet,0,0);
+  }
+ },650);
+
+ timers.push(timer);
+}
+
+/* =========================================================
+BACCARAT
+========================================================= */
+
+function baccaratHTML(){
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="bacBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>BET ON</label><select id="bacChoice"><option>Player</option><option>Banker</option><option>Tie</option></select></div>
+  <div class="control"><label>TABLE</label><select><option>Premium</option></select></div>
+ </div>
+
+ <div class="casino">
+  <div class="casinoTitle">♠ BACCARAT TABLE ♠</div>
+
+  <div class="betAreas">
+   <div class="betArea"><strong>PLAYER</strong>1.95x</div>
+   <div class="betArea"><strong>TIE</strong>8x</div>
+   <div class="betArea"><strong>BANKER</strong>1.95x</div>
+  </div>
+
+  <div class="casinoCenter">PLAYER</div>
+  <div id="bacPlayer" class="casinoCards"></div>
+  <div id="bacPV" class="casinoCenter">?</div>
+
+  <div class="casinoCenter">BANKER</div>
+  <div id="bacBanker" class="casinoCards"></div>
+  <div id="bacBV" class="casinoCenter">?</div>
+
+  <div id="bacStatus" class="status">Place your virtual bet.</div>
+  <button class="gameBtn" onclick="playBaccarat()">DEAL</button>
+ </div>`;
+}
+
+function playBaccarat(){
+ const bet=Number(document.getElementById("bacBet").value);
+ if(!spend(bet))return;
+
+ const d=deck();
+ const p=[d.pop(),d.pop()];
+ const b=[d.pop(),d.pop()];
+
+ document.getElementById("bacPlayer").innerHTML=`<div class="playing">🂠</div><div class="playing">🂠</div>`;
+ document.getElementById("bacBanker").innerHTML=`<div class="playing">🂠</div><div class="playing">🂠</div>`;
+
+ const timer=setTimeout(()=>{
+  const pv=cardValue(p),bv=cardValue(b);
+
+  document.getElementById("bacPlayer").innerHTML=p.map(card).join("");
+  document.getElementById("bacBanker").innerHTML=b.map(card).join("");
+  document.getElementById("bacPV").innerText="TOTAL "+pv;
+  document.getElementById("bacBV").innerText="TOTAL "+bv;
+
+  let winner;
+  if(pv>bv)winner="Player";
+  else if(bv>pv)winner="Banker";
+  else winner="Tie";
+
+  const choice=document.getElementById("bacChoice").value;
+
+  if(choice===winner){
+   const mult=winner==="Tie"?8:1.95;
+   const amount=bet*mult;payout(amount);
+   document.getElementById("bacStatus").className="status win";
+   document.getElementById("bacStatus").innerText=`${winner} WINS • +${amount.toFixed(2)}`;
+   addHistory("Baccarat","win",bet,amount,mult);
+  }else{
+   document.getElementById("bacStatus").className="status loss";
+   document.getElementById("bacStatus").innerText=`${winner} wins • LOSS`;
+   addHistory("Baccarat","loss",bet,0,0);
+  }
+ },700);
+
+ timers.push(timer);
+}
+
+/* =========================================================
+SIC BO
+========================================================= */
+
+function sicboHTML(){
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="sicBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>BET TYPE</label><select id="sicChoice"><option>Small</option><option>Big</option><option>Triple</option></select></div>
+  <div class="control"><label>TABLE</label><select><option>Classic</option></select></div>
+ </div>
+
+ <div class="casino">
+  <div class="casinoTitle">🎲 SIC BO</div>
+  <div id="sicDice" class="diceBox">
+   <div class="die">?</div><div class="die">?</div><div class="die">?</div>
+  </div>
+  <div class="betAreas">
+   <div class="betArea"><strong>SMALL</strong>1.9x</div>
+   <div class="betArea"><strong>BIG</strong>1.9x</div>
+   <div class="betArea"><strong>TRIPLE</strong>30x</div>
+  </div>
+  <div id="sicStatus" class="status">Roll three dice.</div>
+  <button class="gameBtn" onclick="playSicbo()">ROLL DICE</button>
+ </div>`;
+}
+
+function playSicbo(){
+ const bet=Number(document.getElementById("sicBet").value);
+ if(!spend(bet))return;
+
+ const dice=[1+Math.floor(Math.random()*6),1+Math.floor(Math.random()*6),1+Math.floor(Math.random()*6)];
+ const els=document.querySelectorAll("#sicDice .die");
+
+ els.forEach(e=>e.classList.add("rolling"));
+
+ let ticks=0;
+ const timer=setInterval(()=>{
+  els.forEach(e=>e.innerText=1+Math.floor(Math.random()*6));
+  ticks++;
+
+  if(ticks>12){
+   clearInterval(timer);
+   els.forEach((e,i)=>{e.classList.remove("rolling");e.innerText=dice[i]});
+
+   const total=dice.reduce((a,b)=>a+b,0);
+   const triple=dice[0]===dice[1]&&dice[1]===dice[2];
+   const choice=document.getElementById("sicChoice").value;
+
+   let win=false,mult=0;
+
+   if(choice==="Triple"&&triple){win=true;mult=30}
+   else if(!triple&&choice==="Small"&&total>=4&&total<=10){win=true;mult=1.9}
+   else if(!triple&&choice==="Big"&&total>=11&&total<=17){win=true;mult=1.9}
+
+   if(win){
+    const amount=bet*mult;payout(amount);
+    document.getElementById("sicStatus").className="status win";
+    document.getElementById("sicStatus").innerText=`${dice.join(" • ")} = ${total} • WIN • +${amount.toFixed(2)}`;
+    addHistory("Sic Bo","win",bet,amount,mult);
+   }else{
+    document.getElementById("sicStatus").className="status loss";
+    document.getElementById("sicStatus").innerText=`${dice.join(" • ")} = ${total} • LOSS`;
+    addHistory("Sic Bo","loss",bet,0,0);
+   }
+  }
+ },80);
+
+ timers.push(timer);
+}
+
+/* =========================================================
+TEEN PATTI
+========================================================= */
+
+function teenPattiHTML(){
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="tpBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>MODE</label><select><option>Classic</option></select></div>
+  <div class="control"><label>TABLE</label><select><option>Private Room</option></select></div>
+ </div>
+
+ <div class="casino">
+  <div class="casinoTitle">🃏 TEEN PATTI TABLE</div>
+  <div class="casinoCenter">DEALER</div>
+  <div id="tpDealer" class="casinoCards">
+   <div class="playing">?</div><div class="playing">?</div><div class="playing">?</div>
+  </div>
+  <div class="casinoCenter">VS</div>
+  <div class="casinoCenter">YOU</div>
+  <div id="tpPlayer" class="casinoCards"></div>
+  <div id="tpStatus" class="status">Deal three cards.</div>
+  <button class="gameBtn" onclick="playTeenPatti()">DEAL CARDS</button>
+ </div>`;
+}
+
+function tpScore(hand){
+ const vals=hand.map(c=>c.value).sort((a,b)=>b-a);
+ const same=vals[0]===vals[1]&&vals[1]===vals[2];
+ const pair=vals[0]===vals[1]||vals[1]===vals[2]||vals[0]===vals[2];
+
+ if(same)return 100+vals[0];
+ if(pair)return 50+vals[1];
+ return vals[0]+vals[1]+vals[2];
+}
+
+function playTeenPatti(){
+ const bet=Number(document.getElementById("tpBet").value);
+ if(!spend(bet))return;
+
+ const d=deck();
+ const player=[d.pop(),d.pop(),d.pop()];
+ const dealer=[d.pop(),d.pop(),d.pop()];
+
+ document.getElementById("tpPlayer").innerHTML=`<div class="playing">🂠</div><div class="playing">🂠</div><div class="playing">🂠</div>`;
+ document.getElementById("tpDealer").innerHTML=`<div class="playing">🂠</div><div class="playing">🂠</div><div class="playing">🂠</div>`;
+
+ const timer=setTimeout(()=>{
+  document.getElementById("tpPlayer").innerHTML=player.map(card).join("");
+  document.getElementById("tpDealer").innerHTML=dealer.map(card).join("");
+
+  const ps=tpScore(player),ds=tpScore(dealer);
+
+  if(ps>ds){
+   const amount=bet*2;payout(amount);
+   document.getElementById("tpStatus").className="status win";
+   document.getElementById("tpStatus").innerText="YOU WIN • 2x";
+   addHistory("Teen Patti","win",bet,amount,2);
+  }else if(ps===ds){
+   payout(bet);
+   document.getElementById("tpStatus").innerText="TIE • BET RETURNED";
+   addHistory("Teen Patti","win",bet,bet,1);
+  }else{
+   document.getElementById("tpStatus").className="status loss";
+   document.getElementById("tpStatus").innerText="DEALER WINS";
+   addHistory("Teen Patti","loss",bet,0,0);
+  }
+ },700);
+
+ timers.push(timer);
+}
+
+/* =========================================================
+ANDAR BAHAR
+========================================================= */
+
+function andarHTML(){
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="abBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>BET ON</label><select id="abChoice"><option>Andar</option><option>Bahar</option></select></div>
+  <div class="control"><label>TABLE</label><select><option>Classic</option></select></div>
+ </div>
+
+ <div class="casino">
+  <div class="casinoTitle">🂡 ANDAR BAHAR</div>
+  <div id="abTarget" class="casinoCenter">TARGET CARD: ?</div>
+  <div class="casinoCards" id="abTargetCard"></div>
+  <div class="betAreas">
+   <div class="betArea"><strong>ANDAR</strong>1.9x</div>
+   <div class="betArea"><strong>BAHAR</strong>1.9x</div>
+  </div>
+  <div id="abSequence" class="casinoCards" style="flex-wrap:wrap"></div>
+  <div id="abStatus" class="status">Choose a side and deal.</div>
+  <button class="gameBtn" onclick="playAndarBahar()">DEAL</button>
+ </div>`;
+}
+
+function playAndarBahar(){
+ const bet=Number(document.getElementById("abBet").value);
+ if(!spend(bet))return;
+
+ const d=deck();
+ const target=d.pop();
+ const choice=document.getElementById("abChoice").value;
+ const seq=[];
+ let foundSide="";
+
+ for(let i=0;i<30;i++){
+  const c=d.pop();
+  seq.push(c);
+  if(c.rank===target.rank){
+   foundSide=i%2===0?"Andar":"Bahar";
+   break;
+  }
+ }
+
+ document.getElementById("abTargetCard").innerHTML=card(target);
+ const seqBox=document.getElementById("abSequence");
+ seqBox.innerHTML="";
+
+ let i=0;
+ const timer=setInterval(()=>{
+  if(i>=seq.length){
+   clearInterval(timer);
+   finishAB();
+   return;
+  }
+
+  seqBox.innerHTML+=card(seq[i]);
+  i++;
+
+  if(i===seq.length){
+   clearInterval(timer);
+   finishAB();
+  }
+ },180);
+
+ timers.push(timer);
+
+ function finishAB(){
+  if(choice===foundSide){
+   const amount=bet*1.9;payout(amount);
+   document.getElementById("abStatus").className="status win";
+   document.getElementById("abStatus").innerText=`${foundSide} • WIN • +${amount.toFixed(2)}`;
+   addHistory("Andar Bahar","win",bet,amount,1.9);
+  }else{
+   document.getElementById("abStatus").className="status loss";
+   document.getElementById("abStatus").innerText=`${foundSide} got the match • LOSS`;
+   addHistory("Andar Bahar","loss",bet,0,0);
+  }
+ }
+}
+
+/* =========================================================
+HORSE RACING
+========================================================= */
+
+function horsesHTML(){
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="horseBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>HORSE</label><select id="horseChoice"><option value="0">🏇 Horse 1</option><option value="1">🐎 Horse 2</option><option value="2">🏇 Horse 3</option><option value="3">🐎 Horse 4</option></select></div>
+  <div class="control"><label>RACE</label><select><option>4 Horses</option></select></div>
+ </div>
+
+ <div class="race">
+  <div class="track"><div id="h0" class="horse">🏇</div><div class="finishLine"></div></div>
+  <div class="track"><div id="h1" class="horse">🐎</div><div class="finishLine"></div></div>
+  <div class="track"><div id="h2" class="horse">🏇</div><div class="finishLine"></div></div>
+  <div class="track"><div id="h3" class="horse">🐎</div><div class="finishLine"></div></div>
+ </div>
+
+ <div id="horseStatus" class="status">Choose your horse.</div>
+ <button class="gameBtn" onclick="startHorseRace()">START RACE</button>`;
+}
+
+function startHorseRace(){
+ const bet=Number(document.getElementById("horseBet").value);
+ if(!spend(bet))return;
+
+ const winner=Math.floor(Math.random()*4);
+ const chosen=Number(document.getElementById("horseChoice").value);
+
+ for(let i=0;i<4;i++){
+  document.getElementById("h"+i).style.left=(55+Math.random()*40)+"%";
+ }
+
+ document.getElementById("h"+winner).style.left="calc(100% - 35px)";
+
+ const timer=setTimeout(()=>{
+  if(chosen===winner){
+   const amount=bet*3.5;payout(amount);
+   document.getElementById("horseStatus").className="status win";
+   document.getElementById("horseStatus").innerText=`HORSE ${winner+1} WINS • +${amount.toFixed(2)}`;
+   addHistory("Horse Racing","win",bet,amount,3.5);
+  }else{
+   document.getElementById("horseStatus").className="status loss";
+   document.getElementById("horseStatus").innerText=`HORSE ${winner+1} WINS • LOSS`;
+   addHistory("Horse Racing","loss",bet,0,0);
+  }
+ },3000);
+
+ timers.push(timer);
+}
+
+/* =========================================================
+GAME SHOW WHEEL
+========================================================= */
+
+function wheelShowHTML(){
+ return`
+ <div class="toolbar">
+  <div class="control"><label>BET</label><input id="wsBet" type="number" value="10" min="1"></div>
+  <div class="control"><label>SEGMENT</label><select id="wsChoice"><option>2x</option><option>3x</option><option>5x</option><option>10x</option></select></div>
+  <div class="control"><label>SHOW</label><select><option>LIVE STYLE</option></select></div>
+ </div>
+
+ <div class="casino">
+  <div class="casinoTitle">🎡 STAKEWIN GAME SHOW</div>
+  <div style="text-align:center;font-size:20px;margin-top:8px">▼</div>
+  <div id="showWheel" class="showWheel">
+   <div class="wheelInner">SPIN</div>
+  </div>
+  <div id="wsStatus" class="status">Pick a multiplier and spin.</div>
+  <button class="gameBtn" onclick="spinShowWheel()">SPIN THE WHEEL</button>
+ </div>`;
+}
+
+function spinShowWheel(){
+ const bet=Number(document.getElementById("wsBet").value);
+ if(!spend(bet))return;
+
+ const choices=[2,3,5,10];
+ const result=choices[Math.floor(Math.random()*choices.length)];
+ const choice=Number(document.getElementById("wsChoice").value.replace("x",""));
+
+ document.getElementById("showWheel").style.transform=`rotate(${1440+Math.random()*720}deg)`;
+
+ const timer=setTimeout(()=>{
+  if(choice===result){
+   const amount=bet*result;payout(amount);
+   document.getElementById("wsStatus").className="status win";
+   document.getElementById("wsStatus").innerText=`WHEEL LANDED ${result}x • +${amount.toFixed(2)}`;
+   addHistory("Game Show Wheel","win",bet,amount,result);
+  }else{
+   document.getElementById("wsStatus").className="status loss";
+   document.getElementById("wsStatus").innerText=`WHEEL LANDED ${result}x • LOSS`;
+   addHistory("Game Show Wheel","loss",bet,0,0);
+  }
+ },2500);
+
+ timers.push(timer);
+}
+
+/* =========================================================
+HISTORY
 ========================================================= */
 
 function openHistory(){
-
-if(!currentUser)return;
-
-document.getElementById("historyModal").style.display="flex";
-
-buildLedgerTabs();
-showHistory("all");
+ if(!currentUser)return;
+ document.getElementById("historyModal").style.display="flex";
+ buildLedgerTabs();
+ showHistory("all");
 }
 
 function buildLedgerTabs(){
-
-const tabs=document.getElementById("ledgerTabs");
-
-const names=["all",...games.map(g=>g.name)];
-
-tabs.innerHTML=names.map(name=>`
-
-<button
-class="${historyFilter===name?"active":""}"
-onclick="showHistory('${name}')">
-
-${name==="all"?"ALL":name}
-
-</button>
-
-`).join("");
+ const tabs=document.getElementById("ledgerTabs");
+ const names=["all",...games.map(g=>g.name)];
+ tabs.innerHTML=names.map(name=>`
+  <button class="${historyFilter===name?"active":""}" onclick="showHistory('${name}')">
+   ${name==="all"?"ALL":name}
+  </button>
+ `).join("");
 }
 
 function showHistory(filter){
+ historyFilter=filter;
+ let data=getHistory();
 
-historyFilter=filter;
+ if(filter!=="all")data=data.filter(x=>x.game===filter);
 
-let data=getHistory();
+ const total=data.reduce((a,x)=>a+Number(x.bet||0),0);
+ const wins=data.filter(x=>x.result==="win").length;
+ const net=data.reduce((a,x)=>a+Number(x.payout||0)-Number(x.bet||0),0);
 
-if(filter!=="all"&&filter!=="win"&&filter!=="loss"){
-data=data.filter(x=>x.game===filter);
-}
+ document.getElementById("sumBet").innerText=total.toFixed(2);
+ document.getElementById("sumWins").innerText=wins;
+ document.getElementById("sumNet").innerText=(net>=0?"+":"")+net.toFixed(2);
+ document.getElementById("sumNet").style.color=net>=0?"var(--green)":"var(--red)";
 
-if(filter==="win"){
-data=data.filter(x=>x.result==="win");
-}
+ const list=document.getElementById("historyList");
 
-if(filter==="loss"){
-data=data.filter(x=>x.result==="loss");
-}
+ if(!data.length){
+  list.innerHTML=`<div class="empty">No bets recorded yet.</div>`;
+  buildLedgerTabs();
+  return;
+ }
 
-const total=data.reduce(
-(a,x)=>a+Number(x.bet||0),0
-);
+ list.innerHTML=data.map(x=>{
+  const win=x.result==="win";
+  return`
+   <div class="historyRow">
+    <div class="historyTime">${x.time}</div>
+    <div class="historyGame">
+     <b>${x.game}</b>
+     <div style="color:#71887c">
+      Bet ${Number(x.bet).toFixed(2)}
+      ${x.multiplier?" • "+Number(x.multiplier).toFixed(2)+"x":""}
+     </div>
+    </div>
+    <div class="${win?"historyWin":"historyLoss"}">${win?"WIN":"LOSS"}</div>
+    <div class="${win?"historyWin":"historyLoss"}">
+     ${win?"+":"-"}${Number(win?x.payout:x.bet).toFixed(2)}
+    </div>
+   </div>`;
+ }).join("");
 
-const wins=data.filter(
-x=>x.result==="win"
-).length;
-
-const net=data.reduce(
-(a,x)=>
-a+
-(Number(x.payout||0)-Number(x.bet||0)),
-0
-);
-
-document.getElementById("sumBet").innerText=
-total.toFixed(2);
-
-document.getElementById("sumWins").innerText=wins;
-
-document.getElementById("sumNet").innerText=
-(net>=0?"+":"")+net.toFixed(2);
-
-document.getElementById("sumNet").style.color=
-net>=0?"var(--green)":"var(--red)";
-
-const list=document.getElementById("historyList");
-
-if(!data.length){
-
-list.innerHTML=`
-<div class="empty">
-No bets recorded yet.
-</div>
-`;
-
-buildLedgerTabs();
-return;
-}
-
-list.innerHTML=data.map(x=>{
-
-const win=x.result==="win";
-
-return`
-
-<div class="historyRow">
-
-<div class="historyTime">
-${x.time}
-</div>
-
-<div class="historyGame">
-
-<b>${x.game}</b>
-
-<div style="color:#71887c">
-Bet ${Number(x.bet).toFixed(2)}
-${x.multiplier
-?" • "+Number(x.multiplier).toFixed(2)+"x"
-:""}
-</div>
-
-</div>
-
-<div class="${win?"historyWin":"historyLoss"}">
-${win?"WIN":"LOSS"}
-</div>
-
-<div class="${win?"historyWin":"historyLoss"}">
-${win?"+":"-"}
-${Number(win?x.payout:x.bet).toFixed(2)}
-</div>
-
-</div>
-`;
-
-}).join("");
-
-buildLedgerTabs();
+ buildLedgerTabs();
 }
 
 /* =========================================================
-PROFILE
+PROFILE / MODALS
 ========================================================= */
 
 function openProfile(){
-
-if(!currentUser)return;
-
-document.getElementById("profileName").innerText=currentUser;
-
-document.getElementById("profileBalance").innerText=
-Math.floor(balanceAmount).toLocaleString();
-
-document.getElementById("profileModal").style.display="flex";
+ if(!currentUser)return;
+ document.getElementById("profileName").innerText=currentUser;
+ document.getElementById("profileBalance").innerText=Math.floor(balanceAmount).toLocaleString();
+ document.getElementById("profileModal").style.display="flex";
 }
 
 function closeModal(id){
-
-document.getElementById(id).style.display="none";
-
-clearTimers();
+ document.getElementById(id).style.display="none";
+ clearTimers();
 }
+
+document.querySelectorAll(".overlay").forEach(overlay=>{
+ overlay.addEventListener("click",e=>{
+  if(e.target===overlay){
+   overlay.style.display="none";
+   clearTimers();
+  }
+ });
+});
 
 /* =========================================================
 STARTUP
 ========================================================= */
 
-document.querySelectorAll(".overlay").forEach(overlay=>{
-
-overlay.addEventListener("click",e=>{
-
-if(e.target===overlay){
-
-overlay.style.display="none";
-clearTimers();
-
-}
-
-});
-
-});
-
 restoreSession();
 
 if(currentUser){
-
-document.getElementById("account").innerText="👤 "+currentUser;
-document.getElementById("auth").style.display="none";
-
+ document.getElementById("account").innerText="👤 "+currentUser;
+ document.getElementById("auth").style.display="none";
 }
 
 renderGames();
 updateBalance();
+
+/* Rotating demo promotions */
+const promotions=[
+ "✦ STAKEWIN DEMO ✦ 20% BONUS VIRTUAL CREDITS ✦",
+ "✦ NEW LIVE CASINO TABLES ✦ PLAY WITH VIRTUAL CREDITS ✦",
+ "✦ DRAGON TIGER • BACCARAT • SIC BO ✦",
+ "✦ HORSE RACING • GAME SHOW WHEEL ✦",
+ "✦ DEMO ACCOUNT • 1,000 VIRTUAL CREDITS ✦"
+];
+
+let promoIndex=0;
+setInterval(()=>{
+ promoIndex=(promoIndex+1)%promotions.length;
+ showPromo(promotions[promoIndex]);
+},7000);
 
 </script>
 
