@@ -881,632 +881,609 @@ Game-by-game and overall virtual-credit history.
 
 <script>
 
-const SUPABASE_URL=
+const SUPABASE_URL =
 "https://ljfuowfocmnmowksfuvp.supabase.co";
 
-const SUPABASE_KEY=
+const SUPABASE_KEY =
 "sb_publishable_smUQUWvB4rgac0afKMgmog_5YpFhowH";
 
-const db=
-supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+const db = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 
+const SESSION_KEY = "stakewin_session_v2";
+const HISTORY_PREFIX = "stakewin_history_";
 
-const USERS_KEY="stakewin_users_v2";
-const SESSION_KEY="stakewin_session_v2";
-const HISTORY_PREFIX="stakewin_history_";
-<!-- INDEX.HTML: <script> ke bilkul start mein, existing script ke andar paste karo -->
+let currentUser = null;
+let balanceAmount = 0;
+let currentCategory = "All";
+let currentGame = null;
+let gameState = {};
+let timers = [];
+let animationFrames = [];
+let historyFilter = "all";
 
-const SUPABASE_URL="https://ljfuowfocmnmowksfuvp.supabase.co";
-const SUPABASE_KEY="sb_publishable_smUQUWvB4rgac0afKMgmog_5YpFhowH";
 
-async function dbGetUser(username){
- const r=await fetch(
-  `${SUPABASE_URL}/rest/v1/users?username=eq.${encodeURIComponent(username)}&select=*`,
-  {
-   headers:{
-    apikey:SUPABASE_KEY,
-    Authorization:`Bearer ${SUPABASE_KEY}`
-   }
-  }
- );
- const data=await r.json();
- return data[0]||null;
-}
-
-async function dbCreateUser(username,password){
- await fetch(`${SUPABASE_URL}/rest/v1/users`,{
-  method:"POST",
-  headers:{
-   "Content-Type":"application/json",
-   apikey:SUPABASE_KEY,
-   Authorization:`Bearer ${SUPABASE_KEY}`,
-   Prefer:"return=minimal"
-  },
-  body:JSON.stringify({
-   username,
-   password,
-   balance:0
-  })
- });
-}
-
-async function dbSetBalance(username,balance){
- await fetch(
-  `${SUPABASE_URL}/rest/v1/users?username=eq.${encodeURIComponent(username)}`,
-  {
-   method:"PATCH",
-   headers:{
-    "Content-Type":"application/json",
-    apikey:SUPABASE_KEY,
-    Authorization:`Bearer ${SUPABASE_KEY}`,
-    Prefer:"return=minimal"
-   },
-   body:JSON.stringify({balance:Number(balance)})
-  }
- );
-}
-
-async function dbAddBalance(username,amount){
- const user=await dbGetUser(username);
- if(!user)return false;
-
- await dbSetBalance(
-  username,
-  Number(user.balance||0)+Number(amount)
- );
-
- return true;
-}
-let currentUser=null;
-let balanceAmount=0;
-let currentCategory="All";
-let currentGame=null;
-let gameState={};
-let timers=[];
-let animationFrames=[];
-let historyFilter="all";
-
+/* =========================
+   SUPABASE USER FUNCTIONS
+========================= */
 
 async function getUser(username){
 
-const {data,error}=
-await db
-.from("stakewin_users")
-.select("username,password,balance")
-.eq("username",username)
-.maybeSingle();
+  const { data, error } = await db
+    .from("stakewin_users")
+    .select("username,password,balance")
+    .eq("username", username)
+    .maybeSingle();
 
-if(error){
-console.error(error);
-return null;
+  if(error){
+    console.error("User fetch error:", error);
+    return null;
+  }
+
+  return data;
 }
 
-return data;
+
+async function createSupabaseUser(username,password){
+
+  const { data,error } = await db
+    .from("stakewin_users")
+    .insert({
+      username: username,
+      password: password,
+      balance: 0
+    })
+    .select("username,password,balance")
+    .single();
+
+  if(error){
+    console.error("Create user error:",error);
+    return null;
+  }
+
+  return data;
 }
 
+
+async function updateSupabaseBalance(username,balance){
+
+  const amount = Math.max(
+    0,
+    Number(balance) || 0
+  );
+
+  const { error } = await db
+    .from("stakewin_users")
+    .update({
+      balance: amount
+    })
+    .eq("username",username);
+
+  if(error){
+    console.error(
+      "Balance update error:",
+      error
+    );
+
+    return false;
+  }
+
+  return true;
+}
+
+
+/* =========================
+   HISTORY
+========================= */
 
 function getHistory(){
 
-if(!currentUser)return[];
+  if(!currentUser) return [];
 
-try{
+  try{
 
-return JSON.parse(
-localStorage.getItem(
-HISTORY_PREFIX+currentUser
-)||"[]"
-);
+    return JSON.parse(
+      localStorage.getItem(
+        HISTORY_PREFIX + currentUser
+      ) || "[]"
+    );
 
-}catch{
+  }catch{
 
-return[];
+    return [];
 
-}
+  }
 
 }
 
 
 function saveHistory(data){
 
-if(currentUser){
+  if(!currentUser) return;
 
-localStorage.setItem(
-HISTORY_PREFIX+currentUser,
-JSON.stringify(
-data.slice(0,500)
-)
-);
-
-}
+  localStorage.setItem(
+    HISTORY_PREFIX + currentUser,
+    JSON.stringify(
+      data.slice(0,500)
+    )
+  );
 
 }
 
 
 function addHistory(
-game,
-result,
-bet,
-payoutAmount,
-multiplier=0
+  game,
+  result,
+  bet,
+  payoutAmount,
+  multiplier=0
 ){
 
-const data=getHistory();
+  const data = getHistory();
 
-data.unshift({
+  data.unshift({
 
-game,
-result,
-bet:Number(bet)||0,
-payout:Number(payoutAmount)||0,
-multiplier:Number(multiplier)||0,
+    game,
+    result,
 
-time:new Date()
-.toLocaleString(
-[],
-{
-day:"2-digit",
-month:"short",
-hour:"2-digit",
-minute:"2-digit"
+    bet:
+      Number(bet) || 0,
+
+    payout:
+      Number(payoutAmount) || 0,
+
+    multiplier:
+      Number(multiplier) || 0,
+
+    time:
+      new Date().toLocaleString(
+        [],
+        {
+          day:"2-digit",
+          month:"short",
+          hour:"2-digit",
+          minute:"2-digit"
+        }
+      )
+
+  });
+
+  saveHistory(data);
+
 }
-)
-
-});
-
-saveHistory(data);
-
-}
 
 
-/* AUTH */
+/* =========================
+   AUTH
+========================= */
 
 function showSignup(){
 
-document.getElementById("loginBox")
-.style.display="none";
+  document.getElementById("loginBox")
+    .style.display = "none";
 
-document.getElementById("signupBox")
-.style.display="block";
+  document.getElementById("signupBox")
+    .style.display = "block";
 
-document.getElementById("signupError")
-.innerText="";
+  document.getElementById("signupError")
+    .innerText = "";
 
 }
 
 
 function showLogin(){
 
-document.getElementById("loginBox")
-.style.display="block";
+  document.getElementById("loginBox")
+    .style.display = "block";
 
-document.getElementById("signupBox")
-.style.display="none";
+  document.getElementById("signupBox")
+    .style.display = "none";
 
-document.getElementById("loginError")
-.innerText="";
+  document.getElementById("loginError")
+    .innerText = "";
 
 }
 
 
 async function createAccount(){
 
-const username=
-document.getElementById("signupUser")
-.value.trim();
+  const username =
+    document.getElementById("signupUser")
+      .value.trim();
 
-const password=
-document.getElementById("signupPass")
-.value;
+  const password =
+    document.getElementById("signupPass")
+      .value;
 
-const confirm=
-document.getElementById("signupConfirm")
-.value;
+  const confirm =
+    document.getElementById("signupConfirm")
+      .value;
 
-const error=
-document.getElementById("signupError");
+  const error =
+    document.getElementById("signupError");
 
-error.innerText="";
-
-
-if(username.length<3){
-
-error.innerText=
-"Username must contain at least 3 characters.";
-
-return;
-
-}
+  error.innerText = "";
 
 
-if(password.length<4){
+  if(username.length < 3){
 
-error.innerText=
-"Password must contain at least 4 characters.";
+    error.innerText =
+      "Username must contain at least 3 characters.";
 
-return;
+    return;
 
-}
-
-
-if(password!==confirm){
-
-error.innerText=
-"Passwords do not match.";
-
-return;
-
-}
+  }
 
 
-const existing=
-await getUser(username);
+  if(password.length < 4){
+
+    error.innerText =
+      "Password must contain at least 4 characters.";
+
+    return;
+
+  }
 
 
-if(existing){
+  if(password !== confirm){
 
-error.innerText=
-"Username already exists.";
+    error.innerText =
+      "Passwords do not match.";
 
-return;
+    return;
 
-}
-
-
-const {error:dbError}=
-await db
-.from("stakewin_users")
-.insert({
-
-username,
-password,
-balance:0
-
-});
+  }
 
 
-if(dbError){
-
-console.error(dbError);
-
-error.innerText=
-"Could not create account.";
-
-return;
-
-}
+  const existing =
+    await getUser(username);
 
 
-startSession(
-username,
-0
-);
+  if(existing){
+
+    error.innerText =
+      "Username already exists.";
+
+    return;
+
+  }
+
+
+  const user =
+    await createSupabaseUser(
+      username,
+      password
+    );
+
+
+  if(!user){
+
+    error.innerText =
+      "Could not create account.";
+
+    return;
+
+  }
+
+
+  startSession(
+    user.username,
+    Number(user.balance || 0)
+  );
 
 }
 
 
 async function loginUser(){
 
-const username=
-document.getElementById("loginUser")
-.value.trim();
+  const username =
+    document.getElementById("loginUser")
+      .value.trim();
 
-const password=
-document.getElementById("loginPass")
-.value;
+  const password =
+    document.getElementById("loginPass")
+      .value;
 
-const remember=
-document.getElementById("rememberMe")
-.checked;
+  const remember =
+    document.getElementById("rememberMe")
+      .checked;
 
-const error=
-document.getElementById("loginError");
+  const error =
+    document.getElementById("loginError");
 
-error.innerText="";
-
-
-if(!username||!password){
-
-error.innerText=
-"Enter username and password.";
-
-return;
-
-}
+  error.innerText = "";
 
 
-const user=
-await getUser(username);
+  if(!username || !password){
+
+    error.innerText =
+      "Enter username and password.";
+
+    return;
+
+  }
 
 
-if(!user){
-
-error.innerText=
-"Account not found.";
-
-return;
-
-}
+  const user =
+    await getUser(username);
 
 
-if(user.password!==password){
+  if(!user){
 
-error.innerText=
-"Incorrect password.";
+    error.innerText =
+      "Account not found.";
 
-return;
+    return;
 
-}
-
-
-currentUser=user.username;
-
-balanceAmount=
-Number(user.balance||0);
+  }
 
 
-if(remember){
+  if(user.password !== password){
 
-localStorage.setItem(
-SESSION_KEY,
-username
-);
+    error.innerText =
+      "Incorrect password.";
 
-sessionStorage.removeItem(
-SESSION_KEY
-);
+    return;
 
-}else{
-
-sessionStorage.setItem(
-SESSION_KEY,
-username
-);
-
-localStorage.removeItem(
-SESSION_KEY
-);
-
-}
+  }
 
 
-unlock();
+  currentUser =
+    user.username;
+
+  balanceAmount =
+    Number(user.balance || 0);
+
+
+  if(remember){
+
+    localStorage.setItem(
+      SESSION_KEY,
+      username
+    );
+
+    sessionStorage.removeItem(
+      SESSION_KEY
+    );
+
+  }else{
+
+    sessionStorage.setItem(
+      SESSION_KEY,
+      username
+    );
+
+    localStorage.removeItem(
+      SESSION_KEY
+    );
+
+  }
+
+
+  unlock();
 
 }
 
 
 function startSession(
-username,
-amount
+  username,
+  amount
 ){
 
-currentUser=username;
+  currentUser =
+    username;
 
-balanceAmount=
-Number(amount)||0;
+  balanceAmount =
+    Number(amount) || 0;
 
-localStorage.setItem(
-SESSION_KEY,
-username
-);
+  localStorage.setItem(
+    SESSION_KEY,
+    username
+  );
 
-unlock();
+  unlock();
 
 }
 
 
 function unlock(){
 
-document.getElementById("auth")
-.style.display="none";
+  document.getElementById("auth")
+    .style.display = "none";
 
-document.getElementById("account")
-.innerText=
-"👤 "+currentUser;
+  document.getElementById("account")
+    .innerText =
+      "👤 " + currentUser;
 
-updateBalance();
+  updateBalance();
 
-renderGames();
+  renderGames();
 
 }
 
 
 async function logout(){
 
-clearTimers();
+  clearTimers();
 
-await saveBalance();
+  await saveBalance();
 
-currentUser=null;
+  currentUser = null;
 
-localStorage.removeItem(
-SESSION_KEY
-);
+  balanceAmount = 0;
 
-sessionStorage.removeItem(
-SESSION_KEY
-);
+  localStorage.removeItem(
+    SESSION_KEY
+  );
 
-document.getElementById("profileModal")
-.style.display="none";
+  sessionStorage.removeItem(
+    SESSION_KEY
+  );
 
-document.getElementById("historyModal")
-.style.display="none";
+  document.getElementById("profileModal")
+    .style.display = "none";
 
-document.getElementById("gameModal")
-.style.display="none";
+  document.getElementById("historyModal")
+    .style.display = "none";
 
-document.getElementById("auth")
-.style.display="flex";
+  document.getElementById("gameModal")
+    .style.display = "none";
 
-showLogin();
+  document.getElementById("auth")
+    .style.display = "flex";
+
+  showLogin();
 
 }
 
 
-/* BALANCE */
+/* =========================
+   BALANCE
+========================= */
 
 async function saveBalance(){
 
-if(!currentUser)return;
+  if(!currentUser) return;
 
-
-const amount=
-Math.max(
-0,
-Number(balanceAmount)||0
-);
-
-
-const {error}=
-await db
-.from("stakewin_users")
-.update({
-balance:amount
-})
-.eq(
-"username",
-currentUser
-);
-
-
-if(error){
-
-console.error(
-"Balance sync error:",
-error
-);
-
-}
+  await updateSupabaseBalance(
+    currentUser,
+    balanceAmount
+  );
 
 }
 
 
 function updateBalance(){
 
-const value=
-Math.floor(
-balanceAmount
-).toLocaleString();
+  const value =
+    Math.floor(
+      balanceAmount
+    ).toLocaleString();
 
 
-document.getElementById("balance")
-.innerText=value;
+  document.getElementById("balance")
+    .innerText = value;
 
-document.getElementById("statsBalance")
-.innerText=value;
+  document.getElementById("statsBalance")
+    .innerText = value;
 
 
-if(
-document.getElementById(
-"profileBalance"
-)
-){
+  const profileBalance =
+    document.getElementById(
+      "profileBalance"
+    );
 
-document.getElementById(
-"profileBalance"
-).innerText=value;
+  if(profileBalance){
 
-}
+    profileBalance.innerText =
+      value;
 
+  }
 
 }
 
 
 async function syncCurrentBalance(){
 
-if(!currentUser)return;
+  if(!currentUser) return;
 
 
-const user=
-await getUser(currentUser);
+  const user =
+    await getUser(
+      currentUser
+    );
 
 
-if(!user)return;
+  if(!user) return;
 
 
-balanceAmount=
-Number(user.balance||0);
+  balanceAmount =
+    Number(user.balance || 0);
 
-
-updateBalance();
+  updateBalance();
 
 }
 
 
 function requireLogin(){
 
-if(currentUser)return true;
+  if(currentUser)
+    return true;
 
-document.getElementById("auth")
-.style.display="flex";
+  document.getElementById("auth")
+    .style.display = "flex";
 
-showLogin();
+  showLogin();
 
-return false;
+  return false;
 
 }
 
 
 function spend(amount){
 
-if(!requireLogin())return false;
+  if(!requireLogin())
+    return false;
 
 
-amount=Number(amount);
+  amount =
+    Number(amount);
 
 
-if(
-!Number.isFinite(amount)||
-amount<1
-){
+  if(
+    !Number.isFinite(amount) ||
+    amount < 1
+  ){
 
-alert(
-"Enter a valid demo bet."
-);
+    alert(
+      "Enter a valid demo bet."
+    );
 
-return false;
+    return false;
 
-}
-
-
-if(amount>balanceAmount){
-
-alert(
-"Not enough demo credits."
-);
-
-return false;
-
-}
+  }
 
 
-balanceAmount-=amount;
+  if(amount > balanceAmount){
 
-updateBalance();
+    alert(
+      "Not enough demo credits."
+    );
 
-saveBalance();
+    return false;
 
-return true;
+  }
+
+
+  balanceAmount -= amount;
+
+  updateBalance();
+
+  saveBalance();
+
+  return true;
 
 }
 
 
 function payout(amount){
 
-if(!requireLogin())return;
+  if(!requireLogin())
+    return;
 
 
-balanceAmount+=
-Number(amount)||0;
+  balanceAmount +=
+    Number(amount) || 0;
 
-updateBalance();
+  updateBalance();
 
-saveBalance();
+  saveBalance();
 
 }
+
+
 
 
 /* LIVE BALANCE SYNC */
