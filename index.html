@@ -2,756 +2,317 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>StakeWin</title>
 
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;
-  background:#030807;
-  color:#f4faf7;
-  font-family:Inter,Arial,sans-serif;
+margin:0;background:#050b08;color:#f5faf7;
+font-family:Arial,Helvetica,sans-serif
 }
 button,input,select{font:inherit}
-button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
 :root{
-  --green:#18e980;
-  --green2:#08b968;
-  --bg:#030807;
-  --panel:#091510;
-  --panel2:#0d1d16;
-  --border:#1d4030;
-  --muted:#7b9487;
-  --red:#ff5367;
-  --gold:#ffd34e;
-  --blue:#40cfff;
-  --pink:#ff32a8;
+--green:#20df82;--dark:#06100b;--panel:#0c1912;
+--border:#294536;--muted:#7d9689;--red:#ff5265;--gold:#ffd34d
 }
-
-/* HEADER */
 .header{
-  height:64px;
-  padding:0 18px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  background:rgba(4,12,8,.94);
-  border-bottom:1px solid #163022;
-  position:sticky;
-  top:0;
-  z-index:100;
-  backdrop-filter:blur(18px);
+height:64px;padding:0 4%;display:flex;align-items:center;gap:12px;
+background:#07100df5;border-bottom:1px solid #1d3026;
+position:sticky;top:0;z-index:50;backdrop-filter:blur(15px)
 }
-.logo{
-  font-size:20px;
-  font-weight:950;
-  letter-spacing:-.8px;
-}
-.logo span{color:var(--green)}
-.nav{
-  display:flex;
-  gap:3px;
-  margin-left:15px;
-  flex:1;
-}
+.logo{font-size:20px;font-weight:950}.logo span{color:var(--green)}
+.nav{display:flex;gap:3px;flex:1}
 .nav button{
-  border:0;
-  background:transparent;
-  color:#789185;
-  padding:9px 12px;
-  border-radius:8px;
+border:0;background:none;color:#81988c;padding:9px 12px;border-radius:8px
 }
-.nav button:hover,.nav button.active{
-  color:#fff;
-  background:#10271b;
-}
-.headerRight{
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
+.nav button.active,.nav button:hover{background:#14261d;color:white}
+.headerRight{margin-left:auto;display:flex;align-items:center;gap:6px}
 .balance,.account{
-  background:#0b1b13;
-  border:1px solid #1b3c2c;
-  border-radius:9px;
-  padding:8px 10px;
-  font-size:12px;
+background:#102219;border:1px solid var(--border);
+border-radius:9px;padding:8px 10px;font-size:12px
 }
-.balance{
-  color:var(--green);
-  font-weight:900;
-}
+.balance{color:var(--green);font-weight:800}
 .icon{
-  width:36px;
-  height:36px;
-  border-radius:9px;
-  background:#0d1d15;
-  border:1px solid #234635;
-  color:#fff;
+width:34px;height:34px;border-radius:8px;border:1px solid var(--border);
+background:#101d16;color:white
 }
-.menuBtn{display:none}
-
-/* HERO */
 .hero{
-  max-width:1200px;
-  min-height:400px;
-  margin:auto;
-  padding:55px 5%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:relative;
-  overflow:hidden;
+max-width:1200px;min-height:390px;margin:auto;padding:48px 5%;
+display:flex;align-items:center;justify-content:space-between;
+position:relative;overflow:hidden
 }
-.heroText{max-width:650px;position:relative;z-index:2}
-.eyebrow{
-  color:var(--green);
-  font-size:10px;
-  font-weight:950;
-  letter-spacing:2px;
-}
+.heroText{max-width:650px;z-index:2}
+.eyebrow{color:var(--green);font-size:10px;font-weight:900;letter-spacing:2px}
 .hero h1{
-  font-size:clamp(44px,7vw,76px);
-  line-height:.94;
-  letter-spacing:-4px;
-  margin:13px 0;
+font-size:clamp(42px,7vw,72px);line-height:.95;
+letter-spacing:-4px;margin:13px 0
 }
 .hero h1 span{color:var(--green)}
-.hero p{
-  color:#7d9689;
-  line-height:1.6;
-  max-width:570px;
-}
-.heroActions{display:flex;gap:8px;margin-top:22px}
+.hero p{color:#82998d;line-height:1.6;font-size:14px}
+.heroActions{display:flex;gap:8px;margin-top:20px}
 .primary,.secondary,.cash{
-  border-radius:9px;
-  padding:11px 16px;
-  font-weight:900;
+border-radius:8px;padding:10px 15px;font-weight:850;border:0
 }
-.primary{
-  border:0;
-  background:var(--green);
-  color:#021108;
-}
-.secondary{
-  background:#0c1c14;
-  border:1px solid #294a38;
-  color:#edf7f1;
-}
-.cash{
-  border:0;
-  background:var(--gold);
-  color:#241c00;
-}
+.primary{background:var(--green);color:#03130a}
+.secondary{background:#102019;color:#e8f2ec;border:1px solid var(--border)}
+.cash{background:var(--gold);color:#241c00}
 .orb{
-  width:190px;
-  height:190px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  font-size:60px;
-  font-weight:950;
-  background:radial-gradient(circle at 35% 25%,#55ffa9,#087348 45%,#02140b 75%);
-  box-shadow:0 0 100px #19e88035;
-  animation:float 3s ease-in-out infinite;
+width:190px;height:190px;border-radius:50%;display:grid;place-items:center;
+font-size:62px;font-weight:950;
+background:radial-gradient(circle at 35% 25%,#3cff9d,#087749 45%,#03170d 75%);
+box-shadow:0 0 100px #1cdb7c33;animation:float 3s ease-in-out infinite
 }
-@keyframes float{50%{transform:translateY(-10px) rotate(-3deg)}}
-
-/* STATS */
+@keyframes float{50%{transform:translateY(-9px) rotate(-3deg)}}
 .stats{
-  border-top:1px solid #122a1e;
-  border-bottom:1px solid #122a1e;
-  padding:15px;
-  display:flex;
-  justify-content:center;
-  gap:55px;
-  color:#718a7e;
-  font-size:12px;
+border-top:1px solid #172a20;border-bottom:1px solid #172a20;
+padding:15px;display:flex;justify-content:center;gap:55px;
+color:#7d9589;font-size:11px
 }
 .stats b{color:#fff}
-
-/* GAMES */
-.games{
-  max-width:1200px;
-  margin:auto;
-  padding:40px 5% 70px;
-}
-.top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.top h2{margin:0;font-size:28px}
-.top p{margin:4px 0;color:#70877b;font-size:11px}
+.games{max-width:1200px;margin:auto;padding:40px 5% 70px}
+.top{display:flex;justify-content:space-between;align-items:center}
+.top h2{margin:0;font-size:27px}.top p{margin:4px 0;color:#71887b;font-size:11px}
 .search{
-  width:230px;
-  padding:10px;
-  border-radius:9px;
-  background:#09150f;
-  border:1px solid #244332;
-  color:#fff;
-  outline:none;
+width:220px;background:#0b1711;border:1px solid #263e31;
+color:#fff;padding:9px;border-radius:8px;outline:0
 }
-.chips{
-  display:flex;
-  gap:7px;
-  overflow:auto;
-  margin:20px 0;
-}
+.chips{display:flex;gap:7px;overflow:auto;margin:20px 0}
 .chips button{
-  white-space:nowrap;
-  padding:8px 14px;
-  border-radius:20px;
-  border:1px solid #203a2c;
-  background:#09150f;
-  color:#7e958a;
+white-space:nowrap;background:#0c1912;border:1px solid #23392d;
+color:#81988b;border-radius:20px;padding:7px 14px
 }
-.chips button.active{
-  background:var(--green);
-  color:#021108;
-  border-color:var(--green);
-  font-weight:900;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
+.chips button.active{background:var(--green);color:#03130a;border-color:var(--green);font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
 .card{
-  background:#08140e;
-  border:1px solid #193527;
-  border-radius:13px;
-  overflow:hidden;
-  transition:.2s;
+background:#0b1711;border:1px solid #20372a;border-radius:13px;
+overflow:hidden;transition:.2s
 }
-.card:hover{
-  transform:translateY(-4px);
-  border-color:#356348;
-}
+.card:hover{transform:translateY(-3px);border-color:#356449}
 .art{
-  height:145px;
-  display:grid;
-  place-items:center;
-  font-size:55px;
-  background:linear-gradient(135deg,#122c1d,#07100b);
-  position:relative;
+height:145px;display:grid;place-items:center;font-size:55px;
+background:linear-gradient(135deg,#173827,#0b1510);position:relative
 }
 .tag{
-  position:absolute;
-  top:8px;
-  left:8px;
-  padding:4px 6px;
-  border-radius:5px;
-  background:var(--green);
-  color:#021108;
-  font-size:8px;
-  font-weight:950;
+position:absolute;left:8px;top:8px;background:var(--green);color:#03130a;
+border-radius:5px;padding:4px 6px;font-size:8px;font-weight:900
 }
-.info{
-  padding:10px;
-  display:flex;
-  justify-content:space-between;
-  color:#6f887b;
-}
-.info b{display:block;color:#eef7f2;font-size:13px}
-.info small{font-size:10px}
-
-/* MODAL */
+.info{padding:10px;display:flex;justify-content:space-between;color:#6e8679}
+.info b{display:block;color:#edf6f1;font-size:13px}.info small{font-size:9px}
+footer{text-align:center;border-top:1px solid #172a20;padding:28px;color:#61796c;font-size:10px}
 .overlay{
-  position:fixed;
-  inset:0;
-  z-index:500;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:12px;
-  background:#000c;
-  backdrop-filter:blur(8px);
+position:fixed;inset:0;background:#000c;backdrop-filter:blur(8px);z-index:100;
+display:none;align-items:center;justify-content:center;padding:12px
 }
 .modal{
-  width:min(720px,100%);
-  max-height:94vh;
-  overflow:auto;
-  background:#07140e;
-  border:1px solid #294d39;
-  border-radius:17px;
-  padding:18px;
-  position:relative;
-  box-shadow:0 30px 100px #000;
+width:min(720px,100%);max-height:94vh;overflow:auto;background:#0a1710;
+border:1px solid #2c4d3a;border-radius:16px;padding:18px;
+position:relative;box-shadow:0 30px 100px #000
 }
 .close{
-  position:absolute;
-  right:10px;
-  top:10px;
-  width:34px;
-  height:34px;
-  border:0;
-  border-radius:8px;
-  background:#13251c;
-  color:#fff;
+position:absolute;right:10px;top:10px;border:0;background:#17271f;
+color:#fff;width:32px;height:32px;border-radius:8px
 }
-.toolbar{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin:15px 0;
-}
-.control label{
-  display:block;
-  color:#718a7e;
-  font-size:9px;
-  margin-bottom:5px;
-}
+.toolbar{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:14px 0}
+.control label{display:block;color:#71887c;font-size:9px;margin-bottom:4px}
 .control input,.control select{
-  width:100%;
-  background:#0a1b13;
-  border:1px solid #234735;
-  color:#fff;
-  border-radius:8px;
-  padding:9px;
-  outline:none;
+width:100%;background:#0f2017;border:1px solid #294436;
+color:#fff;padding:8px;border-radius:7px;outline:0
 }
 .gamearea{
-  background:#04100a;
-  border:1px solid #1c3829;
-  border-radius:12px;
-  padding:14px;
+background:#06100b;border:1px solid #20372a;border-radius:12px;
+padding:13px;min-height:220px
 }
-.status{
-  min-height:22px;
-  text-align:center;
-  color:#81998d;
-  font-size:11px;
-  margin:9px 0;
-}
-.status.win{color:var(--green);font-weight:900}
-.status.loss{color:var(--red);font-weight:900}
-.actions{display:flex;gap:8px}
-.actions>*{flex:1}
-
-/* AUTH */
+.status{text-align:center;min-height:22px;margin:8px 0;color:#81998d;font-size:11px}
+.status.win{color:var(--green);font-weight:850}
+.status.loss{color:var(--red);font-weight:850}
+.actions{display:flex;gap:7px}.actions>*{flex:1}
 .auth{
-  position:fixed;
-  inset:0;
-  z-index:2000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  background:radial-gradient(circle at 50% 20%,#164b31,#040a06 55%,#010302);
+position:fixed;inset:0;z-index:999;
+background:radial-gradient(circle at 50% 20%,#174a31,#050b07 55%,#020403);
+display:flex;align-items:center;justify-content:center;padding:18px
 }
 .authCard{
-  width:min(410px,100%);
-  background:#0b1912;
-  border:1px solid #315740;
-  border-radius:19px;
-  padding:26px;
-  text-align:center;
-  box-shadow:0 30px 100px #000;
+width:min(410px,100%);background:#0d1a13;border:1px solid #315640;
+border-radius:18px;padding:26px;text-align:center;box-shadow:0 30px 100px #000
 }
-.authLogo{font-size:25px;font-weight:950}
-.authLogo span{color:var(--green)}
-.authIcon{font-size:40px;margin-top:14px}
-.authCard h2{margin:14px 0 6px}
-.authCard p{color:#7e968b;font-size:12px;line-height:1.5}
+.authLogo{font-size:24px;font-weight:950}.authLogo span{color:var(--green)}
+.authIcon{font-size:40px;margin-top:12px}.authCard h2{margin:14px 0 6px}
+.authCard p{color:#81988d;font-size:12px;line-height:1.5}
 .authInput{
-  width:100%;
-  height:45px;
-  margin:5px 0;
-  padding:0 12px;
-  border-radius:8px;
-  background:#07100b;
-  border:1px solid #274635;
-  color:#fff;
-  outline:none;
+width:100%;height:44px;margin:4px 0;background:#09130e;color:#fff;
+border:1px solid #294536;border-radius:8px;padding:0 11px;outline:0
 }
 .authInput:focus{border-color:var(--green)}
 .authBtn{
-  width:100%;
-  height:45px;
-  margin-top:8px;
-  border:0;
-  border-radius:8px;
-  background:var(--green);
-  color:#021108;
-  font-weight:950;
+width:100%;height:44px;margin-top:8px;border:0;border-radius:8px;
+background:var(--green);color:#03130a;font-weight:900
 }
-.authSwitch{margin-top:14px!important}
-.authSwitch button{
-  border:0;
-  background:none;
-  color:var(--green);
-  font-weight:900;
+.authSwitch{margin-top:13px!important}.authSwitch button{
+background:none;border:0;color:var(--green);font-weight:800
 }
-.error{min-height:17px;color:var(--red);font-size:11px;margin-top:7px}
+.error{min-height:17px;color:var(--red);font-size:10px;margin-top:6px}
 
-/* COMMON GAME */
-.minegrid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:5px;
-  max-width:430px;
-  margin:14px auto;
-}
+/* MINES */
+.minegrid{display:grid;gap:5px;margin:13px auto;max-width:400px}
 .mine{
-  aspect-ratio:1;
-  border:1px solid #294638;
-  border-radius:7px;
-  background:linear-gradient(145deg,#14291e,#08130d);
-  color:#fff;
+aspect-ratio:1;background:linear-gradient(145deg,#14291e,#0b1711);
+border:1px solid #294638;border-radius:6px;color:#fff;font-size:17px
 }
-.mine.g{background:#17613f}
-.mine.b{background:#591821}
-.mult{
-  text-align:center;
-  font-size:58px;
-  font-weight:950;
-  color:var(--green);
-  margin:38px 0 5px;
-}
-.mult.dead{color:var(--red)}
-.rocket{text-align:center;font-size:42px}
-.diceNum{text-align:center;font-size:60px;font-weight:950;color:var(--green)}
+.mine.g{background:#196342;animation:pop .2s}.mine.b{background:#591821;animation:shake .25s}
+@keyframes pop{from{transform:scale(.7)}to{transform:scale(1)}}
+@keyframes shake{25%{transform:rotate(-7deg)}75%{transform:rotate(7deg)}}
+
+/* CRASH */
+.mult{font-size:58px;font-weight:950;color:var(--green);text-align:center;margin:42px 0 8px}
+.mult.dead{color:var(--red)}.rocket{text-align:center;font-size:40px}
+
+/* DICE */
+.diceNum{font-size:58px;text-align:center;color:var(--green);font-weight:950}
 .slider{width:100%;accent-color:var(--green)}
-.cards{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 14px}
+
+/* CARDS */
+.cards{display:flex;gap:6px;flex-wrap:wrap;min-height:75px}
 .playing{
-  width:52px;
-  height:72px;
-  border-radius:7px;
-  background:#f5f3eb;
-  color:#111;
-  display:grid;
-  place-items:center;
-  font-weight:900;
-  font-size:20px;
+width:50px;height:70px;background:#f6f5ef;color:#111;border-radius:6px;
+display:grid;place-items:center;font-weight:900;font-size:19px
 }
-.redcard{color:#d31c39}
+.redcard{color:#d11d38}
 
 /* SLOTS */
-.reels{
-  display:flex;
-  gap:6px;
-  padding:17px;
-  border:3px solid #a97324;
-  border-radius:13px;
-  background:#291708;
-}
+.reels{display:flex;gap:6px;background:#321a0b;border:3px solid #b47a24;padding:16px;border-radius:13px}
 .reel{
-  flex:1;
-  height:85px;
-  display:grid;
-  place-items:center;
-  background:#f7f3e7;
-  color:#111;
-  border-radius:7px;
-  font-size:40px;
+flex:1;height:86px;background:#f7f4e9;color:#111;border-radius:7px;
+display:grid;place-items:center;font-size:38px
 }
 .spin{animation:spin .1s infinite}
-@keyframes spin{50%{transform:translateY(5px)}}
+@keyframes spin{50%{transform:translateY(6px)}}
 
 /* ROULETTE */
 .wheel{
-  width:215px;
-  height:215px;
-  margin:10px auto;
-  border-radius:50%;
-  border:7px solid #b99237;
-  background:conic-gradient(
-    #b5172d 0 12deg,#111 12deg 24deg,
-    #b5172d 24deg 36deg,#111 36deg 48deg,
-    #b5172d 48deg 60deg,#111 60deg 72deg,
-    #b5172d 72deg 84deg,#111 84deg 96deg,
-    #b5172d 96deg 108deg,#111 108deg 120deg,
-    #b5172d 120deg 132deg,#111 132deg 144deg,
-    #b5172d 144deg 156deg,#111 156deg 168deg,
-    #b5172d 168deg 180deg,#111 180deg 192deg,
-    #b5172d 192deg 204deg,#111 204deg 216deg,
-    #b5172d 216deg 228deg,#111 228deg 240deg,
-    #b5172d 240deg 252deg,#111 252deg 264deg,
-    #b5172d 264deg 276deg,#111 276deg 288deg,
-    #b5172d 288deg 300deg,#111 300deg 312deg,
-    #b5172d 312deg 324deg,#111 324deg 336deg,
-    #b5172d 336deg 348deg,#111 348deg 360deg
-  );
-  display:grid;
-  place-items:center;
-  transition:transform 2s cubic-bezier(.12,.8,.18,1);
+width:210px;height:210px;margin:10px auto;border-radius:50%;border:7px solid #b99237;
+background:conic-gradient(
+#b5172d 0 12deg,#111 12deg 24deg,#b5172d 24deg 36deg,#111 36deg 48deg,
+#b5172d 48deg 60deg,#111 60deg 72deg,#b5172d 72deg 84deg,#111 84deg 96deg,
+#b5172d 96deg 108deg,#111 108deg 120deg,#b5172d 120deg 132deg,#111 132deg 144deg,
+#b5172d 144deg 156deg,#111 156deg 168deg,#b5172d 168deg 180deg,#111 180deg 192deg,
+#b5172d 192deg 204deg,#111 204deg 216deg,#b5172d 216deg 228deg,#111 228deg 240deg,
+#b5172d 240deg 252deg,#111 252deg 264deg,#b5172d 264deg 276deg,#111 276deg 288deg,
+#b5172d 288deg 300deg,#111 300deg 312deg,#b5172d 312deg 324deg,#111 324deg 336deg,
+#b5172d 336deg 348deg,#111 348deg 360deg);
+display:grid;place-items:center;transition:transform 2s cubic-bezier(.12,.8,.18,1)
 }
 .wheelcenter{
-  width:65px;
-  height:65px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:#08633d;
-  border:5px solid #d5ae49;
-  font-weight:900;
+width:62px;height:62px;border-radius:50%;background:#08633d;
+border:4px solid #d5ae49;display:grid;place-items:center;font-weight:900
 }
 
 /* TOWER */
 .tower{display:flex;flex-direction:column-reverse;gap:5px}
 .trow{display:grid;grid-template-columns:1fr 1fr;gap:5px}
 .tcell{
-  height:43px;
-  border-radius:7px;
-  border:1px solid #294438;
-  background:#12241b;
-  color:#fff;
+height:43px;background:#12241b;border:1px solid #294438;border-radius:6px;color:white
 }
-.safe{background:#196342!important}
-.danger{background:#591821!important}
+.safe{background:#196342!important}.danger{background:#591821!important}
 
 /* KENO */
-.keno{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}
+.keno{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
 .kn{
-  aspect-ratio:1;
-  border-radius:6px;
-  border:1px solid #294437;
-  background:#102219;
-  color:#9eb1a8;
+aspect-ratio:1;background:#12241a;border:1px solid #294437;
+color:#9eb1a8;border-radius:5px
 }
-.kn.sel{background:var(--green);color:#021108}
-.kn.hit{background:var(--gold);color:#211800}
+.kn.sel{background:var(--green);color:#03130a}.kn.hit{background:var(--gold);color:#211800}
 
-/* =========================================================
-   PLINKO
-========================================================= */
+/* ================= PLINKO ================= */
+
 .plinko{
-  height:390px;
-  position:relative;
-  overflow:hidden;
-  border-radius:14px;
-  background:
-    radial-gradient(circle at 50% 8%,#17384b 0,#0c1d2b 40%,#030a11 100%);
-  border:1px solid #2a5269;
-  box-shadow:inset 0 0 50px #000b;
+height:420px;position:relative;overflow:hidden;border-radius:13px;
+background:radial-gradient(circle at 50% 15%,#1d3444,#101e2c 43%,#07111b 100%);
+border:1px solid #2c4657;
+box-shadow:inset 0 0 55px #0009,0 0 25px #0008
 }
 .plinkoPegs{
-  position:absolute;
-  top:22px;
-  left:4%;
-  right:4%;
-  bottom:58px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+position:absolute;top:24px;left:6%;right:6%;bottom:64px;
+display:flex;flex-direction:column;justify-content:space-between
 }
-.plinkoRow{
-  display:flex;
-  justify-content:center;
-  gap:clamp(10px,2vw,25px);
-}
+.plinkoRow{display:flex;justify-content:center;gap:clamp(10px,2vw,25px)}
 .plinkoPeg{
-  width:7px;
-  height:7px;
-  flex:none;
-  border-radius:50%;
-  background:#fff;
-  box-shadow:0 0 7px #fff,0 0 12px #b9ecff;
+width:7px;height:7px;flex:none;border-radius:50%;background:#fff8f0;
+box-shadow:0 0 6px #fff,0 0 11px #d9f6ff;
+transition:transform .06s,box-shadow .06s
+}
+.plinkoPeg.hit{
+transform:scale(1.9);
+box-shadow:0 0 8px #fff,0 0 18px #65d9ff,0 0 28px #65d9ff
 }
 .plinkoBall{
-  position:absolute;
-  width:16px;
-  height:16px;
-  border-radius:50%;
-  display:none;
-  z-index:20;
-  left:50%;
-  top:4px;
-  transform:translateX(-50%);
-  background:#fff;
-  box-shadow:0 0 10px #fff,0 0 25px #ff32a8,0 0 45px #ff32a855;
+position:absolute;width:17px;height:17px;border-radius:50%;
+background:radial-gradient(circle at 30% 25%,#fff,#f7fbff 28%,#bdefff 58%,#35bfff 100%);
+box-shadow:0 0 7px #fff,0 0 16px #7cddff,0 0 30px #28bfffaa;
+left:50%;top:8px;transform:translate(-50%,-50%) scale(1);
+display:none;z-index:20;will-change:left,top,transform
+}
+.plinkoBall.bounce{transform:translate(-50%,-50%) scaleX(1.22) scaleY(.78)}
+.plinkoBall.flying{animation:plinkoGlow .18s linear infinite}
+@keyframes plinkoGlow{
+50%{filter:brightness(1.3)}
 }
 .plinkoBins{
-  position:absolute;
-  left:2%;
-  right:2%;
-  bottom:6px;
-  height:46px;
-  display:flex;
-  gap:3px;
+position:absolute;left:3%;right:3%;bottom:6px;height:46px;
+display:flex;gap:3px
 }
 .plinkoBin{
-  flex:1;
-  min-width:0;
-  border:1px solid #ff4bb7;
-  border-radius:6px;
-  background:linear-gradient(#ff57bd,#df0c82);
-  display:grid;
-  place-items:center;
-  color:#fff;
-  font-size:clamp(7px,1.6vw,12px);
-  font-weight:950;
-  box-shadow:0 0 9px #ff2da044,inset 0 1px #fff8;
+flex:1;min-width:0;border-radius:5px;border:1px solid #ff63c1;
+background:linear-gradient(180deg,#ff66c5,#ed168f);color:#ffe4f5;
+display:grid;place-items:center;font-size:clamp(7px,1.4vw,12px);
+font-weight:950;text-shadow:0 1px 3px #98005e;
+box-shadow:0 0 10px #ff2db044,inset 0 1px 0 #fff8
 }
 .plinkoBin.big{
-  background:linear-gradient(#ff78d0,#ed0094);
-  box-shadow:0 0 18px #ff35b566,inset 0 1px #fff8;
+background:linear-gradient(180deg,#ff77ce,#f0009d);
+box-shadow:0 0 18px #ff35b577,inset 0 1px 0 #fff9
 }
-.plinkoInfo{
-  text-align:center;
-  color:#77909f;
-  font-size:10px;
-  margin:6px 0;
-}
+.plinkoInfo{text-align:center;color:#7891a1;font-size:9px;margin:5px 0}
 
 /* HISTORY */
-.historyModal{max-width:760px}
-.historyHeader p{color:#789084;font-size:11px}
-.historyTabs{
-  display:flex;
-  gap:6px;
-  margin:14px 0;
-}
-.historyTab{
-  flex:1;
-  padding:9px;
-  border-radius:8px;
-  background:#0b1a13;
-  border:1px solid #244534;
-  color:#81988d;
-  font-size:12px;
-}
-.historyTab.active{
-  background:var(--green);
-  color:#021108;
-  border-color:var(--green);
-  font-weight:900;
-}
-.historySummary{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:6px;
-  margin-bottom:12px;
-}
-.summaryBox{
-  padding:9px 5px;
-  border:1px solid #1d392a;
-  background:#091710;
-  border-radius:8px;
-  text-align:center;
-}
-.summaryBox span{
-  display:block;
-  color:#71887d;
-  font-size:8px;
-}
-.summaryBox b{
-  display:block;
-  margin-top:3px;
-  font-size:12px;
-}
-.winText{color:var(--green)!important}
-.lossText{color:var(--red)!important}
-.pushText{color:var(--gold)!important}
-.historyList{
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-}
+.historyList{max-height:360px;overflow:auto;margin-top:10px}
 .historyRow{
-  display:grid;
-  grid-template-columns:38px 1fr 65px 60px 75px;
-  gap:7px;
-  align-items:center;
-  padding:9px;
-  background:#091710;
-  border:1px solid #1a3327;
-  border-radius:9px;
+display:grid;grid-template-columns:70px 1fr auto auto;
+gap:8px;align-items:center;padding:9px 4px;
+border-bottom:1px solid #1c3025;font-size:11px
 }
-.historyGameIcon{font-size:21px;text-align:center}
-.historyMain b{
-  display:block;
-  font-size:12px;
-}
-.historyMain small{
-  display:block;
-  color:#627b6e;
-  font-size:8px;
-  margin-top:3px;
-}
-.historyBet span{
-  display:block;
-  color:#647b70;
-  font-size:8px;
-}
-.historyBet b{font-size:10px}
-.historyResult{text-align:center}
-.historyResult span{
-  display:block;
-  font-size:9px;
-  font-weight:900;
-}
-.historyResult small{
-  color:#789084;
-  font-size:8px;
-}
-.historyPayout{
-  text-align:right;
-  font-weight:900;
-  font-size:11px;
-}
-.historyWin .historyPayout{color:var(--green)}
-.historyLoss .historyPayout{color:var(--red)}
-.historyPush .historyPayout{color:var(--gold)}
-.emptyHistory{
-  padding:35px 10px;
-  text-align:center;
-  color:#71887c;
-}
-.emptyHistory div{font-size:35px;margin-bottom:8px}
-.emptyHistory b{display:block;color:#fff}
-.emptyHistory span{display:block;font-size:11px;margin-top:4px}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:28px;
-  border-top:1px solid #142a20;
-  color:#61786c;
-  font-size:10px;
-}
+.historyWin{color:var(--green);font-weight:800}
+.historyLoss{color:var(--red);font-weight:800}
+.historyGame{color:#dce8e1}.historyTime{color:#627a6d;font-size:9px}
+.emptyHistory{text-align:center;padding:35px;color:#71887c;font-size:11px}
 
 /* MOBILE */
-@media(max-width:850px){
-  .nav{display:none}
-  .menuBtn{display:block}
-  .hero{min-height:420px}
-  .orb{
-    position:absolute;
-    right:-75px;
-    opacity:.22;
-  }
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .stats{gap:18px}
-  .stats div{font-size:9px}
-  .stats div:nth-child(2){display:none}
+.mobileMenu{
+display:none;position:fixed;top:64px;left:0;right:0;background:#09130e;
+border-bottom:1px solid #22392c;z-index:49;padding:6px
 }
-@media(max-width:520px){
-  .header{padding:0 9px}
-  .logo{font-size:18px}
-  .account{display:none}
-  .balance{font-size:11px;padding:7px}
-  .hero{padding:42px 5%}
-  .hero h1{font-size:45px;letter-spacing:-2px}
-  .grid{gap:8px}
-  .art{height:120px;font-size:48px}
-  .games{padding-top:32px}
-  .top{display:block}
-  .search{width:100%;margin-top:10px}
-  .toolbar{grid-template-columns:1fr 1fr}
-  .toolbar .control:last-child{grid-column:span 2}
-  .modal{padding:14px}
-  .plinko{height:350px}
-  .historySummary{grid-template-columns:repeat(3,1fr)}
-  .summaryBox:nth-child(4),
-  .summaryBox:nth-child(5){display:none}
-  .historyRow{
-    grid-template-columns:30px 1fr 55px 50px;
-  }
-  .historyPayout{display:none}
+.mobileMenu button{
+display:block;width:100%;text-align:left;border:0;background:none;
+color:#81988c;padding:10px
+}
+@media(max-width:850px){
+.nav{display:none}.header{padding:0 3%}
+.hero{min-height:430px}.orb{position:absolute;right:-70px;opacity:.25}
+.stats{gap:12px;justify-content:space-around}.stats div{font-size:9px}
+.stats div:nth-child(2){display:none}
+.grid{grid-template-columns:repeat(2,1fr)}.art{height:125px}
+.top{display:block}.search{width:100%;margin-top:10px}
+.toolbar{grid-template-columns:1fr 1fr}
+.plinko{height:390px}
+}
+@media(max-width:450px){
+.hero h1{font-size:45px;letter-spacing:-2px}
+.grid{gap:8px}.art{height:115px;font-size:48px}
+.account{display:none}.modal{padding:14px}
+.mult{font-size:52px}.plinko{height:370px}
+.plinkoPeg{width:6px;height:6px}.plinkoRow{gap:8px}
 }
 </style>
 </head>
@@ -760,271 +321,170 @@ footer{
 
 <!-- AUTH -->
 <div id="auth" class="auth">
-  <div class="authCard">
+<div class="authCard">
+<div class="authLogo">STAKE<span>WIN</span></div>
 
-    <div class="authLogo">
-      STAKE<span>WIN</span>
-    </div>
+<div id="loginBox">
+<div class="authIcon">🔐</div>
+<h2>Login to Play</h2>
+<p>Login or create a free demo account to play.</p>
+<input id="loginUser" class="authInput" placeholder="Username">
+<input id="loginPass" class="authInput" type="password" placeholder="Password">
+<button class="authBtn" onclick="loginUser()">LOGIN & PLAY</button>
+<div id="loginError" class="error"></div>
+<div class="authSwitch">New here?
+<button onclick="showSignup()">Create Account</button></div>
+</div>
 
-    <div id="loginBox">
-      <div class="authIcon">🔐</div>
-      <h2>Login to Play</h2>
-      <p>Login or create a free demo account to play.</p>
-
-      <input id="loginUser" class="authInput" placeholder="Username">
-      <input id="loginPass" class="authInput" type="password" placeholder="Password">
-
-      <button class="authBtn" onclick="loginUser()">
-        LOGIN & PLAY
-      </button>
-
-      <div id="loginError" class="error"></div>
-
-      <div class="authSwitch">
-        New here?
-        <button onclick="showSignup()">Create Account</button>
-      </div>
-    </div>
-
-    <div id="signupBox" style="display:none">
-      <div class="authIcon">👤</div>
-      <h2>Create Account</h2>
-      <p>Create your free virtual-credit demo account.</p>
-
-      <input id="signupUser" class="authInput" placeholder="Username">
-      <input id="signupPass" class="authInput" type="password" placeholder="Password">
-      <input id="signupConfirm" class="authInput" type="password" placeholder="Confirm Password">
-
-      <button class="authBtn" onclick="createAccount()">
-        CREATE ACCOUNT
-      </button>
-
-      <div id="signupError" class="error"></div>
-
-      <div class="authSwitch">
-        Already have an account?
-        <button onclick="showLogin()">Login</button>
-      </div>
-    </div>
-
-  </div>
+<div id="signupBox" style="display:none">
+<div class="authIcon">👤</div>
+<h2>Create Account</h2>
+<p>Create your free virtual-credit demo account.</p>
+<input id="signupUser" class="authInput" placeholder="Username">
+<input id="signupPass" class="authInput" type="password" placeholder="Password">
+<input id="signupConfirm" class="authInput" type="password" placeholder="Confirm Password">
+<button class="authBtn" onclick="createAccount()">CREATE ACCOUNT</button>
+<div id="signupError" class="error"></div>
+<div class="authSwitch">Already have an account?
+<button onclick="showLogin()">Login</button></div>
+</div>
+</div>
 </div>
 
 <!-- HEADER -->
 <header class="header">
+<button class="icon" onclick="toggleMenu()">☰</button>
+<div class="logo">STAKE<span>WIN</span></div>
 
-  <button class="icon menuBtn" onclick="toggleMenu()">☰</button>
+<nav class="nav">
+<button class="active" onclick="filterGames('All',this)">Home</button>
+<button onclick="filterGames('Originals',this)">Originals</button>
+<button onclick="filterGames('Slots',this)">Slots</button>
+<button onclick="filterGames('Table',this)">Table</button>
+<button onclick="filterGames('Arcade',this)">Arcade</button>
+</nav>
 
-  <div class="logo">
-    STAKE<span>WIN</span>
-  </div>
-
-  <nav class="nav">
-    <button class="active" onclick="filterGames('All',this)">Home</button>
-    <button onclick="filterGames('Originals',this)">Originals</button>
-    <button onclick="filterGames('Slots',this)">Slots</button>
-    <button onclick="filterGames('Table',this)">Table</button>
-    <button onclick="filterGames('Arcade',this)">Arcade</button>
-  </nav>
-
-  <div class="headerRight">
-
-    <div id="account" class="account"></div>
-
-    <div class="balance">
-      💰 <span id="balance">1,000</span>
-    </div>
-
-    <button class="icon" onclick="openHistory()">📒</button>
-
-    <button class="icon" onclick="openProfile()">👤</button>
-
-  </div>
+<div class="headerRight">
+<div id="account" class="account"></div>
+<div class="balance">💰 <b id="balance">1000</b></div>
+<button class="icon" onclick="openHistory()">📜</button>
+<button class="icon" onclick="openProfile()">👤</button>
+</div>
 </header>
 
-<!-- MOBILE MENU -->
-<div id="mobileMenu" style="
-display:none;
-position:fixed;
-top:64px;
-left:0;
-right:0;
-z-index:90;
-background:#07120d;
-border-bottom:1px solid #244332;
-padding:7px;
-">
-  <button style="display:block;width:100%;padding:11px;background:none;border:0;color:#fff;text-align:left"
-    onclick="filterGames('All');toggleMenu()">🏠 Home</button>
-  <button style="display:block;width:100%;padding:11px;background:none;border:0;color:#fff;text-align:left"
-    onclick="filterGames('Originals');toggleMenu()">🎯 Originals</button>
-  <button style="display:block;width:100%;padding:11px;background:none;border:0;color:#fff;text-align:left"
-    onclick="filterGames('Slots');toggleMenu()">🎰 Slots</button>
-  <button style="display:block;width:100%;padding:11px;background:none;border:0;color:#fff;text-align:left"
-    onclick="filterGames('Table');toggleMenu()">🃏 Table</button>
-  <button style="display:block;width:100%;padding:11px;background:none;border:0;color:#fff;text-align:left"
-    onclick="filterGames('Arcade');toggleMenu()">🚀 Arcade</button>
+<div id="mobileMenu" class="mobileMenu">
+<button onclick="filterGames('All');toggleMenu()">🏠 Home</button>
+<button onclick="filterGames('Originals');toggleMenu()">🎯 Originals</button>
+<button onclick="filterGames('Slots');toggleMenu()">🎰 Slots</button>
+<button onclick="filterGames('Table');toggleMenu()">🃏 Table</button>
+<button onclick="filterGames('Arcade');toggleMenu()">🚀 Arcade</button>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-
-  <div class="heroText">
-
-    <div class="eyebrow">✦ STAKEWIN ORIGINALS</div>
-
-    <h1>
-      Play the moment.<br>
-      <span>Own the thrill.</span>
-    </h1>
-
-    <p>
-      Smooth casino-style demo games with virtual credits,
-      animated gameplay and personal bet history.
-    </p>
-
-    <div class="heroActions">
-      <button class="primary" onclick="scrollGames()">▶ Play Demo</button>
-      <button class="secondary" onclick="openWallet()">💰 Wallet</button>
-    </div>
-
-  </div>
-
-  <div class="orb">SW</div>
-
+<div class="heroText">
+<div class="eyebrow">✦ STAKEWIN ORIGINALS</div>
+<h1>Play the moment.<br><span>Own the thrill.</span></h1>
+<p>Animated casino-style demo games using virtual credits.</p>
+<div class="heroActions">
+<button class="primary" onclick="scrollGames()">▶ Play Demo</button>
+<button class="secondary" onclick="openWallet()">💰 Wallet</button>
+</div>
+</div>
+<div class="orb">SW</div>
 </section>
 
-<!-- STATS -->
 <div class="stats">
-  <div>🏆 <b>12,840</b> players online</div>
-  <div>🎲 <b>13</b> demo games</div>
-  <div>💰 <b id="statsBalance">1,000</b> credits</div>
+<div>🏆 <b>12,840</b> players online</div>
+<div>🎲 <b>48</b> demo games</div>
+<div>💰 <b id="statsBalance">1,000</b> credits</div>
 </div>
 
 <!-- GAMES -->
 <section id="games" class="games">
+<div class="top">
+<div><h2>Games</h2><p>Virtual demo credits only</p></div>
+<input id="search" class="search" placeholder="🔍 Search games" oninput="renderGames()">
+</div>
 
-  <div class="top">
+<div class="chips">
+<button class="active" onclick="filterGames('All',this)">All</button>
+<button onclick="filterGames('Originals',this)">Originals</button>
+<button onclick="filterGames('Slots',this)">Slots</button>
+<button onclick="filterGames('Table',this)">Table</button>
+<button onclick="filterGames('Arcade',this)">Arcade</button>
+</div>
 
-    <div>
-      <h2>Games</h2>
-      <p>Virtual demo credits • No real-money wagering</p>
-    </div>
-
-    <input
-      id="search"
-      class="search"
-      placeholder="🔍 Search games"
-      oninput="renderGames()">
-
-  </div>
-
-  <div class="chips">
-    <button class="active" onclick="filterGames('All',this)">All</button>
-    <button onclick="filterGames('Originals',this)">Originals</button>
-    <button onclick="filterGames('Slots',this)">Slots</button>
-    <button onclick="filterGames('Table',this)">Table</button>
-    <button onclick="filterGames('Arcade',this)">Arcade</button>
-  </div>
-
-  <div id="gameGrid" class="grid"></div>
-
+<div id="gameGrid" class="grid"></div>
 </section>
 
 <footer>
-  <div class="logo">STAKE<span>WIN</span></div>
-  <p>Virtual-credit demo • No real-money wagering, deposits or withdrawals</p>
-  © 2026 StakeWin
+<div class="logo">STAKE<span>WIN</span></div>
+<p>Virtual-credit demo • No real-money wagering, deposits or withdrawals</p>
+© 2026 StakeWin
 </footer>
 
 <!-- GAME MODAL -->
 <div id="gameModal" class="overlay">
-
-  <div class="modal">
-
-    <button class="close" onclick="closeGame()">✕</button>
-
-    <div id="gameIcon" style="font-size:32px"></div>
-
-    <h2 id="gameTitle" style="margin:6px 0"></h2>
-
-    <p id="gameDescription" style="color:#789083;font-size:11px"></p>
-
-    <div id="gameContent"></div>
-
-  </div>
-
+<div class="modal">
+<button class="close" onclick="closeGame()">✕</button>
+<div id="gameIcon" style="font-size:32px"></div>
+<h2 id="gameTitle"></h2>
+<p id="gameDescription" style="color:#789083;font-size:11px"></p>
+<div id="gameContent"></div>
+</div>
 </div>
 
 <!-- PROFILE -->
 <div id="profileModal" class="overlay">
-
-  <div class="modal" style="text-align:center">
-
-    <button class="close" onclick="closeModal('profileModal')">✕</button>
-
-    <div style="font-size:45px">👤</div>
-
-    <h2 id="profileName"></h2>
-
-    <p style="color:#789083">Demo account</p>
-
-    <div id="profileBalance"
-      style="font-size:38px;font-weight:950;color:var(--green)">
-    </div>
-
-    <p style="color:#789083">virtual credits</p>
-
-    <button class="secondary" style="width:100%;margin-bottom:7px"
-      onclick="openHistory()">
-      📒 BET HISTORY
-    </button>
-
-    <button class="secondary" style="width:100%"
-      onclick="logout()">
-      LOG OUT
-    </button>
-
-  </div>
-
+<div class="modal" style="text-align:center">
+<button class="close" onclick="closeModal('profileModal')">✕</button>
+<div style="font-size:46px">👤</div>
+<h2 id="profileName"></h2>
+<p style="color:#789083">Demo account</p>
+<div id="profileBalance" style="font-size:38px;font-weight:900;color:var(--green)"></div>
+<p style="color:#789083">virtual credits</p>
+<button class="secondary" style="width:100%" onclick="logout()">LOG OUT</button>
+</div>
 </div>
 
 <!-- WALLET -->
 <div id="walletModal" class="overlay">
+<div class="modal" style="text-align:center">
+<button class="close" onclick="closeModal('walletModal')">✕</button>
+<div style="font-size:46px">💰</div>
+<h2>Demo Wallet</h2>
+<div id="walletBalance" style="font-size:42px;font-weight:900;color:var(--green)"></div>
+<p style="color:#789083">Virtual credits only.</p>
+<button class="primary" style="width:100%" onclick="addCredits()">+500 Demo Credits</button>
+</div>
+</div>
 
-  <div class="modal" style="text-align:center">
+<!-- HISTORY -->
+<div id="historyModal" class="overlay">
+<div class="modal">
+<button class="close" onclick="closeModal('historyModal')">✕</button>
+<h2>📜 Bet History</h2>
 
-    <button class="close" onclick="closeModal('walletModal')">✕</button>
+<div style="display:flex;gap:7px;margin:12px 0">
+<button class="secondary" style="flex:1" onclick="showHistory('all')">All</button>
+<button class="secondary" style="flex:1" onclick="showHistory('win')">Wins</button>
+<button class="secondary" style="flex:1" onclick="showHistory('loss')">Losses</button>
+</div>
 
-    <div style="font-size:45px">💰</div>
-
-    <h2>Demo Wallet</h2>
-
-    <div id="walletBalance"
-      style="font-size:40px;font-weight:950;color:var(--green)">
-    </div>
-
-    <p style="color:#789083">
-      Virtual credits only.
-    </p>
-
-    <button class="primary" style="width:100%"
-      onclick="addCredits()">
-      +500 Demo Credits
-    </button>
-
-  </div>
-
+<div id="historyList" class="historyList"></div>
+</div>
 </div>
 
 <script>
+
 /* =========================================================
-   APP STATE
+AUTH / STORAGE
 ========================================================= */
 
 const USERS_KEY="stakewin_users";
 const SESSION_KEY="stakewin_session";
-const HISTORY_KEY="stakewin_history";
+const HISTORY_PREFIX="stakewin_history_";
 
 let currentUser=null;
 let balanceAmount=1000;
@@ -1032,1113 +492,677 @@ let currentCategory="All";
 let currentGame=null;
 let gameState={};
 let timers=[];
-
-
-/* =========================================================
-   AUTH
-========================================================= */
+let historyFilter="all";
 
 function getUsers(){
-  try{
-    return JSON.parse(localStorage.getItem(USERS_KEY)||"{}");
-  }catch{
-    return {};
-  }
+try{return JSON.parse(localStorage.getItem(USERS_KEY)||"{}")}
+catch{return{}}
 }
 
 function saveUsers(users){
-  localStorage.setItem(USERS_KEY,JSON.stringify(users));
+localStorage.setItem(USERS_KEY,JSON.stringify(users));
+}
+
+function getHistory(){
+if(!currentUser)return[];
+try{
+return JSON.parse(
+localStorage.getItem(HISTORY_PREFIX+currentUser)||"[]"
+);
+}catch{return[]}
+}
+
+function saveHistory(data){
+if(!currentUser)return;
+localStorage.setItem(
+HISTORY_PREFIX+currentUser,
+JSON.stringify(data.slice(0,100))
+);
+}
+
+function addHistory(game,result,bet,payoutAmount,multiplier=0){
+const data=getHistory();
+data.unshift({
+game,
+result,
+bet:Number(bet)||0,
+payout:Number(payoutAmount)||0,
+multiplier:Number(multiplier)||0,
+time:new Date().toLocaleString()
+});
+saveHistory(data);
 }
 
 function showSignup(){
-  document.getElementById("loginBox").style.display="none";
-  document.getElementById("signupBox").style.display="block";
+document.getElementById("loginBox").style.display="none";
+document.getElementById("signupBox").style.display="block";
 }
 
 function showLogin(){
-  document.getElementById("loginBox").style.display="block";
-  document.getElementById("signupBox").style.display="none";
+document.getElementById("loginBox").style.display="block";
+document.getElementById("signupBox").style.display="none";
 }
 
 function createAccount(){
 
-  const username=document.getElementById("signupUser").value.trim();
-  const password=document.getElementById("signupPass").value;
-  const confirm=document.getElementById("signupConfirm").value;
-  const error=document.getElementById("signupError");
+const username=document.getElementById("signupUser").value.trim();
+const password=document.getElementById("signupPass").value;
+const confirm=document.getElementById("signupConfirm").value;
+const error=document.getElementById("signupError");
 
-  error.innerText="";
+error.innerText="";
 
-  if(username.length<3){
-    error.innerText="Username must contain at least 3 characters.";
-    return;
-  }
+if(username.length<3){
+error.innerText="Username must contain at least 3 characters.";
+return;
+}
+if(password.length<4){
+error.innerText="Password must contain at least 4 characters.";
+return;
+}
+if(password!==confirm){
+error.innerText="Passwords do not match.";
+return;
+}
 
-  if(password.length<4){
-    error.innerText="Password must contain at least 4 characters.";
-    return;
-  }
+const users=getUsers();
 
-  if(password!==confirm){
-    error.innerText="Passwords do not match.";
-    return;
-  }
+if(users[username]){
+error.innerText="Username already exists.";
+return;
+}
 
-  const users=getUsers();
+users[username]={password,balance:1000};
+saveUsers(users);
 
-  if(users[username]){
-    error.innerText="Username already exists.";
-    return;
-  }
+currentUser=username;
+balanceAmount=1000;
 
-  users[username]={
-    password:password,
-    balance:1000
-  };
-
-  saveUsers(users);
-
-  currentUser=username;
-  balanceAmount=1000;
-
-  localStorage.setItem(SESSION_KEY,username);
-
-  unlock();
+localStorage.setItem(SESSION_KEY,username);
+unlock();
 }
 
 function loginUser(){
 
-  const username=document.getElementById("loginUser").value.trim();
-  const password=document.getElementById("loginPass").value;
-  const error=document.getElementById("loginError");
+const username=document.getElementById("loginUser").value.trim();
+const password=document.getElementById("loginPass").value;
+const error=document.getElementById("loginError");
 
-  error.innerText="";
+error.innerText="";
 
-  const users=getUsers();
+const users=getUsers();
 
-  if(!users[username]){
-    error.innerText="Account not found. Create an account first.";
-    return;
-  }
+if(!users[username]){
+error.innerText="Account not found. Create an account first.";
+return;
+}
 
-  if(users[username].password!==password){
-    error.innerText="Incorrect password.";
-    return;
-  }
+if(users[username].password!==password){
+error.innerText="Incorrect password.";
+return;
+}
 
-  currentUser=username;
-  balanceAmount=Number(users[username].balance||1000);
+currentUser=username;
+balanceAmount=Number(users[username].balance||1000);
 
-  localStorage.setItem(SESSION_KEY,username);
-
-  unlock();
+localStorage.setItem(SESSION_KEY,username);
+unlock();
 }
 
 function unlock(){
-
-  document.getElementById("auth").style.display="none";
-
-  document.getElementById("account").innerText="👤 "+currentUser;
-
-  updateBalance();
+document.getElementById("auth").style.display="none";
+document.getElementById("account").innerText="👤 "+currentUser;
+updateBalance();
 }
 
 function logout(){
-
-  clearTimers();
-  saveBalance();
-
-  currentUser=null;
-
-  localStorage.removeItem(SESSION_KEY);
-
-  document.getElementById("profileModal").style.display="none";
-
-  document.getElementById("auth").style.display="flex";
-
-  showLogin();
+clearTimers();
+saveBalance();
+currentUser=null;
+localStorage.removeItem(SESSION_KEY);
+document.getElementById("profileModal").style.display="none";
+document.getElementById("auth").style.display="flex";
+showLogin();
 }
 
-
 /* =========================================================
-   BALANCE
+BALANCE
 ========================================================= */
 
 function saveBalance(){
-
-  if(!currentUser)return;
-
-  const users=getUsers();
-
-  if(!users[currentUser])return;
-
-  users[currentUser].balance=Math.max(0,balanceAmount);
-
-  saveUsers(users);
+if(!currentUser)return;
+const users=getUsers();
+if(!users[currentUser])return;
+users[currentUser].balance=Math.max(0,balanceAmount);
+saveUsers(users);
 }
 
 function updateBalance(){
 
-  const value=Math.floor(balanceAmount).toLocaleString();
+const value=Math.floor(balanceAmount).toLocaleString();
 
-  document.getElementById("balance").innerText=value;
-  document.getElementById("statsBalance").innerText=value;
+document.getElementById("balance").innerText=value;
+document.getElementById("statsBalance").innerText=value;
 
-  const wb=document.getElementById("walletBalance");
-  const pb=document.getElementById("profileBalance");
+if(document.getElementById("walletBalance"))
+document.getElementById("walletBalance").innerText=value;
 
-  if(wb)wb.innerText=value;
-  if(pb)pb.innerText=value;
+if(document.getElementById("profileBalance"))
+document.getElementById("profileBalance").innerText=value;
 
-  saveBalance();
+saveBalance();
 }
 
 function spend(amount){
 
-  amount=Number(amount);
+amount=Number(amount);
 
-  if(!Number.isFinite(amount)||amount<1){
-    alert("Enter a valid bet.");
-    return false;
-  }
+if(!amount||amount<1){
+alert("Enter a valid bet.");
+return false;
+}
 
-  if(amount>balanceAmount){
-    alert("Not enough demo credits.");
-    return false;
-  }
+if(amount>balanceAmount){
+alert("Not enough demo credits.");
+return false;
+}
 
-  balanceAmount-=amount;
-  updateBalance();
-
-  return true;
+balanceAmount-=amount;
+updateBalance();
+return true;
 }
 
 function payout(amount){
-
-  amount=Number(amount);
-
-  if(!Number.isFinite(amount)||amount<0)return;
-
-  balanceAmount+=amount;
-
-  updateBalance();
+balanceAmount+=Number(amount);
+updateBalance();
 }
 
-
 /* =========================================================
-   HISTORY
+HISTORY UI
 ========================================================= */
 
-function historyKey(){
-  return HISTORY_KEY+"_"+currentUser;
-}
-
-function getHistory(){
-
-  if(!currentUser)return[];
-
-  try{
-    return JSON.parse(
-      localStorage.getItem(historyKey())||"[]"
-    );
-  }catch{
-    return[];
-  }
-}
-
-function saveHistory(data){
-
-  if(!currentUser)return;
-
-  localStorage.setItem(
-    historyKey(),
-    JSON.stringify(data.slice(0,200))
-  );
-}
-
-function addHistory(game,bet,result,payoutAmount=0,multiplier=0){
-
-  if(!currentUser)return;
-
-  const history=getHistory();
-
-  history.unshift({
-    game,
-    bet:Number(bet),
-    result,
-    payout:Number(payoutAmount),
-    multiplier:Number(multiplier),
-    time:new Date().toLocaleString(),
-    balance:Number(balanceAmount)
-  });
-
-  saveHistory(history);
-}
-
-function gameIcon(name){
-
-  const game=games.find(
-    g=>g.name.toLowerCase()===String(name).toLowerCase()
-  );
-
-  return game?game.icon:"🎮";
-}
-
 function openHistory(){
-
-  if(!currentUser)return;
-
-  let modal=document.getElementById("historyModal");
-
-  if(!modal){
-
-    modal=document.createElement("div");
-    modal.id="historyModal";
-    modal.className="overlay";
-
-    modal.innerHTML=`
-      <div class="modal historyModal">
-
-        <button class="close"
-          onclick="closeModal('historyModal')">
-          ✕
-        </button>
-
-        <div class="eyebrow">
-          STAKEWIN LEDGER
-        </div>
-
-        <h2 style="margin:5px 0">
-          Bet History
-        </h2>
-
-        <p style="color:#789083;font-size:11px">
-          Your latest demo rounds
-        </p>
-
-        <div class="historyTabs">
-
-          <button class="historyTab active"
-            onclick="renderHistory('all',this)">
-            All
-          </button>
-
-          <button class="historyTab"
-            onclick="renderHistory('win',this)">
-            Wins
-          </button>
-
-          <button class="historyTab"
-            onclick="renderHistory('loss',this)">
-            Losses
-          </button>
-
-        </div>
-
-        <div id="historySummary"
-          class="historySummary">
-        </div>
-
-        <div id="historyList"
-          class="historyList">
-        </div>
-
-      </div>
-    `;
-
-    document.body.appendChild(modal);
-  }
-
-  modal.style.display="flex";
-
-  renderHistory("all");
+if(!currentUser)return;
+document.getElementById("historyModal").style.display="flex";
+showHistory("all");
 }
 
-function renderHistory(type="all",button=null){
+function showHistory(filter){
 
-  const list=document.getElementById("historyList");
-  const summary=document.getElementById("historySummary");
+historyFilter=filter;
 
-  if(!list||!summary)return;
+const list=document.getElementById("historyList");
 
-  if(button){
+let data=getHistory();
 
-    document.querySelectorAll(".historyTab")
-      .forEach(b=>b.classList.remove("active"));
+if(filter==="win")
+data=data.filter(x=>x.result==="win");
 
-    button.classList.add("active");
-  }
+if(filter==="loss")
+data=data.filter(x=>x.result==="loss");
 
-  const all=getHistory();
-
-  const filtered=all.filter(item=>{
-    if(type==="win")return item.result==="win";
-    if(type==="loss")return item.result==="loss";
-    return true;
-  });
-
-  const wins=all.filter(x=>x.result==="win");
-  const losses=all.filter(x=>x.result==="loss");
-
-  const totalBet=all.reduce(
-    (s,x)=>s+Number(x.bet||0),0
-  );
-
-  const totalReturned=wins.reduce(
-    (s,x)=>s+Number(x.payout||0),0
-  );
-
-  summary.innerHTML=`
-    <div class="summaryBox">
-      <span>Rounds</span>
-      <b>${all.length}</b>
-    </div>
-    <div class="summaryBox">
-      <span>Wins</span>
-      <b class="winText">${wins.length}</b>
-    </div>
-    <div class="summaryBox">
-      <span>Losses</span>
-      <b class="lossText">${losses.length}</b>
-    </div>
-    <div class="summaryBox">
-      <span>Total Bet</span>
-      <b>${totalBet.toFixed(2)}</b>
-    </div>
-    <div class="summaryBox">
-      <span>Returned</span>
-      <b class="winText">${totalReturned.toFixed(2)}</b>
-    </div>
-  `;
-
-  if(!filtered.length){
-
-    list.innerHTML=`
-      <div class="emptyHistory">
-        <div>📒</div>
-        <b>No rounds yet</b>
-        <span>Play a demo game and your ledger will appear here.</span>
-      </div>
-    `;
-
-    return;
-  }
-
-  list.innerHTML=filtered.map(item=>{
-
-    const win=item.result==="win";
-    const push=item.result==="push";
-
-    return`
-      <div class="historyRow ${
-        win?"historyWin":push?"historyPush":"historyLoss"
-      }">
-
-        <div class="historyGameIcon">
-          ${gameIcon(item.game)}
-        </div>
-
-        <div class="historyMain">
-          <b>${escapeText(item.game)}</b>
-          <small>${item.time}</small>
-        </div>
-
-        <div class="historyBet">
-          <span>Bet</span>
-          <b>${item.bet.toFixed(2)}</b>
-        </div>
-
-        <div class="historyResult">
-          <span class="${
-            win?"winText":push?"pushText":"lossText"
-          }">
-            ${win?"WIN":push?"PUSH":"LOSS"}
-          </span>
-          ${
-            item.multiplier
-            ? `<small>${item.multiplier.toFixed(2)}x</small>`
-            :""
-          }
-        </div>
-
-        <div class="historyPayout">
-          ${
-            win
-            ? "+"+item.payout.toFixed(2)
-            : push
-            ? item.payout.toFixed(2)
-            : "-"+item.bet.toFixed(2)
-          }
-        </div>
-
-      </div>
-    `;
-  }).join("");
+if(!data.length){
+list.innerHTML='<div class="emptyHistory">No bets recorded yet.</div>';
+return;
 }
 
-function escapeText(text){
+list.innerHTML=data.map(x=>{
 
-  return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+const win=x.result==="win";
+
+return`
+<div class="historyRow">
+<div class="historyTime">${x.time}</div>
+<div class="historyGame">
+<b>${x.game}</b>
+<br>
+<span style="color:#71887c">Bet ${x.bet.toFixed(2)}</span>
+</div>
+<div class="${win?"historyWin":"historyLoss"}">
+${win?"WIN":"LOSS"}
+</div>
+<div class="${win?"historyWin":"historyLoss"}">
+${win?"+"+x.payout.toFixed(2):"-"+x.bet.toFixed(2)}
+</div>
+</div>
+`;
+
+}).join("");
 }
-
 
 /* =========================================================
-   GAMES
+GAMES
 ========================================================= */
 
 const games=[
-  {id:"mines",name:"Mines",cat:"Originals",icon:"💣",desc:"Reveal diamonds while avoiding hidden mines."},
-  {id:"crash",name:"Crash",cat:"Originals",icon:"🚀",desc:"Watch the multiplier rise and cash out before crash."},
-  {id:"dice",name:"Dice",cat:"Originals",icon:"🎲",desc:"Choose under or over and roll."},
-  {id:"plinko",name:"Plinko",cat:"Originals",icon:"🔵",desc:"Drop a ball through realistic physics-style pegs."},
-  {id:"tower",name:"Tower",cat:"Originals",icon:"🗼",desc:"Climb the tower and choose safe tiles."},
-  {id:"blackjack",name:"Blackjack",cat:"Table",icon:"♠️",desc:"Beat the dealer without going over 21."},
-  {id:"poker",name:"Poker",cat:"Table",icon:"🃏",desc:"Compare five-card poker hands."},
-  {id:"roulette",name:"Roulette",cat:"Table",icon:"🎡",desc:"Spin a virtual roulette wheel."},
-  {id:"keno",name:"Keno",cat:"Table",icon:"🔢",desc:"Pick numbers and draw."},
-  {id:"lucky7",name:"Lucky 7",cat:"Slots",icon:"7️⃣",desc:"Animated three-reel demo slot."},
-  {id:"fruits",name:"Neon Fruits",cat:"Slots",icon:"🍒",desc:"Classic fruit slot demo."},
-  {id:"dragon",name:"Dragon Gold",cat:"Slots",icon:"🐉",desc:"Dragon-themed slot demo."},
-  {id:"rocket",name:"Rocket Rush",cat:"Arcade",icon:"🌌",desc:"Rising multiplier arcade demo."}
+{id:"mines",name:"Mines",cat:"Originals",icon:"💣",desc:"Reveal diamonds while avoiding hidden mines."},
+{id:"crash",name:"Crash",cat:"Originals",icon:"🚀",desc:"Watch the multiplier climb and cash out before crash."},
+{id:"dice",name:"Dice",cat:"Originals",icon:"🎲",desc:"Choose UNDER or OVER with visible probability."},
+{id:"plinko",name:"Plinko",cat:"Originals",icon:"🔵",desc:"Watch the ball bounce through the pegs."},
+{id:"blackjack",name:"Blackjack",cat:"Table",icon:"♠️",desc:"Beat the dealer without going over 21."},
+{id:"poker",name:"Poker",cat:"Table",icon:"🃏",desc:"Compare standard five-card poker hands."},
+{id:"roulette",name:"Roulette",cat:"Table",icon:"🎡",desc:"Bet red, black, even, odd or zero."},
+{id:"lucky7",name:"Lucky 7",cat:"Slots",icon:"7️⃣",desc:"Animated three-reel slot."},
+{id:"fruits",name:"Neon Fruits",cat:"Slots",icon:"🍒",desc:"Classic animated fruit slot."},
+{id:"dragon",name:"Dragon Gold",cat:"Slots",icon:"🐉",desc:"Dragon-themed animated slot."},
+{id:"rocket",name:"Rocket Rush",cat:"Arcade",icon:"🌌",desc:"Rising multiplier arcade demo."},
+{id:"tower",name:"Tower",cat:"Originals",icon:"🗼",desc:"Climb the tower and cash out."},
+{id:"keno",name:"Keno",cat:"Table",icon:"🔢",desc:"Pick numbers and match the draw."}
 ];
 
 function renderGames(){
 
-  const query=
-    document.getElementById("search").value.toLowerCase();
+const query=document.getElementById("search").value.toLowerCase();
 
-  const list=games.filter(g=>
-    (currentCategory==="All"||g.cat===currentCategory)&&
-    g.name.toLowerCase().includes(query)
-  );
+const list=games.filter(game=>
+(currentCategory==="All"||game.cat===currentCategory)&&
+game.name.toLowerCase().includes(query)
+);
 
-  document.getElementById("gameGrid").innerHTML=
-    list.map((g,i)=>`
-      <div class="card" onclick="openGame('${g.id}')">
-
-        <div class="art">
-
-          ${i<4?'<span class="tag">HOT</span>':""}
-
-          <span>${g.icon}</span>
-
-        </div>
-
-        <div class="info">
-
-          <div>
-            <b>${g.name}</b>
-            <small>${g.cat}</small>
-          </div>
-
-          <span>›</span>
-
-        </div>
-
-      </div>
-    `).join("");
+document.getElementById("gameGrid").innerHTML=list.map((game,index)=>`
+<div class="card" onclick="openGame('${game.id}')">
+<div class="art">
+${index<4?'<span class="tag">HOT</span>':''}
+<span>${game.icon}</span>
+</div>
+<div class="info">
+<div><b>${game.name}</b><small>${game.cat}</small></div>
+<span>›</span>
+</div>
+</div>
+`).join("");
 }
 
 function filterGames(category,button){
 
-  currentCategory=category;
+currentCategory=category;
 
-  document.querySelectorAll(".chips button")
-    .forEach(b=>b.classList.remove("active"));
+document.querySelectorAll(".chips button")
+.forEach(b=>b.classList.remove("active"));
 
-  if(button)button.classList.add("active");
+if(button)button.classList.add("active");
 
-  renderGames();
+renderGames();
 }
 
 function openGame(id){
 
-  if(!currentUser){
-    document.getElementById("auth").style.display="flex";
-    return;
-  }
+if(!currentUser){
+document.getElementById("auth").style.display="flex";
+return;
+}
 
-  clearTimers();
+clearTimers();
 
-  const game=games.find(g=>g.id===id);
+const game=games.find(g=>g.id===id);
+currentGame=id;
 
-  if(!game)return;
+document.getElementById("gameIcon").innerText=game.icon;
+document.getElementById("gameTitle").innerText=game.name;
+document.getElementById("gameDescription").innerText=game.desc;
+document.getElementById("gameContent").innerHTML=getGameHTML(id);
+document.getElementById("gameModal").style.display="flex";
 
-  currentGame=id;
-
-  document.getElementById("gameIcon").innerText=game.icon;
-  document.getElementById("gameTitle").innerText=game.name;
-  document.getElementById("gameDescription").innerText=game.desc;
-  document.getElementById("gameContent").innerHTML=getGameHTML(id);
-
-  document.getElementById("gameModal").style.display="flex";
-
-  initGame(id);
+initGame(id);
 }
 
 function closeGame(){
-
-  clearTimers();
-
-  document.getElementById("gameModal").style.display="none";
+clearTimers();
+document.getElementById("gameModal").style.display="none";
 }
 
 function closeModal(id){
-
-  const el=document.getElementById(id);
-
-  if(el)el.style.display="none";
-
+document.getElementById(id).style.display="none";
+clearTimers();
 }
 
 function clearTimers(){
-
-  timers.forEach(clearInterval);
-  timers.forEach(clearTimeout);
-
-  timers=[];
+timers.forEach(t=>{
+clearInterval(t);
+clearTimeout(t);
+});
+timers=[];
 }
 
 function scrollGames(){
-
-  document.getElementById("games")
-    .scrollIntoView({behavior:"smooth"});
+document.getElementById("games").scrollIntoView({behavior:"smooth"});
 }
 
 function toggleMenu(){
-
-  const menu=document.getElementById("mobileMenu");
-
-  menu.style.display=
-    menu.style.display==="block"
-    ?"none"
-    :"block";
+const menu=document.getElementById("mobileMenu");
+menu.style.display=menu.style.display==="block"?"none":"block";
 }
 
-
 /* =========================================================
-   GAME HTML
+GAME ROUTER
 ========================================================= */
 
 function getGameHTML(id){
 
-  if(id==="mines")return minesHTML();
-  if(id==="crash"||id==="rocket")return crashHTML();
-  if(id==="dice")return diceHTML();
-  if(id==="plinko")return plinkoHTML();
-  if(id==="blackjack")return blackjackHTML();
-  if(id==="poker")return pokerHTML();
-  if(id==="roulette")return rouletteHTML();
-  if(["lucky7","fruits","dragon"].includes(id))return slotsHTML();
-  if(id==="tower")return towerHTML();
-  if(id==="keno")return kenoHTML();
+if(id==="mines")return minesHTML();
+if(id==="crash"||id==="rocket")return crashHTML();
+if(id==="dice")return diceHTML();
+if(id==="plinko")return plinkoHTML();
+if(id==="blackjack")return blackjackHTML();
+if(id==="poker")return pokerHTML();
+if(id==="roulette")return rouletteHTML();
+if(["lucky7","fruits","dragon"].includes(id))return slotsHTML();
+if(id==="tower")return towerHTML();
+if(id==="keno")return kenoHTML();
 
-  return"";
+return"";
 }
 
 function initGame(id){
-
-  if(id==="mines")initMines();
-  if(id==="dice")updateDice();
-  if(id==="plinko")buildPlinko();
-  if(id==="tower")buildTower();
-  if(id==="keno")initKeno();
+if(id==="mines")initMines();
+if(id==="dice")updateDice();
+if(id==="plinko")buildPlinko();
+if(id==="tower")buildTower();
+if(id==="keno")initKeno();
 }
 
-
 /* =========================================================
-   MINES
+MINES
 ========================================================= */
 
 function minesHTML(){
+return`
+<div class="toolbar">
+<div class="control"><label>Mines</label>
+<select id="mineCount"><option>3</option><option selected>5</option><option>8</option><option>12</option></select>
+</div>
+<div class="control"><label>Level</label>
+<select id="mineLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select>
+</div>
+<div class="control"><label>Bet</label>
+<input id="mineBet" type="number" value="10" min="1">
+</div>
+</div>
 
-  return`
-    <div class="toolbar">
-
-      <div class="control">
-        <label>Level</label>
-        <select id="mineLevel">
-          <option>Easy</option>
-          <option selected>Medium</option>
-          <option>Hard</option>
-        </select>
-      </div>
-
-      <div class="control">
-        <label>Mines</label>
-        <select id="mineCount">
-          <option>3</option>
-          <option selected>5</option>
-          <option>8</option>
-          <option>12</option>
-        </select>
-      </div>
-
-      <div class="control">
-        <label>Bet</label>
-        <input id="mineBet" type="number" value="10" min="1">
-      </div>
-
-    </div>
-
-    <div class="actions">
-
-      <button class="primary" onclick="startMines()">
-        START
-      </button>
-
-      <button id="mineCash" class="cash"
-        disabled onclick="cashMines()">
-        CASH OUT
-      </button>
-
-    </div>
-
-    <div id="mineStatus" class="status">
-      Find diamonds and cash out.
-    </div>
-
-    <div id="mineGrid" class="minegrid"></div>
-  `;
+<div class="actions">
+<button class="primary" onclick="startMines()">START</button>
+<button id="mineCash" class="cash" disabled onclick="cashMines()">CASH OUT</button>
+</div>
+<div id="mineStatus" class="status">More mines = higher multipliers.</div>
+<div id="mineGrid" class="minegrid"></div>
+`;
 }
 
 function initMines(){
+const grid=document.getElementById("mineGrid");
+grid.innerHTML="";
+grid.style.gridTemplateColumns="repeat(5,1fr)";
 
-  const grid=document.getElementById("mineGrid");
-
-  grid.innerHTML="";
-
-  for(let i=0;i<25;i++){
-
-    const c=document.createElement("button");
-
-    c.className="mine";
-    c.disabled=true;
-    c.onclick=()=>clickMine(i);
-
-    grid.appendChild(c);
-  }
+for(let i=0;i<25;i++){
+const cell=document.createElement("button");
+cell.className="mine";
+cell.id="mine-"+i;
+cell.disabled=true;
+cell.onclick=()=>clickMine(i);
+grid.appendChild(cell);
+}
 }
 
 function startMines(){
 
-  const bet=Number(document.getElementById("mineBet").value);
-  const count=Number(document.getElementById("mineCount").value);
+const bet=Number(document.getElementById("mineBet").value);
+const mineCount=Number(document.getElementById("mineCount").value);
 
-  if(!spend(bet))return;
+if(!spend(bet))return;
 
-  const mines=[];
+let mines=[];
 
-  while(mines.length<count){
+while(mines.length<mineCount){
+const n=Math.floor(Math.random()*25);
+if(!mines.includes(n))mines.push(n);
+}
 
-    const n=Math.floor(Math.random()*25);
+gameState={bet,mineCount,mines,opened:0,active:true,cash:bet};
 
-    if(!mines.includes(n))mines.push(n);
-  }
+initMines();
 
-  gameState={
-    active:true,
-    bet,
-    mineCount:count,
-    mines,
-    opened:0,
-    cash:bet
-  };
+document.querySelectorAll(".mine").forEach(c=>c.disabled=false);
+document.getElementById("mineCash").disabled=true;
 
-  initMines();
-
-  document.querySelectorAll(".mine")
-    .forEach(x=>x.disabled=false);
-
-  document.getElementById("mineCash").disabled=true;
-
-  document.getElementById("mineStatus").className="status";
-  document.getElementById("mineStatus").innerText="Find diamonds and cash out.";
+document.getElementById("mineStatus").className="status";
+document.getElementById("mineStatus").innerText="Find diamonds and cash out.";
 }
 
 function clickMine(index){
 
-  if(!gameState.active)return;
+if(!gameState.active)return;
 
-  const cells=document.querySelectorAll(".mine");
-  const cell=cells[index];
+const cell=document.getElementById("mine-"+index);
+cell.disabled=true;
 
-  cell.disabled=true;
+if(gameState.mines.includes(index)){
 
-  if(gameState.mines.includes(index)){
+cell.innerText="💣";
+cell.classList.add("b");
 
-    cell.innerText="💣";
-    cell.classList.add("b");
+gameState.active=false;
 
-    gameState.active=false;
+gameState.mines.forEach(i=>{
+const c=document.getElementById("mine-"+i);
+c.innerText="💣";c.classList.add("b");c.disabled=true;
+});
 
-    gameState.mines.forEach(i=>{
-      cells[i].innerText="💣";
-      cells[i].classList.add("b");
-      cells[i].disabled=true;
-    });
+document.getElementById("mineCash").disabled=true;
+document.getElementById("mineStatus").className="status loss";
+document.getElementById("mineStatus").innerText="BOOM! Mine hit — round lost.";
 
-    document.getElementById("mineCash").disabled=true;
+addHistory("Mines","loss",gameState.bet,0,0);
 
-    document.getElementById("mineStatus").className="status loss";
-    document.getElementById("mineStatus").innerText="BOOM! Mine hit.";
+return;
+}
 
-    addHistory("Mines",gameState.bet,"loss",0,0);
+gameState.opened++;
+cell.innerText="💎";
+cell.classList.add("g");
 
-    return;
-  }
+const safeCells=25-gameState.mineCount;
+let multiplier=1+(gameState.opened/safeCells)*(1+gameState.mineCount*.20);
 
-  gameState.opened++;
+if(document.getElementById("mineLevel").value==="Easy")multiplier*=.9;
+if(document.getElementById("mineLevel").value==="Hard")multiplier*=1.25;
 
-  cell.innerText="💎";
-  cell.classList.add("g");
+gameState.cash=gameState.bet*multiplier;
 
-  const safe=25-gameState.mineCount;
-
-  let multiplier=
-    1+
-    (gameState.opened/safe)*
-    (1+gameState.mineCount*.2);
-
-  if(document.getElementById("mineLevel").value==="Easy")
-    multiplier*=.9;
-
-  if(document.getElementById("mineLevel").value==="Hard")
-    multiplier*=1.25;
-
-  gameState.cash=gameState.bet*multiplier;
-
-  document.getElementById("mineCash").disabled=false;
-
-  document.getElementById("mineStatus").className="status win";
-  document.getElementById("mineStatus").innerText=
-    `${multiplier.toFixed(2)}x • Cash out ${gameState.cash.toFixed(2)}`;
+document.getElementById("mineCash").disabled=false;
+document.getElementById("mineStatus").className="status win";
+document.getElementById("mineStatus").innerText=
+`${multiplier.toFixed(2)}x • Cash out ${gameState.cash.toFixed(2)} credits`;
 }
 
 function cashMines(){
 
-  if(!gameState.active||gameState.opened===0)return;
+if(!gameState.active||gameState.opened===0)return;
 
-  gameState.active=false;
+gameState.active=false;
+payout(gameState.cash);
 
-  const amount=gameState.cash;
-  const multiplier=amount/gameState.bet;
+document.getElementById("mineCash").disabled=true;
+document.getElementById("mineStatus").className="status win";
+document.getElementById("mineStatus").innerText=
+`Cashed out • +${gameState.cash.toFixed(2)} credits`;
 
-  payout(amount);
-
-  addHistory(
-    "Mines",
-    gameState.bet,
-    "win",
-    amount,
-    multiplier
-  );
-
-  document.getElementById("mineCash").disabled=true;
-
-  document.getElementById("mineStatus").className="status win";
-  document.getElementById("mineStatus").innerText=
-    `Cashed out • +${amount.toFixed(2)} credits`;
+addHistory("Mines","win",gameState.bet,gameState.cash,gameState.cash/gameState.bet);
 }
 
-
 /* =========================================================
-   CRASH
+CRASH
 ========================================================= */
 
 function crashHTML(){
-
-  return`
-    <div class="toolbar">
-
-      <div class="control">
-        <label>Level</label>
-        <select id="crashLevel">
-          <option>Easy</option>
-          <option selected>Medium</option>
-          <option>Hard</option>
-        </select>
-      </div>
-
-      <div class="control">
-        <label>Bet</label>
-        <input id="crashBet" type="number" value="10" min="1">
-      </div>
-
-      <div class="control">
-        <label>Auto Cash</label>
-        <select id="autoCash">
-          <option value="0">Manual</option>
-          <option value="1.5">1.50x</option>
-          <option value="2">2.00x</option>
-          <option value="3">3.00x</option>
-          <option value="5">5.00x</option>
-        </select>
-      </div>
-
-    </div>
-
-    <div class="gamearea">
-
-      <div id="crashMultiplier" class="mult">
-        1.00x
-      </div>
-
-      <div class="rocket">🚀</div>
-
-    </div>
-
-    <div id="crashStatus" class="status">
-      Start a round.
-    </div>
-
-    <div class="actions">
-
-      <button class="primary" onclick="startCrash()">
-        START
-      </button>
-
-      <button id="crashCash" class="cash"
-        disabled onclick="cashoutCrash()">
-        CASH OUT
-      </button>
-
-    </div>
-  `;
+return`
+<div class="toolbar">
+<div class="control"><label>Level</label>
+<select id="crashLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select>
+</div>
+<div class="control"><label>Bet</label>
+<input id="crashBet" type="number" value="10" min="1">
+</div>
+<div class="control"><label>Auto Cash</label>
+<select id="autoCash">
+<option value="0">Manual</option><option value="1.5">1.50x</option>
+<option value="2">2.00x</option><option value="3">3.00x</option>
+<option value="5">5.00x</option>
+</select>
+</div>
+</div>
+<div class="gamearea">
+<div id="crashMultiplier" class="mult">1.00x</div>
+<div class="rocket">🚀</div>
+</div>
+<div id="crashStatus" class="status">Start a round and cash out before crash.</div>
+<div class="actions">
+<button class="primary" onclick="startCrash()">START</button>
+<button id="crashCash" class="cash" disabled onclick="cashoutCrash()">CASH OUT</button>
+</div>`;
 }
 
 function startCrash(){
 
-  clearTimers();
+const bet=Number(document.getElementById("crashBet").value);
+if(!spend(bet))return;
 
-  const bet=Number(document.getElementById("crashBet").value);
+let crash=1.15+Math.random()*9;
+const level=document.getElementById("crashLevel").value;
 
-  if(!spend(bet))return;
+if(level==="Easy")crash=2+Math.random()*9;
+if(level==="Hard")crash=1.05+Math.random()*5;
 
-  let crash=1.15+Math.random()*8;
+gameState={active:true,bet,multiplier:1,crash};
 
-  const level=document.getElementById("crashLevel").value;
+document.getElementById("crashCash").disabled=false;
+document.getElementById("crashMultiplier").classList.remove("dead");
 
-  if(level==="Easy")crash=2+Math.random()*8;
-  if(level==="Hard")crash=1.1+Math.random()*4;
+const timer=setInterval(()=>{
 
-  gameState={
-    active:true,
-    bet,
-    multiplier:1,
-    crash
-  };
+if(!gameState.active)return;
 
-  document.getElementById("crashMultiplier").classList.remove("dead");
-  document.getElementById("crashCash").disabled=false;
+gameState.multiplier+=.025+gameState.multiplier*.008;
 
-  const timer=setInterval(()=>{
+document.getElementById("crashMultiplier").innerText=
+gameState.multiplier.toFixed(2)+"x";
 
-    if(!gameState.active)return;
+const auto=Number(document.getElementById("autoCash").value);
 
-    gameState.multiplier+=
-      .025+gameState.multiplier*.008;
+if(auto>0&&gameState.multiplier>=auto){
+cashoutCrash();
+return;
+}
 
-    document.getElementById("crashMultiplier")
-      .innerText=
-      gameState.multiplier.toFixed(2)+"x";
+if(gameState.active&&gameState.multiplier>=gameState.crash){
 
-    const auto=Number(
-      document.getElementById("autoCash").value
-    );
+gameState.active=false;
+document.getElementById("crashCash").disabled=true;
+document.getElementById("crashMultiplier").classList.add("dead");
 
-    if(auto>0&&gameState.multiplier>=auto){
-      cashoutCrash();
-      return;
-    }
+document.getElementById("crashStatus").className="status loss";
+document.getElementById("crashStatus").innerText=
+`CRASHED at ${gameState.crash.toFixed(2)}x • round lost`;
 
-    if(gameState.multiplier>=gameState.crash){
+addHistory("Crash","loss",gameState.bet,0,0);
+clearInterval(timer);
+}
 
-      gameState.active=false;
+},100);
 
-      document.getElementById("crashCash").disabled=true;
-      document.getElementById("crashMultiplier").classList.add("dead");
-
-      document.getElementById("crashStatus").className="status loss";
-      document.getElementById("crashStatus").innerText=
-        `CRASHED at ${gameState.crash.toFixed(2)}x`;
-
-      addHistory("Crash",gameState.bet,"loss",0,0);
-
-      clearInterval(timer);
-    }
-
-  },80);
-
-  timers.push(timer);
+timers.push(timer);
 }
 
 function cashoutCrash(){
 
-  if(!gameState.active)return;
+if(!gameState.active)return;
 
-  const amount=
-    gameState.bet*gameState.multiplier;
+const win=gameState.bet*gameState.multiplier;
 
-  gameState.active=false;
+gameState.active=false;
+payout(win);
 
-  payout(amount);
+document.getElementById("crashCash").disabled=true;
+document.getElementById("crashStatus").className="status win";
+document.getElementById("crashStatus").innerText=
+`Cashed out at ${gameState.multiplier.toFixed(2)}x • +${win.toFixed(2)} credits`;
 
-  addHistory(
-    "Crash",
-    gameState.bet,
-    "win",
-    amount,
-    gameState.multiplier
-  );
+addHistory("Crash","win",gameState.bet,win,gameState.multiplier);
 
-  document.getElementById("crashCash").disabled=true;
-
-  document.getElementById("crashStatus").className="status win";
-  document.getElementById("crashStatus").innerText=
-    `Cashed out at ${gameState.multiplier.toFixed(2)}x • +${amount.toFixed(2)}`;
-
-  clearTimers();
+clearTimers();
 }
 
-
 /* =========================================================
-   DICE
+DICE
 ========================================================= */
 
 function diceHTML(){
-
-  return`
-    <div class="toolbar">
-
-      <div class="control">
-        <label>Bet</label>
-        <input id="diceBet" type="number" value="10" min="1">
-      </div>
-
-      <div class="control">
-        <label>Condition</label>
-        <select id="diceMode" onchange="updateDice()">
-          <option value="under">UNDER</option>
-          <option value="over">OVER</option>
-        </select>
-      </div>
-
-      <div class="control">
-        <label>Target</label>
-        <input id="diceSlider" type="range"
-          min="5" max="95" value="50"
-          oninput="updateDice()">
-      </div>
-
-    </div>
-
-    <div class="gamearea">
-
-      <div id="diceTarget" class="diceNum">50</div>
-
-      <div id="diceInfo" class="status">
-        50% chance
-      </div>
-
-      <div id="diceRoll"
-        style="text-align:center;font-size:42px;margin:10px">
-        🎲
-      </div>
-
-      <button class="primary"
-        style="width:100%"
-        onclick="rollDice()">
-        ROLL DICE
-      </button>
-
-    </div>
-  `;
+return`
+<div class="toolbar">
+<div class="control"><label>Level</label>
+<select id="diceLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select>
+</div>
+<div class="control"><label>Bet</label>
+<input id="diceBet" type="number" value="10" min="1">
+</div>
+<div class="control"><label>Condition</label>
+<select id="diceMode" onchange="updateDice()">
+<option value="under">UNDER</option><option value="over">OVER</option>
+</select>
+</div>
+</div>
+<div class="gamearea">
+<div id="diceTarget" class="diceNum">50</div>
+<input id="diceSlider" class="slider" type="range" min="5" max="95" value="50" oninput="updateDice()">
+<div id="diceInfo" class="status">50% win chance</div>
+<div id="diceRoll" style="text-align:center;font-size:38px;margin:12px">🎲</div>
+<button class="primary" style="width:100%" onclick="rollDice()">ROLL DICE</button>
+</div>`;
 }
 
 function updateDice(){
 
-  const slider=document.getElementById("diceSlider");
-  const mode=document.getElementById("diceMode");
+const target=Number(document.getElementById("diceSlider").value);
+const mode=document.getElementById("diceMode").value;
+const chance=mode==="under"?target:100-target;
+const multiplier=Math.max(1.01,(100/chance)*.96);
 
-  if(!slider||!mode)return;
-
-  const target=Number(slider.value);
-
-  const chance=
-    mode.value==="under"
-    ?target
-    :100-target;
-
-  const multiplier=Math.max(
-    1.01,
-    (100/chance)*.96
-  );
-
-  document.getElementById("diceTarget").innerText=target;
-
-  document.getElementById("diceInfo").innerText=
-    `${chance}% win chance • ${multiplier.toFixed(2)}x`;
+document.getElementById("diceTarget").innerText=target;
+document.getElementById("diceInfo").className="status";
+document.getElementById("diceInfo").innerText=
+`${chance}% win chance • ${multiplier.toFixed(2)}x`;
 }
 
 function rollDice(){
 
-  const bet=Number(document.getElementById("diceBet").value);
+const bet=Number(document.getElementById("diceBet").value);
+if(!spend(bet))return;
 
-  if(!spend(bet))return;
+const target=Number(document.getElementById("diceSlider").value);
+const mode=document.getElementById("diceMode").value;
+const roll=Number((Math.random()*100).toFixed(2));
+const chance=mode==="under"?target:100-target;
+const multiplier=Math.max(1.01,(100/chance)*.96);
 
-  const target=Number(document.getElementById("diceSlider").value);
-  const mode=document.getElementById("diceMode").value;
+document.getElementById("diceRoll").innerText=roll.toFixed(2);
 
-  const roll=Number((Math.random()*100).toFixed(2));
+const win=mode==="under"?roll<target:roll>target;
 
-  const chance=
-    mode==="under"
-    ?target
-    :100-target;
-
-  const multiplier=Math.max(
-    1.01,
-    (100/chance)*.96
-  );
-
-  const win=
-    mode==="under"
-    ?roll<target
-    :roll>target;
-
-  document.getElementById("diceRoll").innerText=roll.toFixed(2);
-
-  if(win){
-
-    const amount=bet*multiplier;
-
-    payout(amount);
-
-    addHistory("Dice",bet,"win",amount,multiplier);
-
-    document.getElementById("diceInfo").className="status win";
-    document.getElementById("diceInfo").innerText=
-      `WIN • ${roll.toFixed(2)} • +${amount.toFixed(2)}`;
-
-  }else{
-
-    addHistory("Dice",bet,"loss",0,0);
-
-    document.getElementById("diceInfo").className="status loss";
-    document.getElementById("diceInfo").innerText=
-      `LOSS • Rolled ${roll.toFixed(2)}`;
-  }
+if(win){
+const amount=bet*multiplier;
+payout(amount);
+document.getElementById("diceInfo").className="status win";
+document.getElementById("diceInfo").innerText=
+`WIN • Rolled ${roll.toFixed(2)} • +${amount.toFixed(2)}`;
+addHistory("Dice","win",bet,amount,multiplier);
+}else{
+document.getElementById("diceInfo").className="status loss";
+document.getElementById("diceInfo").innerText=`LOSS • Rolled ${roll.toFixed(2)}`;
+addHistory("Dice","loss",bet,0,0);
+}
 }
 
-
 /* =========================================================
-   PLINKO
+PLINKO
 ========================================================= */
 
 const PLINKO_MULTIPLIERS={
@@ -2190,1386 +1214,1006 @@ High:[1000,50,10,2,.7,.35,.15,.08,.05,.08,.15,.35,.7,2,10,50,1000]
 };
 
 function plinkoHTML(){
+return`
+<div class="toolbar">
+<div class="control"><label>Mode</label>
+<select id="plinkoMode" onchange="buildPlinko()">
+<option value="Low">Low</option>
+<option value="Medium" selected>Medium</option>
+<option value="High">High</option>
+</select></div>
 
-  return`
-    <div class="toolbar">
+<div class="control"><label>Rows</label>
+<select id="plinkoRows" onchange="buildPlinko()">
+${Array.from({length:9},(_,i)=>`<option value="${i+8}" ${i===8?"selected":""}>${i+8}</option>`).join("")}
+</select></div>
 
-      <div class="control">
-        <label>Mode</label>
-        <select id="plinkoMode" onchange="buildPlinko()">
-          <option>Low</option>
-          <option selected>Medium</option>
-          <option>High</option>
-        </select>
-      </div>
+<div class="control"><label>Bet</label>
+<input id="plinkoBet" type="number" value="10" min="1">
+</div>
+</div>
 
-      <div class="control">
-        <label>Rows</label>
-        <select id="plinkoRows" onchange="buildPlinko()">
-          ${Array.from({length:9},(_,i)=>{
-            const n=i+8;
-            return`<option ${n===16?"selected":""}>${n}</option>`;
-          }).join("")}
-        </select>
-      </div>
+<div id="plinkoBoard" class="plinko">
+<div id="plinkoPegs" class="plinkoPegs"></div>
+<div id="plinkoBall" class="plinkoBall"></div>
+<div id="plinkoBins" class="plinkoBins"></div>
+</div>
 
-      <div class="control">
-        <label>Demo Credits</label>
-        <input id="plinkoBet" type="number" value="10" min="1">
-      </div>
-
-    </div>
-
-    <div id="plinkoBoard" class="plinko">
-
-      <div id="plinkoPegs" class="plinkoPegs"></div>
-
-      <div id="plinkoBall" class="plinkoBall"></div>
-
-      <div id="plinkoBins" class="plinkoBins"></div>
-
-    </div>
-
-    <div id="plinkoInfo" class="plinkoInfo"></div>
-
-    <div id="plinkoStatus" class="status">
-      Choose mode and rows.
-    </div>
-
-    <button class="primary"
-      style="width:100%;padding:12px"
-      onclick="dropPlinko()">
-      🔵 DROP BALL
-    </button>
-  `;
+<div id="plinkoInfo" class="plinkoInfo"></div>
+<div id="plinkoStatus" class="status">Choose mode and rows.</div>
+<button class="primary" style="width:100%" onclick="dropPlinko()">DROP BALL</button>
+`;
 }
 
 function buildPlinko(){
 
-  const board=document.getElementById("plinkoBoard");
-  if(!board)return;
+const rows=Number(document.getElementById("plinkoRows").value);
+const mode=document.getElementById("plinkoMode").value;
+const multipliers=PLINKO_MULTIPLIERS[rows][mode];
 
-  const rows=Number(document.getElementById("plinkoRows").value);
-  const mode=document.getElementById("plinkoMode").value;
+const pegBox=document.getElementById("plinkoPegs");
+pegBox.innerHTML="";
 
-  const multipliers=PLINKO_MULTIPLIERS[rows][mode];
+for(let r=0;r<rows;r++){
 
-  const pegBox=document.getElementById("plinkoPegs");
-  const bins=document.getElementById("plinkoBins");
+const row=document.createElement("div");
+row.className="plinkoRow";
 
-  pegBox.innerHTML="";
-  bins.innerHTML="";
+const count=Math.min(18,r+3);
 
-  /*
-    The peg count is based on the selected row.
-    Every row grows symmetrically so the ball
-    has a clear physical-looking path.
-  */
-  for(let r=0;r<rows;r++){
-
-    const row=document.createElement("div");
-    row.className="plinkoRow";
-
-    const count=r+3;
-
-    for(let i=0;i<count;i++){
-
-      const peg=document.createElement("span");
-      peg.className="plinkoPeg";
-
-      row.appendChild(peg);
-    }
-
-    pegBox.appendChild(row);
-  }
-
-  multipliers.forEach(m=>{
-
-    const bin=document.createElement("div");
-
-    bin.className="plinkoBin";
-
-    if(m>=10)
-      bin.classList.add("big");
-
-    bin.innerText=m+"x";
-
-    bins.appendChild(bin);
-  });
-
-  document.getElementById("plinkoInfo").innerText=
-    `${rows} rows • ${multipliers.length} tiles • ${mode} mode`;
-
-  document.getElementById("plinkoStatus").className="status";
-  document.getElementById("plinkoStatus").innerText=
-    "Ready • Drop the ball.";
+for(let i=0;i<count;i++){
+const peg=document.createElement("span");
+peg.className="plinkoPeg";
+row.appendChild(peg);
 }
+
+pegBox.appendChild(row);
+}
+
+const bins=document.getElementById("plinkoBins");
+bins.innerHTML="";
+
+multipliers.forEach(m=>{
+const bin=document.createElement("div");
+bin.className="plinkoBin";
+if(m>=10)bin.classList.add("big");
+bin.innerText=m+"x";
+bins.appendChild(bin);
+});
+
+document.getElementById("plinkoInfo").innerText=
+`${rows} rows • ${multipliers.length} tiles • ${mode} mode`;
+
+document.getElementById("plinkoStatus").className="status";
+document.getElementById("plinkoStatus").innerText="Ready — drop the ball.";
+}
+
+/* REALISTIC PLINKO */
 
 function dropPlinko(){
 
-  if(gameState.plinkoRunning)return;
+const bet=Number(document.getElementById("plinkoBet").value);
+if(!spend(bet))return;
 
-  const bet=Number(document.getElementById("plinkoBet").value);
+clearTimers();
 
-  if(!spend(bet))return;
+const rows=Number(document.getElementById("plinkoRows").value);
+const mode=document.getElementById("plinkoMode").value;
+const multipliers=PLINKO_MULTIPLIERS[rows][mode];
 
-  const rows=Number(document.getElementById("plinkoRows").value);
-  const mode=document.getElementById("plinkoMode").value;
+const board=document.getElementById("plinkoBoard");
+const ball=document.getElementById("plinkoBall");
 
-  const multipliers=PLINKO_MULTIPLIERS[rows][mode];
+const boardRect=board.getBoundingClientRect();
+const allPegs=[...document.querySelectorAll(".plinkoPeg")];
 
-  const ball=document.getElementById("plinkoBall");
-  const board=document.getElementById("plinkoBoard");
+ball.style.display="block";
+ball.classList.add("flying");
+ball.style.transition="none";
+ball.style.left="50%";
+ball.style.top="8px";
+ball.style.transform="translate(-50%,-50%) scale(1)";
+ball.offsetHeight;
 
-  gameState.plinkoRunning=true;
+const pegPositions=[];
+let pegIndex=0;
 
-  ball.style.display="block";
+for(let r=0;r<rows;r++){
 
-  /*
-    Ball movement is now frame-based rather than
-    simple left/right jumps.
+const rowPegs=[];
 
-    This creates a much smoother falling motion.
-  */
+const count=Math.min(18,r+3);
 
-  let x=50;
-  let y=4;
+for(let i=0;i<count;i++){
 
-  let vx=(Math.random()-.5)*.8;
-  let vy=.8;
+const peg=allPegs[pegIndex++];
 
-  let row=0;
+if(!peg)continue;
 
-  const boardWidth=board.clientWidth;
-  const boardHeight=board.clientHeight;
+const rect=peg.getBoundingClientRect();
 
-  const bottom=boardHeight-70;
+rowPegs.push({
+element:peg,
+x:((rect.left+rect.width/2)-boardRect.left)/boardRect.width*100,
+y:(rect.top+rect.height/2)-boardRect.top
+});
 
-  let lastTime=performance.now();
-
-  function animate(now){
-
-    if(!gameState.plinkoRunning)return;
-
-    const dt=Math.min(
-      (now-lastTime)/16.67,
-      2
-    );
-
-    lastTime=now;
-
-    vy+=.075*dt;
-
-    x+=vx*dt;
-    y+=vy*dt;
-
-    /*
-      Keep ball inside board.
-    */
-
-    if(x<5){
-      x=5;
-      vx=Math.abs(vx)*.7;
-    }
-
-    if(x>95){
-      x=95;
-      vx=-Math.abs(vx)*.7;
-    }
-
-    /*
-      Every approximate peg level causes
-      a small realistic-looking bounce.
-    */
-
-    const progress=y/bottom;
-
-    const expectedRow=
-      Math.floor(progress*rows);
-
-    if(expectedRow>row && expectedRow<=rows){
-
-      row=expectedRow;
-
-      const direction=
-        Math.random()<.5
-        ?-1
-        :1;
-
-      vx+=direction*
-        (.55+Math.random()*.55);
-
-      vx*=.82;
-
-      vy=1.05+
-        Math.random()*.5;
-    }
-
-    /*
-      Gentle gravity curve.
-    */
-
-    vx*=.996;
-
-    ball.style.left=x+"%";
-    ball.style.top=y+"px";
-
-    if(y<bottom){
-
-      requestAnimationFrame(animate);
-
-      return;
-    }
-
-    finishPlinko(x);
-
-  }
-
-  requestAnimationFrame(animate);
 }
 
-function finishPlinko(x){
-
-  const rows=Number(document.getElementById("plinkoRows").value);
-  const mode=document.getElementById("plinkoMode").value;
-
-  const multipliers=PLINKO_MULTIPLIERS[rows][mode];
-
-  const ball=document.getElementById("plinkoBall");
-
-  /*
-    Convert final X position into
-    one of the bottom multiplier slots.
-  */
-
-  let index=Math.round(
-    (x/100)*(multipliers.length-1)
-  );
-
-  index=Math.max(
-    0,
-    Math.min(
-      multipliers.length-1,
-      index
-    )
-  );
-
-  const multiplier=multipliers[index];
-
-  const bet=Number(document.getElementById("plinkoBet").value);
-
-  const amount=bet*multiplier;
-
-  gameState.plinkoRunning=false;
-
-  ball.style.display="none";
-
-  if(multiplier>0)
-    payout(amount);
-
-  const win=multiplier>=1;
-
-  addHistory(
-    "Plinko",
-    bet,
-    win?"win":"loss",
-    amount,
-    multiplier
-  );
-
-  document.getElementById("plinkoStatus").className=
-    "status "+(win?"win":"loss");
-
-  document.getElementById("plinkoStatus").innerText=
-    `Ball landed on ${multiplier}x • ${amount.toFixed(2)} credits`;
+pegPositions.push(rowPegs);
 }
 
+let currentX=50;
+let step=0;
+let direction=Math.random()<.5?-1:1;
+
+function nearestPeg(row){
+
+const pegs=pegPositions[row]||[];
+
+if(!pegs.length)return null;
+
+let best=pegs[0];
+let distance=Math.abs(best.x-currentX);
+
+pegs.forEach(p=>{
+const d=Math.abs(p.x-currentX);
+if(d<distance){
+distance=d;
+best=p;
+}
+});
+
+return best;
+}
+
+function hitPeg(peg,done){
+
+if(!peg){
+done();
+return;
+}
+
+const travel=
+.075+
+Math.random()*.035;
+
+ball.style.transition=
+`left ${travel}s cubic-bezier(.18,.75,.28,1),
+top ${travel}s cubic-bezier(.18,.75,.28,1),
+transform .06s ease-out`;
+
+ball.style.left=peg.x+"%";
+ball.style.top=peg.y+"px";
+
+currentX=peg.x;
+
+const hit=setTimeout(()=>{
+
+peg.element.classList.add("hit");
+ball.classList.add("bounce");
+
+const impact=setTimeout(()=>{
+
+peg.element.classList.remove("hit");
+ball.classList.remove("bounce");
+
+direction=Math.random()<.72?direction*-1:direction;
+
+const sideMove=3+Math.random()*5;
+
+currentX+=direction*sideMove;
+currentX=Math.max(7,Math.min(93,currentX));
+
+ball.style.transition=
+"left .065s cubic-bezier(.3,.1,.7,.9),top .065s ease-out";
+
+ball.style.left=currentX+"%";
+ball.style.top=(peg.y+18)+"px";
+
+const next=setTimeout(()=>{
+step++;
+done();
+},65);
+
+timers.push(next);
+
+},55);
+
+timers.push(impact);
+
+},travel*1000);
+
+timers.push(hit);
+}
+
+function next(){
+
+if(step>=rows){
+finish();
+return;
+}
+
+const peg=nearestPeg(step);
+
+hitPeg(peg,next);
+}
+
+function finish(){
+
+let index=Math.round(
+((currentX-5)/90)*(multipliers.length-1)
+);
+
+index=Math.max(0,Math.min(multipliers.length-1,index));
+
+const multiplier=multipliers[index];
+const amount=bet*multiplier;
+
+const bottom=board.clientHeight-55;
+
+ball.style.transition=
+"top .18s cubic-bezier(.2,.8,.2,1),transform .08s ease-out";
+
+ball.style.top=bottom+"px";
+
+const land=setTimeout(()=>{
+
+ball.style.transform=
+"translate(-50%,-50%) scaleX(1.12) scaleY(.88)";
+
+const settle=setTimeout(()=>{
+
+ball.style.transform=
+"translate(-50%,-50%) scale(1)";
+
+payout(amount);
+
+const status=document.getElementById("plinkoStatus");
+
+status.className="status "+(multiplier>=1?"win":"loss");
+status.innerText=
+`Ball landed on ${multiplier}x • +${amount.toFixed(2)} credits`;
+
+addHistory("Plinko","win",bet,amount,multiplier);
+
+const hide=setTimeout(()=>{
+ball.style.display="none";
+ball.classList.remove("flying","bounce");
+},160);
+
+timers.push(hide);
+
+},80);
+
+timers.push(settle);
+
+},180);
+
+timers.push(land);
+}
+
+next();
+}
 
 /* =========================================================
-   BLACKJACK
+BLACKJACK
 ========================================================= */
 
 const suits=["♠","♥","♦","♣"];
-
 const ranks=[
-  ["A",11],["2",2],["3",3],["4",4],["5",5],
-  ["6",6],["7",7],["8",8],["9",9],["10",10],
-  ["J",10],["Q",10],["K",10]
+["A",11],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],
+["8",8],["9",9],["10",10],["J",10],["Q",10],["K",10]
 ];
 
 function createDeck(){
 
-  const deck=[];
+let deck=[];
 
-  suits.forEach(s=>{
-    ranks.forEach(r=>{
-      deck.push({
-        suit:s,
-        rank:r[0],
-        value:r[1]
-      });
-    });
-  });
+suits.forEach(s=>{
+ranks.forEach(r=>{
+deck.push({suit:s,rank:r[0],value:r[1]});
+});
+});
 
-  for(let i=deck.length-1;i>0;i--){
-
-    const j=Math.floor(Math.random()*(i+1));
-
-    [deck[i],deck[j]]=[deck[j],deck[i]];
-  }
-
-  return deck;
+return deck.sort(()=>Math.random()-.5);
 }
 
 function handValue(hand){
 
-  let value=hand.reduce(
-    (s,c)=>s+c.value,
-    0
-  );
+let value=hand.reduce((sum,c)=>sum+c.value,0);
+let aces=hand.filter(c=>c.rank==="A").length;
 
-  let aces=hand.filter(c=>c.rank==="A").length;
+while(value>21&&aces>0){
+value-=10;aces--;
+}
 
-  while(value>21&&aces){
-    value-=10;
-    aces--;
-  }
-
-  return value;
+return value;
 }
 
 function cardHTML(card){
-
-  return`
-    <div class="playing ${
-      ["♥","♦"].includes(card.suit)
-      ?"redcard":""
-    }">
-      ${card.rank}${card.suit}
-    </div>
-  `;
+return`<div class="playing ${card.suit==="♥"||card.suit==="♦"?"redcard":""}">
+${card.rank}${card.suit}</div>`;
 }
 
 function blackjackHTML(){
-
-  return`
-    <div class="toolbar">
-
-      <div class="control">
-        <label>Bet</label>
-        <input id="bjBet" type="number" value="10" min="1">
-      </div>
-
-    </div>
-
-    <div class="gamearea">
-
-      <small>DEALER</small>
-
-      <div id="dealerCards" class="cards"></div>
-
-      <div>
-        Value:
-        <b id="dealerValue">?</b>
-      </div>
-
-      <br>
-
-      <small>PLAYER</small>
-
-      <div id="playerCards" class="cards"></div>
-
-      <div>
-        Value:
-        <b id="playerValue">0</b>
-      </div>
-
-      <div id="bjStatus" class="status">
-        Deal to start.
-      </div>
-
-      <div class="actions">
-
-        <button class="primary" onclick="dealBlackjack()">
-          DEAL
-        </button>
-
-        <button id="hitButton"
-          class="secondary"
-          disabled
-          onclick="hitBlackjack()">
-          HIT
-        </button>
-
-        <button id="standButton"
-          class="secondary"
-          disabled
-          onclick="standBlackjack()">
-          STAND
-        </button>
-
-      </div>
-
-    </div>
-  `;
+return`
+<div class="toolbar">
+<div class="control"><label>Level</label>
+<select id="bjLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select>
+</div>
+<div class="control"><label>Bet</label>
+<input id="bjBet" type="number" value="10" min="1">
+</div>
+</div>
+<div class="gamearea">
+<div><small>DEALER </small><span id="dealerValue">?</span></div>
+<div id="dealerCards" class="cards"></div>
+<div><small>PLAYER </small><span id="playerValue">0</span></div>
+<div id="playerCards" class="cards"></div>
+<div id="bjStatus" class="status">Deal to start.</div>
+<div class="actions">
+<button class="primary" onclick="dealBlackjack()">DEAL</button>
+<button id="hitButton" class="secondary" disabled onclick="hitBlackjack()">HIT</button>
+<button id="standButton" class="secondary" disabled onclick="standBlackjack()">STAND</button>
+</div>
+</div>`;
 }
 
 function dealBlackjack(){
 
-  const bet=Number(document.getElementById("bjBet").value);
+const bet=Number(document.getElementById("bjBet").value);
+if(!spend(bet))return;
 
-  if(!spend(bet))return;
+const deck=createDeck();
 
-  const deck=createDeck();
+gameState={
+bet,deck,
+player:[deck.pop(),deck.pop()],
+dealer:[deck.pop(),deck.pop()],
+active:true
+};
 
-  gameState={
-    bet,
-    deck,
-    player:[deck.pop(),deck.pop()],
-    dealer:[deck.pop(),deck.pop()],
-    active:true
-  };
-
-  renderBlackjack(false);
-
-  document.getElementById("hitButton").disabled=false;
-  document.getElementById("standButton").disabled=false;
+renderBlackjack(false);
+document.getElementById("hitButton").disabled=false;
+document.getElementById("standButton").disabled=false;
 }
 
-function renderBlackjack(show){
+function renderBlackjack(showDealer){
 
-  document.getElementById("playerCards").innerHTML=
-    gameState.player.map(cardHTML).join("");
+document.getElementById("playerCards").innerHTML=
+gameState.player.map(cardHTML).join("");
 
-  document.getElementById("dealerCards").innerHTML=
-    cardHTML(gameState.dealer[0])+
-    (
-      show
-      ?gameState.dealer.slice(1).map(cardHTML).join("")
-      :`<div class="playing">?</div>`
-    );
+document.getElementById("dealerCards").innerHTML=
+cardHTML(gameState.dealer[0])+
+(showDealer
+?gameState.dealer.slice(1).map(cardHTML).join("")
+:`<div class="playing">?</div>`);
 
-  document.getElementById("playerValue").innerText=
-    handValue(gameState.player);
-
-  document.getElementById("dealerValue").innerText=
-    show?handValue(gameState.dealer):"?";
+document.getElementById("playerValue").innerText=handValue(gameState.player);
+document.getElementById("dealerValue").innerText=
+showDealer?handValue(gameState.dealer):"?";
 }
 
 function hitBlackjack(){
 
-  if(!gameState.active)return;
+if(!gameState.active)return;
 
-  gameState.player.push(gameState.deck.pop());
+gameState.player.push(gameState.deck.pop());
+renderBlackjack(false);
 
-  renderBlackjack(false);
-
-  if(handValue(gameState.player)>21)
-    finishBlackjack("loss");
+if(handValue(gameState.player)>21)finishBlackjack("loss");
 }
 
 function standBlackjack(){
 
-  if(!gameState.active)return;
+if(!gameState.active)return;
 
-  while(handValue(gameState.dealer)<17)
-    gameState.dealer.push(gameState.deck.pop());
+while(handValue(gameState.dealer)<17)
+gameState.dealer.push(gameState.deck.pop());
 
-  renderBlackjack(true);
+renderBlackjack(true);
 
-  const p=handValue(gameState.player);
-  const d=handValue(gameState.dealer);
+const player=handValue(gameState.player);
+const dealer=handValue(gameState.dealer);
 
-  if(p>d||d>21)
-    finishBlackjack("win");
-  else if(p===d)
-    finishBlackjack("push");
-  else
-    finishBlackjack("loss");
+if(player>dealer||dealer>21)finishBlackjack("win");
+else if(player===dealer)finishBlackjack("push");
+else finishBlackjack("loss");
 }
 
 function finishBlackjack(result){
 
-  gameState.active=false;
+gameState.active=false;
 
-  document.getElementById("hitButton").disabled=true;
-  document.getElementById("standButton").disabled=true;
+document.getElementById("hitButton").disabled=true;
+document.getElementById("standButton").disabled=true;
 
-  renderBlackjack(true);
+renderBlackjack(true);
 
-  if(result==="win"){
+if(result==="win"){
 
-    const amount=gameState.bet*2;
+const amount=gameState.bet*2;
+payout(amount);
 
-    payout(amount);
+document.getElementById("bjStatus").className="status win";
+document.getElementById("bjStatus").innerText="YOU WIN • 2x";
 
-    addHistory(
-      "Blackjack",
-      gameState.bet,
-      "win",
-      amount,
-      2
-    );
+addHistory("Blackjack","win",gameState.bet,amount,2);
 
-    document.getElementById("bjStatus").className="status win";
-    document.getElementById("bjStatus").innerText="YOU WIN • 2x";
+}else if(result==="push"){
 
-  }else if(result==="push"){
+payout(gameState.bet);
 
-    payout(gameState.bet);
+document.getElementById("bjStatus").className="status";
+document.getElementById("bjStatus").innerText="PUSH • Bet returned.";
 
-    addHistory(
-      "Blackjack",
-      gameState.bet,
-      "push",
-      gameState.bet,
-      1
-    );
+addHistory("Blackjack","win",gameState.bet,gameState.bet,1);
 
-    document.getElementById("bjStatus").className="status";
-    document.getElementById("bjStatus").innerText="PUSH • Bet returned.";
+}else{
 
-  }else{
+document.getElementById("bjStatus").className="status loss";
+document.getElementById("bjStatus").innerText="Dealer wins.";
 
-    addHistory(
-      "Blackjack",
-      gameState.bet,
-      "loss",
-      0,
-      0
-    );
-
-    document.getElementById("bjStatus").className="status loss";
-    document.getElementById("bjStatus").innerText="Dealer wins.";
-  }
+addHistory("Blackjack","loss",gameState.bet,0,0);
+}
 }
 
-
 /* =========================================================
-   POKER
+POKER
 ========================================================= */
 
 function pokerHTML(){
-
-  return`
-    <div class="toolbar">
-
-      <div class="control">
-        <label>Bet</label>
-        <input id="pokerBet" type="number" value="10" min="1">
-      </div>
-
-    </div>
-
-    <div class="gamearea">
-
-      <small>DEALER</small>
-      <div id="dealerPoker" class="cards"></div>
-
-      <small>YOU</small>
-      <div id="playerPoker" class="cards"></div>
-
-      <div id="pokerStatus" class="status">
-        Deal five cards.
-      </div>
-
-      <button class="primary"
-        style="width:100%"
-        onclick="dealPoker()">
-        DEAL
-      </button>
-
-    </div>
-  `;
+return`
+<div class="toolbar">
+<div class="control"><label>Level</label><select><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+<div class="control"><label>Bet</label><input id="pokerBet" type="number" value="10" min="1"></div>
+</div>
+<div class="gamearea">
+<small>DEALER</small><div id="dealerPoker" class="cards"></div>
+<small>YOU</small><div id="playerPoker" class="cards"></div>
+<div id="pokerStatus" class="status">Deal five cards.</div>
+<button class="primary" style="width:100%" onclick="dealPoker()">DEAL</button>
+</div>`;
 }
 
 function pokerScore(hand){
 
-  const values=hand.map(c=>
-    c.rank==="A"?14:
-    c.rank==="K"?13:
-    c.rank==="Q"?12:
-    c.rank==="J"?11:
-    Number(c.rank)
-  ).sort((a,b)=>b-a);
+const values=hand.map(c=>
+c.rank==="A"?14:c.rank==="K"?13:c.rank==="Q"?12:c.rank==="J"?11:Number(c.rank)
+).sort((a,b)=>b-a);
 
-  const counts={};
+const counts={};
+values.forEach(v=>counts[v]=(counts[v]||0)+1);
 
-  values.forEach(v=>{
-    counts[v]=(counts[v]||0)+1;
-  });
+const countValues=Object.values(counts).sort((a,b)=>b-a);
+const flush=hand.every(c=>c.suit===hand[0].suit);
+const unique=[...new Set(values)];
 
-  const cv=Object.values(counts).sort((a,b)=>b-a);
+const straight=unique.length===5&&
+(unique[0]-unique[4]===4||JSON.stringify(unique)==="[14,5,4,3,2]");
 
-  const flush=hand.every(
-    c=>c.suit===hand[0].suit
-  );
-
-  const unique=[...new Set(values)];
-
-  const straight=
-    unique.length===5 &&
-    (
-      unique[0]-unique[4]===4 ||
-      JSON.stringify(unique)==="[14,5,4,3,2]"
-    );
-
-  if(straight&&flush)return 8;
-  if(cv[0]===4)return 7;
-  if(cv[0]===3&&cv[1]===2)return 6;
-  if(flush)return 5;
-  if(straight)return 4;
-  if(cv[0]===3)return 3;
-  if(cv[0]===2&&cv[1]===2)return 2;
-  if(cv[0]===2)return 1;
-
-  return 0;
+if(straight&&flush)return 8;
+if(countValues[0]===4)return 7;
+if(countValues[0]===3&&countValues[1]===2)return 6;
+if(flush)return 5;
+if(straight)return 4;
+if(countValues[0]===3)return 3;
+if(countValues[0]===2&&countValues[1]===2)return 2;
+if(countValues[0]===2)return 1;
+return 0;
 }
 
 const pokerNames=[
-  "High Card",
-  "Pair",
-  "Two Pair",
-  "Three of a Kind",
-  "Straight",
-  "Flush",
-  "Full House",
-  "Four of a Kind",
-  "Straight Flush"
+"High Card","Pair","Two Pair","Three of a Kind","Straight",
+"Flush","Full House","Four of a Kind","Straight Flush"
 ];
 
 function dealPoker(){
 
-  const bet=Number(document.getElementById("pokerBet").value);
+const bet=Number(document.getElementById("pokerBet").value);
+if(!spend(bet))return;
 
-  if(!spend(bet))return;
+const deck=createDeck();
+const player=deck.splice(0,5);
+const dealer=deck.splice(0,5);
 
-  const deck=createDeck();
+document.getElementById("playerPoker").innerHTML=player.map(cardHTML).join("");
+document.getElementById("dealerPoker").innerHTML=dealer.map(cardHTML).join("");
 
-  const player=deck.splice(0,5);
-  const dealer=deck.splice(0,5);
+const ps=pokerScore(player);
+const ds=pokerScore(dealer);
 
-  document.getElementById("playerPoker").innerHTML=
-    player.map(cardHTML).join("");
+if(ps>ds){
 
-  document.getElementById("dealerPoker").innerHTML=
-    dealer.map(cardHTML).join("");
+const amount=bet*2;
+payout(amount);
 
-  const p=pokerScore(player);
-  const d=pokerScore(dealer);
+document.getElementById("pokerStatus").className="status win";
+document.getElementById("pokerStatus").innerText=`YOU WIN • ${pokerNames[ps]}`;
 
-  if(p>d){
+addHistory("Poker","win",bet,amount,2);
 
-    const amount=bet*2;
+}else if(ps===ds){
 
-    payout(amount);
+payout(bet);
 
-    addHistory("Poker",bet,"win",amount,2);
+document.getElementById("pokerStatus").className="status";
+document.getElementById("pokerStatus").innerText=`PUSH • ${pokerNames[ps]}`;
 
-    document.getElementById("pokerStatus").className="status win";
-    document.getElementById("pokerStatus").innerText=
-      `YOU WIN • ${pokerNames[p]}`;
+addHistory("Poker","win",bet,bet,1);
 
-  }else if(p===d){
+}else{
 
-    payout(bet);
+document.getElementById("pokerStatus").className="status loss";
+document.getElementById("pokerStatus").innerText=`DEALER WINS • ${pokerNames[ds]}`;
 
-    addHistory("Poker",bet,"push",bet,1);
-
-    document.getElementById("pokerStatus").className="status";
-    document.getElementById("pokerStatus").innerText=
-      `PUSH • ${pokerNames[p]}`;
-
-  }else{
-
-    addHistory("Poker",bet,"loss",0,0);
-
-    document.getElementById("pokerStatus").className="status loss";
-    document.getElementById("pokerStatus").innerText=
-      `DEALER WINS • ${pokerNames[d]}`;
-  }
+addHistory("Poker","loss",bet,0,0);
+}
 }
 
-
 /* =========================================================
-   ROULETTE
+ROULETTE
 ========================================================= */
 
 function rouletteHTML(){
-
-  return`
-    <div class="toolbar">
-
-      <div class="control">
-        <label>Bet</label>
-        <input id="rouletteBet" type="number" value="10" min="1">
-      </div>
-
-      <div class="control">
-        <label>Bet On</label>
-        <select id="rouletteType">
-          <option value="red">Red</option>
-          <option value="black">Black</option>
-          <option value="even">Even</option>
-          <option value="odd">Odd</option>
-          <option value="green">Green 0</option>
-        </select>
-      </div>
-
-    </div>
-
-    <div class="gamearea">
-
-      <div id="rouletteWheel" class="wheel">
-        <div id="rouletteNumber" class="wheelcenter">?</div>
-      </div>
-
-      <div id="rouletteStatus" class="status">
-        Spin the wheel.
-      </div>
-
-      <button class="primary"
-        style="width:100%"
-        onclick="spinRoulette()">
-        SPIN
-      </button>
-
-    </div>
-  `;
+return`
+<div class="toolbar">
+<div class="control"><label>Level</label><select><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+<div class="control"><label>Bet</label><input id="rouletteBet" type="number" value="10" min="1"></div>
+<div class="control"><label>Bet On</label>
+<select id="rouletteType">
+<option value="red">Red</option><option value="black">Black</option>
+<option value="even">Even</option><option value="odd">Odd</option><option value="green">Green 0</option>
+</select>
+</div>
+</div>
+<div class="gamearea">
+<div id="rouletteWheel" class="wheel"><div id="rouletteNumber" class="wheelcenter">?</div></div>
+<div id="rouletteStatus" class="status">Spin the wheel.</div>
+<button class="primary" style="width:100%" onclick="spinRoulette()">SPIN</button>
+</div>`;
 }
 
 function spinRoulette(){
 
-  const bet=Number(document.getElementById("rouletteBet").value);
+const bet=Number(document.getElementById("rouletteBet").value);
+if(!spend(bet))return;
 
-  if(!spend(bet))return;
+const number=Math.floor(Math.random()*37);
+const color=number===0?"green":number%2?"red":"black";
+const type=document.getElementById("rouletteType").value;
 
-  const number=Math.floor(Math.random()*37);
+document.getElementById("rouletteWheel").style.transform=
+`rotate(${900+Math.random()*360}deg)`;
 
-  const color=
-    number===0
-    ?"green"
-    :number%2
-    ?"red"
-    :"black";
+const timer=setTimeout(()=>{
 
-  const type=document.getElementById("rouletteType").value;
+document.getElementById("rouletteNumber").innerText=number;
 
-  const win=
-    type===color||
-    (type==="even"&&number!==0&&number%2===0)||
-    (type==="odd"&&number%2===1);
+const win=
+type===color||
+(type==="even"&&number!==0&&number%2===0)||
+(type==="odd"&&number%2===1);
 
-  const wheel=document.getElementById("rouletteWheel");
+if(win){
 
-  wheel.style.transform=
-    `rotate(${1000+Math.random()*500}deg)`;
+const multiplier=type==="green"?14:2;
+const amount=bet*multiplier;
 
-  setTimeout(()=>{
+payout(amount);
 
-    document.getElementById("rouletteNumber").innerText=number;
+document.getElementById("rouletteStatus").className="status win";
+document.getElementById("rouletteStatus").innerText=
+`WIN • ${number} ${color} • +${amount.toFixed(2)}`;
 
-    if(win){
+addHistory("Roulette","win",bet,amount,multiplier);
 
-      const multiplier=type==="green"?14:2;
-      const amount=bet*multiplier;
+}else{
 
-      payout(amount);
+document.getElementById("rouletteStatus").className="status loss";
+document.getElementById("rouletteStatus").innerText=
+`LOSS • ${number} ${color}`;
 
-      addHistory(
-        "Roulette",
-        bet,
-        "win",
-        amount,
-        multiplier
-      );
-
-      document.getElementById("rouletteStatus").className="status win";
-      document.getElementById("rouletteStatus").innerText=
-        `WIN • ${number} ${color} • +${amount.toFixed(2)}`;
-
-    }else{
-
-      addHistory("Roulette",bet,"loss",0,0);
-
-      document.getElementById("rouletteStatus").className="status loss";
-      document.getElementById("rouletteStatus").innerText=
-        `LOSS • ${number} ${color}`;
-    }
-
-  },2100);
+addHistory("Roulette","loss",bet,0,0);
 }
 
+},2100);
+
+timers.push(timer);
+}
 
 /* =========================================================
-   SLOTS
+SLOTS
 ========================================================= */
 
 function slotsHTML(){
-
-  return`
-    <div class="toolbar">
-
-      <div class="control">
-        <label>Bet</label>
-        <input id="slotBet" type="number" value="10" min="1">
-      </div>
-
-    </div>
-
-    <div class="reels">
-      <div id="reel0" class="reel">❔</div>
-      <div id="reel1" class="reel">❔</div>
-      <div id="reel2" class="reel">❔</div>
-    </div>
-
-    <div id="slotStatus" class="status">
-      Spin the reels.
-    </div>
-
-    <button class="primary"
-      style="width:100%"
-      onclick="spinSlots()">
-      SPIN
-    </button>
-  `;
+return`
+<div class="toolbar">
+<div class="control"><label>Level</label><select><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+<div class="control"><label>Bet</label><input id="slotBet" type="number" value="10" min="1"></div>
+</div>
+<div class="reels">
+<div id="reel0" class="reel">❔</div>
+<div id="reel1" class="reel">❔</div>
+<div id="reel2" class="reel">❔</div>
+</div>
+<div id="slotStatus" class="status">Spin the reels.</div>
+<button class="primary" style="width:100%" onclick="spinSlots()">SPIN</button>
+`;
 }
 
 function spinSlots(){
 
-  const bet=Number(document.getElementById("slotBet").value);
+const bet=Number(document.getElementById("slotBet").value);
+if(!spend(bet))return;
 
-  if(!spend(bet))return;
+const symbols=["🍒","🍋","🍊","🍉","💎","⭐","7️⃣"];
 
-  clearTimers();
+document.querySelectorAll(".reel").forEach(r=>r.classList.add("spin"));
 
-  const symbols=["🍒","🍋","🍊","🍉","💎","⭐","7️⃣"];
+let count=0;
 
-  document.querySelectorAll(".reel")
-    .forEach(r=>r.classList.add("spin"));
+const timer=setInterval(()=>{
 
-  let count=0;
+for(let i=0;i<3;i++)
+document.getElementById("reel"+i).innerText=
+symbols[Math.floor(Math.random()*symbols.length)];
 
-  const timer=setInterval(()=>{
+count++;
 
-    for(let i=0;i<3;i++){
+if(count>15){
 
-      document.getElementById("reel"+i).innerText=
-        symbols[Math.floor(Math.random()*symbols.length)];
-    }
+clearInterval(timer);
 
-    count++;
+document.querySelectorAll(".reel").forEach(r=>r.classList.remove("spin"));
 
-    if(count>=18){
+const a=document.getElementById("reel0").innerText;
+const b=document.getElementById("reel1").innerText;
+const c=document.getElementById("reel2").innerText;
 
-      clearInterval(timer);
+let multiplier=0;
 
-      document.querySelectorAll(".reel")
-        .forEach(r=>r.classList.remove("spin"));
+if(a===b&&b===c)multiplier=a==="7️⃣"?10:7;
+else if(a===b||b===c||a===c)multiplier=2;
 
-      const a=document.getElementById("reel0").innerText;
-      const b=document.getElementById("reel1").innerText;
-      const c=document.getElementById("reel2").innerText;
+if(multiplier){
 
-      let multiplier=0;
+const amount=bet*multiplier;
+payout(amount);
 
-      if(a===b&&b===c)
-        multiplier=a==="7️⃣"?10:7;
-      else if(a===b||b===c||a===c)
-        multiplier=2;
+document.getElementById("slotStatus").className="status win";
+document.getElementById("slotStatus").innerText=
+`WIN • ${multiplier}x • +${amount.toFixed(2)}`;
 
-      if(multiplier){
+addHistory("Slots","win",bet,amount,multiplier);
 
-        const amount=bet*multiplier;
+}else{
 
-        payout(amount);
+document.getElementById("slotStatus").className="status loss";
+document.getElementById("slotStatus").innerText="No match • Try again.";
 
-        addHistory(
-          "Slots",
-          bet,
-          "win",
-          amount,
-          multiplier
-        );
-
-        document.getElementById("slotStatus").className="status win";
-        document.getElementById("slotStatus").innerText=
-          `WIN • ${multiplier}x • +${amount.toFixed(2)}`;
-
-      }else{
-
-        addHistory("Slots",bet,"loss",0,0);
-
-        document.getElementById("slotStatus").className="status loss";
-        document.getElementById("slotStatus").innerText=
-          "No match • Try again.";
-      }
-    }
-
-  },75);
-
-  timers.push(timer);
+addHistory("Slots","loss",bet,0,0);
+}
 }
 
+},80);
+
+timers.push(timer);
+}
 
 /* =========================================================
-   TOWER
+TOWER
 ========================================================= */
 
 function towerHTML(){
-
-  return`
-    <div class="toolbar">
-
-      <div class="control">
-        <label>Level</label>
-        <select id="towerLevel">
-          <option>Easy</option>
-          <option selected>Medium</option>
-          <option>Hard</option>
-        </select>
-      </div>
-
-      <div class="control">
-        <label>Rows</label>
-        <select id="towerRows" onchange="buildTower()">
-          <option>5</option>
-          <option selected>8</option>
-          <option>12</option>
-        </select>
-      </div>
-
-      <div class="control">
-        <label>Bet</label>
-        <input id="towerBet" type="number" value="10" min="1">
-      </div>
-
-    </div>
-
-    <div id="towerBoard" class="tower"></div>
-
-    <div id="towerStatus" class="status">
-      Start and choose a tile.
-    </div>
-
-    <div class="actions">
-
-      <button class="primary" onclick="startTower()">
-        START
-      </button>
-
-      <button id="towerCash"
-        class="cash"
-        disabled
-        onclick="cashTower()">
-        CASH OUT
-      </button>
-
-    </div>
-  `;
+return`
+<div class="toolbar">
+<div class="control"><label>Level</label>
+<select id="towerLevel"><option>Easy</option><option selected>Medium</option><option>Hard</option></select>
+</div>
+<div class="control"><label>Rows</label>
+<select id="towerRows" onchange="buildTower()"><option>5</option><option selected>8</option><option>12</option></select>
+</div>
+<div class="control"><label>Bet</label>
+<input id="towerBet" type="number" value="10" min="1">
+</div>
+</div>
+<div id="towerBoard" class="tower"></div>
+<div id="towerStatus" class="status">Start and choose safe tiles.</div>
+<div class="actions">
+<button class="primary" onclick="startTower()">START</button>
+<button id="towerCash" class="cash" disabled onclick="cashTower()">CASH OUT</button>
+</div>`;
 }
 
 function buildTower(){
 
-  const rows=Number(document.getElementById("towerRows").value);
+const rows=Number(document.getElementById("towerRows").value);
+const board=document.getElementById("towerBoard");
+board.innerHTML="";
 
-  const board=document.getElementById("towerBoard");
+for(let i=0;i<rows;i++){
 
-  board.innerHTML="";
+const row=document.createElement("div");
+row.className="trow";
 
-  for(let i=0;i<rows;i++){
+for(let j=0;j<2;j++){
 
-    const row=document.createElement("div");
-    row.className="trow";
+const cell=document.createElement("button");
+cell.className="tcell";
+cell.innerText="◆";
+cell.disabled=true;
+row.appendChild(cell);
+}
 
-    for(let j=0;j<2;j++){
-
-      const button=document.createElement("button");
-
-      button.className="tcell";
-      button.innerText="◆";
-      button.disabled=true;
-
-      row.appendChild(button);
-    }
-
-    board.appendChild(row);
-  }
+board.appendChild(row);
+}
 }
 
 function startTower(){
 
-  const bet=Number(document.getElementById("towerBet").value);
+const bet=Number(document.getElementById("towerBet").value);
+if(!spend(bet))return;
 
-  if(!spend(bet))return;
+buildTower();
 
-  buildTower();
+gameState={active:true,bet,row:0,cash:bet};
 
-  gameState={
-    active:true,
-    bet,
-    row:0,
-    cash:bet
-  };
-
-  document.getElementById("towerCash").disabled=false;
-
-  enableTowerRow();
+document.getElementById("towerCash").disabled=false;
+enableTowerRow();
 }
 
 function enableTowerRow(){
 
-  const rows=[...document.querySelectorAll(".trow")];
+const rows=[...document.querySelectorAll(".trow")];
+const row=rows[rows.length-1-gameState.row];
 
-  const row=rows[rows.length-1-gameState.row];
-
-  row.querySelectorAll("button").forEach(button=>{
-
-    button.disabled=false;
-    button.onclick=()=>chooseTower(button);
-
-  });
+row.querySelectorAll("button").forEach(button=>{
+button.disabled=false;
+button.onclick=()=>chooseTower(button);
+});
 }
 
 function chooseTower(button){
 
-  if(!gameState.active)return;
+if(!gameState.active)return;
 
-  const level=document.getElementById("towerLevel").value;
+const level=document.getElementById("towerLevel").value;
 
-  let chance=.58;
+let chance=.58;
+if(level==="Easy")chance=.72;
+if(level==="Hard")chance=.42;
 
-  if(level==="Easy")chance=.72;
-  if(level==="Hard")chance=.42;
+button.disabled=true;
 
-  button.disabled=true;
+if(Math.random()>chance){
 
-  if(Math.random()>chance){
+button.innerText="💥";
+button.classList.add("danger");
 
-    button.innerText="💥";
-    button.classList.add("danger");
+gameState.active=false;
+document.getElementById("towerCash").disabled=true;
+document.getElementById("towerStatus").className="status loss";
+document.getElementById("towerStatus").innerText="Wrong tile • Tower collapsed.";
 
-    gameState.active=false;
+addHistory("Tower","loss",gameState.bet,0,0);
+return;
+}
 
-    document.getElementById("towerCash").disabled=true;
+button.innerText="💎";
+button.classList.add("safe");
 
-    document.getElementById("towerStatus").className="status loss";
-    document.getElementById("towerStatus").innerText=
-      "Wrong tile • Tower collapsed.";
+button.parentElement.querySelectorAll("button").forEach(b=>b.disabled=true);
 
-    addHistory("Tower",gameState.bet,"loss",0,0);
+gameState.row++;
 
-    return;
-  }
+let multiplier=Math.pow(
+level==="Easy"?1.15:level==="Hard"?1.55:1.30,
+gameState.row
+);
 
-  button.innerText="💎";
-  button.classList.add("safe");
+gameState.cash=gameState.bet*multiplier;
 
-  button.parentElement
-    .querySelectorAll("button")
-    .forEach(b=>b.disabled=true);
+document.getElementById("towerStatus").className="status win";
+document.getElementById("towerStatus").innerText=
+`Safe • ${gameState.cash.toFixed(2)} credits available`;
 
-  gameState.row++;
+if(gameState.row>=Number(document.getElementById("towerRows").value)){
+cashTower();
+return;
+}
 
-  const base=
-    level==="Easy"
-    ?1.15
-    :level==="Hard"
-    ?1.55
-    :1.30;
-
-  const multiplier=Math.pow(base,gameState.row);
-
-  gameState.cash=gameState.bet*multiplier;
-
-  document.getElementById("towerStatus").className="status win";
-  document.getElementById("towerStatus").innerText=
-    `Safe • ${gameState.cash.toFixed(2)} credits available`;
-
-  if(gameState.row>=Number(
-    document.getElementById("towerRows").value
-  )){
-    cashTower();
-    return;
-  }
-
-  enableTowerRow();
+enableTowerRow();
 }
 
 function cashTower(){
 
-  if(!gameState.active)return;
+if(!gameState.active)return;
 
-  gameState.active=false;
+gameState.active=false;
+payout(gameState.cash);
 
-  payout(gameState.cash);
+document.getElementById("towerCash").disabled=true;
+document.getElementById("towerStatus").className="status win";
+document.getElementById("towerStatus").innerText=
+`Cashed out • +${gameState.cash.toFixed(2)} credits`;
 
-  addHistory(
-    "Tower",
-    gameState.bet,
-    "win",
-    gameState.cash,
-    gameState.cash/gameState.bet
-  );
-
-  document.getElementById("towerCash").disabled=true;
-
-  document.getElementById("towerStatus").className="status win";
-  document.getElementById("towerStatus").innerText=
-    `Cashed out • +${gameState.cash.toFixed(2)} credits`;
+addHistory("Tower","win",gameState.bet,gameState.cash,gameState.cash/gameState.bet);
 }
 
-
 /* =========================================================
-   KENO
+KENO
 ========================================================= */
 
 function kenoHTML(){
-
-  return`
-    <div class="toolbar">
-
-      <div class="control">
-        <label>Pick</label>
-        <select id="kenoPick">
-          <option>4</option>
-          <option selected>6</option>
-          <option>8</option>
-          <option>10</option>
-        </select>
-      </div>
-
-      <div class="control">
-        <label>Bet</label>
-        <input id="kenoBet" type="number" value="10" min="1">
-      </div>
-
-    </div>
-
-    <div id="kenoGrid" class="keno"></div>
-
-    <div id="kenoStatus" class="status">
-      Pick your numbers.
-    </div>
-
-    <button class="primary"
-      style="width:100%"
-      onclick="drawKeno()">
-      DRAW
-    </button>
-  `;
+return`
+<div class="toolbar">
+<div class="control"><label>Pick</label>
+<select id="kenoPick"><option>4</option><option selected>6</option><option>8</option><option>10</option></select>
+</div>
+<div class="control"><label>Level</label><select><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+<div class="control"><label>Bet</label><input id="kenoBet" type="number" value="10" min="1"></div>
+</div>
+<div id="kenoGrid" class="keno"></div>
+<div id="kenoStatus" class="status">Pick your numbers.</div>
+<button class="primary" style="width:100%" onclick="drawKeno()">DRAW</button>
+`;
 }
 
 function initKeno(){
 
-  const grid=document.getElementById("kenoGrid");
+const grid=document.getElementById("kenoGrid");
+grid.innerHTML="";
+gameState.selected=[];
 
-  grid.innerHTML="";
+for(let i=1;i<=40;i++){
 
-  gameState.selected=[];
-
-  for(let i=1;i<=40;i++){
-
-    const button=document.createElement("button");
-
-    button.className="kn";
-    button.innerText=i;
-
-    button.onclick=()=>toggleKeno(button,i);
-
-    grid.appendChild(button);
-  }
+const button=document.createElement("button");
+button.className="kn";
+button.innerText=i;
+button.onclick=()=>toggleKeno(button,i);
+grid.appendChild(button);
+}
 }
 
-function toggleKeno(button,n){
+function toggleKeno(button,number){
 
-  const max=Number(
-    document.getElementById("kenoPick").value
-  );
+const max=Number(document.getElementById("kenoPick").value);
 
-  if(gameState.selected.includes(n)){
+if(gameState.selected.includes(number)){
+gameState.selected=gameState.selected.filter(n=>n!==number);
+button.classList.remove("sel");
+return;
+}
 
-    gameState.selected=
-      gameState.selected.filter(x=>x!==n);
+if(gameState.selected.length>=max){
+document.getElementById("kenoStatus").innerText=`Select maximum ${max} numbers.`;
+return;
+}
 
-    button.classList.remove("sel");
-
-    return;
-  }
-
-  if(gameState.selected.length>=max){
-
-    document.getElementById("kenoStatus").innerText=
-      `Select maximum ${max} numbers.`;
-
-    return;
-  }
-
-  gameState.selected.push(n);
-
-  button.classList.add("sel");
+gameState.selected.push(number);
+button.classList.add("sel");
 }
 
 function drawKeno(){
 
-  const max=Number(
-    document.getElementById("kenoPick").value
-  );
+const max=Number(document.getElementById("kenoPick").value);
+const bet=Number(document.getElementById("kenoBet").value);
 
-  const bet=Number(
-    document.getElementById("kenoBet").value
-  );
-
-  if(gameState.selected.length!==max){
-
-    alert(`Select exactly ${max} numbers.`);
-
-    return;
-  }
-
-  if(!spend(bet))return;
-
-  const drawn=[];
-
-  while(drawn.length<20){
-
-    const n=1+Math.floor(Math.random()*40);
-
-    if(!drawn.includes(n))
-      drawn.push(n);
-  }
-
-  const hits=gameState.selected.filter(
-    n=>drawn.includes(n)
-  ).length;
-
-  document.querySelectorAll(".kn")
-    .forEach(button=>{
-
-      if(drawn.includes(Number(button.innerText)))
-        button.classList.add("hit");
-    });
-
-  const payouts={
-    4:[0,0,1.5,5,25],
-    6:[0,0,0,1.2,3,10,60],
-    8:[0,0,0,0,1.5,4,12,80,300],
-    10:[0,0,0,0,0,1.5,4,10,60,250,800]
-  };
-
-  const multiplier=payouts[max][hits]||0;
-
-  if(multiplier){
-
-    const amount=bet*multiplier;
-
-    payout(amount);
-
-    addHistory(
-      "Keno",
-      bet,
-      "win",
-      amount,
-      multiplier
-    );
-
-    document.getElementById("kenoStatus").className="status win";
-    document.getElementById("kenoStatus").innerText=
-      `${hits}/${max} hits • ${multiplier}x • +${amount.toFixed(2)}`;
-
-  }else{
-
-    addHistory("Keno",bet,"loss",0,0);
-
-    document.getElementById("kenoStatus").className="status loss";
-    document.getElementById("kenoStatus").innerText=
-      `${hits}/${max} hits • No winning combination`;
-  }
+if(gameState.selected.length!==max){
+alert(`Select exactly ${max} numbers.`);
+return;
 }
 
+if(!spend(bet))return;
+
+let drawn=[];
+
+while(drawn.length<20){
+const number=1+Math.floor(Math.random()*40);
+if(!drawn.includes(number))drawn.push(number);
+}
+
+const hits=gameState.selected.filter(n=>drawn.includes(n)).length;
+
+document.querySelectorAll(".kn").forEach(button=>{
+if(drawn.includes(Number(button.innerText)))button.classList.add("hit");
+});
+
+const payouts={
+4:[0,0,1.5,5,25],
+6:[0,0,0,1.2,3,10,60],
+8:[0,0,0,0,1.5,4,12,80,300],
+10:[0,0,0,0,0,1.5,4,10,60,250,800]
+};
+
+const multiplier=payouts[max][hits]||0;
+
+if(multiplier){
+
+const amount=bet*multiplier;
+payout(amount);
+
+document.getElementById("kenoStatus").className="status win";
+document.getElementById("kenoStatus").innerText=
+`${hits}/${max} hits • ${multiplier}x • +${amount.toFixed(2)}`;
+
+addHistory("Keno","win",bet,amount,multiplier);
+
+}else{
+
+document.getElementById("kenoStatus").className="status loss";
+document.getElementById("kenoStatus").innerText=
+`${hits}/${max} hits • no winning combination`;
+
+addHistory("Keno","loss",bet,0,0);
+}
+}
 
 /* =========================================================
-   WALLET / PROFILE
+WALLET / PROFILE
 ========================================================= */
 
 function openWallet(){
 
-  if(!currentUser)return;
+if(!currentUser)return;
 
-  document.getElementById("walletModal").style.display="flex";
-
-  updateBalance();
+document.getElementById("walletModal").style.display="flex";
+updateBalance();
 }
 
 function addCredits(){
 
-  if(!currentUser)return;
+if(!currentUser)return;
 
-  payout(500);
+payout(500);
 }
 
 function openProfile(){
 
-  if(!currentUser)return;
+if(!currentUser)return;
 
-  document.getElementById("profileModal").style.display="flex";
-
-  document.getElementById("profileName").innerText=currentUser;
-
-  updateBalance();
+document.getElementById("profileModal").style.display="flex";
+document.getElementById("profileName").innerText=currentUser;
+updateBalance();
 }
 
-
 /* =========================================================
-   OVERLAY CLOSE
+OVERLAY CLOSE
 ========================================================= */
 
-document.querySelectorAll(".overlay")
-  .forEach(overlay=>{
+document.querySelectorAll(".overlay").forEach(overlay=>{
 
-    overlay.addEventListener("click",e=>{
+overlay.addEventListener("click",event=>{
 
-      if(e.target===overlay){
+if(event.target===overlay){
+overlay.style.display="none";
+clearTimers();
+}
 
-        overlay.style.display="none";
-
-        if(overlay.id==="gameModal")
-          clearTimers();
-      }
-
-    });
-
-  });
-
+});
+});
 
 /* =========================================================
-   STARTUP
+STARTUP
 ========================================================= */
 
-(function(){
+const savedSession=localStorage.getItem(SESSION_KEY);
+const savedUsers=getUsers();
 
-  const saved=localStorage.getItem(SESSION_KEY);
-  const users=getUsers();
+if(savedSession&&savedUsers[savedSession]){
 
-  if(saved&&users[saved]){
+currentUser=savedSession;
+balanceAmount=Number(savedUsers[savedSession].balance||1000);
 
-    currentUser=saved;
+document.getElementById("auth").style.display="none";
+document.getElementById("account").innerText="👤 "+currentUser;
+}
 
-    balanceAmount=
-      Number(users[saved].balance||1000);
+renderGames();
+updateBalance();
 
-    document.getElementById("auth").style.display="none";
-
-    document.getElementById("account").innerText=
-      "👤 "+currentUser;
-
-  }
-
-  renderGames();
-  updateBalance();
-
-})();
 </script>
-
 </body>
 </html>
