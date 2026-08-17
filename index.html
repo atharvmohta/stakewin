@@ -4690,6 +4690,738 @@ document.querySelectorAll(
 
 boot();
 </script>
+<script>
+/* =========================================================
+   STAKEWIN DEMO ADMIN BRIDGE
+   Existing game code is NOT replaced.
+   This layer reads settings saved by admin.html.
+========================================================= */
+
+const SW_ADMIN_KEY = "stakewin_demo_control_v2";
+
+function swAdmin(){
+
+    try{
+
+        const data =
+            JSON.parse(
+                localStorage.getItem(SW_ADMIN_KEY) || "null"
+            );
+
+        return data || {
+            enabled:false
+        };
+
+    }catch(e){
+
+        return {
+            enabled:false
+        };
+
+    }
+
+}
+
+function swControlled(name){
+
+    const a = swAdmin();
+
+    return !!(
+        a.enabled === true &&
+        a[name] !== undefined &&
+        a[name] !== null &&
+        a[name] !== ""
+    );
+
+}
+
+function swValue(name){
+
+    return swAdmin()[name];
+
+}
+
+/* =========================================================
+   MINES
+   Admin value example: 2,7,18
+========================================================= */
+
+const SW_original_startMines = window.startMines;
+
+window.startMines = function(){
+
+    if(
+        swControlled("mines") &&
+        typeof window.getTestMines === "undefined"
+    ){
+
+        window.getTestMines = function(count){
+
+            const a =
+                String(
+                    swValue("mines")
+                )
+                .split(",")
+                .map(x=>Number(x.trim()))
+                .filter(
+                    x =>
+                        Number.isInteger(x) &&
+                        x >= 0 &&
+                        x < 25
+                );
+
+            const unique =
+                [...new Set(a)];
+
+            if(unique.length === count)
+                return unique;
+
+            return null;
+
+        };
+
+    }
+
+    return SW_original_startMines.apply(
+        this,
+        arguments
+    );
+
+};
+
+
+/* =========================================================
+   CRASH
+========================================================= */
+
+const SW_original_startCrash = window.startCrash;
+
+window.startCrash = function(){
+
+    if(!swControlled("crash")){
+
+        return SW_original_startCrash.apply(
+            this,
+            arguments
+        );
+
+    }
+
+    const oldRandom = Math.random;
+
+    Math.random = function(){
+
+        const crash =
+            Number(
+                swValue("crash")
+            );
+
+        if(
+            Number.isFinite(crash) &&
+            crash > 1
+        ){
+
+            /*
+              Existing Crash calculation uses Math.random().
+              This converts it into the selected crash point.
+            */
+
+            const level =
+                document.getElementById(
+                    "crashLevel"
+                );
+
+            if(level){
+
+                /*
+                  Preserve existing function behaviour
+                  while forcing the selected point.
+                */
+
+                const selected =
+                    crash;
+
+                const originalLevel =
+                    level.value;
+
+                if(originalLevel==="Easy")
+                    return Math.max(
+                        0,
+                        (selected-2)/8
+                    );
+
+                if(originalLevel==="Hard")
+                    return Math.max(
+                        0,
+                        (selected-1.05)/4
+                    );
+
+                return Math.max(
+                    0,
+                    (selected-1.1)/7
+                );
+
+            }
+
+        }
+
+        return oldRandom();
+
+    };
+
+    try{
+
+        return SW_original_startCrash.apply(
+            this,
+            arguments
+        );
+
+    }finally{
+
+        Math.random = oldRandom;
+
+    }
+
+};
+
+
+/* =========================================================
+   DICE
+========================================================= */
+
+const SW_original_rollDiceBet =
+    window.rollDiceBet;
+
+window.rollDiceBet = function(mode){
+
+    if(!swControlled("dice")){
+
+        return SW_original_rollDiceBet.apply(
+            this,
+            arguments
+        );
+
+    }
+
+    const oldRandom = Math.random;
+
+    Math.random = function(){
+
+        const value =
+            Number(
+                swValue("dice")
+            );
+
+        if(
+            Number.isFinite(value)
+        ){
+
+            return Math.max(
+                0,
+                Math.min(
+                    0.999999,
+                    value / 100
+                )
+            );
+
+        }
+
+        return oldRandom();
+
+    };
+
+    try{
+
+        return SW_original_rollDiceBet.apply(
+            this,
+            arguments
+        );
+
+    }finally{
+
+        Math.random = oldRandom;
+
+    }
+
+};
+
+
+/* =========================================================
+   COIN
+========================================================= */
+
+const SW_original_flipCoin =
+    window.flipCoin;
+
+window.flipCoin = function(choice){
+
+    if(!swControlled("coin")){
+
+        return SW_original_flipCoin.apply(
+            this,
+            arguments
+        );
+
+    }
+
+    const wanted =
+        String(
+            swValue("coin")
+        ).toLowerCase();
+
+    const oldRandom =
+        Math.random;
+
+    Math.random = function(){
+
+        return wanted === "heads"
+            ? 0.1
+            : 0.9;
+
+    };
+
+    try{
+
+        return SW_original_flipCoin.apply(
+            this,
+            arguments
+        );
+
+    }finally{
+
+        Math.random = oldRandom;
+
+    }
+
+};
+
+
+/* =========================================================
+   HIGHER / LOWER
+========================================================= */
+
+const SW_original_higherBet =
+    window.higherBet;
+
+window.higherBet = function(choice){
+
+    if(!swControlled("higher")){
+
+        return SW_original_higherBet.apply(
+            this,
+            arguments
+        );
+
+    }
+
+    const wanted =
+        Number(
+            swValue("higher")
+        );
+
+    if(
+        !Number.isFinite(wanted)
+    ){
+
+        return SW_original_higherBet.apply(
+            this,
+            arguments
+        );
+
+    }
+
+    const oldRandom =
+        Math.random;
+
+    Math.random = function(){
+
+        return Math.max(
+            0,
+            Math.min(
+                0.999999,
+                wanted / 100
+            )
+        );
+
+    };
+
+    try{
+
+        return SW_original_higherBet.apply(
+            this,
+            arguments
+        );
+
+    }finally{
+
+        Math.random = oldRandom;
+
+    }
+
+};
+
+
+/* =========================================================
+   COLOR
+========================================================= */
+
+const SW_original_colorBet =
+    window.colorBet;
+
+window.colorBet = function(choice){
+
+    if(!swControlled("color")){
+
+        return SW_original_colorBet.apply(
+            this,
+            arguments
+        );
+
+    }
+
+    const wanted =
+        String(
+            swValue("color")
+        ).toLowerCase();
+
+    const index =
+        wanted === "red"
+        ? 0
+        : wanted === "green"
+        ? 1
+        : 2;
+
+    const oldRandom =
+        Math.random;
+
+    Math.random = function(){
+
+        return (
+            index + 0.1
+        ) / 3;
+
+    };
+
+    try{
+
+        return SW_original_colorBet.apply(
+            this,
+            arguments
+        );
+
+    }finally{
+
+        Math.random = oldRandom;
+
+    }
+
+};
+
+
+/* =========================================================
+   ROULETTE
+========================================================= */
+
+const SW_original_spinRoulette =
+    window.spinRoulette;
+
+window.spinRoulette = function(){
+
+    if(!swControlled("roulette")){
+
+        return SW_original_spinRoulette.apply(
+            this,
+            arguments
+        );
+
+    }
+
+    const wanted =
+        Number(
+            swValue("roulette")
+        );
+
+    if(
+        !Number.isInteger(wanted) ||
+        wanted < 0 ||
+        wanted > 36
+    ){
+
+        return SW_original_spinRoulette.apply(
+            this,
+            arguments
+        );
+
+    }
+
+    const oldRandom =
+        Math.random;
+
+    Math.random = function(){
+
+        /*
+          rouletteNumbers has 37 values.
+          Force the selected index.
+        */
+
+        const index =
+            rouletteNumbers.indexOf(
+                wanted
+            );
+
+        if(index < 0)
+            return oldRandom();
+
+        return (
+            index + 0.01
+        ) / rouletteNumbers.length;
+
+    };
+
+    try{
+
+        return SW_original_spinRoulette.apply(
+            this,
+            arguments
+        );
+
+    }finally{
+
+        Math.random = oldRandom;
+
+    }
+
+};
+
+
+/* =========================================================
+   SLOTS
+========================================================= */
+
+const SW_original_spinSlots =
+    window.spinSlots;
+
+window.spinSlots = function(){
+
+    if(!swControlled("slots")){
+
+        return SW_original_spinSlots.apply(
+            this,
+            arguments
+        );
+
+    }
+
+    const wanted =
+        String(
+            swValue("slots")
+        ).toLowerCase();
+
+    const oldRandom =
+        Math.random;
+
+    let sequence;
+
+    if(wanted==="777"){
+
+        sequence=[
+            0.51,
+            0.51,
+            0.51
+        ];
+
+    }else if(wanted==="diamond"){
+
+        sequence=[
+            0.68,
+            0.68,
+            0.68
+        ];
+
+    }else if(wanted==="star"){
+
+        sequence=[
+            0.85,
+            0.85,
+            0.85
+        ];
+
+    }else if(wanted==="cherry"){
+
+        sequence=[
+            0.01,
+            0.01,
+            0.01
+        ];
+
+    }else if(wanted==="pair"){
+
+        sequence=[
+            0.01,
+            0.01,
+            0.35
+        ];
+
+    }else{
+
+        sequence=[
+            0.01,
+            0.35,
+            0.68
+        ];
+
+    }
+
+    let counter=0;
+
+    Math.random=function(){
+
+        const value =
+            sequence[
+                Math.min(
+                    counter++,
+                    sequence.length-1
+                )
+            ];
+
+        return value;
+
+    };
+
+    try{
+
+        return SW_original_spinSlots.apply(
+            this,
+            arguments
+        );
+
+    }finally{
+
+        Math.random=oldRandom;
+
+    }
+
+};
+
+
+/* =========================================================
+   HORSE RACING
+========================================================= */
+
+const SW_original_startHorseRace =
+    window.startHorseRace;
+
+window.startHorseRace = function(){
+
+    if(!swControlled("horse")){
+
+        return SW_original_startHorseRace.apply(
+            this,
+            arguments
+        );
+
+    }
+
+    const wanted =
+        Number(
+            swValue("horse")
+        );
+
+    if(
+        !Number.isInteger(wanted) ||
+        wanted < 1 ||
+        wanted > 4
+    ){
+
+        return SW_original_startHorseRace.apply(
+            this,
+            arguments
+        );
+
+    }
+
+    /*
+      The original race checks which horse
+      reaches the finish first.
+
+      Give the selected horse a guaranteed
+      head start while keeping the original
+      race animation.
+    */
+
+    const oldRandom =
+        Math.random;
+
+    let calls=0;
+
+    Math.random=function(){
+
+        calls++;
+
+        /*
+          Selected horse gets larger movement.
+          Other horses get small movement.
+        */
+
+        const horseIndex =
+            Math.floor(
+                (calls-1)/4
+            );
+
+        const currentHorse =
+            (calls-1)%4 + 1;
+
+        if(currentHorse===wanted)
+            return 0.95;
+
+        return 0.05;
+
+    };
+
+    try{
+
+        return SW_original_startHorseRace.apply(
+            this,
+            arguments
+        );
+
+    }finally{
+
+        Math.random=oldRandom;
+
+    }
+
+};
+
+
+/* =========================================================
+   LIVE UPDATE
+   If admin.html is open in another tab,
+   index.html can refresh settings automatically.
+========================================================= */
+
+window.addEventListener(
+    "storage",
+    function(event){
+
+        if(
+            event.key===
+            SW_ADMIN_KEY
+        ){
+
+            console.log(
+                "Demo admin settings updated."
+            );
+
+        }
+
+    }
+);
+
+console.log(
+    "StakeWin Demo Admin Bridge loaded."
+);
+</script>
 
 </body>
 </html>
