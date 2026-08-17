@@ -3402,6 +3402,8 @@ timers.push(race);
    CRAZY TIME / WHEEL
 ========================= */
 
+<!-- Replace your current wheelShowHTML() with this -->
+
 function wheelShowHTML(){
 
 return `
@@ -3418,65 +3420,151 @@ return `
 
 <div style="
 position:relative;
-width:280px;
-height:280px;
-margin:15px auto 25px;
+width:min(340px,90vw);
+height:min(340px,90vw);
+margin:15px auto 30px;
 ">
 
-<div id="wheelPointer" style="
+<div style="
 position:absolute;
-z-index:20;
-top:-12px;
+z-index:30;
+top:-10px;
 left:50%;
 transform:translateX(-50%);
 font-size:30px;
 color:#ffd34d;
 text-shadow:0 2px 8px #000;
-">
-▼
-</div>
+">▼</div>
 
 <div id="wheelShow" style="
-width:280px;
-height:280px;
+position:relative;
+width:100%;
+height:100%;
 border-radius:50%;
 border:8px solid #d1a844;
 background:conic-gradient(
-#18b56a 0deg 30deg,
+#20b968 0deg 30deg,
 #111 30deg 60deg,
-#e3344b 60deg 90deg,
+#e7354e 60deg 90deg,
 #111 90deg 120deg,
 #ffd34d 120deg 150deg,
 #111 150deg 180deg,
-#18b56a 180deg 210deg,
+#20b968 180deg 210deg,
 #111 210deg 240deg,
-#e3344b 240deg 270deg,
+#e7354e 240deg 270deg,
 #111 270deg 300deg,
 #ffd34d 300deg 330deg,
 #111 330deg 360deg
 );
-display:grid;
-place-items:center;
 transition:transform 3s cubic-bezier(.12,.8,.18,1);
 box-shadow:0 0 35px #000;
 ">
 
 <div style="
-width:90px;
-height:90px;
+position:absolute;
+inset:0;
+display:grid;
+place-items:center;
+pointer-events:none;
+">
+
+<div style="
+position:absolute;
+top:8%;
+left:50%;
+transform:translateX(-50%);
+font-size:18px;
+font-weight:950;
+color:#fff;
+text-shadow:0 2px 5px #000;
+">1X</div>
+
+<div style="
+position:absolute;
+top:23%;
+right:17%;
+font-size:18px;
+font-weight:950;
+color:#fff;
+text-shadow:0 2px 5px #000;
+">2X</div>
+
+<div style="
+position:absolute;
+top:49%;
+right:8%;
+font-size:18px;
+font-weight:950;
+color:#fff;
+text-shadow:0 2px 5px #000;
+">5X</div>
+
+<div style="
+position:absolute;
+bottom:18%;
+right:17%;
+font-size:18px;
+font-weight:950;
+color:#fff;
+text-shadow:0 2px 5px #000;
+">10X</div>
+
+<div style="
+position:absolute;
+bottom:8%;
+left:50%;
+transform:translateX(-50%);
+font-size:18px;
+font-weight:950;
+color:#fff;
+text-shadow:0 2px 5px #000;
+">1X</div>
+
+<div style="
+position:absolute;
+bottom:18%;
+left:17%;
+font-size:18px;
+font-weight:950;
+color:#fff;
+text-shadow:0 2px 5px #000;
+">2X</div>
+
+<div style="
+position:absolute;
+top:49%;
+left:8%;
+font-size:18px;
+font-weight:950;
+color:#fff;
+text-shadow:0 2px 5px #000;
+">5X</div>
+
+<div style="
+position:absolute;
+top:23%;
+left:17%;
+font-size:18px;
+font-weight:950;
+color:#fff;
+text-shadow:0 2px 5px #000;
+">10X</div>
+
+<div style="
+width:85px;
+height:85px;
 border-radius:50%;
 background:#07120c;
 border:4px solid #d1a844;
 display:grid;
 place-items:center;
-text-align:center;
 font-size:12px;
 font-weight:950;
 color:#fff;
 ">
-<span id="wheelCenter">
-SPIN
-</span>
+<span id="wheelCenter">SPIN</span>
+</div>
+
 </div>
 
 </div>
@@ -3490,9 +3578,7 @@ font-weight:950;
 color:var(--gold);
 min-height:40px;
 margin:5px 0;
-">
-?
-</div>
+">?</div>
 
 <div id="wheelStatus" class="status">
 Choose your segment.
@@ -3501,23 +3587,19 @@ Choose your segment.
 <div class="betAreas">
 
 <button class="betArea" onclick="wheelBet('1')">
-<strong>1</strong>
-<span>1X</span>
+<strong>1X</strong>
 </button>
 
 <button class="betArea" onclick="wheelBet('2')">
-<strong>2</strong>
-<span>2X</span>
+<strong>2X</strong>
 </button>
 
 <button class="betArea" onclick="wheelBet('5')">
-<strong>5</strong>
-<span>5X</span>
+<strong>5X</strong>
 </button>
 
 <button class="betArea" onclick="wheelBet('10')">
-<strong>10</strong>
-<span>10X</span>
+<strong>10X</strong>
 </button>
 
 </div>
@@ -3526,22 +3608,22 @@ Choose your segment.
 
 <button class="betArea" onclick="wheelBet('coin')">
 <strong>🪙 COIN FLIP</strong>
-<span>2X</span>
+<small>2X</small>
 </button>
 
 <button class="betArea" onclick="wheelBet('cash')">
 <strong>💰 CASH HUNT</strong>
-<span>10X</span>
+<small>10X</small>
 </button>
 
 <button class="betArea" onclick="wheelBet('pachinko')">
 <strong>🎯 PACHINKO</strong>
-<span>15X</span>
+<small>15X</small>
 </button>
 
 <button class="betArea" onclick="wheelBet('crazy')">
 <strong>🔥 CRAZY TIME</strong>
-<span>25X</span>
+<small>25X</small>
 </button>
 
 </div>
