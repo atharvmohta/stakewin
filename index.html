@@ -3404,7 +3404,7 @@ timers.push(race);
 
 function wheelShowHTML(){
 
-return`
+return `
 <div class="toolbar">
 
 <div class="control">
@@ -3416,47 +3416,106 @@ return`
 
 <div class="gamearea">
 
-<div
-id="wheelShow"
-class="showWheel">
+<div style="
+position:relative;
+width:280px;
+height:280px;
+margin:15px auto 25px;
+">
 
-<div class="wheelInner">
-CRAZY<br>
-TIME
+<div id="wheelPointer" style="
+position:absolute;
+z-index:20;
+top:-12px;
+left:50%;
+transform:translateX(-50%);
+font-size:30px;
+color:#ffd34d;
+text-shadow:0 2px 8px #000;
+">
+▼
 </div>
 
+<div id="wheelShow" style="
+width:280px;
+height:280px;
+border-radius:50%;
+border:8px solid #d1a844;
+background:conic-gradient(
+#18b56a 0deg 30deg,
+#111 30deg 60deg,
+#e3344b 60deg 90deg,
+#111 90deg 120deg,
+#ffd34d 120deg 150deg,
+#111 150deg 180deg,
+#18b56a 180deg 210deg,
+#111 210deg 240deg,
+#e3344b 240deg 270deg,
+#111 270deg 300deg,
+#ffd34d 300deg 330deg,
+#111 330deg 360deg
+);
+display:grid;
+place-items:center;
+transition:transform 3s cubic-bezier(.12,.8,.18,1);
+box-shadow:0 0 35px #000;
+">
+
+<div style="
+width:90px;
+height:90px;
+border-radius:50%;
+background:#07120c;
+border:4px solid #d1a844;
+display:grid;
+place-items:center;
+text-align:center;
+font-size:12px;
+font-weight:950;
+color:#fff;
+">
+<span id="wheelCenter">
+SPIN
+</span>
+</div>
+
+</div>
+
+</div>
+
+<div id="wheelResult" style="
+text-align:center;
+font-size:30px;
+font-weight:950;
+color:var(--gold);
+min-height:40px;
+margin:5px 0;
+">
+?
 </div>
 
 <div id="wheelStatus" class="status">
-Select a segment.
+Choose your segment.
 </div>
 
 <div class="betAreas">
 
-<button
-class="betArea wheelBetBtn"
-onclick="wheelBet('1')">
+<button class="betArea" onclick="wheelBet('1')">
 <strong>1</strong>
 <span>1X</span>
 </button>
 
-<button
-class="betArea wheelBetBtn"
-onclick="wheelBet('2')">
+<button class="betArea" onclick="wheelBet('2')">
 <strong>2</strong>
 <span>2X</span>
 </button>
 
-<button
-class="betArea wheelBetBtn"
-onclick="wheelBet('5')">
+<button class="betArea" onclick="wheelBet('5')">
 <strong>5</strong>
 <span>5X</span>
 </button>
 
-<button
-class="betArea wheelBetBtn"
-onclick="wheelBet('10')">
+<button class="betArea" onclick="wheelBet('10')">
 <strong>10</strong>
 <span>10X</span>
 </button>
@@ -3465,31 +3524,23 @@ onclick="wheelBet('10')">
 
 <div class="betAreas">
 
-<button
-class="betArea wheelBetBtn"
-onclick="wheelBet('coin')">
-<strong>COIN FLIP</strong>
+<button class="betArea" onclick="wheelBet('coin')">
+<strong>🪙 COIN FLIP</strong>
 <span>2X</span>
 </button>
 
-<button
-class="betArea wheelBetBtn"
-onclick="wheelBet('cash')">
-<strong>CASH HUNT</strong>
+<button class="betArea" onclick="wheelBet('cash')">
+<strong>💰 CASH HUNT</strong>
 <span>10X</span>
 </button>
 
-<button
-class="betArea wheelBetBtn"
-onclick="wheelBet('pachinko')">
-<strong>PACHINKO</strong>
+<button class="betArea" onclick="wheelBet('pachinko')">
+<strong>🎯 PACHINKO</strong>
 <span>15X</span>
 </button>
 
-<button
-class="betArea wheelBetBtn"
-onclick="wheelBet('crazy')">
-<strong>CRAZY TIME</strong>
+<button class="betArea" onclick="wheelBet('crazy')">
+<strong>🔥 CRAZY TIME</strong>
 <span>25X</span>
 </button>
 
@@ -3497,12 +3548,14 @@ onclick="wheelBet('crazy')">
 
 </div>
 `;
-
 }
+
 
 function wheelBet(choice){
 
-const bet=Number(document.getElementById("wheelBet").value);
+const bet=Number(
+document.getElementById("wheelBet").value
+);
 
 if(!spend(bet))return;
 
@@ -3513,55 +3566,94 @@ const segments=[
 ];
 
 const result=
-segments[Math.floor(Math.random()*segments.length)];
-
-const wheel=document.getElementById("wheelShow");
-
-const index=segments.indexOf(result);
-
-wheel.style.transform=
-`rotate(${1440+index*30}deg)`;
-
-const timer=setTimeout(()=>{
+segments[
+Math.floor(Math.random()*segments.length)
+];
 
 const multipliers={
 "1":1,
 "2":2,
 "5":5,
 "10":10,
-coin:2,
-cash:10,
-pachinko:15,
-crazy:25
+"coin":2,
+"cash":10,
+"pachinko":15,
+"crazy":25
 };
 
-const multiplier=multipliers[result];
+const wheel=
+document.getElementById("wheelShow");
 
-const status=document.getElementById("wheelStatus");
+const resultBox=
+document.getElementById("wheelResult");
 
-if(result===choice){
+const status=
+document.getElementById("wheelStatus");
 
-const amount=bet*multiplier;
+const index=
+segments.indexOf(result);
+
+wheel.style.transform=
+`rotate(${1440+(index*30)}deg)`;
+
+resultBox.innerText="SPINNING...";
+
+status.className="status";
+status.innerText="Wheel is spinning...";
+
+const timer=setTimeout(()=>{
+
+const multiplier=
+multipliers[result];
+
+const label=
+result==="coin"?"COIN FLIP":
+result==="cash"?"CASH HUNT":
+result==="pachinko"?"PACHINKO":
+result==="crazy"?"CRAZY TIME":
+result;
+
+resultBox.innerText=
+`${label} • ${multiplier}X`;
+
+if(choice===result){
+
+const amount=
+bet*multiplier;
 
 payout(amount);
 
 status.className="status win";
-status.innerText=
-`LANDED: ${result.toUpperCase()} • ${multiplier}X • +${amount.toFixed(2)}`;
 
-addHistory("Crazy Time","win",bet,amount,multiplier);
+status.innerText=
+`WIN • ${label} • +${amount.toFixed(2)}`;
+
+addHistory(
+"Crazy Time",
+"win",
+bet,
+amount,
+multiplier
+);
 
 }else{
 
 status.className="status loss";
-status.innerText=
-`LANDED: ${result.toUpperCase()} • LOSS`;
 
-addHistory("Crazy Time","loss",bet,0,0);
+status.innerText=
+`LANDED • ${label} • LOSS`;
+
+addHistory(
+"Crazy Time",
+"loss",
+bet,
+0,
+0
+);
 
 }
 
-},2550);
+},3100);
 
 timers.push(timer);
 
