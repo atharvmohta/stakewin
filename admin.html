@@ -6,9 +6,7 @@
 <title>StakeWin Admin</title>
 
 <style>
-*{
-box-sizing:border-box
-}
+*{box-sizing:border-box}
 
 body{
 margin:0;
@@ -27,9 +25,7 @@ border-radius:14px;
 padding:20px
 }
 
-h1{
-margin-top:0
-}
+h1{margin-top:0}
 
 input,button{
 height:40px;
@@ -102,11 +98,6 @@ align-items:center;
 flex-wrap:wrap
 }
 
-.row input{
-width:150px;
-margin:0
-}
-
 .name{
 font-weight:900;
 font-size:16px;
@@ -155,7 +146,10 @@ font-size:12px
 }
 
 .userActions{
-margin-top:9px
+margin-top:9px;
+display:flex;
+gap:7px;
+flex-wrap:wrap
 }
 
 .userActions button{
@@ -165,6 +159,15 @@ min-width:65px
 .refresh{
 margin-bottom:15px
 }
+
+.status{
+padding:10px;
+border-radius:7px;
+background:#09130e;
+border:1px solid #20372a;
+font-size:11px;
+margin:10px 0
+}
 </style>
 </head>
 
@@ -172,7 +175,7 @@ margin-bottom:15px
 
 
 <!-- =========================
-     ADMIN LOGIN
+     LOGIN
 ========================= -->
 
 <div class="card login" id="login">
@@ -188,19 +191,23 @@ Virtual-credit demo management
 <input
 id="adminUser"
 placeholder="Admin username"
-autocomplete="username">
+autocomplete="username"
+>
 
 <input
 id="adminPass"
 type="password"
 placeholder="Admin password"
-autocomplete="current-password">
+autocomplete="current-password"
+>
 
 <div id="loginMsg" class="msg"></div>
 
 <button
 id="loginBtn"
-onclick="adminLogin()">
+type="button"
+onclick="adminLogin()"
+>
 LOGIN
 </button>
 
@@ -215,7 +222,9 @@ LOGIN
 
 <button
 class="logout"
-onclick="logoutAdmin()">
+type="button"
+onclick="logoutAdmin()"
+>
 LOG OUT
 </button>
 
@@ -224,15 +233,13 @@ Admin Panel
 </h1>
 
 <small>
-Changes sync through Supabase.
+Virtual-credit management
 </small>
 
 <hr style="margin:18px 0">
 
 
-<!-- =========================
-     SET CREDITS
-========================= -->
+<!-- SET BALANCE -->
 
 <h3>
 Set Credits
@@ -241,17 +248,21 @@ Set Credits
 <input
 id="newUser"
 placeholder="Username"
-autocomplete="off">
+autocomplete="off"
+>
 
 <input
 id="newAmount"
 type="number"
 min="0"
 step="1"
-placeholder="New balance">
+placeholder="New balance"
+>
 
 <button
-onclick="setCredits()">
+type="button"
+onclick="setCredits()"
+>
 SET CREDITS
 </button>
 
@@ -261,9 +272,7 @@ SET CREDITS
 <hr style="margin:18px 0">
 
 
-<!-- =========================
-     USERS
-========================= -->
+<!-- USERS -->
 
 <div class="row">
 
@@ -273,7 +282,9 @@ Users
 
 <button
 class="secondary refresh"
-onclick="renderUsers()">
+type="button"
+onclick="renderUsers()"
+>
 ↻ REFRESH
 </button>
 
@@ -281,7 +292,8 @@ onclick="renderUsers()">
 
 <div
 id="loading"
-class="loading">
+class="loading"
+>
 Loading users...
 </div>
 
@@ -290,13 +302,13 @@ Loading users...
 </div>
 
 
+<!-- =========================
+     SUPABASE
+========================= -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
-/* =========================
-   SUPABASE
-========================= */
 
 const SUPABASE_URL =
 "https://ljfuowfocmnmowksfuvp.supabase.co";
@@ -304,7 +316,8 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_smUQUWvB4rgac0afKMgmog_5YpFhowH";
 
-const db = supabase.createClient(
+const db =
+supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
@@ -314,19 +327,21 @@ SUPABASE_KEY
    ADMIN LOGIN
 ========================= */
 
-const ADMIN_USER = "admin";
-const ADMIN_PASS = "#12Atharv";
+const ADMIN_USER="admin";
+const ADMIN_PASS="#12Atharv";
 
-const ADMIN_SESSION_KEY =
+const ADMIN_SESSION_KEY=
 "stakewin_admin";
 
 
 /* =========================
-   ELEMENT HELPERS
+   HELPER
 ========================= */
 
 function $(id){
+
 return document.getElementById(id);
+
 }
 
 
@@ -341,12 +356,15 @@ success=false
 
 const msg=$("actionMsg");
 
-msg.className =
-success
-? "msg success"
-: "msg";
+if(!msg)return;
 
-msg.innerText=message;
+msg.className=
+success
+?"msg success"
+:"msg";
+
+msg.innerText=
+message;
 
 }
 
@@ -357,22 +375,25 @@ msg.innerText=message;
 
 function adminLogin(){
 
-const username =
-$("adminUser").value.trim();
+const username=
+$("adminUser")
+.value
+.trim();
 
-const password =
-$("adminPass").value;
+const password=
+$("adminPass")
+.value;
 
-const msg =
+const msg=
 $("loginMsg");
 
 msg.className="msg";
 msg.innerText="";
 
 
-if(!username || !password){
+if(!username||!password){
 
-msg.innerText =
+msg.innerText=
 "Enter admin username and password.";
 
 return;
@@ -381,11 +402,11 @@ return;
 
 
 if(
-username !== ADMIN_USER ||
-password !== ADMIN_PASS
+username!==ADMIN_USER||
+password!==ADMIN_PASS
 ){
 
-msg.innerText =
+msg.innerText=
 "Invalid admin login.";
 
 return;
@@ -393,25 +414,17 @@ return;
 }
 
 
-/* Save admin session */
-
 sessionStorage.setItem(
 ADMIN_SESSION_KEY,
 "1"
 );
 
 
-/* Hide login */
+$("login").style.display=
+"none";
 
-$("login").style.display="none";
-
-
-/* Show panel */
-
-$("panel").style.display="block";
-
-
-/* Load users */
+$("panel").style.display=
+"block";
 
 renderUsers();
 
@@ -444,9 +457,12 @@ try{
 const {
 data,
 error
-} = await db
+}=
+await db
 .from("stakewin_users")
-.select("username,balance")
+.select(
+"username,balance"
+)
 .order("username");
 
 
@@ -458,15 +474,16 @@ error
 );
 
 showMessage(
-error.message || "Could not load users."
+error.message||
+"Could not load users."
 );
 
-return [];
+return[];
 
 }
 
 
-return data || [];
+return data||[];
 
 }catch(error){
 
@@ -476,7 +493,7 @@ showMessage(
 "Could not connect to database."
 );
 
-return [];
+return[];
 
 }
 
@@ -485,23 +502,24 @@ return [];
 
 /* =========================
    SET CREDITS
+   USES RPC
 ========================= */
 
 async function setCredits(){
 
-const username =
-$("newUser").value.trim();
+const username=
+$("newUser")
+.value
+.trim();
 
-const amount =
+const amount=
 Number(
-$("newAmount").value
+$("newAmount")
+.value
 );
-
 
 showMessage("");
 
-
-/* Validate username */
 
 if(!username){
 
@@ -514,11 +532,9 @@ return;
 }
 
 
-/* Validate amount */
-
 if(
-!Number.isFinite(amount) ||
-amount < 0
+!Number.isFinite(amount)||
+amount<0
 ){
 
 showMessage(
@@ -530,74 +546,31 @@ return;
 }
 
 
-/* Disable button while updating */
-
-const buttons =
-document.querySelectorAll("button");
-
-buttons.forEach(
-b=>b.disabled=true
+const button=
+document.querySelector(
+'button[onclick="setCredits()"]'
 );
+
+if(button)
+button.disabled=true;
 
 
 try{
 
-/*
-First check whether user exists
-*/
-
-const {
-data:user,
-error:userError
-} = await db
-.from("stakewin_users")
-.select("username,balance")
-.eq("username",username)
-.maybeSingle();
-
-
-if(userError){
-
-console.error(
-"USER CHECK ERROR:",
-userError
-);
-
-showMessage(
-userError.message ||
-"Database error while checking user."
-);
-
-return;
-
-}
-
-
-if(!user){
-
-showMessage(
-"User does not exist."
-);
-
-return;
-
-}
-
-
-/*
-Update balance
-*/
-
 const {
 data,
 error
-} = await db
-.from("stakewin_users")
-.update({
-balance:amount
-})
-.eq("username",username)
-.select("username,balance");
+}=
+await db.rpc(
+"admin_set_balance",
+{
+target_username:
+username,
+
+new_balance:
+amount
+}
+);
 
 
 if(error){
@@ -608,36 +581,14 @@ error
 );
 
 showMessage(
-error.message ||
-"Database error while updating balance."
+error.message||
+"Could not update balance."
 );
 
 return;
 
 }
 
-
-/*
-Make sure update actually happened
-*/
-
-if(
-!data ||
-!data.length
-){
-
-showMessage(
-"Balance was not updated. Check Supabase RLS policies."
-);
-
-return;
-
-}
-
-
-/*
-Success
-*/
 
 showMessage(
 `${username} balance set to ${amount} credits.`,
@@ -649,30 +600,25 @@ $("newUser").value="";
 $("newAmount").value="";
 
 
-/*
-Refresh list
-*/
-
 await renderUsers();
 
 
 }catch(error){
 
 console.error(
-"SET CREDITS EXCEPTION:",
+"SET CREDITS ERROR:",
 error
 );
 
 showMessage(
-error.message ||
+error.message||
 "Unexpected database error."
 );
 
 }finally{
 
-buttons.forEach(
-b=>b.disabled=false
-);
+if(button)
+button.disabled=false;
 
 }
 
@@ -680,7 +626,8 @@ b=>b.disabled=false
 
 
 /* =========================
-   QUICK CREDIT UPDATE
+   QUICK CREDIT
+   +100 +500 +1000
 ========================= */
 
 async function quick(
@@ -688,21 +635,14 @@ username,
 amount
 ){
 
-if(!username){
-
-showMessage(
-"Invalid username."
-);
-
-return;
-
-}
+amount=
+Number(amount);
 
 
-amount=Number(amount);
-
-
-if(!Number.isFinite(amount)){
+if(
+!username||
+!Number.isFinite(amount)
+){
 
 showMessage(
 "Invalid credit amount."
@@ -722,10 +662,16 @@ Get current balance
 const {
 data:user,
 error:userError
-} = await db
+}=
+await db
 .from("stakewin_users")
-.select("username,balance")
-.eq("username",username)
+.select(
+"username,balance"
+)
+.eq(
+"username",
+username
+)
 .maybeSingle();
 
 
@@ -737,7 +683,7 @@ userError
 );
 
 showMessage(
-userError.message ||
+userError.message||
 "Could not read user."
 );
 
@@ -757,31 +703,33 @@ return;
 }
 
 
-/*
-Calculate new balance
-*/
+const oldBalance=
+Number(
+user.balance||0
+);
 
-const oldBalance =
-Number(user.balance || 0);
-
-const newBalance =
-oldBalance + amount;
+const newBalance=
+oldBalance+amount;
 
 
 /*
-Update
+RPC update
 */
 
 const {
 data,
 error
-} = await db
-.from("stakewin_users")
-.update({
-balance:newBalance
-})
-.eq("username",username)
-.select("username,balance");
+}=
+await db.rpc(
+"admin_set_balance",
+{
+target_username:
+username,
+
+new_balance:
+newBalance
+}
+);
 
 
 if(error){
@@ -792,7 +740,7 @@ error
 );
 
 showMessage(
-error.message ||
+error.message||
 "Could not update credits."
 );
 
@@ -800,24 +748,6 @@ return;
 
 }
 
-
-if(
-!data ||
-!data.length
-){
-
-showMessage(
-"Update was blocked. Check Supabase RLS policies."
-);
-
-return;
-
-}
-
-
-/*
-Success
-*/
 
 showMessage(
 `${username}: +${amount} credits → ${newBalance}`,
@@ -836,8 +766,8 @@ error
 );
 
 showMessage(
-error.message ||
-"Unexpected error."
+error.message||
+"Unexpected database error."
 );
 
 }
@@ -846,7 +776,7 @@ error.message ||
 
 
 /* =========================
-   RESET CREDITS
+   RESET
 ========================= */
 
 async function resetCredits(
@@ -869,13 +799,16 @@ try{
 const {
 data,
 error
-} = await db
-.from("stakewin_users")
-.update({
-balance:0
-})
-.eq("username",username)
-.select("username,balance");
+}=
+await db.rpc(
+"admin_set_balance",
+{
+target_username:
+username,
+
+new_balance:0
+}
+);
 
 
 if(error){
@@ -886,22 +819,8 @@ error
 );
 
 showMessage(
-error.message ||
+error.message||
 "Could not reset credits."
-);
-
-return;
-
-}
-
-
-if(
-!data ||
-!data.length
-){
-
-showMessage(
-"User not found or update blocked."
 );
 
 return;
@@ -921,13 +840,13 @@ await renderUsers();
 }catch(error){
 
 console.error(
-"RESET EXCEPTION:",
+"RESET ERROR:",
 error
 );
 
 showMessage(
-error.message ||
-"Unexpected error."
+error.message||
+"Unexpected database error."
 );
 
 }
@@ -941,36 +860,38 @@ error.message ||
 
 async function renderUsers(){
 
-const box =
+const box=
 $("users");
 
-const loading =
+const loading=
 $("loading");
-
 
 box.innerHTML="";
 
-loading.style.display="block";
+loading.style.display=
+"block";
 
 
-try{
-
-const list =
+const list=
 await getUsers();
 
 
-loading.style.display="none";
+loading.style.display=
+"none";
 
 
 if(!list.length){
 
-box.innerHTML =
-`
+box.innerHTML=`
+
 <div class="user">
+
 <small>
 No users created yet.
 </small>
+
 </div>
+
 `;
 
 return;
@@ -978,75 +899,87 @@ return;
 }
 
 
-/*
-Create user cards
-*/
-
-box.innerHTML =
+box.innerHTML=
 list.map(
-u=>{
+user=>{
 
-const username =
-String(u.username);
+const username=
+String(
+user.username
+);
 
-const balance =
-Number(u.balance || 0);
+const balance=
+Number(
+user.balance||0
+);
 
 
-return `
+return`
 
 <div class="user">
 
 <div class="row">
 
 <div class="name">
-${escapeHTML(username)}
+
+${escapeHTML(
+username
+)}
+
 </div>
 
 <div class="balance">
+
 ${balance.toLocaleString()}
 credits
-</div>
 
 </div>
 
+</div>
 
-<div
-class="row userActions"
->
+
+<div class="userActions">
 
 <button
+type="button"
 onclick="quick(
 '${escapeJS(username)}',
 100
-)">
+)"
+>
 +100
 </button>
 
 
 <button
+type="button"
 onclick="quick(
 '${escapeJS(username)}',
 500
-)">
+)"
+>
 +500
 </button>
 
 
 <button
+type="button"
 onclick="quick(
 '${escapeJS(username)}',
 1000
-)">
+)"
+>
 +1000
 </button>
 
 
 <button
+type="button"
 class="danger"
 onclick="resetCredits(
 '${escapeJS(username)}'
-)">
+)"
+>
 RESET
 </button>
 
@@ -1058,27 +991,6 @@ RESET
 
 }
 ).join("");
-
-
-}catch(error){
-
-loading.style.display="none";
-
-console.error(
-"RENDER ERROR:",
-error
-);
-
-box.innerHTML =
-`
-<div class="user">
-<div class="msg">
-Could not load users.
-</div>
-</div>
-`;
-
-}
 
 }
 
@@ -1120,22 +1032,38 @@ return String(text)
 
 
 /* =========================
-   ESCAPE JAVASCRIPT
+   ESCAPE JS
 ========================= */
 
 function escapeJS(text){
 
 return String(text)
-.replaceAll("\\","\\\\")
-.replaceAll("'","\\'")
-.replaceAll("\n","\\n")
-.replaceAll("\r","\\r");
+
+.replaceAll(
+"\\",
+"\\\\"
+)
+
+.replaceAll(
+"'",
+"\\'"
+)
+
+.replaceAll(
+"\n",
+"\\n"
+)
+
+.replaceAll(
+"\r",
+"\\r"
+);
 
 }
 
 
 /* =========================
-   ENTER KEY LOGIN
+   ENTER LOGIN
 ========================= */
 
 $("adminPass")
@@ -1154,7 +1082,7 @@ adminLogin();
 
 
 /* =========================
-   ENTER KEY SET CREDITS
+   ENTER SET CREDITS
 ========================= */
 
 $("newAmount")
@@ -1173,7 +1101,7 @@ setCredits();
 
 
 /* =========================
-   CHECK ADMIN SESSION
+   RESTORE ADMIN SESSION
 ========================= */
 
 if(
@@ -1182,9 +1110,11 @@ ADMIN_SESSION_KEY
 )==="1"
 ){
 
-$("login").style.display="none";
+$("login").style.display=
+"none";
 
-$("panel").style.display="block";
+$("panel").style.display=
+"block";
 
 renderUsers();
 
